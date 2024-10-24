@@ -155,7 +155,7 @@ map.addControl(new categoriesTitleControl());
       } else if (markergrouping == 'single') {
         var panelLayers = new L.Control.PanelLayers(null, overLayers, {
           compact: true,
-          collapsed: true,
+          collapsed: false,
           position: 'topleft'
         });
         map.addControl(panelLayers);
