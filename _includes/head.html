@@ -1,26 +1,39 @@
 <head>
   <style>
-  /* Community label styling */
-  .community-label {
-    font-size: 9px;
-    font-weight: bold;
-    color: black;
-    text-align: center;
-    padding: 2px 5px;
-    pointer-events: none;  /* Prevents the label from being clicked */
-  }
+    /* Community label styling */
+    .community-label {
+      font-size: 9px;
+      font-weight: bold;
+      color: black;
+      text-align: center;
+      padding: 2px 5px;
+      pointer-events: none;  /* Prevents the label from being clicked */
+    }
 
-  /* Fix for leaflet layers alignment */
-  .leaflet-control-layers-overlays label {
-    text-align: topleft !important;
-    display: block;
-  }
+    /* Fix for leaflet layers alignment */
+    .leaflet-control-layers-overlays label,
+    .leaflet-control-layers-base label {
+      font-size: 16px;  /* Adjust font size for layer titles */
+      font-weight: bold;
+      display: block;
+      padding: 5px 10px;
+      text-align: left;  /* Align layer titles to the left */
+      white-space: normal;
+      word-wrap: break-word;  /* Ensure long titles break correctly */
+    }
+
+    /* Control panel width */
+    .leaflet-control-layers {
+      width: 200px;  /* Adjust width as needed */
+    }
+
+    /* Title for layer control */
     .leaflet-control-layers-title {
       font-size: 12px;
       padding: 5px;
-  font-weight: bold;
-  text-align: center;
-}
+      font-weight: bold;
+      text-align: center;
+    }
   </style>
 
   <meta charset="utf-8">
