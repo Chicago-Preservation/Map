@@ -159,16 +159,6 @@ map.addControl(new categoriesTitleControl());
           position: 'topleft'
         });
         map.addControl(panelLayers);
-        // Insert Categories Title for the top-left (topleft) control
-var categoriesTitleControl = L.Control.extend({
-  options: { position: 'topleft' },
-  onAdd: function (map) {
-    var container = L.DomUtil.create('div', 'leaflet-control-layers-title');
-    container.innerHTML = '<h4>Categories</h4>';
-    return container;
-  }
-});
-map.addControl(new categoriesTitleControl());
       }
 
       // GeoJSON Layers (New Layer Control for GeoJSON)
@@ -235,22 +225,6 @@ map.addControl(new categoriesTitleControl());
     map.addLayer(monumentsLayer);  // Add this line to make the layer visible by default
   });
 
-// Create a custom control for the title
-var titleControl = L.Control.extend({
-  options: {
-    position: 'bottomright'  // Place the title in the same position as the layer control
-  },
-
-  onAdd: function (map) {
-    var container = L.DomUtil.create('div', 'leaflet-control-layers-title');
-    container.innerHTML = '<h4>Map Layers</h4>';  // Add your custom title here
-    return container;
-  }
-});
-
-// Add the title control to the map
-map.addControl(new titleControl());
-
 // Create a separate overlay control for GeoJSON layers (same level)
 var geojsonLayerControl = {
   "Community Areas": boundariesLayer,
@@ -270,8 +244,6 @@ mapLayersTitle.className = 'leaflet-control-layers-title';
 mapLayersTitle.innerHTML = '<h4>Map Layers</h4>';
 layersContainer.insertBefore(mapLayersTitle, layersContainer.firstChild);
       
-// Add the GeoJSON layer control to the bottom-right of the map
-L.control.layers(null, geojsonLayerControl, { position: 'bottomright', collapsed: false }).addTo(map);
       // Insert Map Layers Title for the bottom-right (bottomright) control
 
       // Set map view
