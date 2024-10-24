@@ -6,208 +6,257 @@
   <body>
 
     {% include sidebar.html %}
-
-    <script>
-      window.onload = function(){
-        if (localStorage['selectedtem'] != undefined){
-          new_map();
-        } else {
-          new_map('{{site.marker-grouping}}');
-        }
-        reloadhtml();
-      };
-      
-      window.onhashchange = function() {
-        reloadhtml();
-      };
-    </script>
+       <script>
+        window.onload = function(){
+          if (localStorage['selectedtem'] != undefined){
+            new_map();
+          } else {
+            new_map('{{site.marker-grouping}}');
+          }
+          reloadhtml();
+        };
+        window.onhashchange = function() {
+          reloadhtml();
+        };
+       </script>
 
     <div id="map"> </div>
 
     <script>
-      // Initialize the map and set center on Chicago
-      var map = L.map('map' , {scrollWheelZoom: false}).setView([41.8781, -87.6298], 12);
-      var markers = '';
 
-      window.change_map = function(){
-        localStorage.setItem('selectedtem', document.getElementById("choose").value);
-        new_map();
-      };
+    map = L.map('map' , {scrollWheelZoom: false}).setView([41.8781, -87.6298], 12); // Center on Chicago
+    var markers = '';
 
-      function makeMap(markergrouping, map){
-        if (markergrouping == 'grouped') {
-          markers = new L.markerClusterGroup({showCoverageOnHover: false});
-        } else if (markergrouping == 'single') {
-          markers = new L.featureGroup();
-        }
-        var items = {};
+    window.change_map = function(){
+      localStorage.setItem('selectedtem', document.getElementById("choose").value);
+      new_map();
+    }
 
-        // Base map layer (ESRI Gray Light)
-        L.tileLayer('{{site.map-tileset}}', {
-          attribution : '{{site.map-credits}}',
-          minZoom : {{site.minZoom}},
-          maxZoom : {{site.maxZoom}},
-          errorTileUrl : "img/error-tile-image.png",
-          subdomains : ["a", "b", "c", "d"],
-          detectRetina : true,
-        }).addTo(map);
+    function makeMap(markergrouping, map){
+      if (markergrouping == 'grouped') { markers = new L.markerClusterGroup({showCoverageOnHover: false});}
+      else if (markergrouping == 'single') { markers = new L.featureGroup();}
+      var items = {};
 
-        // Custom control for the "Categories" title
-        var categoriesTitleControl = L.Control.extend({
-          options: { position: 'topleft' },
-          onAdd: function (map) {
-            var container = L.DomUtil.create('div', 'leaflet-control-layers-title');
-            container.innerHTML = '<h4>Categories</h4>';
-            return container;
-          }
-        });
+      // Base map layer (ESRI Gray Light)
+      L.tileLayer('{{site.map-tileset}}', {
+        attribution : '{{site.map-credits}}',
+        minZoom : {{site.minZoom}},
+        maxZoom : {{site.maxZoom}},
+        errorTileUrl : "img/error-tile-image.png",
+        subdomains : ["a", "b", "c", "d"],
+        detectRetina : true,
+      }).addTo(map);
 
-        // Add the title control for categories
-        map.addControl(new categoriesTitleControl());
+      // Create a custom control for the categories title
+var categoriesTitleControl = L.Control.extend({
+  options: {
+    position: 'topleft'  // Position at the top-left or where your categories layer menu is
+  },
 
-        // Loop through categories and add layer controls
-        var overLayers = [];
-        var icons = [];
+  onAdd: function (map) {
+    var container = L.DomUtil.create('div', 'leaflet-control-layers-title');
+    container.innerHTML = '<h4>Categories</h4>';  // Title for the categories layer menu
+    return container;
+  }
+});
 
-        {% for image in site.static_files %}
-          {% if image.path contains 'assets/leaflet/img' %}
-            icons.push('{{ image.path }}');
-          {% endif %}
-        {% endfor %}
+// Add the title control to the map for the categories
+map.addControl(new categoriesTitleControl());
+      
+      // Existing categories layer control setup
+      var overLayers = [];
+      var icons = [];
 
-        var counter = -1;
-        var groups = {};
+      {% for image in site.static_files %}
+        {% if image.path contains 'assets/leaflet/img' %}
+          icons.push('{{ image.path }}');
+        {% endif %}
+      {% endfor %}
 
-        {% for category in site.categories %}
-        counter += 1;
-        var layers = [];
-        if (markergrouping == 'grouped') {
-          groups[counter] = L.featureGroup.subGroup(markers);
-          var control = L.control.layers(null, null, { collapsed: false, position: 'topleft' });
-        }
+      var counter = -1;
+      var groups = {};
 
-        {% for post in site.categories[category_name] %}
-        var lat = {{ post.lat }};
-        var lng = {{ post.lng }};
-        var content = $(window).height() < {{site.window-height}} || $(window).width() < {{site.window-width}} ?
-                      "<strong>{{ post.title | truncatewords: 2}}</strong>" :
-                      "<strong>{{ post.title }}</strong><br>{{ post.desc }}";
+      {% for category in site.categories %}
+      counter += 1;
 
-        var iconurl = "{{site.baseurl}}" + icons[counter];
-        var mbox = L.icon({
-          iconUrl: iconurl,
-          iconSize : [46, 50],
-          iconAnchor : [17, 36],
-          popupAnchor : [-1, 8]
-        });
-        var marker = L.marker([lat, lng], { icon: mbox }).bindPopup(content, {offset:new L.Point(0,-30)});
-        marker.iconURL = iconurl;
-
-        if (markergrouping == 'grouped') {
-          marker.addTo(groups[counter]);
-        } else if (markergrouping == 'single') {
-          layers.push(marker);
-        }
-
-        var filename = "{{post.url}}";
-        if (items[filename] == undefined) {
-          items[filename] = [marker];
-        } else {
-          items[filename].push(marker);
-        }
-
-        marker.on('click', function(){
-          window.location = "{{site.baseurl}}/#{{post.url}}";
-          articlerender('{{site.baseurl}}{{post.url}}', "{{post.url}}");
-        });
-
-        {% endfor %}
-
-        var imageurl = '<img class="legend" src="' + iconurl + '">';
-        if (markergrouping == 'grouped') {
-          map.addLayer(markers);
-          var name = imageurl + ' ' + '{{category_name}}';
-          overLayers.push({ "name": name, "layer": groups[counter] });
-        } else if (markergrouping == 'single') {
-          overLayers.push({ "name": '{{category_name}}', icon: imageurl, active: true, "layer": L.layerGroup(layers) });
-        }
-        {% endfor %}
-
-        // Add category control to map
-        if (markergrouping == 'grouped') {
-          for (i = 0; i < overLayers.length; i++) {
-            control.addOverlay(overLayers[i]['layer'], overLayers[i]['name']);
-            control.addTo(map);
-            overLayers[i]['layer'].addTo(map);
-          }
-        } else if (markergrouping == 'single') {
-          var panelLayers = new L.Control.PanelLayers(null, overLayers, {
-            compact: true,
-            collapsed: false,
-            position: 'topleft'
-          });
-          map.addControl(panelLayers);
-        }
-
-        // GeoJSON Layers
-        var boundariesLayer = L.geoJSON(null, {
-          onEachFeature: function (feature, layer) {
-            var center = layer.getBounds().getCenter();
-            var communityName = feature.properties.community || 'Unknown';
-            var formattedCommunityName = communityName.split(' ').join('<br>');
-            var communityLabel = L.divIcon({
-              className: 'community-label',
-              html: '<div>' + formattedCommunityName + '</div>',
-              iconSize: [100, 20]
-            });
-            L.marker(center, { icon: communityLabel }).addTo(map);
-          }
-        });
-        fetch('https://profrovner.github.io/antimonumentalchicago/boundaries.geojson')
-          .then(response => response.json())
-          .then(data => boundariesLayer.addData(data))
-          .then(() => map.addLayer(boundariesLayer));  // Visible by default
-
-        var landmarksLayer = L.geoJSON(null, {
-          onEachFeature: function (feature, layer) {
-            var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
-                               '<em>Architect:</em> ' + (feature.properties.ARCHITECT || 'Unknown') + '<br>' +
-                               '<em>Address:</em> ' + (feature.properties.ADDRESS || 'Unknown') + '<br>' +
-                               '<em>Date Built:</em> ' + (feature.properties.DATE_BUILT || 'Unknown');
-            layer.bindPopup(popupContent);
-          }
-        });
-        fetch('https://profrovner.github.io/antimonumentalchicago/landmarkareas.geojson')
-          .then(response => response.json())
-          .then(data => landmarksLayer.addData(data))
-          .then(() => map.addLayer(landmarksLayer));  // Visible by default
-
-        var monumentsLayer = L.geoJSON(null, {
-          onEachFeature: function (feature, layer) {
-            var popupContent = '<strong>' + (feature.properties.Title || 'Unknown') + '</strong><br>' +
-                               '<em>Year Built:</em> ' + (feature.properties['Year Built'] || 'Unknown') + '<br>' +
-                               '<em>Location (Neighborhood Name):</em> ' + (feature.properties['Location (neighborhood Name)'] || 'Unknown') + '<br>' +
-                               '<em>Architect/Designer:</em> ' + (feature.properties['Architect/designer'] || 'Unknown');
-            layer.bindPopup(popupContent);
-          }
-        });
-        fetch('https://profrovner.github.io/antimonumentalchicago/monuments.geojson')
-          .then(response => response.json())
-          .then(data => monumentsLayer.addData(data))
-          .then(() => map.addLayer(monumentsLayer));  // Visible by default
-
-        // Create a separate overlay control for GeoJSON layers
-        var geojsonLayerControl = {
-          "Community Areas": boundariesLayer,
-          "Landmarks": landmarksLayer,
-          "Monuments": monumentsLayer
-        };
-
-        // Add GeoJSON layer control to the bottom-right of the map
-        L.control.layers(null, geojsonLayerControl, { position: 'bottomright', collapsed: false }).addTo(map);
-
-        return items;
+      {% capture category_name %}{{ category | first }}{% endcapture %}
+      var layers = [];
+      if (markergrouping == 'grouped') {
+        groups[counter] = L.featureGroup.subGroup(markers);
+        var control = L.control.layers(null, null, { collapsed: false, position: 'topleft' });
       }
+
+      {% for post in site.categories[category_name] %}
+      lat = {{ post.lat }};
+      lng = {{ post.lng }};
+
+      if ($(window).height() < {{site.window-height}} || $(window).width() < {{site.window-width}}){
+        content = "<strong>{{ post.title | truncatewords: 2}}</strong>";
+      } else {
+        content = "<strong>{{ post.title }}</strong><br>{{ post.desc }}";
+      }
+
+      var iconurl = "{{site.baseurl}}" + icons[counter];
+      var mbox = L.icon({
+        iconUrl: iconurl,
+        iconSize : [46, 50],
+        iconAnchor : [17, 36],
+        popupAnchor : [-1, 8]
+      });
+      var marker = L.marker([lat, lng], {
+        icon: mbox,
+      }).bindPopup(content, {offset:new L.Point(0,-30)});
+      marker.iconURL = iconurl;
+
+      if (markergrouping == 'grouped') {
+        marker.addTo(groups[counter]);
+      } else if (markergrouping == 'single') {
+        layers.push(marker);
+      }
+
+      filename = "{{post.url}}";
+      if (items[filename] == undefined) {
+        items[filename] = [marker];
+      } else {
+        items[filename].push(marker);
+      }
+
+      marker.on('click', function(){
+        post_url = "{{site.baseurl}}/#{{post.url}}";
+        article_url = '{{site.baseurl}}{{post.url}}';
+        item_id = "{{post.url}}";
+        window.location = (post_url);
+        articlerender(article_url, item_id);
+      });
+
+      {% endfor %}
+
+      var imageurl = '<img class="legend" src="' + iconurl + '">';
+      if (markergrouping == 'grouped') {
+        map.addLayer(markers);
+        var name = imageurl + ' ' + '{{category_name}}';
+        overLayers.push({"name":name, "layer":groups[counter]});
+      } else if (markergrouping == 'single') {
+        var name = '{{category_name}}';
+        overLayers.push({"name":name, icon: imageurl, active: true, "layer":L.layerGroup(layers)});
+      }
+      {% endfor %}
+
+      // End of existing category layers loop
+
+      // Add category control panel to map
+      if (markergrouping == 'grouped') {
+        for (i = 0; i < overLayers.length; i++) {
+          control.addOverlay(overLayers[i]['layer'], overLayers[i]['name']);
+          control.addTo(map);
+          overLayers[i]['layer'].addTo(map);
+        }
+        control.addTo(map);
+      } else if (markergrouping == 'single') {
+        var panelLayers = new L.Control.PanelLayers(null, overLayers, {
+          compact: true,
+          collapsed: false,
+          position: 'topleft'
+        });
+        map.addControl(panelLayers);
+      }
+
+      // GeoJSON Layers (New Layer Control for GeoJSON)
+      var boundariesLayer = L.geoJSON(null, {
+        onEachFeature: function (feature, layer) {
+    // Get the center of the feature (polygon) to position the label
+    var center = layer.getBounds().getCenter();
+          
+ // Break the community name into individual lines (split by spaces)
+    var communityName = feature.properties.community || 'Unknown';
+    var formattedCommunityName = communityName.split(' ').join('<br>');  // Insert <br> tags between words
+          
+    // Create a divIcon for the community label
+    var communityLabel = L.divIcon({
+      className: 'community-label',  // Add custom class for styling
+      html: '<div>' + (feature.properties.community || 'Unknown') + '</div>',
+      iconSize: [100, 20]  // Adjust size to fit your text
+    });
+
+    // Add the label to the map at the center of the feature
+    L.marker(center, { icon: communityLabel }).addTo(map);
+  }
+});
+     fetch('https://profrovner.github.io/antimonumentalchicago/boundaries.geojson')
+  .then(response => response.json())
+  .then(data => {
+    boundariesLayer.addData(data);
+    map.addLayer(boundariesLayer);  // Add this line to make the layer visible by default
+  });
+
+      var landmarksLayer = L.geoJSON(null, {
+       onEachFeature: function (feature, layer) {
+    // Check if the required properties exist and bind the popup content
+    var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
+                       '<em>Architect:</em> ' + (feature.properties.ARCHITECT || 'Unknown') + '<br>' +
+                       '<em>Address:</em> ' + (feature.properties.ADDRESS || 'Unknown') + '<br>' +
+                       '<em>Date Built:</em> ' + (feature.properties.DATE_BUILT || 'Unknown');
+
+    layer.bindPopup(popupContent);
+  }
+});
+      fetch('https://profrovner.github.io/antimonumentalchicago/landmarkareas.geojson')
+  .then(response => response.json())
+  .then(data => {
+    landmarksLayer.addData(data);
+    map.addLayer(landmarksLayer);  // Add this line to make the layer visible by default
+  });
+
+      var monumentsLayer = L.geoJSON(null, {
+     onEachFeature: function (feature, layer) {
+    // Check if the required properties exist and bind the popup content
+    var popupContent = '<strong>' + (feature.properties.Title || 'Unknown') + '</strong><br>' +
+                       '<em>Year Built:</em> ' + (feature.properties['Year Built'] || 'Unknown') + '<br>' +
+                       '<em>Location (Neighborhood Name):</em> ' + (feature.properties['Location (neighborhood Name)'] || 'Unknown') + '<br>' +
+                       '<em>Architect/Designer:</em> ' + (feature.properties['Architect/designer'] || 'Unknown');
+
+    layer.bindPopup(popupContent);
+  }
+});
+     fetch('https://profrovner.github.io/antimonumentalchicago/monuments.geojson')
+  .then(response => response.json())
+  .then(data => {
+    monumentsLayer.addData(data);
+    map.addLayer(monumentsLayer);  // Add this line to make the layer visible by default
+  });
+
+// Create a custom control for the title
+var titleControl = L.Control.extend({
+  options: {
+    position: 'bottomright'  // Place the title in the same position as the layer control
+  },
+
+  onAdd: function (map) {
+    var container = L.DomUtil.create('div', 'leaflet-control-layers-title');
+    container.innerHTML = '<h4>Map Layers</h4>';  // Add your custom title here
+    return container;
+  }
+});
+
+// Add the title control to the map
+map.addControl(new titleControl());
+
+// Create a separate overlay control for GeoJSON layers (same level)
+var geojsonLayerControl = {
+  "Community Areas": boundariesLayer,
+  "Landmarks": landmarksLayer,
+  "Monuments": monumentsLayer
+};
+
+// Add the GeoJSON layer control to the bottom-right of the map
+L.control.layers(null, geojsonLayerControl, { position: 'bottomright', collapsed: false }).addTo(map);
+
+      // Set map view
+      map.setView([41.8781, -87.6298], 12); // Center on Chicago
+      //map.fitBounds(markers.getBounds());
+
+      return items;
+    }
     </script>
 
     {% include menu.html %}
