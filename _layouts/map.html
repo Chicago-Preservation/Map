@@ -67,7 +67,7 @@
       var layers = [];
       if (markergrouping == 'grouped') {
         groups[counter] = L.featureGroup.subGroup(markers);
-        var control = L.control.layers(null, null, { collapsed: false, position: 'topleft' });
+        var control = L.control.layers(null, null, { collapsed: false, position: 'topright' });
       }
 
       {% for post in site.categories[category_name] %}
