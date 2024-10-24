@@ -16,8 +16,7 @@
         reloadhtml();
   	    };
 	      window.onhashchange = function() {
-        //new_map();
-	      reloadhtml();
+        reloadhtml();
 	      };
   	    </script>
 
@@ -26,137 +25,168 @@
     <script>
 
 map = L.map('map' , {scrollWheelZoom: false}).setView([0, 0], 1);
-var markers = ''
+var markers = '';
 
- window.change_map = function(){
+window.change_map = function(){
     localStorage.setItem('selectedtem', document.getElementById("choose").value);
     new_map();
 }
 
- function makeMap(markergrouping, map){
- 	if (markergrouping == 'grouped') { markers = new L.markerClusterGroup({showCoverageOnHover: false});}
-	else if (markergrouping == 'single') { markers = new L.featureGroup();}
- 	var items = {};
+function makeMap(markergrouping, map){
+    if (markergrouping == 'grouped') { 
+        markers = new L.markerClusterGroup({showCoverageOnHover: false});
+    } else if (markergrouping == 'single') { 
+        markers = new L.featureGroup();
+    }
 
-      // set up variables to use during jekyll loop
-      var lat, lng, content, marker;
-          //map = L.map('map' , {scrollWheelZoom: true}).setView([0, 0], 1);
-          var map = map;
+    var items = {};
+    var lat, lng, content, marker;
+    var map = map;
 
-      L.tileLayer('{{site.map-tileset}}', {
-        "attribution" : '{{site.map-credits}}',
-        "minZoom" : {{site.minZoom}},
-        "maxZoom" : {{site.maxZoom}},
-        "errorTileUrl" : "img/error-tile-image.png",
-        "subdomains" : ["a", "b", "c", "d"],
-        "detectRetina" : true,
-      }).addTo(map);
+    // Add base tile layer (Mapbox, OSM, etc.)
+    L.tileLayer('{{site.map-tileset}}', {
+        attribution: '{{site.map-credits}}',
+        minZoom: {{site.minZoom}},
+        maxZoom: {{site.maxZoom}},
+        errorTileUrl: 'img/error-tile-image.png',
+        subdomains: ['a', 'b', 'c', 'd'],
+        detectRetina: true,
+    }).addTo(map);
 
-      // jekyll loop through posts
-var overLayers = [];
-var icons = [];
+    var overLayers = [];
+    var icons = [];
 
-{% for image in site.static_files %}
-    {% if image.path contains 'assets/leaflet/img' %}
-        icons.push('{{ image.path }}');
-    {% endif %}
-{% endfor %}
+    {% for image in site.static_files %}
+        {% if image.path contains 'assets/leaflet/img' %}
+            icons.push('{{ image.path }}');
+        {% endif %}
+    {% endfor %}
 
-var counter = -1;
-var groups = {};
+    var counter = -1;
+    var groups = {};
 
-{% for category in site.categories %}
-counter += 1;
+    {% for category in site.categories %}
+    counter += 1;
 
-{% capture category_name %}{{ category | first }}{% endcapture %}
-var layers = [];
-if (markergrouping == 'grouped') {
-groups[counter] = L.featureGroup.subGroup(markers);
-var control = L.control.layers(null, null, { collapsed: true, position: 'topleft' });
-}
-
-{% for post in site.categories[category_name] %}
-      lat = {{ post.lat }};
-      lng = {{ post.lng }};
-
-      if ($(window).height() < {{site.window-height}} || $(window).width() < {{site.window-width}}){
-      content = "<strong>{{ post.title | truncatewords: 2}}</strong>";
-      } else {
-      content = "<strong>{{ post.title }}</strong><br>{{ post.desc }}";
-      }
-
-      var iconurl = "{{site.baseurl}}" + icons[counter]
-      var mbox = L.icon({
-            iconUrl: iconurl,
-            iconSize : [46, 50],
-            iconAnchor : [17, 36],
-            popupAnchor : [-1, 8]
-          });
-      var marker = L.marker([lat, lng], {
-        icon: mbox,
-      }).bindPopup(content, {offset:new L.Point(0,-30)});
-      marker.iconURL = iconurl;
-
-      if (markergrouping == 'grouped') {
-    	marker.addTo(groups[counter])
-      } else if (markergrouping == 'single') {
-      	layers.push(marker);
-      }
-
-      filename = "{{post.url}}"
-      if (items[filename] == undefined) {
-      items[filename] = [marker];
-      } else {
-      items[filename].push(marker);
-      }
-
-
-
-      marker.on('click', function(){
-        post_url = "{{site.baseurl}}/#{{post.url}}";
-        article_url = '{{site.baseurl}}{{post.url}}';
-        item_id = "{{post.url}}";
-        window.location = (post_url);
-        articlerender(article_url, item_id);
-
-      });
-
-      {% endfor %}
-
-    var imageurl = '<img class="legend" src="' + iconurl + '">'
+    {% capture category_name %}{{ category | first }}{% endcapture %}
+    var layers = [];
     if (markergrouping == 'grouped') {
-		map.addLayer(markers);
-		var name = imageurl + ' ' + '{{category_name}}';
-		overLayers.push({"name":name, "layer":groups[counter]})
-	} else if (markergrouping == 'single') {
-	 var name = '{{category_name}}';
-	 overLayers.push({"name":name, icon: imageurl, active: true, "layer":L.layerGroup(layers)})
-	}
- {% endfor %}
-      // end loop through posts
-if (markergrouping == 'grouped') {
-	for (i = 0; i < overLayers.length; i++) {
-		control.addOverlay(overLayers[i]['layer'], overLayers[i]['name']);
-		control.addTo(map);
-		overLayers[i]['layer'].addTo(map);
-	}
-	control.addTo(map);
-} else if (markergrouping == 'single') {
-	var panelLayers = new L.Control.PanelLayers(null, overLayers, {
-		compact: true,
-		collapsed: true,
-		position: 'topleft'
-	});
-map.addControl(panelLayers);
+        groups[counter] = L.featureGroup.subGroup(markers);
+        var control = L.control.layers(null, null, { collapsed: true, position: 'topleft' });
+    }
 
-}
+    {% for post in site.categories[category_name] %}
+        lat = {{ post.lat }};
+        lng = {{ post.lng }};
+        if ($(window).height() < {{site.window-height}} || $(window).width() < {{site.window-width}}) {
+            content = "<strong>{{ post.title | truncatewords: 2}}</strong>";
+        } else {
+            content = "<strong>{{ post.title }}</strong><br>{{ post.desc }}";
+        }
 
-map.setView({{site.setView}})
+        var iconurl = "{{site.baseurl}}" + icons[counter];
+        var mbox = L.icon({
+            iconUrl: iconurl,
+            iconSize: [46, 50],
+            iconAnchor: [17, 36],
+            popupAnchor: [-1, 8]
+        });
 
-//map.fitBounds(markers.getBounds());
-return items;
+        var marker = L.marker([lat, lng], {
+            icon: mbox,
+        }).bindPopup(content, {offset:new L.Point(0,-30)});
+        marker.iconURL = iconurl;
+
+        if (markergrouping == 'grouped') {
+            marker.addTo(groups[counter]);
+        } else if (markergrouping == 'single') {
+            layers.push(marker);
+        }
+
+        filename = "{{post.url}}";
+        if (items[filename] == undefined) {
+            items[filename] = [marker];
+        } else {
+            items[filename].push(marker);
+        }
+
+        marker.on('click', function(){
+            post_url = "{{site.baseurl}}/#{{post.url}}";
+            article_url = '{{site.baseurl}}{{post.url}}';
+            item_id = "{{post.url}}";
+            window.location = (post_url);
+            articlerender(article_url, item_id);
+        });
+
+    {% endfor %}
+
+    var imageurl = '<img class="legend" src="' + iconurl + '">';
+    if (markergrouping == 'grouped') {
+        map.addLayer(markers);
+        var name = imageurl + ' ' + '{{category_name}}';
+        overLayers.push({"name": name, "layer": groups[counter]});
+    } else if (markergrouping == 'single') {
+        var name = '{{category_name}}';
+        overLayers.push({"name": name, icon: imageurl, active: true, "layer": L.layerGroup(layers)});
+    }
+    {% endfor %}
+
+    // Now, let's add the GeoJSON layers you uploaded
+    var layer1 = L.geoJSON(null, {
+        onEachFeature: function (feature, layer) {
+            layer.bindPopup('<strong>' + feature.properties.title + '</strong>');
+        }
+    });
+    fetch('https://profrovner.github.io/antimonumentalchicago/individuallandmarks.geojson')
+      .then(response => response.json())
+      .then(data => layer1.addData(data));
+
+    var layer2 = L.geoJSON(null, {
+        onEachFeature: function (feature, layer) {
+            layer.bindPopup('<strong>' + feature.properties.title + '</strong>');
+        }
+    });
+    fetch('https://profrovner.github.io/antimonumentalchicago/boundaries.geojson')
+      .then(response => response.json())
+      .then(data => layer2.addData(data));
+
+    var layer3 = L.geoJSON(null, {
+        onEachFeature: function (feature, layer) {
+            layer.bindPopup('<strong>' + feature.properties.title + '</strong>');
+        }
+    });
+    fetch('https://profrovner.github.io/antimonumentalchicago/monuments.geojson')
+      .then(response => response.json())
+      .then(data => layer3.addData(data));
+
+    // Add GeoJSON layers to the control panel
+    overLayers.push({"name": "Layer 1", "layer": layer1});
+    overLayers.push({"name": "Layer 2", "layer": layer2});
+    overLayers.push({"name": "Layer 3", "layer": layer3});
+
+    // Add control layers to the map
+    if (markergrouping == 'grouped') {
+        for (i = 0; i < overLayers.length; i++) {
+            control.addOverlay(overLayers[i]['layer'], overLayers[i]['name']);
+            control.addTo(map);
+            overLayers[i]['layer'].addTo(map);
+        }
+        control.addTo(map);
+    } else if (markergrouping == 'single') {
+        var panelLayers = new L.Control.PanelLayers(null, overLayers, {
+            compact: true,
+            collapsed: true,
+            position: 'topleft'
+        });
+        map.addControl(panelLayers);
+    }
+
+    map.setView({{site.setView}});
+
+    return items;
 }
 </script>
+
 {% include menu.html %}
 {% include dropdown.html %}
 </body>
