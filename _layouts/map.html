@@ -148,9 +148,20 @@
       // GeoJSON Layers (New Layer Control for GeoJSON)
       var boundariesLayer = L.geoJSON(null, {
         onEachFeature: function (feature, layer) {
-          layer.bindPopup('<strong>' + feature.properties.title + '</strong>');
-        }
-      });
+    // Get the center of the feature (polygon) to position the label
+    var center = layer.getBounds().getCenter();
+
+    // Create a divIcon for the community label
+    var communityLabel = L.divIcon({
+      className: 'community-label',  // Add custom class for styling
+      html: '<div>' + (feature.properties.community || 'Unknown') + '</div>',
+      iconSize: [100, 20]  // Adjust size to fit your text
+    });
+
+    // Add the label to the map at the center of the feature
+    L.marker(center, { icon: communityLabel }).addTo(map);
+  }
+});
       fetch('https://profrovner.github.io/antimonumentalchicago/boundaries.geojson')
         .then(response => response.json())
         .then(data => boundariesLayer.addData(data));
