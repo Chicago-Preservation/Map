@@ -15,26 +15,30 @@
 </div>
 </div>
 <script>
-function circletoggle() {
-  if ($('.circle-content').css("height") == '0px') {
-   $('.circle-content').css("height", '{{site.menu-height}}');
-   $('.circle-content').css("width", '{{site.menu-width}}');
-   $('.circle-content').css("opacity", '{{site.menu-opacity}}');
-   $('.menu-button').css("display", "none");
-   
-  } else {
-  	$('.circle-content').css("height", '0px');
-  	$('.circle-content').css("width", '0px');
-  	$('.circle-content').css("opacity", '0');
-  	$('.menu-button').css("display", "inline-block");
-  }
-}
-function dropdowntoggle() {
-  if ($('.dropdown-content').css("display") == 'none') {
-   $('.dropdown-content').css("display", 'block')
-  } else {
-  	$('.dropdown-content').css("display", 'none')
-  }
-}
+  // Function to ensure dropdown is visible on page load
+  $(document).ready(function() {
+    $('.dropdown-content').css("display", 'block'); // Set dropdown to open by default
+  });
 
+  function circletoggle() {
+    if ($('.circle-content').css("height") == '0px') {
+     $('.circle-content').css("height", '{{site.menu-height}}');
+     $('.circle-content').css("width", '{{site.menu-width}}');
+     $('.circle-content').css("opacity", '{{site.menu-opacity}}');
+     $('.menu-button').css("display", "none");
+    } else {
+      $('.circle-content').css("height", '0px');
+      $('.circle-content').css("width", '0px');
+      $('.circle-content').css("opacity", '0');
+      $('.menu-button').css("display", "inline-block");
+    }
+  }
+
+  function dropdowntoggle() {
+    if ($('.dropdown-content').css("display") == 'none') {
+      $('.dropdown-content').css("display", 'block')
+    } else {
+      $('.dropdown-content').css("display", 'none')
+    }
+  }
 </script>
