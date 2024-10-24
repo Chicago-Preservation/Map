@@ -1,11 +1,9 @@
-
-
-# --SITE SETTINGS--
+# --SITE SETTINGS-- 
 title: "Anti Monumental Chicago"
 email: rovnermelissa@gmail.com
 description: description here
-baseurl: "/antimonumentalchicago" # the subpath of your site, e.g. /blog/
-url: "" # the base hostname & protocol for your site
+baseurl: "/antimonumentalchicago"  # the subpath of your site, e.g. /blog/
+url: ""  # the base hostname & protocol for your site
 github_repo: https://github.com/Profrovner/antimonumentalchicago
 
 # --COPYRIGHT-- (Date generated from last build)
@@ -18,19 +16,19 @@ encoding: utf-8
 
 # --STYLES--
 accent_color: rgba(224, 97, 0, 1)  # accent color can be any css accepted value
-accent_font: Bebas Neue  # Gogle Fonts import link is in head.html. You can specify the accent font here and it will add it to the main.css
+accent_font: Bebas Neue  # Google Fonts import link is in head.html. You can specify the accent font here and it will add it to the main.css
 
 # --SOCIAL--
 twitter_username: 
 github_username:  
 
 # --MAP SETTINGS--
-map-tileset: 'https://api.mapbox.com/styles/v1/mrovner/cl2rynqwa000016p6s1b11xjx/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXJvdm5lciIsImEiOiJja2o4czl3YTQxN25yMnNueTcycGpwczhmIn0.isCatGeyppD7RyIwKJi3Ew'
-map-credits: '<a target="_blank" href="https://github.com/kirschbombe/flaneur">Flâneur</a> | Tiles: Mapbox'
+map-tileset: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}'
+map-credits: '<a href="https://www.esri.com/en-us/home" target="_blank">© ESRI</a>'
 minZoom: 0
 maxZoom: 20
-setView: '[34.021932, -118.284406], 11'  # set map center point and zoom. See http://leafletjs.com/reference-1.2.0.html for more info.
-marker-grouping: grouped # sets the default clustering action. Options: grouped, single
+setView: '[41.8781, -87.6298], 12'  # Center the map on Chicago with zoom level 12
+marker-grouping: grouped  # sets the default clustering action. Options: grouped, single
 
 # Truncates map marker popup on small screens to only display post title
 window-height: 600
@@ -58,3 +56,4 @@ menu-opacity: '.95'
 
 #pages to exclude in menu
 exclude_pages: [ "index.html", 'home.md']
+
