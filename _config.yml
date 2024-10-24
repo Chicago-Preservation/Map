@@ -27,7 +27,7 @@ map-tileset: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_
 map-credits: '<a href="https://www.esri.com/en-us/home" target="_blank">© ESRI</a>'
 minZoom: 0
 maxZoom: 20
-setView: '[41.8781, -87.6298], 12'  # Center the map on Chicago with zoom level 12
+setView: '[41.8781, -87.6298], 14'  # Center the map on Chicago with zoom level 12
 marker-grouping: grouped  # sets the default clustering action. Options: grouped, single
 
 # Truncates map marker popup on small screens to only display post title
