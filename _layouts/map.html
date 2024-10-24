@@ -46,23 +46,7 @@
         subdomains : ["a", "b", "c", "d"],
         detectRetina : true,
       }).addTo(map);
-
-      // Create a custom control for the categories title
-var categoriesTitleControl = L.Control.extend({
-  options: {
-    position: 'topleft'  // Position at the top-left or where your categories layer menu is
-  },
-
-  onAdd: function (map) {
-    var container = L.DomUtil.create('div', 'leaflet-control-layers-title');
-    container.innerHTML = '<h4>Categories</h4>';  // Title for the categories layer menu
-    return container;
-  }
-});
-
-// Add the title control to the map for the categories
-map.addControl(new categoriesTitleControl());
-      
+    
       // Existing categories layer control setup
       var overLayers = [];
       var icons = [];
@@ -159,6 +143,12 @@ map.addControl(new categoriesTitleControl());
           position: 'topleft'
         });
         map.addControl(panelLayers);
+        // Add the "Categories" title as part of the control box (topleft)
+var categoriesContainer = document.querySelector('.leaflet-control-layers');
+var categoriesTitle = document.createElement('div');
+categoriesTitle.className = 'leaflet-control-layers-title';
+categoriesTitle.innerHTML = '<h4>Categories</h4>';
+categoriesContainer.insertBefore(categoriesTitle, categoriesContainer.firstChild);
       }
 
       // GeoJSON Layers (New Layer Control for GeoJSON)
@@ -244,7 +234,6 @@ mapLayersTitle.className = 'leaflet-control-layers-title';
 mapLayersTitle.innerHTML = '<h4>Map Layers</h4>';
 layersContainer.insertBefore(mapLayersTitle, layersContainer.firstChild);
       
-      // Insert Map Layers Title for the bottom-right (bottomright) control
 
       // Set map view
       map.setView([41.8781, -87.6298], 12); // Center on Chicago
