@@ -50,7 +50,7 @@
       // Create a custom control for the categories title
 var categoriesTitleControl = L.Control.extend({
   options: {
-    position: 'topright'  // Position at the top-right or where your categories layer menu is
+    position: 'topleft'  // Position at the top-left or where your categories layer menu is
   },
 
   onAdd: function (map) {
@@ -62,6 +62,7 @@ var categoriesTitleControl = L.Control.extend({
 
 // Add the title control to the map for the categories
 map.addControl(new categoriesTitleControl());
+      
       // Existing categories layer control setup
       var overLayers = [];
       var icons = [];
