@@ -159,6 +159,16 @@ map.addControl(new categoriesTitleControl());
           position: 'topleft'
         });
         map.addControl(panelLayers);
+        // Insert Categories Title for the top-left (topleft) control
+var categoriesTitleControl = L.Control.extend({
+  options: { position: 'topleft' },
+  onAdd: function (map) {
+    var container = L.DomUtil.create('div', 'leaflet-control-layers-title');
+    container.innerHTML = '<h4>Categories</h4>';
+    return container;
+  }
+});
+map.addControl(new categoriesTitleControl());
       }
 
       // GeoJSON Layers (New Layer Control for GeoJSON)
@@ -250,6 +260,16 @@ var geojsonLayerControl = {
 
 // Add the GeoJSON layer control to the bottom-right of the map
 L.control.layers(null, geojsonLayerControl, { position: 'bottomright', collapsed: false }).addTo(map);
+      // Insert Map Layers Title for the bottom-right (bottomright) control
+var mapLayersTitleControl = L.Control.extend({
+  options: { position: 'bottomright' },
+  onAdd: function (map) {
+    var container = L.DomUtil.create('div', 'leaflet-control-layers-title');
+    container.innerHTML = '<h4>Map Layers</h4>';
+    return container;
+  }
+});
+map.addControl(new mapLayersTitleControl());
 
       // Set map view
       map.setView([41.8781, -87.6298], 12); // Center on Chicago
