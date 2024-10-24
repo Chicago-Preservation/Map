@@ -15,7 +15,7 @@ markdown: kramdown
 encoding: utf-8
 
 # --STYLES--
-accent_color: rgba(0, 0, 0, 1)  # accent color can be any css accepted value
+accent_color: rgba(242, 121, 53, 1)  # accent color can be any css accepted value
 accent_font: Bebas Neue  # Google Fonts import link is in head.html. You can specify the accent font here and it will add it to the main.css
 
 # --SOCIAL--
