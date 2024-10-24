@@ -209,18 +209,34 @@
     map.addLayer(monumentsLayer);  // Add this line to make the layer visible by default
   });
 
-      // Create a separate control for GeoJSON layers
-      var geojsonLayerControl = {
-        "Community Areas": boundariesLayer,
-        "Landmarks": landmarksLayer,
-        "Monuments": monumentsLayer
-      };
+// Create a custom control for the title
+var titleControl = L.Control.extend({
+  options: {
+    position: 'bottomright'  // Place the title in the same position as the layer control
+  },
 
-      // Add the GeoJSON layer control below categories control
-      L.control.layers(null, geojsonLayerControl, { position: 'bottomright', collapsed: false }).addTo(map);
+  onAdd: function (map) {
+    var container = L.DomUtil.create('div', 'leaflet-control-layers-title');
+    container.innerHTML = '<h4>Map Layers</h4>';  // Add your custom title here
+    return container;
+  }
+});
+
+// Add the title control to the map
+map.addControl(new titleControl());
+
+// Create a separate overlay control for GeoJSON layers (same level)
+var geojsonLayerControl = {
+  "Community Areas": boundariesLayer,
+  "Landmarks": landmarksLayer,
+  "Monuments": monumentsLayer
+};
+
+// Add the GeoJSON layer control to the bottom-right of the map
+L.control.layers(null, geojsonLayerControl, { position: 'bottomright', collapsed: false }).addTo(map);
 
       // Set map view
-      map.setView([41.8781, -87.6298], 10); // Center on Chicago
+      map.setView([41.8781, -87.6298], 12); // Center on Chicago
       //map.fitBounds(markers.getBounds());
 
       return items;
