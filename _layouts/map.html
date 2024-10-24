@@ -162,9 +162,12 @@
     L.marker(center, { icon: communityLabel }).addTo(map);
   }
 });
-      fetch('https://profrovner.github.io/antimonumentalchicago/boundaries.geojson')
-        .then(response => response.json())
-        .then(data => boundariesLayer.addData(data));
+     fetch('https://profrovner.github.io/antimonumentalchicago/boundaries.geojson')
+  .then(response => response.json())
+  .then(data => {
+    boundariesLayer.addData(data);
+    map.addLayer(boundariesLayer);  // Add this line to make the layer visible by default
+  });
 
       var landmarksLayer = L.geoJSON(null, {
        onEachFeature: function (feature, layer) {
@@ -178,8 +181,11 @@
   }
 });
       fetch('https://profrovner.github.io/antimonumentalchicago/landmarkareas.geojson')
-        .then(response => response.json())
-        .then(data => landmarksLayer.addData(data));
+  .then(response => response.json())
+  .then(data => {
+    landmarksLayer.addData(data);
+    map.addLayer(landmarksLayer);  // Add this line to make the layer visible by default
+  });
 
       var monumentsLayer = L.geoJSON(null, {
      onEachFeature: function (feature, layer) {
@@ -192,9 +198,12 @@
     layer.bindPopup(popupContent);
   }
 });
-      fetch('https://profrovner.github.io/antimonumentalchicago/monuments.geojson')
-        .then(response => response.json())
-        .then(data => monumentsLayer.addData(data));
+     fetch('https://profrovner.github.io/antimonumentalchicago/monuments.geojson')
+  .then(response => response.json())
+  .then(data => {
+    monumentsLayer.addData(data);
+    map.addLayer(monumentsLayer);  // Add this line to make the layer visible by default
+  });
 
       // Create a separate control for GeoJSON layers
       var geojsonLayerControl = {
@@ -207,7 +216,7 @@
       L.control.layers(null, geojsonLayerControl, { position: 'bottomright', collapsed: false }).addTo(map);
 
       // Set map view
-      map.setView([41.8781, -87.6298], 12); // Center on Chicago
+      map.setView([41.8781, -87.6298], 10); // Center on Chicago
       //map.fitBounds(markers.getBounds());
 
       return items;
