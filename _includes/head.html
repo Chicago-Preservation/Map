@@ -1,12 +1,21 @@
 <head>
   <style>
-  .leaflet-control-layers-overlays label {
+  .community-label {
+        font-size: 14px;
+        font-weight: bold;
+        color: black;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.7);  /* Optional background for readability */
+        padding: 2px 5px;
+        border-radius: 3px;
+        pointer-events: none;  /* Prevents the label from being clicked */
+      }
+	  .leaflet-control-layers-overlays label {
     text-align: left !important;
     display: block;
-  }
-</style>
+    </style>
 
-	<meta charset="utf-8">
+<meta charset="utf-8">
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -51,5 +60,8 @@
     <!-- Lightbox -->
 	  <link href="assets/lightbox2/lightbox.css" rel="stylesheet">
 	  <script src="assets/lightbox2/lightbox.js"></script>
+	
 
+  }
+	
 </head>
