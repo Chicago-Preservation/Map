@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html>
-<head>
-    {% include head.html %}
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <style>
-        #map { width: 100%; height: 600px; } /* Ensure the map has height */
-    </style>
-</head>
 
-<body>
+  {% include head.html %}
 
-    {% include sidebar.html %}
+  <body>
 
-    <div id="map"></div> <!-- Make sure the map div is here -->
+  	{% include sidebar.html %}
+
+    <div id="map-container" style="display: flex;">
+        <div id="sidebar" style="width: 25%;">
+          {% include dropdown.html %}
+        </div>
+
+        <div id="map" style="flex: 1; height: 600px;"></div> <!-- Adjust height as needed -->
+    </div>
 
     <script>
     // Initialize map
@@ -65,9 +63,20 @@
 
     L.control.layers(null, geojsonLayerControl, { position: 'topright', collapsed: false }).addTo(map);
 
+    // Add your category-based layers separately
+    var categoryLayer1 = L.layerGroup();  // Example of a category layer
+    var categoryLayer2 = L.layerGroup();  // Example of another category layer
+
+    var categoryControl = {
+        "Category 1": categoryLayer1,
+        "Category 2": categoryLayer2
+    };
+
+    L.control.layers(null, categoryControl, { position: 'topleft', collapsed: true }).addTo(map);
+
     </script>
 
     {% include menu.html %}
-    {% include dropdown.html %}
-</body>
+  </body>
 </html>
+
