@@ -156,10 +156,16 @@
         .then(data => boundariesLayer.addData(data));
 
       var landmarksLayer = L.geoJSON(null, {
-        onEachFeature: function (feature, layer) {
-          layer.bindPopup('<strong>' + feature.properties.title + '</strong>');
-        }
-      });
+       onEachFeature: function (feature, layer) {
+    // Check if the required properties exist and bind the popup content
+    var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
+                       '<em>Architect:</em> ' + (feature.properties.ARCHITECT || 'Unknown') + '<br>' +
+                       '<em>Address:</em> ' + (feature.properties.ADDRESS || 'Unknown') + '<br>' +
+                       '<em>Date Built:</em> ' + (feature.properties.DATE_BUILT || 'Unknown');
+
+    layer.bindPopup(popupContent);
+  }
+});
       fetch('https://profrovner.github.io/antimonumentalchicago/landmarkareas.geojson')
         .then(response => response.json())
         .then(data => landmarksLayer.addData(data));
