@@ -196,19 +196,6 @@
           .then(data => monumentsLayer.addData(data))
           .then(() => map.addLayer(monumentsLayer));  // Visible by default
 
-        // Create a custom control for the "Map Layers" title
-        var mapLayersTitleControl = L.Control.extend({
-          options: { position: 'bottomright' },
-          onAdd: function (map) {
-            var container = L.DomUtil.create('div', 'leaflet-control-layers-title');
-            container.innerHTML = '<h4>Map Layers</h4>';
-            return container;
-          }
-        });
-
-        // Add the title control for GeoJSON layers
-        map.addControl(new mapLayersTitleControl());
-
         // Create a separate overlay control for GeoJSON layers
         var geojsonLayerControl = {
           "Community Areas": boundariesLayer,
@@ -221,4 +208,9 @@
 
         return items;
       }
-    </script
+    </script>
+
+    {% include menu.html %}
+    {% include dropdown.html %}
+  </body>
+</html>
