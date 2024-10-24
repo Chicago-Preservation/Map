@@ -1,12 +1,12 @@
 
 
 # --SITE SETTINGS--
-title: "Domestic Speculation"
-email: melissapeter@ucla.edu
+title: "Anti Monumental Chicago"
+email: rovnermelissa@gmail.com
 description: description here
-baseurl: "/losangeles" # the subpath of your site, e.g. /blog/
+baseurl: "/antimonumentalchicago" # the subpath of your site, e.g. /blog/
 url: "" # the base hostname & protocol for your site
-github_repo: https://github.com/DomesticSpeculation/losangeles
+github_repo: https://github.com/Profrovner/antimonumentalchicago
 
 # --COPYRIGHT-- (Date generated from last build)
 copyright_name: placeholder
