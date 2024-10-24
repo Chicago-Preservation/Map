@@ -15,7 +15,7 @@ markdown: kramdown
 encoding: utf-8
 
 # --STYLES--
-accent_color: rgba(255, 255, 255, 1)  # accent color can be any css accepted value
+accent_color: rgba(0, 0, 0, 1)  # accent color can be any css accepted value
 accent_font: Bebas Neue  # Google Fonts import link is in head.html. You can specify the accent font here and it will add it to the main.css
 
 # --SOCIAL--
@@ -27,7 +27,7 @@ map-tileset: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_
 map-credits: '<a href="https://www.esri.com/en-us/home" target="_blank">© ESRI</a>'
 minZoom: 0
 maxZoom: 20
-setView: '[41.8781, -87.6298], 14'  # Center the map on Chicago with zoom level 12
+setView: '[41.8781, -87.6298], 12'  # Center the map on Chicago with zoom level 12
 marker-grouping: grouped  # sets the default clustering action. Options: grouped, single
 
 # Truncates map marker popup on small screens to only display post title
