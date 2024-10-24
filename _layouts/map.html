@@ -150,7 +150,11 @@
         onEachFeature: function (feature, layer) {
     // Get the center of the feature (polygon) to position the label
     var center = layer.getBounds().getCenter();
-
+          
+ // Break the community name into individual lines (split by spaces)
+    var communityName = feature.properties.community || 'Unknown';
+    var formattedCommunityName = communityName.split(' ').join('<br>');  // Insert <br> tags between words
+          
     // Create a divIcon for the community label
     var communityLabel = L.divIcon({
       className: 'community-label',  // Add custom class for styling
