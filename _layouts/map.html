@@ -128,28 +128,29 @@
 
       // End of existing category layers loop
 
-      // Add category control panel to map
-      if (markergrouping == 'grouped') {
-        for (i = 0; i < overLayers.length; i++) {
-          control.addOverlay(overLayers[i]['layer'], overLayers[i]['name']);
-          control.addTo(map);
-          overLayers[i]['layer'].addTo(map);
-        }
-        control.addTo(map);
-      } else if (markergrouping == 'single') {
-        var panelLayers = new L.Control.PanelLayers(null, overLayers, {
-          compact: true,
-          collapsed: false,
-          position: 'topleft'
-        });
-        map.addControl(panelLayers);
-        // Add the "Categories" title as part of the control box (topleft)
-var categoriesContainer = document.querySelector('.leaflet-control-layers');
-var categoriesTitle = document.createElement('div');
-categoriesTitle.className = 'leaflet-control-layers-title';
-categoriesTitle.innerHTML = '<h4>Categories</h4>';
-categoriesContainer.insertBefore(categoriesTitle, categoriesContainer.firstChild);
-      }
+// Add category control panel to the map (now positioned in the bottom-right)
+if (markergrouping == 'grouped') {
+  for (i = 0; i < overLayers.length; i++) {
+    control.addOverlay(overLayers[i]['layer'], overLayers[i]['name']);
+    control.addTo(map);
+    overLayers[i]['layer'].addTo(map);
+  }
+  control.addTo(map);
+} else if (markergrouping == 'single') {
+  var panelLayers = new L.Control.PanelLayers(null, overLayers, {
+    compact: true,
+    collapsed: false,
+    position: 'bottomright'  // Change position to bottom-right
+  });
+  map.addControl(panelLayers);
+
+  // Add "Categories" title to the control panel (bottom-right)
+  var categoriesContainer = document.querySelector('.leaflet-control-layers');
+  var categoriesTitle = document.createElement('div');
+  categoriesTitle.className = 'leaflet-control-layers-title';
+  categoriesTitle.innerHTML = '<h4>Categories</h4>';
+  categoriesContainer.insertBefore(categoriesTitle, categoriesContainer.firstChild);
+}
 
       // GeoJSON Layers (New Layer Control for GeoJSON)
       var boundariesLayer = L.geoJSON(null, {
@@ -215,25 +216,25 @@ categoriesContainer.insertBefore(categoriesTitle, categoriesContainer.firstChild
     map.addLayer(monumentsLayer);  // Add this line to make the layer visible by default
   });
 
-// Create a separate overlay control for GeoJSON layers (same level)
+// GeoJSON Layers (New Layer Control for GeoJSON in the bottom-right)
 var geojsonLayerControl = {
   "Community Areas": boundariesLayer,
   "Landmarks": landmarksLayer,
   "Monuments": monumentsLayer
 };
-// Wrap the control with a div to display the title inside the control
+
+// Add the GeoJSON layer control to the bottom-right and stack it with the categories control
 var mapLayersControl = L.control.layers(null, geojsonLayerControl, {
   position: 'bottomright',
-  collapsed: false
+  collapsed: false  // Ensure it's open by default
 }).addTo(map);
 
-// Add the "Map Layers" title as part of the control box
+// Add the "Map Layers" title as part of the control box (bottom-right)
 var layersContainer = document.querySelector('.leaflet-control-layers');
 var mapLayersTitle = document.createElement('div');
 mapLayersTitle.className = 'leaflet-control-layers-title';
 mapLayersTitle.innerHTML = '<h4>Map Layers</h4>';
 layersContainer.insertBefore(mapLayersTitle, layersContainer.firstChild);
-      
 
       // Set map view
       map.setView([41.8781, -87.6298], 12); // Center on Chicago
