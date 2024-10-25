@@ -15,24 +15,21 @@ It is important to, when considering the Balbo monument, also consider what kind
 
 ![Unveiling of a memorial pillar to Italo Balbo, Century of Progress World’s Fair, 1933–1934. Photo: COP_17_0002_00030_001, Century of Progress Records, University of Illinois at Chicago Library. https://anetoday.org/howland-past-in-present-monuments/](images/ItaloBalbo1.jpg) 
 {:.image}
-
 Not the actual creation photo of the monument, but of the moment it became important: a gift of Italy to the United States at the World’s Fair. However, it is that of a new Italy, one that believes it is the direct inheritor of the Roman Empire in the modern-day. That of course is a fascist Italy. The banner in the background is the flag of Monarchist Italy, with the coat of arms in the middle the family crest of the House of Savoy, whose second to last king invited Benito Mussolini to form a government in 1922. This would become the flag the Italians used to fight in WWII under, with the Axis powers. The Italian pavilion itself is shaped to resemble a plane, a more literal but fleeting commemoration of Italo Balbo’s flight, while the column was the physical ‘embodiment’ of it. The column is placed very prominently in front of the Italian pavilion, marking its undeniable connection to the state of Fascist Italy. 
 {:.caption}
+
 ![Source: Jacob Shternberg, The Italo Balbo Monument, March 29, 2023, from my Google Photos archive, https://photos.app.goo.gl/SQ8tVbZDoMsmqoz8A/](images/ItaloBalbo2.jpg) 
 {:.image}
-
 A meek little thing compared to the skyline above it, unless you know that it was the Italo Balbo monument, it is very easy to glance over. The commemorative plaque in English and Italian long since having faded, and the axes having been taken off the fasces on the pedestal, most people would not think of it as a symbol of anything, much less the racism and colonialism of 1930s-40s Italy. Without a symbol marking what it truly is, it stands as a forgotten reminder of times past, almost hoping that people don’t notice it - or remember why it is there. The Corinthian column becomes just one of hundreds which hold up various vast pedestals, buildings, and memorials across the city of Chicago. 
 {:.caption}
 
 ![Benito Mussolini meets with Governor Balbo in Libya, 1933. https://comandosupremo.com/italo-balbo/](images/ItaloBalbo3.jpg) 
 {:.image}
-
 This is an image of Mussolini meeting with Balbo in Libya. The Libya part I will discuss for the next picture, but this is important to see because the monument honoring this man can be seen as a vassal for honoring Mussolini. A picture like this helps people on the fence of the Balbo monument question the real purpose of the column and its ties to despotic people. 
 {:.caption}
 
 ![Italo Balbo in Libya, 1930s. Bridgeman images, Photo: MEP2361165. https://www.bridgemanimages.com/en-US/noartistknown/italo-balbo-in-libya/photo/asset/2361165](images/ItaloBalbo4.jpg) 
 {:.image}
-
 This is now Governor Balbo. He was given the governorship of Libya due to his political influence and power within the fascist government. While he was not the one who committed the Libyan genocide outright (that was before he became governor) he inherited a power structure that was put in place using that genocide to exist (i.e, the slaughter of the Libyans made it possible for the Italians to rule Libya firmly in the first place). 
 {:.caption}
 
