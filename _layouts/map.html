@@ -200,9 +200,9 @@ if (markergrouping == 'grouped') {
   .then(response => response.json())
   .then(data => {
     boundariesLayer.addData(data);
-    map.addLayer(boundariesLayer);  // Add this line to make the layer visible by default
+    map.addLayer(boundariesLayer);
+    boundariesLayer.bringToBack();
   });
-
 
       var monumentsLayer = L.geoJSON(null, {
          pointToLayer: function (feature, latlng) {
