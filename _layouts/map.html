@@ -170,6 +170,13 @@ if (markergrouping == 'grouped') {
   });
       // GeoJSON Layers (New Layer Control for GeoJSON)
       var boundariesLayer = L.geoJSON(null, {
+         style: function (feature) {
+    return {
+      color: "#000000",  // Boundary color
+      weight: 2,         // Boundary thickness
+      fillOpacity: 0     // Set fill opacity to 0 for no fill
+    };
+  },
         onEachFeature: function (feature, layer) {
     // Get the center of the feature (polygon) to position the label
     var center = layer.getBounds().getCenter();
