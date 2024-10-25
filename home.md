@@ -6,14 +6,15 @@ A series of speculative counter-narratives challenging the racism, hegemony, imp
 ---
 
 #### About
+>
 “Anti-Monumental” works with AI to critically evaluate Chicago’s public history
 monuments, and to propose corrective augmentations or new models that better
 represent the complicated history of race, conquest, and representation in Chicago.
 >
-The project responds to the city’s commission – the “racial healing and reckoning project”
-– tasked with evaluating over 500 Chicago monuments. Though seemingly singular,
-each monument is entangled in complicated and far-reaching histories of exploitation,
-extraction, and displacement – histories without physical commemoration in the
+The project responds to the city’s commission (https://chicagomonuments.org/monuments)
+the “racial healing and reckoning project, ”tasked with evaluating over 500 Chicago monuments. 
+Though seemingly singular, each monument is entangled in complicated and far-reaching histories 
+of exploitation, extraction, and displacement – histories without physical commemoration in the
 contemporary city.
 >
 In conversation with an LLM, the project begins to unravel the histories underpinning monuments
