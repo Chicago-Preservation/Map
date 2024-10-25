@@ -205,6 +205,14 @@ if (markergrouping == 'grouped') {
 
 
       var monumentsLayer = L.geoJSON(null, {
+         pointToLayer: function (feature, latlng) {
+    return L.circleMarker(latlng, {
+      radius: 5,           // Smaller radius for a smaller circle
+      color: "#ff7800",    // Circle outline color
+      fillColor: "#ff7800",// Circle fill color
+      fillOpacity: 0.8     // Adjust fill opacity as desired
+    });
+  },
      onEachFeature: function (feature, layer) {
     // Check if the required properties exist and bind the popup content
     var popupContent = '<strong>' + (feature.properties.Title || 'Unknown') + '</strong><br>' +
