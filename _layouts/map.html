@@ -151,7 +151,23 @@ if (markergrouping == 'grouped') {
   categoriesTitle.innerHTML = '<h4>Categories</h4>';
   categoriesContainer.insertBefore(categoriesTitle, categoriesContainer.firstChild);
 }
+      var landmarksLayer = L.geoJSON(null, {
+       onEachFeature: function (feature, layer) {
+    // Check if the required properties exist and bind the popup content
+    var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
+                       '<em>Architect:</em> ' + (feature.properties.ARCHITECT || 'Unknown') + '<br>' +
+                       '<em>Address:</em> ' + (feature.properties.ADDRESS || 'Unknown') + '<br>' +
+                       '<em>Date Built:</em> ' + (feature.properties.DATE_BUILT || 'Unknown');
 
+    layer.bindPopup(popupContent);
+  }
+});
+      fetch('https://profrovner.github.io/antimonumentalchicago/landmarkareas.geojson')
+  .then(response => response.json())
+  .then(data => {
+    landmarksLayer.addData(data);
+    map.addLayer(landmarksLayer);  // Add this line to make the layer visible by default
+  });
       // GeoJSON Layers (New Layer Control for GeoJSON)
       var boundariesLayer = L.geoJSON(null, {
         onEachFeature: function (feature, layer) {
@@ -180,23 +196,6 @@ if (markergrouping == 'grouped') {
     map.addLayer(boundariesLayer);  // Add this line to make the layer visible by default
   });
 
-      var landmarksLayer = L.geoJSON(null, {
-       onEachFeature: function (feature, layer) {
-    // Check if the required properties exist and bind the popup content
-    var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
-                       '<em>Architect:</em> ' + (feature.properties.ARCHITECT || 'Unknown') + '<br>' +
-                       '<em>Address:</em> ' + (feature.properties.ADDRESS || 'Unknown') + '<br>' +
-                       '<em>Date Built:</em> ' + (feature.properties.DATE_BUILT || 'Unknown');
-
-    layer.bindPopup(popupContent);
-  }
-});
-      fetch('https://profrovner.github.io/antimonumentalchicago/landmarkareas.geojson')
-  .then(response => response.json())
-  .then(data => {
-    landmarksLayer.addData(data);
-    map.addLayer(landmarksLayer);  // Add this line to make the layer visible by default
-  });
 
       var monumentsLayer = L.geoJSON(null, {
      onEachFeature: function (feature, layer) {
