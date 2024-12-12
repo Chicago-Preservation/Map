@@ -29,7 +29,6 @@ A meek little thing compared to the skyline above it, unless you know that it wa
 The Italo Balbo Monument, March 29, 2023, photo taken by Jacob Shternberg
 {:.caption}
 
-
 This is an image of Mussolini meeting with Balbo in Libya. The Libya part I will discuss for the next picture, but this is important to see because the monument honoring this man can be seen as a vassal for honoring Mussolini. A picture like this helps people on the fence of the Balbo monument question the real purpose of the column and its ties to despotic people. 
 
 ![Benito Mussolini meets](images/ItaloBalbo3.jpg)
@@ -37,9 +36,11 @@ This is an image of Mussolini meeting with Balbo in Libya. The Libya part I will
 Benito Mussolini meets with Governor Balbo in Libya, 1933, https://comandosupremo.com/italo-balbo.
 {:.caption}
 
-This is now Governor Balbo. He was given the governorship of Libya due to his political influence and power within the fascist government. While he was not the one who committed the Libyan genocide outright (that was before he became governor) he inherited a power structure that was put in place using that genocide to exist (i.e, the slaughter of the Libyans made it possible for the Italians to rule Libya firmly in the first place). 
+This is now Governor Balbo. He was given the governorship of Libya due to his political influence and power within the fascist government. While he was not the one who committed the Libyan genocide outright-that was before he became governor-he inherited a power structure that was put in place using that genocide to exist, i.e, the slaughter of the Libyans made it possible for the Italians to rule Libya firmly in the first place. 
+
 ![Italo Balbo in Libya](https://images-cdn.bridgemanimages.com/api/1.0/image/600wm.XXX.44346320.7055475/2361165.jpg)
 {:.image}
+
 Italo Balbo in Libya, 1930s. Bridgeman images, Photo: MEP2361165. https://www.bridgemanimages.com/en-US/noartistknown/italo-balbo-in-libya/photo/asset/2361165
 {:.caption}
 
