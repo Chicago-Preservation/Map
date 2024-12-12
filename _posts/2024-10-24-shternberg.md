@@ -38,7 +38,7 @@ Benito Mussolini meets with Governor Balbo in Libya, 1933, https://comandosuprem
 {:.caption}
 
 This is now Governor Balbo. He was given the governorship of Libya due to his political influence and power within the fascist government. While he was not the one who committed the Libyan genocide outright (that was before he became governor) he inherited a power structure that was put in place using that genocide to exist (i.e, the slaughter of the Libyans made it possible for the Italians to rule Libya firmly in the first place). 
-![Italo Balbo in Libya](images/ItaloBalbo4.jpg)
+![Italo Balbo in Libya](https://images-cdn.bridgemanimages.com/api/1.0/image/600wm.XXX.44346320.7055475/2361165.jpg)
 {:.image}
 Italo Balbo in Libya, 1930s. Bridgeman images, Photo: MEP2361165. https://www.bridgemanimages.com/en-US/noartistknown/italo-balbo-in-libya/photo/asset/2361165
 {:.caption}
