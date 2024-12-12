@@ -24,6 +24,7 @@ Unveiling of a memorial pillar to Italo Balbo, Century of Progress World’s Fai
 
 A meek little thing compared to the skyline above it, unless you know that it was the Italo Balbo monument, it is very easy to glance over. The commemorative plaque in English and Italian long since having faded, and the axes having been taken off the fasces on the pedestal, most people would not think of it as a symbol of anything, much less the racism and colonialism of 1930s-40s Italy. Without a symbol marking what it truly is, it stands as a forgotten reminder of times past, almost hoping that people don’t notice it - or remember why it is there. The Corinthian column becomes just one of hundreds which hold up various vast pedestals, buildings, and memorials across the city of Chicago. 
 
+#### "REBEL ARCHIVE"
 ![Fig 2](images/ItaloBalbo2.jpg)
 {:.image}
 The Italo Balbo Monument, March 29, 2023, photo taken by Jacob Shternberg
