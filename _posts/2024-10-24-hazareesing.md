@@ -45,6 +45,7 @@ The visuals make this point clear by contrasting the dark, somber images of colo
 The ChatGPT(DALL.E)-generated image generated the above photo. ChatGPT 4.o 2024
 {:.caption}
 
+#### REFLECTIONS ON AI
 Working with AI in this countermonument project presented unique challenges, particularly in communicating a nuanced critique of history. One of the biggest hurdles was the need to be extremely literal in describing concepts and themes. AI tends to interpret terms at face value, which made it necessary to clearly specify details that might be more intuitively understood by a human. For instance, when I initially referenced the "real narrative" of Chicago’s founding, the AI defaulted to the mainstream version that celebrates the settlers’ triumph rather than focusing on the more critical story of Indigenous displacement and marginalization. This meant that I had to carefully navigate the language, ensuring that each element of the design was explicitly described to convey the intended meaning. It was crucial to clearly articulate that the goal was to critique the colonialist perspective, rather than reinforce it, which often involved unpacking complex ideas into simple, direct instructions for the AI.
 
 #### Works cited
