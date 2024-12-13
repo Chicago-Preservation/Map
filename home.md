@@ -28,8 +28,7 @@ Research Assistance: Ben Jurgens
 
 #### Bibliography
 {:.bibliography}
-1. “America’s Monuments, Reimagined for a More Just Future,” NY Times
-Magazine (August 2020) https://www.nytimes.com/2020/08/24/tmagazine/confederate-monuments-reimagined-racism.html
+1. “America’s Monuments, Reimagined for a More Just Future,” NY Times Magazine (August 2020) https://www.nytimes.com/2020/08/24/tmagazine/confederate-monuments-reimagined-racism.html
 2. “Monuments for a New Era,” New York Times (August 2018) https://www.nytimes.com/2018/08/10/opinion/charlottesville-confederatemonuments.html?smid=url-share
 3. Fernandez, Brendan, “New Monuments | Chicago,” https://blackcube.art/newmonuments
 4. Simblist, Noah, "Dread Scott's Struggle to Reclaim Collective Memory," Art in America (June 30,2020) https://www.artnews.com/art-in-america/features/dread-scott-john-akomfrah-slave-rebellion-reenactment-reclaim-collective-memory-1202693023/
