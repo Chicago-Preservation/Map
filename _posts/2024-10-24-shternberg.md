@@ -41,17 +41,14 @@ This is now Governor Balbo. He was given the governorship of Libya due to his po
 
 ![Italo Balbo in Libya](https://images-cdn.bridgemanimages.com/api/1.0/image/600wm.XXX.44346320.7055475/2361165.jpg)
 {:.image}
-
 Italo Balbo in Libya, 1930s. Bridgeman images, Photo: MEP2361165. https://www.bridgemanimages.com/en-US/noartistknown/italo-balbo-in-libya/photo/asset/2361165
 {:.caption}
 
 #### COUNTER-MONUMENT
-
 In the center is the Balbo column (apparently, GPT has forgotten that it has a Corinthian, not Ionic, capital, but it did its best) and this time the counter-monument is more about the visitor experience. It adds not just one ring of information around the monument, but also includes interactive stands, each of which could serve to create an interactive experience and also be updated when necessary to serve many generations of the public. Then, there is still a ‘counter-monument’ aspect, which are the steel columns going right around the monument, which can visually symbolize the uglier ‘other histories’ that the column is tied to such as fascism and Mussolini.
 
 ![ChatGPT 4.0](images/ItaloCounter1.jpg)
 {:.image}
-
 ChatGPT 4.0, Counter-monument to the Balbo monument which would call out its connection to problematic regimes and allow the public to better interact with it but also preserve the original monument.
 {:.caption}
 
@@ -59,9 +56,10 @@ In the middle is the Balbo column, but around it are two circles: one standing, 
 
 ![ChatGPT 4.0, Counter](images/ItaloCounter2.jpg)
 {:.image}
-
 ChatGPT 4.0, Counter-monument to the Balbo monument that would call out the monument's association with Mussolini’s regime, but also preserve the current monument.
 {:.caption}
+
+Getting AI to cooperate was a very fickle job. At first, it gave great ideas about what a counter-monument of this sort should have, but it could not generate it because something ‘broke its content policies’. When asked what broke the policies, it answered “fascism and relating to Musollini”, so I had to prompt it to just make the image without the things that broke the content policy. Perhaps, if it could break the policy, it would generate the ‘counter-weights’ of the monument in a different way, such as having more specific forms than just a circle and pillars (maybe like a large set of broken fasces). This was expected: an AI image generator with no content limits would quickly be criticized and not make money, so inevitably it had to draw the line somewhere, and fascism fell on the other side of that line. There were also the problems with the background, which look nothing like Burnham Park, the place the column is currently situated. But, for the sake of this project, I think the background is the least of my concerns so as long as it generated the counter-monument itself properly I was satisfied (for some reason, in the second image, it got Burnham park almost right, but then got the column wrong. Again, a wrong capital is not the end of the world and it got the message of what the counter-monument is, so I had to be content with what I got). AI was also a reason the triumphal arch idea couldn’t work: I am used to having a large degree of control over the art I make, and for an arch it just would not do all of the specifications and details I told it to. It did a lot better when it could ‘think’ of a counter-monument by itself (with some guidance - when I told it to prioritize the public, it created the digital panels and a larger plaza overall, which does indeed prioritize the public, so good job LLM training). Overall, the AI was an interesting tool to work with, and gave good ideas as well as inspirations, but when it came time to making the images it was rather vague and generic. Good for getting the general idea, not so good with individual details.
 
 #### Works cited 
 {:.bibliography}
