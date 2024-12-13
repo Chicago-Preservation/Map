@@ -7,31 +7,24 @@ A series of speculative counter-narratives challenging the racism, hegemony, imp
 
 #### About
 >
-“Anti-Monumental” works with AI to critically evaluate Chicago’s public history
-monuments, and to propose corrective augmentations or new models that better
-represent the complicated history of race, conquest, and representation in Chicago.
+“Anti-Monumental” seeks to critically evaluate Chicago’s controversial monuments, and to propose corrective augmentations or new models that better represent the complicated history of race, conquest, and representation in Chicago. The project responds to the Chicago Monument Commission's “racial healing and reckoning project," tasked with evaluating over 500 Chicago monuments for promoting white supremacy, mischaracterizing American Indians, glorifying supporters of slavery, or representing singular accounts of history. Though seemingly singular, each monument is entangled in complicated and far-reaching histories of exploitation, extraction, and displacement – histories without physical commemoration in the contemporary city, that this site hopes to help embed in the conversation surrounding the future of these monuments. 
 >
-The project responds to the city’s commission (https://chicagomonuments.org/monuments)
-the “racial healing and reckoning project, ”tasked with evaluating over 500 Chicago monuments. 
-Though seemingly singular, each monument is entangled in complicated and far-reaching histories 
-of exploitation, extraction, and displacement – histories without physical commemoration in the
-contemporary city.
+This site was initially developed and launched in connection with the Fall course in Public History at Lake Forest College and the HUMAN grant, a multi-year initiative to explore artifical intelligence through a humanities perspective with a particular emphasis on equity and justice. 
 >
-In conversation with an LLM, the project begins to unravel the histories underpinning monuments
-central to Chicago’s public narrative, to analyze the contemporary public discourse surrounding
-their preservation or plans for removal, and to connect them to alternative histories of being and belonging.
+Student projects focus on monuments selected for public discussion by the Chicago Monuments Project, including the Statue of the Republic (1918), the Christopher Columbus Monument (1892), and the Italo Balbo Monument (1934). Each project features an analysis of the monument's history and context as well as its forms, materials, and symbolisms. Students then researched "rebel archives," historical images and texts that represent the broader context surrounding that which is glorified by the monument. With this research, students engaged in conversation with Chat GPT 4.0/DALL-E to envision anti/counter-monuments that either introduced silenced narratives, or called out the acts of silencing embodied by the monuments in their singular state.
 >
-Sites of study include those selected for public discussion by the Chicago Monuments Project, including the monument to the Fort Dearborn Massacre (1893), The Republic (1918), a replica of the 1893 original for the World’s Columbian Exhibition, the Christopher Columbus Monument (1892), and the Italo Balbo Monument (1934).
+These projects have been geolocated on the map and overlaid with spatial and technical information on Chicago's community areas and landmarks, to encourage relational thinking as to how public history, commemoration and preservation overlay with the geography and demographics of the city. 
+
+#### Site Navigation
 >
-Through a critical analysis of the language surrounding these public history sites, a more complicated picture will be developed than that provided by the static monument, frozen in the time of its creation and accompanied by the racist rhetoric and representations of that time. 
+You can use the map to explore, by zooming in, panning, and selecting "pins," which will bring up the article associated with that site, or by clicking on landmark areas or points, which will trigger a pop-up with information on the site's date/location/architect. You can also use the legend located on the bottom left of this sidebar to turn on/off map layers, organized by content and theme.
 >
-The project experiments with generative AI’s capacity for reading and producing images to question identified
-monuments, and to re-envision them as “anti-monuments” to Chicago’s diverse, complicated, difficult,
-and hidden histories.
->
+Or, you can use the dropdown menu located on the upper left of this sidebar to go directly to a specific page. The "Browse Articles" page lists the Monuments that have been explored as projects within this first iteration of the site, and you can click on the individual name to bring up the article that is also associated with a pin on the map. 
+
+#### Credits
 Mellon Foundation, HUMAN Fellowship + Lake Forest College
 Prof Melissa Rovner, PhD | Students of Hist 285, Public History, Fall 2024 
-Research Assistants: Ben Jurgens
+Research Assistance: Ben Jurgens
 
 #### Bibliography
 {:.bibliography}
