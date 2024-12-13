@@ -22,6 +22,7 @@ You can use the map to explore, by zooming in, panning, and selecting "pins," wh
 Or, you can use the dropdown menu located on the upper left of this sidebar to go directly to a specific page. The "Browse Articles" page lists the Monuments that have been explored as projects within this first iteration of the site, and you can click on the individual name to bring up the article that is also associated with a pin on the map. 
 
 #### Credits
+>
 Students of Hist 285, Public History, Fall 2024, Lake Forest College
 >
 Professor Melissa Rovner, PhD
@@ -32,7 +33,7 @@ Mellon Foundation, HUMAN Fellowship
 {:.bibliography}
 1. “America’s Monuments, Reimagined for a More Just Future,” NY Times Magazine (August 2020) https://www.nytimes.com/2020/08/24/tmagazine/confederate-monuments-reimagined-racism.html
 2. “Monuments for a New Era,” New York Times (August 2018) https://www.nytimes.com/2018/08/10/opinion/charlottesville-confederatemonuments.html?smid=url-share
-3. Fernandez, Brendan, “New Monuments | Chicago,” https://blackcube.art/newmonuments
+3. Fernandez, Brendan, “New Monuments Chicago,” https://blackcube.art/newmonuments
 4. Simblist, Noah, "Dread Scott's Struggle to Reclaim Collective Memory," Art in America (June 30,2020) https://www.artnews.com/art-in-america/features/dread-scott-john-akomfrah-slave-rebellion-reenactment-reclaim-collective-memory-1202693023/
 5. "Reclaimed Water CC'd with Nicole Awai — New Monuments for New Cities," Monument Lab Episode 18. https://monumentlab.com/podcast/reclaimed-water-ccd-with-nicole-awai-new-monuments-for-new-cities
 6. Rosen, Christine, "The Anti-American Project," Commentary (August 27, 2020) https://www.commentary.org/christine-rosen/the-anti-american-project/
