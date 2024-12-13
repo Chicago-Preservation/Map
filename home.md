@@ -11,22 +11,22 @@ A series of speculative counter-narratives challenging the racism, hegemony, imp
 >
 This site was initially developed and launched in connection with the Fall course in Public History at Lake Forest College and the HUMAN grant, a multi-year initiative to explore artifical intelligence through a humanities perspective with a particular emphasis on equity and justice. 
 >
-Student projects focus on monuments selected for public discussion by the Chicago Monuments Project, including the Statue of the Republic (1918), the Christopher Columbus Monument (1892), and the Italo Balbo Monument (1934). Each project features an analysis of the monument's history and context as well as its forms, materials, and symbolisms. Students then researched "rebel archives," historical images and texts that represent the broader context surrounding that which is glorified by the monument. With this research, students engaged in conversation with Chat GPT 4.0/DALL-E to envision anti/counter-monuments that either introduced silenced narratives, or called out the acts of silencing embodied by the monuments in their singular state.
+Student projects focus on monuments selected for public discussion by the Chicago Monuments Project, including the Statue of the Republic (1918), the Christopher Columbus Monument (1892), and the Italo Balbo Monument (1934). Each project features an analysis of the monument's history and context as well as its forms, materials, and symbolisms. Students then researched "rebel archives," historical images and texts that represent the broader context surrounding that which is glorified by the monument. With this research, students engaged in conversation with Chat GPT 4.0/DALL-E to envision anti/counter-monuments that either introduced silenced narratives, or called out the acts of silencing embodied by the monuments in their singular state. Each article contains text and images representative of the monument, rebel archive, and countermonument. 
 >
-These projects have been geolocated on the map and overlaid with spatial and technical information on Chicago's community areas and landmarks, to encourage relational thinking as to how public history, commemoration and preservation overlay with the geography and demographics of the city. 
+Articles ("pins" on the map) have been geolocated and overlaid with layers containing information on Chicago's community areas and landmarks, to encourage relational thinking as to how public history, commemoration, and preservation overlay with the geography and demographics of the city. 
 
 #### Site Navigation
 >
-You can use the map to explore, by zooming in, panning, and selecting "pins," which will bring up the article associated with that site, or by clicking on landmark areas or points, which will trigger a pop-up with information on the site's date/location/architect. You can also use the legend located on the bottom left of this sidebar to turn on/off map layers, organized by content and theme.
+You can use the map to explore, by zooming in, panning, and selecting "pins," which will bring up the article associated with that site, or by clicking on landmark areas or points, which will bring up a pop-up window with information on the site's date/location/architect. You can also use the legend located on the bottom left of this sidebar to turn on/off map layers, organized by content and theme.
 >
 Or, you can use the dropdown menu located on the upper left of this sidebar to go directly to a specific page. The "Browse Articles" page lists the Monuments that have been explored as projects within this first iteration of the site, and you can click on the individual name to bring up the article that is also associated with a pin on the map. 
 
 #### Credits
-Mellon Foundation, HUMAN Fellowship + Lake Forest College
-Prof Melissa Rovner, PhD | Students of Hist 285, Public History, Fall 2024 
-Research Assistance: Ben Jurgens
+Students of Hist 285, Public History, Fall 2024, Lake Forest College
+Professor Melissa Rovner, PhD
+Mellon Foundation, HUMAN Fellowship
 
-#### Bibliography
+#### Selected Bibliography
 {:.bibliography}
 1. “America’s Monuments, Reimagined for a More Just Future,” NY Times Magazine (August 2020) https://www.nytimes.com/2020/08/24/tmagazine/confederate-monuments-reimagined-racism.html
 2. “Monuments for a New Era,” New York Times (August 2018) https://www.nytimes.com/2018/08/10/opinion/charlottesville-confederatemonuments.html?smid=url-share
