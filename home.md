@@ -23,7 +23,9 @@ Or, you can use the dropdown menu located on the upper left of this sidebar to g
 
 #### Credits
 Students of Hist 285, Public History, Fall 2024, Lake Forest College
+>
 Professor Melissa Rovner, PhD
+>
 Mellon Foundation, HUMAN Fellowship
 
 #### Selected Bibliography
