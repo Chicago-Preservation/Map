@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Robert Cavalier de La Salle Monument"
-timelinedate: 1926-01-01
+timelinedate: 1889
 categories: ["Colonialism"]
 author: "Claude Domusiewicz"
 lat: 41.91352055758265
