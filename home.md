@@ -22,4 +22,5 @@ Or, you can use the dropdown menu located on the upper right corner of the map t
 Academic Consortium of Chicago Preservation
 >
 Emily Talen, Professor of Urbanism, University of Chicago
+>
 Melissa Rovner, Postdoctoral Scholar, University of Chicago
