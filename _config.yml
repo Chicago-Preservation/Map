@@ -1,10 +1,10 @@
 # --SITE SETTINGS-- 
-title: "Anti Monumental Chicago"
+title: "Mapping Chicago Preservation"
 email: rovnermelissa@gmail.com
 description: description here
-baseurl: "/antimonumentalchicago"  # the subpath of your site, e.g. /blog/
+baseurl: "/map"  # the subpath of your site, e.g. /blog/
 url: ""  # the base hostname & protocol for your site
-github_repo: https://github.com/Profrovner/antimonumentalchicago
+github_repo: https://github.com/Chicago-Preservation/map
 
 # --COPYRIGHT-- (Date generated from last build)
 copyright_name: placeholder
