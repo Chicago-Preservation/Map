@@ -13,7 +13,7 @@ body {
 }
 
 html {
-  font-family: 'Lato', sans-serif;
+  font-family: 'EB Garamond', serif;
   color: #ffffff;
   font-weight: 300;
   font-size: 16px;
@@ -22,7 +22,7 @@ html {
 
 h1, h2, h3, h4 {
   font-family: '{{site.accent_font}}';
-  color: {{ site.accent_color }};
+  color: {{site.accent_color}};
 }
 
 h3 {
@@ -373,7 +373,7 @@ display: inline-block;
 
 /* Liquid attributes */
 .caption {
-  font-family: 'Barlow', sans-serif;
+  font-family: 'EB Garamond', serif;
   line-height: 1.4em;
   font-size: .9em;
   font-style: italic;
@@ -408,18 +408,18 @@ img.article-marker {
 }
 
 .leaflet-popup-content-wrapper, .leaflet-popup-tip {
-  font-family: "Lato", sans-serif;
+  font-family: "EB Garamond", serif;
   font-weight: 300;
   font-size: 14px;
 }
 
 label.leaflet-panel-layers-title {
-  font-family: "Lato", sans-serif;
+  font-family: "EB Garamond", serif;
   font-weight: 300;
   text-transform: uppercase;
 }
 div.leaflet-control-layers-overlays {
-  font-family: "Lato", sans-serif;
+  font-family: "EB Garamond", serif;
   font-weight: 300;
   text-transform: uppercase;
   font-size: .9em;
