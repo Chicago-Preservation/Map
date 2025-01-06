@@ -4,7 +4,7 @@ email: rovnermelissa@gmail.com
 description: description here
 baseurl: "/Map"  # the subpath of your site, e.g. /blog/
 url: ""  # the base hostname & protocol for your site
-github_repo: https://github.com/Chicago-Preservation/map
+github_repo: https://github.com/Chicago-Preservation/Map
 
 # --COPYRIGHT-- (Date generated from last build)
 copyright_name: placeholder
