@@ -162,7 +162,7 @@ if (markergrouping == 'grouped') {
     layer.bindPopup(popupContent);
   }
 });
-      fetch('https://profrovner.github.io/antimonumentalchicago/landmarkareas.geojson')
+      fetch('https://Chicago-Preservation.github.io/Map/landmarkareas.geojson')
   .then(response => response.json())
   .then(data => {
     landmarksLayer.addData(data);
@@ -196,7 +196,7 @@ if (markergrouping == 'grouped') {
     L.marker(center, { icon: communityLabel }).addTo(map);
   }
 });
-     fetch('https://profrovner.github.io/antimonumentalchicago/boundaries.geojson')
+     fetch('https://Chicago-Preservation.github.io/Map/boundaries.geojson')
   .then(response => response.json())
   .then(data => {
     boundariesLayer.addData(data);
@@ -223,17 +223,10 @@ if (markergrouping == 'grouped') {
     layer.bindPopup(popupContent);
   }
 });
-     fetch('https://profrovner.github.io/antimonumentalchicago/monuments.geojson')
-  .then(response => response.json())
-  .then(data => {
-    monumentsLayer.addData(data);
-    map.addLayer(monumentsLayer);  // Add this line to make the layer visible by default
-  });
 
 // GeoJSON Layers (New Layer Control for GeoJSON in the bottom-right)
 var geojsonLayerControl = {
     "Landmarks": landmarksLayer,
-    "Monuments": monumentsLayer,
     "Community Areas": boundariesLayer
 
 };
