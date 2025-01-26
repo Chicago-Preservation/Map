@@ -20,11 +20,11 @@
         };
        </script>
 
-    <div id="map" style="width: 100%; height: 600px;"></div>
+    <div id="map"> </div>
 
     <script>
 
-    map = L.map('map', {scrollWheelZoom: false}).setView([41.8781, -87.6298], 12); // Center on Chicago
+    map = L.map('map' , {scrollWheelZoom: false}).setView([41.8781, -87.6298], 12); // Center on Chicago
     var markers = '';
 
     window.change_map = function(){
@@ -46,34 +46,7 @@
         subdomains : ["a", "b", "c", "d"],
         detectRetina : true,
       }).addTo(map);
-
-      // Adding NR Properties GeoJSON Layer
-      var nrPropertiesLayer = L.geoJSON(null, {
-        onEachFeature: function (feature, layer) {
-          var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
-                             '<em>Architect:</em> ' + (feature.properties.ARCHITECT || 'Unknown') + '<br>' +
-                             '<em>Address:</em> ' + (feature.properties.ADDRESS || 'Unknown') + '<br>' +
-                             '<em>Date Built:</em> ' + (feature.properties.DATE_BUILT || 'Unknown');
-          layer.bindPopup(popupContent);
-        },
-        style: function (feature) {
-          return {
-            color: "#3388ff",
-            weight: 2,
-            fillOpacity: 0.6
-          };
-        }
-      });
-
-      // Load NR Properties GeoJSON
-      fetch('https://Chicago-Preservation.github.io/Map/NR_Properties_filtered.geojson')
-        .then(response => response.json())
-        .then(data => {
-          nrPropertiesLayer.addData(data);
-          map.addLayer(nrPropertiesLayer);
-        })
-        .catch(error => console.error('Error loading NR Properties GeoJSON:', error));
-
+    
       // Existing categories layer control setup
       var overLayers = [];
       var icons = [];
@@ -155,30 +128,29 @@
 
       // End of existing category layers loop
 
-  // Add category control panel to the map (now positioned in the bottom-right)
-  if (markergrouping == 'grouped') {
-    for (i = 0; i < overLayers.length; i++) {
-      control.addOverlay(overLayers[i]['layer'], overLayers[i]['name']);
-      control.addTo(map);
-      overLayers[i]['layer'].addTo(map);
-    }
+// Add category control panel to the map (now positioned in the bottom-right)
+if (markergrouping == 'grouped') {
+  for (i = 0; i < overLayers.length; i++) {
+    control.addOverlay(overLayers[i]['layer'], overLayers[i]['name']);
     control.addTo(map);
-  } else if (markergrouping == 'single') {
-    var panelLayers = new L.Control.PanelLayers(null, overLayers, {
-      compact: true,
-      collapsed: false,
-      position: 'bottomright'  // Change position to bottom-right
-    });
-    map.addControl(panelLayers);
-
-    // Add "Categories" title to the control panel (bottom-right)
-    var categoriesContainer = document.querySelector('.leaflet-control-layers');
-    var categoriesTitle = document.createElement('div');
-    categoriesTitle.className = 'leaflet-control-layers-title';
-    categoriesTitle.innerHTML = '<h4>Categories</h4>';
-    categoriesContainer.insertBefore(categoriesTitle, categoriesContainer.firstChild);
+    overLayers[i]['layer'].addTo(map);
   }
+  control.addTo(map);
+} else if (markergrouping == 'single') {
+  var panelLayers = new L.Control.PanelLayers(null, overLayers, {
+    compact: true,
+    collapsed: false,
+    position: 'bottomright'  // Change position to bottom-right
+  });
+  map.addControl(panelLayers);
 
+  // Add "Categories" title to the control panel (bottom-right)
+  var categoriesContainer = document.querySelector('.leaflet-control-layers');
+  var categoriesTitle = document.createElement('div');
+  categoriesTitle.className = 'leaflet-control-layers-title';
+  categoriesTitle.innerHTML = '<h4>Categories</h4>';
+  categoriesContainer.insertBefore(categoriesTitle, categoriesContainer.firstChild);
+}
       var landmarksLayer = L.geoJSON(null, {
        onEachFeature: function (feature, layer) {
     // Check if the required properties exist and bind the popup content
@@ -205,3 +177,82 @@
       fillOpacity: 0     // Set fill opacity to 0 for no fill
     };
   },
+        onEachFeature: function (feature, layer) {
+    // Get the center of the feature (polygon) to position the label
+    var center = layer.getBounds().getCenter();
+          
+ // Break the community name into individual lines (split by spaces)
+    var communityName = feature.properties.community || 'Unknown';
+    var formattedCommunityName = communityName.split(' ').join('<br>');  // Insert <br> tags between words
+          
+    // Create a divIcon for the community label
+    var communityLabel = L.divIcon({
+      className: 'community-label',  // Add custom class for styling
+      html: '<div>' + (feature.properties.community || 'Unknown') + '</div>',
+      iconSize: [100, 20]  // Adjust size to fit your text
+    });
+
+    // Add the label to the map at the center of the feature
+    L.marker(center, { icon: communityLabel }).addTo(map);
+  }
+});
+     fetch('https://Chicago-Preservation.github.io/Map/boundaries.geojson')
+  .then(response => response.json())
+  .then(data => {
+    boundariesLayer.addData(data);
+    map.addLayer(boundariesLayer);
+    boundariesLayer.bringToBack();
+  });
+
+      var monumentsLayer = L.geoJSON(null, {
+         pointToLayer: function (feature, latlng) {
+    return L.circleMarker(latlng, {
+      radius: 5,           // Smaller radius for a smaller circle
+      color: "#ff7800",    // Circle outline color
+      fillColor: "#ff7800",// Circle fill color
+      fillOpacity: 0.8     // Adjust fill opacity as desired
+    });
+  },
+     onEachFeature: function (feature, layer) {
+    // Check if the required properties exist and bind the popup content
+    var popupContent = '<strong>' + (feature.properties.Title || 'Unknown') + '</strong><br>' +
+                       '<em>Year Built:</em> ' + (feature.properties['Year Built'] || 'Unknown') + '<br>' +
+                       '<em>Location (Neighborhood Name):</em> ' + (feature.properties['Location (neighborhood Name)'] || 'Unknown') + '<br>' +
+                       '<em>Architect/Designer:</em> ' + (feature.properties['Architect/designer'] || 'Unknown');
+
+    layer.bindPopup(popupContent);
+  }
+});
+
+// GeoJSON Layers (New Layer Control for GeoJSON in the bottom-right)
+var geojsonLayerControl = {
+    "Landmarks": landmarksLayer,
+    "Community Areas": boundariesLayer
+
+};
+
+// Add the GeoJSON layer control to the bottom-right and stack it with the categories control
+var mapLayersControl = L.control.layers(null, geojsonLayerControl, {
+  position: 'bottomright',
+  collapsed: false  // Ensure it's open by default
+}).addTo(map);
+
+// Add the "Map Layers" title as part of the control box (bottom-right)
+var layersContainer = document.querySelector('.leaflet-control-layers');
+var mapLayersTitle = document.createElement('div');
+mapLayersTitle.className = 'leaflet-control-layers-title';
+mapLayersTitle.innerHTML = '<h4>Map Layers</h4>';
+layersContainer.insertBefore(mapLayersTitle, layersContainer.firstChild);
+
+      // Set map view
+      map.setView([41.8781, -87.6298], 12); // Center on Chicago
+      //map.fitBounds(markers.getBounds());
+
+      return items;
+    }
+    </script>
+
+    {% include menu.html %}
+    {% include dropdown.html %}
+  </body>
+</html>
