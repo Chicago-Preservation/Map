@@ -24,48 +24,169 @@
 
     <script>
 
-    // Initialize the Leaflet map
-    var map = L.map('map', {scrollWheelZoom: false}).setView([41.8781, -87.6298], 12); // Center on Chicago
+    map = L.map('map' , {scrollWheelZoom: false}).setView([41.8781, -87.6298], 12); // Center on Chicago
+    var markers = '';
 
-    // Base map layer (ESRI Gray Light)
-    L.tileLayer('{{site.map-tileset}}', {
-      attribution : '{{site.map-credits}}',
-      minZoom : {{site.minZoom}},
-      maxZoom : {{site.maxZoom}},
-      errorTileUrl : "img/error-tile-image.png",
-      subdomains : ["a", "b", "c", "d"],
-      detectRetina : true,
-    }).addTo(map);
+    window.change_map = function(){
+      localStorage.setItem('selectedtem', document.getElementById("choose").value);
+      new_map();
+    }
 
-    // Adding NR Properties GeoJSON Layer
-    var nrPropertiesLayer = L.geoJSON(null, {
-      onEachFeature: function (feature, layer) {
-        var popupContent = '<strong>' + 
-          (feature.properties.SignificantName || 'No Name') + 
-          '</strong><br>' +
-          '<em>Location:</em> ' + (feature.properties.Location || 'Unknown') + '<br>' +
-          '<em>Architect:</em> ' + (feature.properties.Architect || 'Unknown') + '<br>' +
-          '<em>Begin Year:</em> ' + (feature.properties.BeginYear || 'Unknown') + '<br>' +
-          '<em>End Year:</em> ' + (feature.properties.EndYear || 'Unknown');
-        layer.bindPopup(popupContent);
-      },
-      style: function (feature) {
-        return {
-          color: "#3388ff",
-          weight: 2,
-          fillOpacity: 0.6
-        };
+    function makeMap(markergrouping, map){
+      if (markergrouping == 'grouped') { markers = new L.markerClusterGroup({showCoverageOnHover: false});}
+      else if (markergrouping == 'single') { markers = new L.featureGroup();}
+      var items = {};
+
+      // Base map layer (ESRI Gray Light)
+      L.tileLayer('{{site.map-tileset}}', {
+        attribution : '{{site.map-credits}}',
+        minZoom : {{site.minZoom}},
+        maxZoom : {{site.maxZoom}},
+        errorTileUrl : "img/error-tile-image.png",
+        subdomains : ["a", "b", "c", "d"],
+        detectRetina : true,
+      }).addTo(map);
+
+      // Adding NR Properties GeoJSON Layer
+      
+      var nrPropertiesLayer = L.geoJSON(null, {
+  onEachFeature: function (feature, layer) {
+    // Construct the popup content dynamically based on the properties
+    var popupContent = '<strong>' + 
+      (feature.properties.SignificantName || 'No Name') + 
+      '</strong><br>' +
+      '<em>Location:</em> ' + (feature.properties.Location || 'Unknown') + '<br>' +
+      '<em>Architect:</em> ' + (feature.properties.Architect || 'Unknown') + '<br>' +
+      '<em>Begin Year:</em> ' + (feature.properties.BeginYear || 'Unknown') + '<br>' +
+      '<em>End Year:</em> ' + (feature.properties.EndYear || 'Unknown');
+
+    // Bind the popup content to the feature layer
+    layer.bindPopup(popupContent);
+  },
+  style: function (feature) {
+    return {
+      color: "#3388ff",
+      weight: 2,
+      fillOpacity: 0.6,
+    };
+  },
+});
+
+// Fetch and add GeoJSON data to the layer
+fetch('https://Chicago-Preservation.github.io/Map/NR_Properties_filtered.geojson')
+  .then(response => response.json())
+  .then(data => {
+    nrPropertiesLayer.addData(data); // Add the data to the layer
+    map.addLayer(nrPropertiesLayer); // Add the layer to the map
+  })
+  .catch(error => console.error('Error loading NR Properties GeoJSON:', error));
+
+
+
+      // Existing categories layer control setup
+      var overLayers = [];
+      var icons = [];
+
+      {% for image in site.static_files %}
+        {% if image.path contains 'assets/leaflet/img' %}
+          icons.push('{{ image.path }}');
+        {% endif %}
+      {% endfor %}
+
+      var counter = -1;
+      var groups = {};
+
+      {% for category in site.categories %}
+      counter += 1;
+
+      {% capture category_name %}{{ category | first }}{% endcapture %}
+      var layers = [];
+      if (markergrouping == 'grouped') {
+        groups[counter] = L.featureGroup.subGroup(markers);
+        var control = L.control.layers(null, null, { collapsed: false, position: 'bottomright' });
       }
-    });
 
-    fetch('https://Chicago-Preservation.github.io/Map/NR_Properties_filtered.geojson')
-      .then(response => response.json())
-      .then(data => {
-        nrPropertiesLayer.addData(data);
-      })
-      .catch(error => console.error('Error loading NR Properties GeoJSON:', error));
+      {% for post in site.categories[category_name] %}
+      lat = {{ post.lat }};
+      lng = {{ post.lng }};
 
-    // Adding Landmarks GeoJSON Layer
+      if ($(window).height() < {{site.window-height}} || $(window).width() < {{site.window-width}}){
+        content = "<strong>{{ post.title | truncatewords: 2}}</strong>";
+      } else {
+        content = "<strong>{{ post.title }}</strong><br>{{ post.desc }}";
+      }
+
+      var iconurl = "{{site.baseurl}}" + icons[counter];
+      var mbox = L.icon({
+        iconUrl: iconurl,
+        iconSize : [50, 54],
+        iconAnchor : [17, 36],
+        popupAnchor : [-1, 8]
+      });
+      var marker = L.marker([lat, lng], {
+        icon: mbox,
+      }).bindPopup(content, {offset:new L.Point(0,-30)});
+      marker.iconURL = iconurl;
+
+      if (markergrouping == 'grouped') {
+        marker.addTo(groups[counter]);
+      } else if (markergrouping == 'single') {
+        layers.push(marker);
+      }
+
+      filename = "{{post.url}}";
+      if (items[filename] == undefined) {
+        items[filename] = [marker];
+      } else {
+        items[filename].push(marker);
+      }
+
+      marker.on('click', function(){
+        post_url = "{{site.baseurl}}/#{{post.url}}";
+        article_url = '{{site.baseurl}}{{post.url}}';
+        item_id = "{{post.url}}";
+        window.location = (post_url);
+        articlerender(article_url, item_id);
+      });
+
+      {% endfor %}
+
+      var imageurl = '<img class="legend" src="' + iconurl + '">';
+      if (markergrouping == 'grouped') {
+        map.addLayer(markers);
+        var name = imageurl + ' ' + '{{category_name}}';
+        overLayers.push({"name":name, "layer":groups[counter]});
+      } else if (markergrouping == 'single') {
+        var name = '{{category_name}}';
+        overLayers.push({"name":name, icon: imageurl, active: true, "layer":L.layerGroup(layers)});
+      }
+      {% endfor %}
+
+      // End of existing category layers loop
+
+      if (markergrouping == 'grouped') {
+        for (i = 0; i < overLayers.length; i++) {
+          control.addOverlay(overLayers[i]['layer'], overLayers[i]['name']);
+          control.addTo(map);
+          overLayers[i]['layer'].addTo(map);
+        }
+        control.addTo(map);
+      } else if (markergrouping == 'single') {
+        var panelLayers = new L.Control.PanelLayers(null, overLayers, {
+          compact: true,
+          collapsed: false,
+          position: 'bottomright'  // Change position to bottom-right
+        });
+        map.addControl(panelLayers);
+
+        var categoriesContainer = document.querySelector('.leaflet-control-layers');
+        var categoriesTitle = document.createElement('div');
+        categoriesTitle.className = 'leaflet-control-layers-title';
+        categoriesTitle.innerHTML = '<h4>Categories</h4>';
+        categoriesContainer.insertBefore(categoriesTitle, categoriesContainer.firstChild);
+      }
+    }
+
     var landmarksLayer = L.geoJSON(null, {
       onEachFeature: function (feature, layer) {
         var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
@@ -80,9 +201,9 @@
       .then(response => response.json())
       .then(data => {
         landmarksLayer.addData(data);
+        map.addLayer(landmarksLayer);
       });
 
-    // Adding Community Boundaries GeoJSON Layer
     var boundariesLayer = L.geoJSON(null, {
       style: function (feature) {
         return {
@@ -108,16 +229,8 @@
       .then(response => response.json())
       .then(data => {
         boundariesLayer.addData(data);
+        map.addLayer(boundariesLayer);
       });
-
-    // Layer control for toggling visibility of layers
-    var overlayMaps = {
-      "NR Properties": nrPropertiesLayer,
-      "Landmarks": landmarksLayer,
-      "Community Boundaries": boundariesLayer
-    };
-
-    L.control.layers(null, overlayMaps, { collapsed: false, position: 'topright' }).addTo(map);
 
     </script>
 
