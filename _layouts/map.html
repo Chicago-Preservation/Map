@@ -48,30 +48,40 @@
       }).addTo(map);
 
       // Adding NR Properties GeoJSON Layer
+      
       var nrPropertiesLayer = L.geoJSON(null, {
-        onEachFeature: function (feature, layer) {
-          var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
-                             '<em>Architect:</em> ' + (feature.properties.ARCHITECT || 'Unknown') + '<br>' +
-                             '<em>Address:</em> ' + (feature.properties.ADDRESS || 'Unknown') + '<br>' +
-                             '<em>Date Built:</em> ' + (feature.properties.DATE_BUILT || 'Unknown');
-          layer.bindPopup(popupContent);
-        },
-        style: function (feature) {
-          return {
-            color: "#3388ff",
-            weight: 2,
-            fillOpacity: 0.6
-          };
-        }
-      });
+  onEachFeature: function (feature, layer) {
+    // Construct the popup content dynamically based on the properties
+    var popupContent = '<strong>' + 
+      (feature.properties.SignificantName || 'No Name') + 
+      '</strong><br>' +
+      '<em>Location:</em> ' + (feature.properties.Location || 'Unknown') + '<br>' +
+      '<em>Architect:</em> ' + (feature.properties.Architect || 'Unknown') + '<br>' +
+      '<em>Begin Year:</em> ' + (feature.properties.BeginYear || 'Unknown') + '<br>' +
+      '<em>End Year:</em> ' + (feature.properties.EndYear || 'Unknown');
 
-      fetch('https://Chicago-Preservation.github.io/Map/NR_Properties_filtered.geojson')
-        .then(response => response.json())
-        .then(data => {
-          nrPropertiesLayer.addData(data);
-          map.addLayer(nrPropertiesLayer);
-        })
-        .catch(error => console.error('Error loading NR Properties GeoJSON:', error));
+    // Bind the popup content to the feature layer
+    layer.bindPopup(popupContent);
+  },
+  style: function (feature) {
+    return {
+      color: "#3388ff",
+      weight: 2,
+      fillOpacity: 0.6,
+    };
+  },
+});
+
+// Fetch and add GeoJSON data to the layer
+fetch('https://Chicago-Preservation.github.io/Map/NR_Properties_filtered.geojson')
+  .then(response => response.json())
+  .then(data => {
+    nrPropertiesLayer.addData(data); // Add the data to the layer
+    map.addLayer(nrPropertiesLayer); // Add the layer to the map
+  })
+  .catch(error => console.error('Error loading NR Properties GeoJSON:', error));
+
+
 
       // Existing categories layer control setup
       var overLayers = [];
