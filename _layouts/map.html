@@ -175,98 +175,95 @@ if (markergrouping == 'grouped') {
  categoriesTitle.innerHTML = '<h4>Categories</h4>';
  categoriesContainer.insertBefore(categoriesTitle, categoriesContainer.firstChild);
 }
-     var landmarksLayer = L.geoJSON(null, {
-      onEachFeature: function (feature, layer) {
-   // Check if the required properties exist and bind the popup content
-   var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
-                      '<em>Architect:</em> ' + (feature.properties.ARCHITECT || 'Unknown') + '<br>' +
-                      '<em>Address:</em> ' + (feature.properties.ADDRESS || 'Unknown') + '<br>' +
-                      '<em>Date Built:</em> ' + (feature.properties.DATE_BUILT || 'Unknown');
-
-
-   layer.bindPopup(popupContent);
- }
-});
-     fetch('https://Chicago-Preservation.github.io/Map/landmarkareas.geojson')
- .then(response => response.json())
- .then(data => {
-   landmarksLayer.addData(data);
-   map.addLayer(landmarksLayer);  // Add this line to make the layer visible by default
- });
-     // GeoJSON Layers (New Layer Control for GeoJSON)
-     var boundariesLayer = L.geoJSON(null, {
-        style: function (feature) {
-   return {
-     color: "#000000",  // Boundary color
-     weight: 2,         // Boundary thickness
-     fillOpacity: 0     // Set fill opacity to 0 for no fill
-   };
- },
-       onEachFeature: function (feature, layer) {
-   // Get the center of the feature (polygon) to position the label
-   var center = layer.getBounds().getCenter();
-        
-// Break the community name into individual lines (split by spaces)
-   var communityName = feature.properties.community || 'Unknown';
-   var formattedCommunityName = communityName.split(' ').join('<br>');  // Insert <br> tags between words
-        
-   // Create a divIcon for the community label
-   var communityLabel = L.divIcon({
-     className: 'community-label',  // Add custom class for styling
-     html: '<div>' + (feature.properties.community || 'Unknown') + '</div>',
-     iconSize: [100, 20]  // Adjust size to fit your text
-   });
-
-
-   // Add the label to the map at the center of the feature
-   L.marker(center, { icon: communityLabel }).addTo(map);
- }
-});
-    fetch('https://Chicago-Preservation.github.io/Map/boundaries.geojson')
- .then(response => response.json())
- .then(data => {
-   boundariesLayer.addData(data);
-   map.addLayer(boundariesLayer);
-   boundariesLayer.bringToBack();
- });
-
-
-     var monumentsLayer = L.geoJSON(null, {
-        pointToLayer: function (feature, latlng) {
-   return L.circleMarker(latlng, {
-     radius: 5,           // Smaller radius for a smaller circle
-     color: "#ff7800",    // Circle outline color
-     fillColor: "#ff7800",// Circle fill color
-     fillOpacity: 0.8     // Adjust fill opacity as desired
-   });
- },
-    onEachFeature: function (feature, layer) {
-   // Check if the required properties exist and bind the popup content
-   var popupContent = '<strong>' + (feature.properties.Title || 'Unknown') + '</strong><br>' +
-                      '<em>Year Built:</em> ' + (feature.properties['Year Built'] || 'Unknown') + '<br>' +
-                      '<em>Location (Neighborhood Name):</em> ' + (feature.properties['Location (neighborhood Name)'] || 'Unknown') + '<br>' +
-                      '<em>Architect/Designer:</em> ' + (feature.properties['Architect/designer'] || 'Unknown');
-
-
-   layer.bindPopup(popupContent);
- }
+   // Adding other layers (Landmarks and Boundaries)
+var landmarksLayer = L.geoJSON(null, {
+  onEachFeature: function (feature, layer) {
+    var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
+      '<em>Architect:</em> ' + (feature.properties.ARCHITECT || 'Unknown') + '<br>' +
+      '<em>Address:</em> ' + (feature.properties.ADDRESS || 'Unknown') + '<br>' +
+      '<em>Date Built:</em> ' + (feature.properties.DATE_BUILT || 'Unknown');
+    layer.bindPopup(popupContent);
+  }
 });
 
+fetch('https://Chicago-Preservation.github.io/Map/landmarkareas.geojson')
+  .then(response => response.json())
+  .then(data => {
+    landmarksLayer.addData(data);
+    map.addLayer(landmarksLayer);  // Add this line to make the layer visible by default
+  });
+
+var boundariesLayer = L.geoJSON(null, {
+  style: function (feature) {
+    return {
+      color: "#000000",  // Boundary color
+      weight: 2,         // Boundary thickness
+      fillOpacity: 0     // Set fill opacity to 0 for no fill
+    };
+  },
+  onEachFeature: function (feature, layer) {
+    var center = layer.getBounds().getCenter();
+    var communityName = feature.properties.community || 'Unknown';
+    var formattedCommunityName = communityName.split(' ').join('<br>');
+    var communityLabel = L.divIcon({
+      className: 'community-label',
+      html: '<div>' + formattedCommunityName + '</div>',
+      iconSize: [100, 20]
+    });
+    L.marker(center, { icon: communityLabel }).addTo(map);
+  }
+});
+
+fetch('https://Chicago-Preservation.github.io/Map/boundaries.geojson')
+  .then(response => response.json())
+  .then(data => {
+    boundariesLayer.addData(data);
+    map.addLayer(boundariesLayer);
+    boundariesLayer.bringToBack();
+  });
+
+// Adding NR_Properties_Filtered Layer
+var nrPropertiesFilteredLayer = L.geoJSON(null, {
+  onEachFeature: function (feature, layer) {
+    var popupContent = '<strong>' +
+      (feature.properties.SignificantName || 'No Name') +
+      '</strong><br>' +
+      '<em>Location:</em> ' + (feature.properties.Location || 'Unknown') + '<br>' +
+      '<em>Architect:</em> ' + (feature.properties.Architect || 'Unknown') + '<br>' +
+      '<em>Begin Year:</em> ' + (feature.properties.BeginYear || 'Unknown') + '<br>' +
+      '<em>End Year:</em> ' + (feature.properties.EndYear || 'Unknown');
+    layer.bindPopup(popupContent);
+  },
+  style: function (feature) {
+    return {
+      color: "#3388ff", // Blue color for boundaries
+      weight: 2,
+      fillOpacity: 0.6
+    };
+  }
+});
+
+fetch('https://Chicago-Preservation.github.io/Map/NR_Properties_filtered.geojson')
+  .then(response => response.json())
+  .then(data => {
+    nrPropertiesFilteredLayer.addData(data);
+    map.addLayer(nrPropertiesFilteredLayer); // Add the layer to the map by default
+  })
+  .catch(error => console.error('Error loading NR_Properties_Filtered GeoJSON:', error));
 
 // GeoJSON Layers (New Layer Control for GeoJSON in the bottom-right)
 var geojsonLayerControl = {
-   "Landmarks": landmarksLayer,
-   "Community Areas": boundariesLayer
-
-
+  "Landmarks": landmarksLayer,
+  "Community Areas": boundariesLayer,
+  "NR Properties Filtered": nrPropertiesFilteredLayer // Add new layer here
 };
-
 
 // Add the GeoJSON layer control to the bottom-right and stack it with the categories control
 var mapLayersControl = L.control.layers(null, geojsonLayerControl, {
- position: 'bottomright',
- collapsed: false  // Ensure it's open by default
+  position: 'bottomright',
+  collapsed: false  // Ensure it's open by default
 }).addTo(map);
+
 
 
 // Add the "Map Layers" title as part of the control box (bottom-right)
