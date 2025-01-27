@@ -46,7 +46,7 @@
      var items = {};
 
 
-     // Base map layer (ESRI Gray Light)
+     // Base map layer (ESRI Gray Light) 
      L.tileLayer('{{site.map-tileset}}', {
        attribution : '{{site.map-credits}}',
        minZoom : {{site.minZoom}},
@@ -251,11 +251,40 @@ fetch('https://Chicago-Preservation.github.io/Map/NR_Properties_filtered.geojson
   })
   .catch(error => console.error('Error loading NR_Properties_Filtered GeoJSON:', error));
 
+// Adding NR_Districts_2012 Layer
+var nrDistricts2012Layer = L.geoJSON(null, {
+  onEachFeature: function (feature, layer) {
+    var popupContent = '<strong>' +
+      (feature.properties.DistrictName || 'No Name') +
+      '</strong><br>' +
+      '<em>Location:</em> ' + (feature.properties.Location || 'Unknown') + '<br>' +
+      '<em>Architect:</em> ' + (feature.properties.Architect || 'Unknown') + '<br>' +
+      '<em>Year Designated:</em> ' + (feature.properties.YearDesignated || 'Unknown');
+    layer.bindPopup(popupContent);
+  },
+  style: function (feature) {
+    return {
+      color: "#FF5733", // Orange color for districts
+      weight: 2,
+      fillOpacity: 0.6
+    };
+  }
+});
+
+fetch('https://Chicago-Preservation.github.io/Map/NR_Districts_2012.geojson')
+  .then(response => response.json())
+  .then(data => {
+    nrDistricts2012Layer.addData(data);
+    map.addLayer(nrDistricts2012Layer); // Add the layer to the map by default
+  })
+  .catch(error => console.error('Error loading NR_Districts_2012 GeoJSON:', error));
+
 // GeoJSON Layers (New Layer Control for GeoJSON in the bottom-right)
 var geojsonLayerControl = {
   "Landmarks": landmarksLayer,
   "Community Areas": boundariesLayer,
-  "NR Properties Filtered": nrPropertiesFilteredLayer // Add new layer here
+  "NR Properties Filtered": nrPropertiesFilteredLayer,
+  "NR Districts 2012": nrDistricts2012Layer // Added here
 };
 
 // Add the GeoJSON layer control to the bottom-right and stack it with the categories control
