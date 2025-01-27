@@ -7,8 +7,8 @@
 
     {% include sidebar.html %}
        <script>
-        window.onload = function(){
-          if (localStorage['selectedtem'] != undefined){
+        window.onload = function() {
+          if (localStorage['selectedtem'] != undefined) {
             new_map();
           } else {
             new_map('{{site.marker-grouping}}');
@@ -24,10 +24,12 @@
 
     <script>
 
-    var map = L.map('map', {scrollWheelZoom: false}).setView([41.8781, -87.6298], 12); // Center on Chicago
+    var map = L.map('map', {scrollWheelZoom: false}).setView([41.8781, -87.6298], 12); // Default view centered on Chicago
+    var chicagoBounds = [[41.644543, -87.940267], [42.023131, -87.523661]]; // Bounding box for Chicago area
+    map.fitBounds(chicagoBounds); // Fit the map to Chicago bounds
     var markers = '';
 
-    window.change_map = function(){
+    window.change_map = function() {
       localStorage.setItem('selectedtem', document.getElementById("choose").value);
       new_map();
     };
@@ -79,143 +81,58 @@
         })
         .catch(error => console.error('Error loading NR Properties GeoJSON:', error));
 
-      // Adding Existing Categories Layer
-      var overLayers = [];
-      var icons = [];
-
-      {% for image in site.static_files %}
-        {% if image.path contains 'assets/leaflet/img' %}
-          icons.push('{{ image.path }}');
-        {% endif %}
-      {% endfor %}
-
-      var counter = -1;
-      var groups = {};
-
-      {% for category in site.categories %}
-        counter += 1;
-        {% capture category_name %}{{ category | first }}{% endcapture %}
-        var layers = [];
-        if (markergrouping == 'grouped') {
-          groups[counter] = L.featureGroup.subGroup(markers);
-          var control = L.control.layers(null, null, { collapsed: false, position: 'bottomright' });
+      // Adding Landmarks Layer
+      var landmarksLayer = L.geoJSON(null, {
+        onEachFeature: function (feature, layer) {
+          var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
+            '<em>Architect:</em> ' + (feature.properties.ARCHITECT || 'Unknown') + '<br>' +
+            '<em>Address:</em> ' + (feature.properties.ADDRESS || 'Unknown') + '<br>' +
+            '<em>Date Built:</em> ' + (feature.properties.DATE_BUILT || 'Unknown');
+          layer.bindPopup(popupContent);
         }
+      });
 
-        {% for post in site.categories[category_name] %}
-          var lat = {{ post.lat }};
-          var lng = {{ post.lng }};
+      fetch('https://Chicago-Preservation.github.io/Map/landmarkareas.geojson')
+        .then(response => response.json())
+        .then(data => {
+          landmarksLayer.addData(data);
+          map.addLayer(landmarksLayer);
+        })
+        .catch(error => console.error('Error loading Landmarks GeoJSON:', error));
 
-          var content = ($(window).height() < {{site.window-height}} || $(window).width() < {{site.window-width}}) ?
-            "<strong>{{ post.title | truncatewords: 2}}</strong>" :
-            "<strong>{{ post.title }}</strong><br>{{ post.desc }}";
-
-          var iconurl = "{{site.baseurl}}" + icons[counter];
-          var mbox = L.icon({
-            iconUrl: iconurl,
-            iconSize: [50, 54],
-            iconAnchor: [17, 36],
-            popupAnchor: [-1, 8]
+      // Adding Community Boundaries Layer
+      var boundariesLayer = L.geoJSON(null, {
+        style: function (feature) {
+          return {
+            color: "#000000",
+            weight: 2,
+            fillOpacity: 0
+          };
+        },
+        onEachFeature: function (feature, layer) {
+          var center = layer.getBounds().getCenter();
+          var communityName = feature.properties.community || 'Unknown';
+          var formattedCommunityName = communityName.split(' ').join('<br>');
+          var communityLabel = L.divIcon({
+            className: 'community-label',
+            html: '<div>' + formattedCommunityName + '</div>',
+            iconSize: [100, 20]
           });
-          var marker = L.marker([lat, lng], {
-            icon: mbox,
-          }).bindPopup(content, { offset: new L.Point(0, -30) });
-          marker.iconURL = iconurl;
-
-          if (markergrouping == 'grouped') {
-            marker.addTo(groups[counter]);
-          } else if (markergrouping == 'single') {
-            layers.push(marker);
-          }
-
-          var filename = "{{post.url}}";
-          if (items[filename] == undefined) {
-            items[filename] = [marker];
-          } else {
-            items[filename].push(marker);
-          }
-
-          marker.on('click', function () {
-            var post_url = "{{site.baseurl}}/#{{post.url}}";
-            var article_url = '{{site.baseurl}}{{post.url}}';
-            var item_id = "{{post.url}}";
-            window.location = post_url;
-            articlerender(article_url, item_id);
-          });
-
-        {% endfor %}
-
-        var imageurl = '<img class="legend" src="' + iconurl + '">';
-        if (markergrouping == 'grouped') {
-          map.addLayer(markers);
-          var name = imageurl + ' ' + '{{category_name}}';
-          overLayers.push({ "name": name, "layer": groups[counter] });
-        } else if (markergrouping == 'single') {
-          var name = '{{category_name}}';
-          overLayers.push({ "name": name, icon: imageurl, active: true, "layer": L.layerGroup(layers) });
+          L.marker(center, { icon: communityLabel }).addTo(map);
         }
-      {% endfor %}
+      });
 
-      if (markergrouping == 'grouped') {
-        for (let i = 0; i < overLayers.length; i++) {
-          control.addOverlay(overLayers[i]['layer'], overLayers[i]['name']);
-          control.addTo(map);
-          overLayers[i]['layer'].addTo(map);
-        }
-      } else if (markergrouping == 'single') {
-        var panelLayers = new L.Control.PanelLayers(null, overLayers, {
-          compact: true,
-          collapsed: false,
-          position: 'bottomright'
-        });
-        map.addControl(panelLayers);
-      }
+      fetch('https://Chicago-Preservation.github.io/Map/boundaries.geojson')
+        .then(response => response.json())
+        .then(data => {
+          boundariesLayer.addData(data);
+          map.addLayer(boundariesLayer);
+        })
+        .catch(error => console.error('Error loading Boundaries GeoJSON:', error));
     }
 
-    // Adding other layers (Landmarks and Boundaries)
-    var landmarksLayer = L.geoJSON(null, {
-      onEachFeature: function (feature, layer) {
-        var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
-          '<em>Architect:</em> ' + (feature.properties.ARCHITECT || 'Unknown') + '<br>' +
-          '<em>Address:</em> ' + (feature.properties.ADDRESS || 'Unknown') + '<br>' +
-          '<em>Date Built:</em> ' + (feature.properties.DATE_BUILT || 'Unknown');
-        layer.bindPopup(popupContent);
-      }
-    });
-
-    fetch('https://Chicago-Preservation.github.io/Map/landmarkareas.geojson')
-      .then(response => response.json())
-      .then(data => {
-        landmarksLayer.addData(data);
-        map.addLayer(landmarksLayer);
-      });
-
-    var boundariesLayer = L.geoJSON(null, {
-      style: function (feature) {
-        return {
-          color: "#000000",
-          weight: 2,
-          fillOpacity: 0
-        };
-      },
-      onEachFeature: function (feature, layer) {
-        var center = layer.getBounds().getCenter();
-        var communityName = feature.properties.community || 'Unknown';
-        var formattedCommunityName = communityName.split(' ').join('<br>');
-        var communityLabel = L.divIcon({
-          className: 'community-label',
-          html: '<div>' + formattedCommunityName + '</div>',
-          iconSize: [100, 20]
-        });
-        L.marker(center, { icon: communityLabel }).addTo(map);
-      }
-    });
-
-    fetch('https://Chicago-Preservation.github.io/Map/boundaries.geojson')
-      .then(response => response.json())
-      .then(data => {
-        boundariesLayer.addData(data);
-        map.addLayer(boundariesLayer);
-      });
+    // Initialize the map with default grouping
+    makeMap('{{site.marker-grouping}}', map);
 
     </script>
 
