@@ -276,6 +276,35 @@ fetch('https://Chicago-Preservation.github.io/Map/NR_Districts_2012.geojson')
     map.addLayer(nrDistricts2012Layer);  // Add this line to make the layer visible by default
   })
   .catch(error => console.error('Error loading NR_Districts_2012 GeoJSON:', error));
+// Adding Mural Registry Layer
+var muralRegistryLayer = L.geoJSON(null, {
+  onEachFeature: function (feature, layer) {
+    var popupContent = '<strong>' + (feature.properties["Artwork Title"] || 'Unknown') + '</strong><br>' +
+      '<em>Artist:</em> ' + (feature.properties["Artist Credit"] || 'Unknown') + '<br>' +
+      '<em>Year Installed:</em> ' + (feature.properties["Year Installed"] || 'Unknown') + '<br>' +
+      '<em>Street Address:</em> ' + (feature.properties["Street Address"] || 'Unknown');
+    layer.bindPopup(popupContent);
+  },
+  pointToLayer: function (feature, latlng) {
+    return L.circleMarker(latlng, {
+      radius: 8, // Size of the marker
+      fillColor: "#6a0dad", // Purple color for murals
+      color: "#ffffff", // White border
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    });
+  }
+});
+
+// Fetch and Add Mural Registry GeoJSON Data
+fetch('https://Chicago-Preservation.github.io/Map/mural_registry.geojson')
+  .then(response => response.json())
+  .then(data => {
+    muralRegistryLayer.addData(data);
+    map.addLayer(muralRegistryLayer); // Add the layer to the map by default
+  })
+  .catch(error => console.error('Error loading Mural Registry GeoJSON:', error));
 
 
 
@@ -284,7 +313,8 @@ var geojsonLayerControl = {
   "Landmarks": landmarksLayer,
   "Community Areas": boundariesLayer,
   "NR Properties Filtered": nrPropertiesFilteredLayer,
-  "NR Districts 2012": nrDistricts2012Layer // Added here
+  "NR Districts 2012": nrDistricts2012Layer,
+  "Mural Registry": muralRegistryLayer // Added here
 };
 
 // Add the GeoJSON layer control to the bottom-right and stack it with the categories control
