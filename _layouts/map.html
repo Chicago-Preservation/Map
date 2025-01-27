@@ -255,22 +255,24 @@ fetch('https://Chicago-Preservation.github.io/Map/NR_Properties_filtered.geojson
 var nrDistricts2012Layer = L.geoJSON(null, {
   onEachFeature: function (feature, layer) {
     var popupContent = '<strong>' +
-      (feature.properties.DistrictName || 'No Name') +
+      (feature.properties.NAME || 'No Name') +
       '</strong><br>' +
-      '<em>Location:</em> ' + (feature.properties.Location || 'Unknown') + '<br>' +
-      '<em>Architect:</em> ' + (feature.properties.Architect || 'Unknown') + '<br>' +
-      '<em>Year Designated:</em> ' + (feature.properties.YearDesignated || 'Unknown');
+      '<em>Address:</em> ' + (feature.properties.ADDRESS || 'Unknown') + '<br>' +
+      '<em>Type:</em> ' + (feature.properties.TYPE_MAIN || 'Unknown') + '<br>' +
+      '<em>Notes:</em> ' + (feature.properties.NOTES || 'None') + '<br>' +
+      '<em>National Historic Landmark (NHL):</em> ' + (feature.properties.NHL_NR || 'No');
     layer.bindPopup(popupContent);
   },
   style: function (feature) {
     return {
       color: "#FF5733", // Orange color for districts
       weight: 2,
-      fillOpacity: 0.6
+      fillOpacity: 0.5
     };
   }
 });
 
+// Fetch and Add NR_Districts_2012 GeoJSON Data
 fetch('https://Chicago-Preservation.github.io/Map/NR_Districts_2012.geojson')
   .then(response => response.json())
   .then(data => {
@@ -278,6 +280,7 @@ fetch('https://Chicago-Preservation.github.io/Map/NR_Districts_2012.geojson')
     map.addLayer(nrDistricts2012Layer); // Add the layer to the map by default
   })
   .catch(error => console.error('Error loading NR_Districts_2012 GeoJSON:', error));
+
 
 // GeoJSON Layers (New Layer Control for GeoJSON in the bottom-right)
 var geojsonLayerControl = {
