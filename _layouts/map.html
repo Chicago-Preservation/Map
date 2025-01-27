@@ -1,139 +1,202 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
-
   {% include head.html %}
 
   <body>
-
     {% include sidebar.html %}
-       <script>
-        window.onload = function() {
-          if (localStorage['selectedtem'] != undefined) {
-            new_map();
-          } else {
-            new_map('{{site.marker-grouping}}');
-          }
-          reloadhtml();
-        };
-        window.onhashchange = function() {
-          reloadhtml();
-        };
-       </script>
+    <script>
+      window.onload = function () {
+        if (localStorage["selectedtem"] != undefined) {
+          new_map();
+        } else {
+          new_map("{{site.marker-grouping}}");
+        }
+        reloadhtml();
+      };
+      window.onhashchange = function () {
+        reloadhtml();
+      };
+    </script>
 
     <div id="map" style="width: 100%; height: 600px;"></div>
 
     <script>
+      var map = L.map("map", { scrollWheelZoom: false }).setView(
+        [41.8781, -87.6298],
+        12
+      ); // Center on Chicago
+      var markers = "";
 
-    var map = L.map('map', {scrollWheelZoom: false}).setView([41.8781, -87.6298], 12); // Default view centered on Chicago
-    var chicagoBounds = [[41.644543, -87.940267], [42.023131, -87.523661]]; // Bounding box for Chicago area
-    map.fitBounds(chicagoBounds); // Fit the map to Chicago bounds
-    var markers = '';
+      window.change_map = function () {
+        localStorage.setItem(
+          "selectedtem",
+          document.getElementById("choose").value
+        );
+        new_map();
+      };
 
-    window.change_map = function() {
-      localStorage.setItem('selectedtem', document.getElementById("choose").value);
-      new_map();
-    };
-
-    function makeMap(markergrouping, map) {
-      if (markergrouping == 'grouped') {
-        markers = new L.markerClusterGroup({showCoverageOnHover: false});
-      } else if (markergrouping == 'single') {
-        markers = new L.featureGroup();
-      }
-      var items = {};
-
-      // Base map layer (ESRI Gray Light)
-      L.tileLayer('{{site.map-tileset}}', {
-        attribution: '{{site.map-credits}}',
-        minZoom: {{site.minZoom}},
-        maxZoom: {{site.maxZoom}},
-        errorTileUrl: "img/error-tile-image.png",
-        subdomains: ["a", "b", "c", "d"],
-        detectRetina: true,
-      }).addTo(map);
-
-      // Adding NR Properties GeoJSON Layer
-      var nrPropertiesLayer = L.geoJSON(null, {
-        onEachFeature: function (feature, layer) {
-          var popupContent = '<strong>' +
-            (feature.properties.SignificantName || 'No Name') +
-            '</strong><br>' +
-            '<em>Location:</em> ' + (feature.properties.Location || 'Unknown') + '<br>' +
-            '<em>Architect:</em> ' + (feature.properties.Architect || 'Unknown') + '<br>' +
-            '<em>Begin Year:</em> ' + (feature.properties.BeginYear || 'Unknown') + '<br>' +
-            '<em>End Year:</em> ' + (feature.properties.EndYear || 'Unknown');
-          layer.bindPopup(popupContent);
-        },
-        style: function (feature) {
-          return {
-            color: "#3388ff",
-            weight: 2,
-            fillOpacity: 0.6
-          };
-        }
-      });
-
-      fetch('https://Chicago-Preservation.github.io/Map/NR_Properties_filtered.geojson')
-        .then(response => response.json())
-        .then(data => {
-          nrPropertiesLayer.addData(data);
-          map.addLayer(nrPropertiesLayer);
-        })
-        .catch(error => console.error('Error loading NR Properties GeoJSON:', error));
-
-      // Adding Landmarks Layer
-      var landmarksLayer = L.geoJSON(null, {
-        onEachFeature: function (feature, layer) {
-          var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
-            '<em>Architect:</em> ' + (feature.properties.ARCHITECT || 'Unknown') + '<br>' +
-            '<em>Address:</em> ' + (feature.properties.ADDRESS || 'Unknown') + '<br>' +
-            '<em>Date Built:</em> ' + (feature.properties.DATE_BUILT || 'Unknown');
-          layer.bindPopup(popupContent);
-        }
-      });
-
-      fetch('https://Chicago-Preservation.github.io/Map/landmarkareas.geojson')
-        .then(response => response.json())
-        .then(data => {
-          landmarksLayer.addData(data);
-          map.addLayer(landmarksLayer);
-        })
-        .catch(error => console.error('Error loading Landmarks GeoJSON:', error));
-
-      // Adding Community Boundaries Layer
-      var boundariesLayer = L.geoJSON(null, {
-        style: function (feature) {
-          return {
-            color: "#000000",
-            weight: 2,
-            fillOpacity: 0
-          };
-        },
-        onEachFeature: function (feature, layer) {
-          var center = layer.getBounds().getCenter();
-          var communityName = feature.properties.community || 'Unknown';
-          var formattedCommunityName = communityName.split(' ').join('<br>');
-          var communityLabel = L.divIcon({
-            className: 'community-label',
-            html: '<div>' + formattedCommunityName + '</div>',
-            iconSize: [100, 20]
+      function makeMap(markergrouping, map) {
+        if (markergrouping == "grouped") {
+          markers = new L.markerClusterGroup({
+            showCoverageOnHover: false,
           });
-          L.marker(center, { icon: communityLabel }).addTo(map);
+        } else if (markergrouping == "single") {
+          markers = new L.featureGroup();
         }
-      });
+        var items = {};
 
-      fetch('https://Chicago-Preservation.github.io/Map/boundaries.geojson')
-        .then(response => response.json())
-        .then(data => {
-          boundariesLayer.addData(data);
-          map.addLayer(boundariesLayer);
-        })
-        .catch(error => console.error('Error loading Boundaries GeoJSON:', error));
-    }
+        // Base map layer (ESRI Gray Light)
+        L.tileLayer("{{site.map-tileset}}", {
+          attribution: "{{site.map-credits}}",
+          minZoom: {{site.minZoom}},
+          maxZoom: {{site.maxZoom}},
+          errorTileUrl: "img/error-tile-image.png",
+          subdomains: ["a", "b", "c", "d"],
+          detectRetina: true,
+        }).addTo(map);
 
-    // Initialize the map with default grouping
-    makeMap('{{site.marker-grouping}}', map);
+        // Adding NR Properties GeoJSON Layer
+        var nrPropertiesLayer = L.geoJSON(null, {
+          onEachFeature: function (feature, layer) {
+            var popupContent =
+              "<strong>" +
+              (feature.properties.SignificantName || "No Name") +
+              "</strong><br>" +
+              "<em>Location:</em> " +
+              (feature.properties.Location || "Unknown") +
+              "<br>" +
+              "<em>Architect:</em> " +
+              (feature.properties.Architect || "Unknown") +
+              "<br>" +
+              "<em>Begin Year:</em> " +
+              (feature.properties.BeginYear || "Unknown") +
+              "<br>" +
+              "<em>End Year:</em> " +
+              (feature.properties.EndYear || "Unknown");
+            layer.bindPopup(popupContent);
+          },
+          style: function (feature) {
+            return {
+              color: "#3388ff",
+              weight: 2,
+              fillOpacity: 0.6,
+            };
+          },
+        });
 
+        fetch(
+          "https://Chicago-Preservation.github.io/Map/NR_Properties_filtered.geojson"
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            nrPropertiesLayer.addData(data);
+            map.addLayer(nrPropertiesLayer);
+          })
+          .catch((error) =>
+            console.error("Error loading NR Properties GeoJSON:", error)
+          );
+
+        // Adding Existing Categories Layer
+        var overLayers = [];
+        var icons = [];
+
+        {% for image in site.static_files %}
+        {% if image.path contains "assets/leaflet/img" %}
+        icons.push("{{ image.path }}");
+        {% endif %}
+        {% endfor %}
+
+        var counter = -1;
+        var groups = {};
+
+        {% for category in site.categories %}
+        counter += 1;
+        {% capture category_name %}{{ category | first }}{% endcapture %}
+        var layers = [];
+        if (markergrouping == "grouped") {
+          groups[counter] = L.featureGroup.subGroup(markers);
+          var control = L.control.layers(null, null, {
+            collapsed: false,
+            position: "bottomright",
+          });
+        }
+
+        {% for post in site.categories[category_name] %}
+        var lat = {{ post.lat }};
+        var lng = {{ post.lng }};
+
+        var content =
+          $(window).height() < {{site.window-height}} ||
+          $(window).width() < {{site.window-width}}
+            ? "<strong>{{ post.title | truncatewords: 2}}</strong>"
+            : "<strong>{{ post.title }}</strong><br>{{ post.desc }}";
+
+        var iconurl = "{{site.baseurl}}" + icons[counter];
+        var mbox = L.icon({
+          iconUrl: iconurl,
+          iconSize: [50, 54],
+          iconAnchor: [17, 36],
+          popupAnchor: [-1, 8],
+        });
+        var marker = L.marker([lat, lng], {
+          icon: mbox,
+        }).bindPopup(content, { offset: new L.Point(0, -30) });
+        marker.iconURL = iconurl;
+
+        if (markergrouping == "grouped") {
+          marker.addTo(groups[counter]);
+        } else if (markergrouping == "single") {
+          layers.push(marker);
+        }
+
+        var filename = "{{post.url}}";
+        if (items[filename] == undefined) {
+          items[filename] = [marker];
+        } else {
+          items[filename].push(marker);
+        }
+
+        marker.on("click", function () {
+          var post_url = "{{site.baseurl}}/#{{post.url}}";
+          var article_url = "{{site.baseurl}}{{post.url}}";
+          var item_id = "{{post.url}}";
+          window.location = post_url;
+          articlerender(article_url, item_id);
+        });
+
+        {% endfor %}
+
+        var imageurl = '<img class="legend" src="' + iconurl + '">';
+        if (markergrouping == "grouped") {
+          map.addLayer(markers);
+          var name = imageurl + " " + "{{category_name}}";
+          overLayers.push({ name: name, layer: groups[counter] });
+        } else if (markergrouping == "single") {
+          var name = "{{category_name}}";
+          overLayers.push({
+            name: name,
+            icon: imageurl,
+            active: true,
+            layer: L.layerGroup(layers),
+          });
+        }
+        {% endfor %}
+
+        if (markergrouping == "grouped") {
+          for (let i = 0; i < overLayers.length; i++) {
+            control.addOverlay(overLayers[i]["layer"], overLayers[i]["name"]);
+            control.addTo(map);
+            overLayers[i]["layer"].addTo(map);
+          }
+        } else if (markergrouping == "single") {
+          var panelLayers = new L.Control.PanelLayers(null, overLayers, {
+            compact: true,
+            collapsed: false,
+            position: "bottomright",
+          });
+          map.addControl(panelLayers);
+        }
+      }
     </script>
 
     {% include menu.html %}
