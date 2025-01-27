@@ -251,12 +251,9 @@ fetch('https://Chicago-Preservation.github.io/Map/NR_Properties_filtered.geojson
   })
   .catch(error => console.error('Error loading NR_Properties_Filtered GeoJSON:', error));
 
-// Adding NR_Districts_2012 Layer
-var nrDistricts2012Layer = L.geoJSON(null, {
+  var nrDistricts2012Layer = L.geoJSON(null, {
   onEachFeature: function (feature, layer) {
-    var popupContent = '<strong>' +
-      (feature.properties.NAME || 'No Name') +
-      '</strong><br>' +
+    var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
       '<em>Address:</em> ' + (feature.properties.ADDRESS || 'Unknown') + '<br>' +
       '<em>Type:</em> ' + (feature.properties.TYPE_MAIN || 'Unknown') + '<br>' +
       '<em>Notes:</em> ' + (feature.properties.NOTES || 'None') + '<br>' +
@@ -272,14 +269,14 @@ var nrDistricts2012Layer = L.geoJSON(null, {
   }
 });
 
-// Fetch and Add NR_Districts_2012 GeoJSON Data
 fetch('https://Chicago-Preservation.github.io/Map/NR_Districts_2012.geojson')
   .then(response => response.json())
   .then(data => {
     nrDistricts2012Layer.addData(data);
-    map.addLayer(nrDistricts2012Layer); // Add the layer to the map by default
+    map.addLayer(nrDistricts2012Layer);  // Add this line to make the layer visible by default
   })
   .catch(error => console.error('Error loading NR_Districts_2012 GeoJSON:', error));
+
 
 
 // GeoJSON Layers (New Layer Control for GeoJSON in the bottom-right)
