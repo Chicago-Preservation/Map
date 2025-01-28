@@ -256,10 +256,7 @@ fetch('https://Chicago-Preservation.github.io/Map/NR_Properties_filtered.geojson
   var nrDistricts2012Layer = L.geoJSON(null, {
   onEachFeature: function (feature, layer) {
     var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
-      '<em>Address:</em> ' + (feature.properties.ADDRESS || 'Unknown') + '<br>' +
-      '<em>Type:</em> ' + (feature.properties.TYPE_MAIN || 'Unknown') + '<br>' +
-      '<em>Notes:</em> ' + (feature.properties.NOTES || 'None') + '<br>' +
-      '<em>National Historic Landmark (NHL):</em> ' + (feature.properties.NHL_NR || 'No');
+      '<em>Address:</em> ' + (feature.properties.ADDRESS || 'Unknown') + '<br>' ;
     layer.bindPopup(popupContent);
   },
   style: function (feature) {
