@@ -251,6 +251,8 @@ fetch('https://Chicago-Preservation.github.io/Map/NR_Properties_filtered.geojson
   })
   .catch(error => console.error('Error loading NR_Properties_Filtered GeoJSON:', error));
 
+ // Added District 2012 layer here
+
   var nrDistricts2012Layer = L.geoJSON(null, {
   onEachFeature: function (feature, layer) {
     var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
@@ -276,6 +278,8 @@ fetch('https://Chicago-Preservation.github.io/Map/NR_Districts_2012.geojson')
     map.addLayer(nrDistricts2012Layer);  // Add this line to make the layer visible by default
   })
   .catch(error => console.error('Error loading NR_Districts_2012 GeoJSON:', error));
+  
+
 // Adding Mural Registry Layer
 var muralRegistryLayer = L.geoJSON(null, {
   onEachFeature: function (feature, layer) {
@@ -306,6 +310,32 @@ fetch('https://Chicago-Preservation.github.io/Map/mural_registry.geojson')
   })
   .catch(error => console.error('Error loading Mural Registry GeoJSON:', error));
 
+/// Adding Historic Resources Survey Layer
+var historicResourcesLayer = L.geoJSON(null, {
+  onEachFeature: function (feature, layer) {
+    var popupContent = '<strong>' +
+      (feature.properties["LANDMARKNA"] || 'No Name') + '</strong><br>' +
+      '<em>Address:</em> ' + (feature.properties["ADDRESSDES"] || 'Unknown') + '<br>' +
+      '<em>Decade:</em> ' + (feature.properties["DECADE"] || 'Unknown');
+    layer.bindPopup(popupContent);
+  },
+  style: function (feature) {
+    return {
+      color: "#006400", // Dark Green for historic resources
+      weight: 2,
+      fillOpacity: 0.5
+    };
+  }
+});
+
+// Fetch and Add Historic Resources Survey GeoJSON Data
+fetch('https://Chicago-Preservation.github.io/Map/Historic_Resources_Survey.geojson')
+  .then(response => response.json())
+  .then(data => {
+    historicResourcesLayer.addData(data);
+    map.addLayer(historicResourcesLayer); // Add the layer to the map by default
+  })
+  .catch(error => console.error('Error loading Historic Resources Survey GeoJSON:', error));
 
 
 // GeoJSON Layers (New Layer Control for GeoJSON in the bottom-right)
