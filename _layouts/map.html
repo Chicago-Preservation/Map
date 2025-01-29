@@ -337,19 +337,15 @@ fetch('https://Chicago-Preservation.github.io/Map/Historic_Resources_Survey.geoj
 
 
 // GeoJSON Layers (New Layer Control for GeoJSON in the bottom-right)
-var layerLinks = {
-  "Landmarks": "https://webapps1.chicago.gov/landmarksweb/web/listings.htm",
-  "Community Areas": "https://example.com/community-areas",
-  "NR Properties Filtered": "https://example.com/nr-properties",
-  "NR Districts 2012": "https://example.com/nr-districts",
-  "Mural Registry": "https://example.com/mural-registry",
-  "Historic Resources Survey": "https://example.com/historic-resources"
-};
 
-var geojsonLayerControl = {};
-Object.keys(layerLinks).forEach(function(layerName) {
-  geojsonLayerControl[`<a href="${layerLinks[layerName]}" target="_blank">${layerName}</a>`] = eval(layerName.replace(/\s+/g, '') + "Layer");
-});
+var geojsonLayerControl = {
+  "Landmarks": landmarksLayer,
+  "Community Areas": boundariesLayer,
+  "NR Properties Filtered": nrPropertiesFilteredLayer,
+  "NR Districts 2012": nrDistricts2012Layer,
+  "Mural Registry": muralRegistryLayer,
+  "Historic Resources Survey": historicResourcesLayer // Added here
+};
 
 // Add the GeoJSON layer control to the bottom-right and stack it with the categories control
 var mapLayersControl = L.control.layers(null, geojsonLayerControl, {
