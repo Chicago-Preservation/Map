@@ -416,12 +416,12 @@ img.article-marker {
 label.leaflet-panel-layers-title {
   font-family: "EB Garamond", serif;
   font-weight: 300;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 div.leaflet-control-layers-overlays {
   font-family: "EB Garamond", serif;
   font-weight: 300;
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-size: .9em;
 }
 @media (max-width:768px) {
