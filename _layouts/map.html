@@ -337,22 +337,28 @@ fetch('https://Chicago-Preservation.github.io/Map/Historic_Resources_Survey.geoj
 
 // GeoJSON Layers (New Layer Control for GeoJSON in the bottom-right)
 
-var geojsonLayerControl = {
-  "Chicago Landmarks": landmarksLayer,
-  "Community Areas": boundariesLayer,
-  "National Register of Historic Places": nrPropertiesFilteredLayer,
-  "National Register Districts": nrDistricts2012Layer,
-  "Mural Registry": muralRegistryLayer,
-  "Historic Resources Survey": historicResourcesLayer // Added here
+// Define URLs for each layer (replace with actual URLs)
+var layerLinks = {
+  "Landmarks": "https://example.com/landmarks",
+  "Community Areas": "https://example.com/community-areas",
+  "NR Properties Filtered": "https://example.com/nr-properties",
+  "NR Districts 2012": "https://example.com/nr-districts",
+  "Mural Registry": "https://example.com/mural-registry",
+  "Historic Resources Survey": "https://example.com/historic-resources"
 };
 
-// Add the GeoJSON layer control to the bottom-right and stack it with the categories control
+// Create geojsonLayerControl with hyperlinked names
+var geojsonLayerControl = {};
+Object.entries(layerLinks).forEach(([layerName, url]) => {
+  let hyperlink = `<a href="${url}" target="_blank" style="text-decoration: none; color: #0066cc;">${layerName}</a>`;
+  geojsonLayerControl[hyperlink] = eval(layerName.replace(/\s+/g, '') + "Layer");
+});
+
+// Add the updated layer control to the map
 var mapLayersControl = L.control.layers(null, geojsonLayerControl, {
   position: 'bottomright',
   collapsed: false  // Ensure it's open by default
 }).addTo(map);
-
-
 
 // Add the "Map Layers" title as part of the control box (bottom-right)
 var layersContainer = document.querySelector('.leaflet-control-layers');
