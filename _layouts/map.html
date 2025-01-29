@@ -230,8 +230,7 @@ var nrPropertiesFilteredLayer = L.geoJSON(null, {
       '</strong><br>' +
       '<em>Location:</em> ' + (feature.properties.Location || 'Unknown') + '<br>' +
       '<em>Architect:</em> ' + (feature.properties.Architect || 'Unknown') + '<br>' +
-      '<em>Begin Year:</em> ' + (feature.properties.BeginYear || 'Unknown') + '<br>' +
-      '<em>End Year:</em> ' + (feature.properties.EndYear || 'Unknown');
+      '<em>Year:</em> ' + (feature.properties.BeginYear || 'Unknown');
     layer.bindPopup(popupContent);
   },
   style: function (feature) {
@@ -283,7 +282,7 @@ var muralRegistryLayer = L.geoJSON(null, {
   onEachFeature: function (feature, layer) {
     var popupContent = '<strong>' + (feature.properties["Artwork Title"] || 'Unknown') + '</strong><br>' +
       '<em>Artist:</em> ' + (feature.properties["Artist Credit"] || 'Unknown') + '<br>' +
-      '<em>Year Installed:</em> ' + (feature.properties["Year Installed"] || 'Unknown') + '<br>' +
+      '<em>Year:</em> ' + (feature.properties["Year Installed"] || 'Unknown') + '<br>' +
       '<em>Street Address:</em> ' + (feature.properties["Street Address"] || 'Unknown');
     layer.bindPopup(popupContent);
   },
@@ -339,10 +338,10 @@ fetch('https://Chicago-Preservation.github.io/Map/Historic_Resources_Survey.geoj
 // GeoJSON Layers (New Layer Control for GeoJSON in the bottom-right)
 
 var geojsonLayerControl = {
-  "Landmarks": landmarksLayer,
+  "Chicago Landmarks": landmarksLayer,
   "Community Areas": boundariesLayer,
-  "NR Properties Filtered": nrPropertiesFilteredLayer,
-  "NR Districts 2012": nrDistricts2012Layer,
+  "National Register of Historic Places": nrPropertiesFilteredLayer,
+  "National Register Districts": nrDistricts2012Layer,
   "Mural Registry": muralRegistryLayer,
   "Historic Resources Survey": historicResourcesLayer // Added here
 };
