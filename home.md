@@ -20,7 +20,12 @@ Or, you can use the dropdown menu located on the upper right corner of the map t
 #### Credits
 >
 Academic Consortium of Chicago Preservation
+
+Map layers sourced from the <a href="https://data.cityofchicago.org/Historic-Preservation/Mural-Registry/we8h-apcf/about_data" target="_blank" class="layer-link">Chicago Data Portal</a> courtesy of the City of Chicago
 >
 Emily Talen, Professor of Urbanism, University of Chicago
 >
 Melissa Rovner, Postdoctoral Scholar, University of Chicago
+>
+Pramiti Singh, Research Assistant, University of Chicago
+
