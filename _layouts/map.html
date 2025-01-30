@@ -318,12 +318,12 @@ var historicResourcesLayer = L.geoJSON(null, {
   onEachFeature: function (feature, layer) {
     var startYear = feature.properties["STARTYEAR"];
     var decade = feature.properties["DECADE"];
-    var displayYear = startYear ? startYear : (decade ? decade : 'Unknown');
-
+    var displayYear = startYear ? startYear : (decade && decade !== 0 ? decade : 'NA');
+    
     var popupContent = '<strong>' +
       (feature.properties["LANDMARKNA"] || 'No Name') + '</strong><br>' +
       '<em>Address:</em> ' + (feature.properties["ADDRESSDES"] || 'Unknown') + '<br>' +
-      '<em>Start Year/Decade:</em> ' + displayYear;
+      '<em>Year:</em> ' + displayYear;
 
     layer.bindPopup(popupContent);
   },
