@@ -318,7 +318,11 @@ var historicResourcesLayer = L.geoJSON(null, {
   onEachFeature: function (feature, layer) {
     var startYear = feature.properties["STARTYEAR"];
     var decade = feature.properties["DECADE"];
+
+    var startYear = parseInt(feature.properties["STARTYEAR"], 10);
+
     var displayYear = (startYear && startYear !== 0) ? startYear : ((decade && decade !== 0) ? decade : 'NA');
+
 
 
     var popupContent = '<strong>' +
