@@ -337,32 +337,22 @@ fetch('https://Chicago-Preservation.github.io/Map/Historic_Resources_Survey.geoj
 
 // GeoJSON Layers (New Layer Control for GeoJSON in the bottom-right)
 
-// Define URLs for each layer (replace with actual URLs)
-// Define URLs for each layer (replace with actual URLs)
-var layerLinks = {
-  "Landmarks": "https://example.com/landmarks",
-  "Community Areas": "https://example.com/community-areas",
-  "NR Properties Filtered": "https://example.com/nr-properties",
-  "NR Districts 2012": "https://example.com/nr-districts",
-  "Mural Registry": "https://example.com/mural-registry",
-  "Historic Resources Survey": "https://example.com/historic-resources"
-};
-
-// Create geojsonLayerControl with hyperlinked names
 var geojsonLayerControl = {
-  `<a href="${layerLinks['Landmarks']}" target="_blank" class="layer-link">Landmarks</a>`: landmarksLayer,
-  `<a href="${layerLinks['Community Areas']}" target="_blank" class="layer-link">Community Areas</a>`: boundariesLayer,
-  `<a href="${layerLinks['NR Properties Filtered']}" target="_blank" class="layer-link">NR Properties Filtered</a>`: nrPropertiesFilteredLayer,
-  `<a href="${layerLinks['NR Districts 2012']}" target="_blank" class="layer-link">NR Districts 2012</a>`: nrDistricts2012Layer,
-  `<a href="${layerLinks['Mural Registry']}" target="_blank" class="layer-link">Mural Registry</a>`: muralRegistryLayer,
-  `<a href="${layerLinks['Historic Resources Survey']}" target="_blank" class="layer-link">Historic Resources Survey</a>`: historicResourcesLayer
+  "Chicago Landmarks": landmarksLayer,
+  "Community Areas": boundariesLayer,
+  "National Register of Historic Places": nrPropertiesFilteredLayer,
+  "National Register Districts": nrDistricts2012Layer,
+  "Mural Registry": muralRegistryLayer,
+  "Historic Resources Survey": historicResourcesLayer // Added here
 };
 
-// Add the updated layer control to the map
+// Add the GeoJSON layer control to the bottom-right and stack it with the categories control
 var mapLayersControl = L.control.layers(null, geojsonLayerControl, {
   position: 'bottomright',
   collapsed: false  // Ensure it's open by default
 }).addTo(map);
+
+
 
 // Add the "Map Layers" title as part of the control box (bottom-right)
 var layersContainer = document.querySelector('.leaflet-control-layers');
@@ -370,6 +360,7 @@ var mapLayersTitle = document.createElement('div');
 mapLayersTitle.className = 'leaflet-control-layers-title';
 mapLayersTitle.innerHTML = '<h4>Map Layers</h4>';
 layersContainer.insertBefore(mapLayersTitle, layersContainer.firstChild);
+
 
      // Set map view
      map.setView([41.8781, -87.6298], 12); // Center on Chicago
