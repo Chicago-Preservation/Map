@@ -316,10 +316,15 @@ fetch('https://Chicago-Preservation.github.io/Map/mural_registry.geojson')
 /// Adding Historic Resources Survey Layer
 var historicResourcesLayer = L.geoJSON(null, {
   onEachFeature: function (feature, layer) {
+    var startYear = feature.properties["STARTYEAR"];
+    var decade = feature.properties["DECADE"];
+    var displayYear = startYear ? startYear : (decade ? decade : 'Unknown');
+
     var popupContent = '<strong>' +
       (feature.properties["LANDMARKNA"] || 'No Name') + '</strong><br>' +
       '<em>Address:</em> ' + (feature.properties["ADDRESSDES"] || 'Unknown') + '<br>' +
-      '<em>Decade:</em> ' + (feature.properties["DECADE"] || 'Unknown');
+      '<em>Start Year/Decade:</em> ' + displayYear;
+
     layer.bindPopup(popupContent);
   },
   style: function (feature) {
