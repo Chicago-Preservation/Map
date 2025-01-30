@@ -174,25 +174,8 @@ if (markergrouping == 'grouped') {
  categoriesTitle.className = 'leaflet-control-layers-title';
  categoriesTitle.innerHTML = '<h4>Categories</h4>';
  categoriesContainer.insertBefore(categoriesTitle, categoriesContainer.firstChild);
+ 
 }
-   // Adding other layers (Landmarks and Boundaries)
-var landmarksLayer = L.geoJSON(null, {
-  onEachFeature: function (feature, layer) {
-    var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
-      '<em>Architect:</em> ' + (feature.properties.ARCHITECT || 'Unknown') + '<br>' +
-      '<em>Address:</em> ' + (feature.properties.ADDRESS || 'Unknown') + '<br>' +
-      '<em>Date Built:</em> ' + (feature.properties.DATE_BUILT || 'Unknown');
-    layer.bindPopup(popupContent);
-  }
-});
-
-fetch('https://Chicago-Preservation.github.io/Map/landmarkareas.geojson')
-  .then(response => response.json())
-  .then(data => {
-    landmarksLayer.addData(data);
-    map.addLayer(landmarksLayer);  // Add this line to make the layer visible by default
-  });
-
 var boundariesLayer = L.geoJSON(null, {
   style: function (feature) {
     return {
@@ -221,6 +204,26 @@ fetch('https://Chicago-Preservation.github.io/Map/boundaries.geojson')
     map.addLayer(boundariesLayer);
     boundariesLayer.bringToBack();
   });
+
+   // Adding other layers (Landmarks and Boundaries)
+var landmarksLayer = L.geoJSON(null, {
+  onEachFeature: function (feature, layer) {
+    var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
+      '<em>Architect:</em> ' + (feature.properties.ARCHITECT || 'Unknown') + '<br>' +
+      '<em>Address:</em> ' + (feature.properties.ADDRESS || 'Unknown') + '<br>' +
+      '<em>Date Built:</em> ' + (feature.properties.DATE_BUILT || 'Unknown');
+    layer.bindPopup(popupContent);
+  }
+});
+
+fetch('https://Chicago-Preservation.github.io/Map/landmarkareas.geojson')
+  .then(response => response.json())
+  .then(data => {
+    landmarksLayer.addData(data);
+    map.addLayer(landmarksLayer);  // Add this line to make the layer visible by default
+  });
+
+
 
 // Adding NR_Properties_Filtered Layer
 var nrPropertiesFilteredLayer = L.geoJSON(null, {
