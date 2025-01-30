@@ -1,5 +1,5 @@
 ---
 layout: article-index
-title: Academic Programs
+title: Scholar Share
 status: category
 ---
