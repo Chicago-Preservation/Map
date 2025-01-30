@@ -18,10 +18,13 @@ You can use the map to explore, by zooming in, panning, and selecting "sites," w
 Or, you can use the dropdown menu located on the upper right corner of the map to go directly to a specific page.
 
 #### Credits
+
 >
+
+Map layers sourced from the <a href="https://data.cityofchicago.org/Historic-Preservation/Mural-Registry/we8h-apcf/about_data" target="_blank">Chicago Data Portal</a> courtesy of the City of Chicago
+
 Academic Consortium of Chicago Preservation
 
-Map layers sourced from the <a href="https://data.cityofchicago.org/Historic-Preservation/Mural-Registry/we8h-apcf/about_data" target="_blank" class="layer-link">Chicago Data Portal</a> courtesy of the City of Chicago
 >
 Emily Talen, Professor of Urbanism, University of Chicago
 >
