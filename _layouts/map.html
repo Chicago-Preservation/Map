@@ -338,6 +338,7 @@ fetch('https://Chicago-Preservation.github.io/Map/Historic_Resources_Survey.geoj
 // GeoJSON Layers (New Layer Control for GeoJSON in the bottom-right)
 
 // Define URLs for each layer (replace with actual URLs)
+// Define URLs for each layer (replace with actual URLs)
 var layerLinks = {
   "Landmarks": "https://example.com/landmarks",
   "Community Areas": "https://example.com/community-areas",
@@ -348,11 +349,14 @@ var layerLinks = {
 };
 
 // Create geojsonLayerControl with hyperlinked names
-var geojsonLayerControl = {};
-Object.entries(layerLinks).forEach(([layerName, url]) => {
-  let hyperlink = `<a href="${url}" target="_blank" style="text-decoration: none; color: #0066cc;">${layerName}</a>`;
-  geojsonLayerControl[hyperlink] = eval(layerName.replace(/\s+/g, '') + "Layer");
-});
+var geojsonLayerControl = {
+  `<a href="${layerLinks['Landmarks']}" target="_blank" class="layer-link">Landmarks</a>`: landmarksLayer,
+  `<a href="${layerLinks['Community Areas']}" target="_blank" class="layer-link">Community Areas</a>`: boundariesLayer,
+  `<a href="${layerLinks['NR Properties Filtered']}" target="_blank" class="layer-link">NR Properties Filtered</a>`: nrPropertiesFilteredLayer,
+  `<a href="${layerLinks['NR Districts 2012']}" target="_blank" class="layer-link">NR Districts 2012</a>`: nrDistricts2012Layer,
+  `<a href="${layerLinks['Mural Registry']}" target="_blank" class="layer-link">Mural Registry</a>`: muralRegistryLayer,
+  `<a href="${layerLinks['Historic Resources Survey']}" target="_blank" class="layer-link">Historic Resources Survey</a>`: historicResourcesLayer
+};
 
 // Add the updated layer control to the map
 var mapLayersControl = L.control.layers(null, geojsonLayerControl, {
@@ -366,7 +370,6 @@ var mapLayersTitle = document.createElement('div');
 mapLayersTitle.className = 'leaflet-control-layers-title';
 mapLayersTitle.innerHTML = '<h4>Map Layers</h4>';
 layersContainer.insertBefore(mapLayersTitle, layersContainer.firstChild);
-
 
      // Set map view
      map.setView([41.8781, -87.6298], 12); // Center on Chicago
