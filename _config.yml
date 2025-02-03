@@ -23,8 +23,9 @@ twitter_username:
 github_username:  
 
 # --MAP SETTINGS--
-map-tileset: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}'
-map-credits: '<a href="https://www.esri.com/en-us/home" target="_blank">© ESRI</a>'
+map-tileset: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
+map-credits: '<a href="https://carto.com/" target="_blank">© CartoDB</a> | <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>'
+
 minZoom: 0
 maxZoom: 20
 setView: '[41.8781, -87.6298], 12'  # Center the map on Chicago with zoom level 12
