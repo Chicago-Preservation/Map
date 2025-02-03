@@ -202,7 +202,6 @@ fetch('https://Chicago-Preservation.github.io/Map/boundaries.geojson')
   .then(data => {
     boundariesLayer.addData(data);
     map.addLayer(boundariesLayer);
-    boundariesLayer.bringToBack();
   });
 
    // Adding other layers (Landmarks and Boundaries)
