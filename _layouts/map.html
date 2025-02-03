@@ -349,7 +349,6 @@ fetch('https://Chicago-Preservation.github.io/Map/mural_registry.geojson')
 map.on('overlayadd', function (eventLayer) {
   setTimeout(() => {
     boundariesLayer.bringToBack();
-    nrDistricts2012Layer.bringToBack();
     muralRegistryLayer.bringToFront();
   }, 100); // Small delay to ensure correct ordering
 });
