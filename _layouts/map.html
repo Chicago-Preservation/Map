@@ -310,6 +310,7 @@ fetch('https://Chicago-Preservation.github.io/Map/NR_Properties_filtered.geojson
   .then(data => {
     nrPropertiesFilteredLayer.addData(data);
     nrPropertiesFilteredLayer.bringToFront();
+  });
 
 // Adding Mural Registry Layer
 var muralRegistryLayer = L.geoJSON(null, {
