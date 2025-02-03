@@ -176,6 +176,7 @@ if (markergrouping == 'grouped') {
  categoriesContainer.insertBefore(categoriesTitle, categoriesContainer.firstChild);
  
 }
+// boundaries layer
 var boundariesLayer = L.geoJSON(null, {
   style: function (feature) {
     return {
@@ -202,69 +203,10 @@ fetch('https://Chicago-Preservation.github.io/Map/boundaries.geojson')
   .then(data => {
     boundariesLayer.addData(data);
     map.addLayer(boundariesLayer);
-    boundariesLayer.bringToBack();
+    boundariesLayer.bringToBack(); // Ensuring it stays behind all other layers
   });
 
-  // Handle layer control event to push boundariesLayer to the back when added
-map.on('overlayadd', function (eventLayer) {
-  if (eventLayer.layer === boundariesLayer) {
-    setTimeout(() => {
-      boundariesLayer.bringToBack();
-    }, 100); // Small delay ensures correct ordering
-  }
-});
-
-   // Adding other layers (Landmarks and Boundaries)
-var landmarksLayer = L.geoJSON(null, {
-  onEachFeature: function (feature, layer) {
-    var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
-      '<em>Architect:</em> ' + (feature.properties.ARCHITECT || 'Unknown') + '<br>' +
-      '<em>Address:</em> ' + (feature.properties.ADDRESS || 'Unknown') + '<br>' +
-      '<em>Date Built:</em> ' + (feature.properties.DATE_BUILT || 'Unknown');
-    layer.bindPopup(popupContent);
-  }
-});
-
-fetch('https://Chicago-Preservation.github.io/Map/landmarkareas.geojson')
-  .then(response => response.json())
-  .then(data => {
-    landmarksLayer.addData(data);
-   });
-
-
-
-// Adding NR_Properties_Filtered Layer
-var nrPropertiesFilteredLayer = L.geoJSON(null, {
-  onEachFeature: function (feature, layer) {
-    var popupContent = '<strong>' +
-      (feature.properties.SignificantName || 'No Name') +
-      '</strong><br>' +
-      '<em>Location:</em> ' + (feature.properties.Location || 'Unknown') + '<br>' +
-      '<em>Architect:</em> ' + (feature.properties.Architect || 'Unknown') + '<br>' +
-      '<em>Year:</em> ' + (feature.properties.BeginYear || 'Unknown');
-    layer.bindPopup(popupContent);
-  },
-  pointToLayer: function (feature, latlng) {
-    return L.circleMarker(latlng, {
-      radius: 4, // **Smaller size**
-      fillColor: "#006400", // **Dark Green color**
-      color: "#003300", // **Darker green border**
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
-    });
-  }
-});
-
-fetch('https://Chicago-Preservation.github.io/Map/NR_Properties_filtered.geojson')
-  .then(response => response.json())
-  .then(data => {
-    nrPropertiesFilteredLayer.addData(data); 
-  })
-  .catch(error => console.error('Error loading NR_Properties_Filtered GeoJSON:', error));
-  
-
- // Added District 2012 layer here
+  // Added District 2012 layer here
 
  var nrDistricts2012Layer = L.geoJSON(null, {
   onEachFeature: function (feature, layer) {
@@ -284,40 +226,29 @@ fetch('https://Chicago-Preservation.github.io/Map/NR_Properties_filtered.geojson
 fetch('https://Chicago-Preservation.github.io/Map/NR_Districts_2012.geojson')
   .then(response => response.json())
   .then(data => {
-    nrDistricts2012Layer.addData(data); // Add this line to make the layer visible by default
-  })
-  .catch(error => console.error('Error loading NR_Districts_2012 GeoJSON:', error));
-  
+    nrDistricts2012Layer.addData(data);
+    map.addLayer(nrDistricts2012Layer);
+    nrDistricts2012Layer.bringToBack(); // Keeps it behind landmarks but above boundaries
+  });
 
-// Adding Mural Registry Layer
-var muralRegistryLayer = L.geoJSON(null, {
+    // Adding other layers (Landmarks and Boundaries)
+var landmarksLayer = L.geoJSON(null, {
   onEachFeature: function (feature, layer) {
-    var popupContent = '<strong>' + (feature.properties["Artwork Title"] || 'Unknown') + '</strong><br>' +
-      '<em>Artist:</em> ' + (feature.properties["Artist Credit"] || 'Unknown') + '<br>' +
-      '<em>Year:</em> ' + (feature.properties["Year Installed"] || 'Unknown') + '<br>' +
-      '<em>Street Address:</em> ' + (feature.properties["Street Address"] || 'Unknown');
+    var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
+      '<em>Architect:</em> ' + (feature.properties.ARCHITECT || 'Unknown') + '<br>' +
+      '<em>Address:</em> ' + (feature.properties.ADDRESS || 'Unknown') + '<br>' +
+      '<em>Date Built:</em> ' + (feature.properties.DATE_BUILT || 'Unknown');
     layer.bindPopup(popupContent);
-  },
-  pointToLayer: function (feature, latlng) {
-    return L.circleMarker(latlng, {
-      radius: 8, // Size of the marker
-      fillColor: "#6a0dad", // Purple color for murals
-      color: "#ffffff", // White border
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
-    });
   }
 });
 
-// Fetch and Add Mural Registry GeoJSON Data
-fetch('https://Chicago-Preservation.github.io/Map/mural_registry.geojson')
+fetch('https://Chicago-Preservation.github.io/Map/landmarkareas.geojson')
   .then(response => response.json())
   .then(data => {
-    muralRegistryLayer.addData(data); // Add the layer to the map by default
-  })
-  .catch(error => console.error('Error loading Mural Registry GeoJSON:', error));
-
+    landmarksLayer.addData(data);
+    map.addLayer(landmarksLayer);
+  });
+  
 /// Adding Historic Resources Survey Layer
 var historicResourcesLayer = L.geoJSON(null, {
   onEachFeature: function (feature, layer) {
@@ -350,9 +281,78 @@ var historicResourcesLayer = L.geoJSON(null, {
 fetch('https://Chicago-Preservation.github.io/Map/Historic_Resources_Survey.geojson')
   .then(response => response.json())
   .then(data => {
-    historicResourcesLayer.addData(data);// Add the layer to the map by default
-  })
-  .catch(error => console.error('Error loading Historic Resources Survey GeoJSON:', error));
+    historicResourcesLayer.addData(data);
+    map.addLayer(historicResourcesLayer);
+  });
+
+// Adding NR_Properties_Filtered Layer
+var nrPropertiesFilteredLayer = L.geoJSON(null, {
+  onEachFeature: function (feature, layer) {
+    var popupContent = '<strong>' +
+      (feature.properties.SignificantName || 'No Name') +
+      '</strong><br>' +
+      '<em>Location:</em> ' + (feature.properties.Location || 'Unknown') + '<br>' +
+      '<em>Architect:</em> ' + (feature.properties.Architect || 'Unknown') + '<br>' +
+      '<em>Year:</em> ' + (feature.properties.BeginYear || 'Unknown');
+    layer.bindPopup(popupContent);
+  },
+  pointToLayer: function (feature, latlng) {
+    return L.circleMarker(latlng, {
+      radius: 4, // **Smaller size**
+      fillColor: "#006400", // **Dark Green color**
+      color: "#003300", // **Darker green border**
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    });
+  }
+});
+
+fetch('https://Chicago-Preservation.github.io/Map/NR_Properties_filtered.geojson')
+  .then(response => response.json())
+  .then(data => {
+    nrPropertiesFilteredLayer.addData(data);
+    map.addLayer(nrPropertiesFilteredLayer);
+  });
+// Adding Mural Registry Layer
+var muralRegistryLayer = L.geoJSON(null, {
+  onEachFeature: function (feature, layer) {
+    var popupContent = '<strong>' + (feature.properties["Artwork Title"] || 'Unknown') + '</strong><br>' +
+      '<em>Artist:</em> ' + (feature.properties["Artist Credit"] || 'Unknown') + '<br>' +
+      '<em>Year:</em> ' + (feature.properties["Year Installed"] || 'Unknown') + '<br>' +
+      '<em>Street Address:</em> ' + (feature.properties["Street Address"] || 'Unknown');
+    layer.bindPopup(popupContent);
+  },
+  pointToLayer: function (feature, latlng) {
+    return L.circleMarker(latlng, {
+      radius: 8, // Size of the marker
+      fillColor: "#6a0dad", // Purple color for murals
+      color: "#ffffff", // White border
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    });
+  }
+});
+
+// Fetch and Add Mural Registry GeoJSON Data
+fetch('https://Chicago-Preservation.github.io/Map/mural_registry.geojson')
+  .then(response => response.json())
+  .then(data => {
+    muralRegistryLayer.addData(data);
+    map.addLayer(muralRegistryLayer);
+    muralRegistryLayer.bringToFront(); // Ensures murals stay at the top
+  });
+
+
+// Handle layer control event to push boundariesLayer to the back when added
+map.on('overlayadd', function (eventLayer) {
+  setTimeout(() => {
+    boundariesLayer.bringToBack();
+    nrDistricts2012Layer.bringToBack();
+    muralRegistryLayer.bringToFront();
+  }, 100); // Small delay to ensure correct ordering
+});
 
 
 // GeoJSON Layers (New Layer Control for GeoJSON in the bottom-right)
