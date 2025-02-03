@@ -23,7 +23,7 @@ twitter_username:
 github_username:  
 
 # --MAP SETTINGS--
-map-tileset: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
+map-tileset: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png' # this is POSITRON format 
 map-credits: '<a href="https://carto.com/" target="_blank">© CartoDB</a> | <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>'
 
 minZoom: 0
