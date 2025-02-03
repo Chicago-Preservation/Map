@@ -308,7 +308,7 @@ var nrPropertiesFilteredLayer = L.geoJSON(null, {
 fetch('https://Chicago-Preservation.github.io/Map/NR_Properties_filtered.geojson')
   .then(response => response.json())
   .then(data => {
-    nrPropertiesFilteredLayer.addData(data)
+    nrPropertiesFilteredLayer.addData(data);
     nrPropertiesFilteredLayer.bringToFront();
 
 // Adding Mural Registry Layer
