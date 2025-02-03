@@ -1,34 +1,21 @@
-
 <div class="{{site.menu-type}}">
  <button class="menu-button {{site.menu-type}}" onclick="{{site.menu-type}}toggle()"><i class="fa fa-bars" aria-hidden="true"></i></button>
  		<div class="{{site.menu-type}}-content sub-menu" onclick="{{site.menu-type}}toggle()">
  		<div class="menu-links">
  		<a class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></a>
  		<a href="{{site.baseurl}}/">Home</a>
+ 		{% for page in site.pages %}
+ 	
 
-   
-     {% for page in site.pages %}
-     {% if site.exclude_pages contains page.path or page.path contains 'css' %}
-       {% continue %}  {# Skips excluded pages and CSS files #}
-     
-     {% elsif page.title == "Academic Programs" %}
-       <div class="has-submenu">
-         <a href="{{site.baseurl}}/#{{page.url}}" class="menu-link">Academic Programs</a>
-         <ul class="submenu">
-           {% for subpage in site.pages %}
-             {% if subpage.category == "academic-programs" %}
-               <li><a href="{{site.baseurl}}/#{{subpage.url}}">{{subpage.title}}</a></li>
-             {% endif %} {# Closes subpage if #}
-           {% endfor %}
-         </ul>
-       </div>
-   
-     {% else %}
-       <a href="{{site.baseurl}}/#{{page.url}}" class="menu-link">{{page.title}}</a>
-     {% endif %} {# Closes main if #}
-   {% endfor %}
-   
 
+
+
+ 		{% continue %}
+ 		{% else %}
+ 			<a href="{{site.baseurl}}/#{{page.url}}" onclick="onClick('{{page.url}}')" class="menu-link">{{page.title}}</a>
+		{% endif %}
+		{% endfor %}
+    
 		</div>
 </div>
 </div>
