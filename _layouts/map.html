@@ -308,8 +308,9 @@ var nrPropertiesFilteredLayer = L.geoJSON(null, {
 fetch('https://Chicago-Preservation.github.io/Map/NR_Properties_filtered.geojson')
   .then(response => response.json())
   .then(data => {
-    nrPropertiesFilteredLayer.addData(data);
-  });
+    nrPropertiesFilteredLayer.addData(data)
+    nrPropertiesFilteredLayer.bringToFront();
+
 // Adding Mural Registry Layer
 var muralRegistryLayer = L.geoJSON(null, {
   onEachFeature: function (feature, layer) {
@@ -344,7 +345,9 @@ fetch('https://Chicago-Preservation.github.io/Map/mural_registry.geojson')
 map.on('overlayadd', function (eventLayer) {
   setTimeout(() => {
     boundariesLayer.bringToBack();
+    nrPropertiesFilteredLayer.bringToFront();
     muralRegistryLayer.bringToFront();
+    
   }, 100); // Small delay to ensure correct ordering
 });
 
