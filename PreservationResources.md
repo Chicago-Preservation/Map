@@ -1,5 +1,5 @@
 ---
-layout: article-index
+layout: page
 title: Frameworks
 status: category
 ---

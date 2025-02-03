@@ -220,8 +220,7 @@ fetch('https://Chicago-Preservation.github.io/Map/landmarkareas.geojson')
   .then(response => response.json())
   .then(data => {
     landmarksLayer.addData(data);
-    map.addLayer(landmarksLayer);  // Add this line to make the layer visible by default
-  });
+   });
 
 
 
@@ -251,8 +250,7 @@ var nrPropertiesFilteredLayer = L.geoJSON(null, {
 fetch('https://Chicago-Preservation.github.io/Map/NR_Properties_filtered.geojson')
   .then(response => response.json())
   .then(data => {
-    nrPropertiesFilteredLayer.addData(data);
-    map.addLayer(nrPropertiesFilteredLayer); // Add the layer to the map by default
+    nrPropertiesFilteredLayer.addData(data); 
   })
   .catch(error => console.error('Error loading NR_Properties_Filtered GeoJSON:', error));
   
@@ -277,8 +275,7 @@ fetch('https://Chicago-Preservation.github.io/Map/NR_Properties_filtered.geojson
 fetch('https://Chicago-Preservation.github.io/Map/NR_Districts_2012.geojson')
   .then(response => response.json())
   .then(data => {
-    nrDistricts2012Layer.addData(data);
-    map.addLayer(nrDistricts2012Layer);  // Add this line to make the layer visible by default
+    nrDistricts2012Layer.addData(data); // Add this line to make the layer visible by default
   })
   .catch(error => console.error('Error loading NR_Districts_2012 GeoJSON:', error));
   
@@ -308,8 +305,7 @@ var muralRegistryLayer = L.geoJSON(null, {
 fetch('https://Chicago-Preservation.github.io/Map/mural_registry.geojson')
   .then(response => response.json())
   .then(data => {
-    muralRegistryLayer.addData(data);
-    map.addLayer(muralRegistryLayer); // Add the layer to the map by default
+    muralRegistryLayer.addData(data); // Add the layer to the map by default
   })
   .catch(error => console.error('Error loading Mural Registry GeoJSON:', error));
 
@@ -345,8 +341,7 @@ var historicResourcesLayer = L.geoJSON(null, {
 fetch('https://Chicago-Preservation.github.io/Map/Historic_Resources_Survey.geojson')
   .then(response => response.json())
   .then(data => {
-    historicResourcesLayer.addData(data);
-    map.addLayer(historicResourcesLayer); // Add the layer to the map by default
+    historicResourcesLayer.addData(data);// Add the layer to the map by default
   })
   .catch(error => console.error('Error loading Historic Resources Survey GeoJSON:', error));
 

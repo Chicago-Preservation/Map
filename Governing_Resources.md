@@ -1,5 +1,5 @@
 ---
-layout: article-index
+layout: page
 title: Governing Resources
 status: category
 ---
