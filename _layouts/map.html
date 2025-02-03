@@ -227,7 +227,6 @@ fetch('https://Chicago-Preservation.github.io/Map/NR_Districts_2012.geojson')
   .then(response => response.json())
   .then(data => {
     nrDistricts2012Layer.addData(data);
-    map.addLayer(nrDistricts2012Layer);
     nrDistricts2012Layer.bringToBack(); // Keeps it behind landmarks but above boundaries
   });
 
@@ -246,7 +245,6 @@ fetch('https://Chicago-Preservation.github.io/Map/landmarkareas.geojson')
   .then(response => response.json())
   .then(data => {
     landmarksLayer.addData(data);
-    map.addLayer(landmarksLayer);
   });
   
 /// Adding Historic Resources Survey Layer
@@ -282,7 +280,6 @@ fetch('https://Chicago-Preservation.github.io/Map/Historic_Resources_Survey.geoj
   .then(response => response.json())
   .then(data => {
     historicResourcesLayer.addData(data);
-    map.addLayer(historicResourcesLayer);
   });
 
 // Adding NR_Properties_Filtered Layer
@@ -312,7 +309,6 @@ fetch('https://Chicago-Preservation.github.io/Map/NR_Properties_filtered.geojson
   .then(response => response.json())
   .then(data => {
     nrPropertiesFilteredLayer.addData(data);
-    map.addLayer(nrPropertiesFilteredLayer);
   });
 // Adding Mural Registry Layer
 var muralRegistryLayer = L.geoJSON(null, {
@@ -340,7 +336,6 @@ fetch('https://Chicago-Preservation.github.io/Map/mural_registry.geojson')
   .then(response => response.json())
   .then(data => {
     muralRegistryLayer.addData(data);
-    map.addLayer(muralRegistryLayer);
     muralRegistryLayer.bringToFront(); // Ensures murals stay at the top
   });
 
