@@ -347,6 +347,7 @@ fetch('https://Chicago-Preservation.github.io/Map/GeoJson_files_layers/mural_reg
 map.on('overlayadd', function (eventLayer) {
   setTimeout(() => {
     boundariesLayer.bringToBack();
+    landmarksLayer.bringToFront();
     nrPropertiesFilteredLayer.bringToFront();
     muralRegistryLayer.bringToFront();
     
