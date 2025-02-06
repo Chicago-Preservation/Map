@@ -3,7 +3,7 @@
  		<div class="{{site.menu-type}}-content sub-menu" onclick="{{site.menu-type}}toggle()">
  		<div class="menu-links">
  		<a class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></a>
- 		<a href="{{site.baseurl}}/">Home</a>
+     <a href="{{site.baseurl}}/" onclick="event.preventDefault(); loadPage('{{site.baseurl}}/');">Home</a>
  		{% for page in site.pages %}
  		{% if site.exclude_pages contains page.path or page.path contains 'css' %}
 
@@ -45,4 +45,16 @@
       $('.dropdown-content').css("display", 'none')
     }
   }
+
+  function loadPage(url) {
+    fetch(url)
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById("content").innerHTML = html; // Load new content
+            history.pushState(null, '', url); // Update URL without refresh
+        })
+        .catch(error => console.error("Error loading page:", error));
+}
+
 </script>
+
