@@ -55,5 +55,5 @@ menu-width: '200px'
 menu-opacity: '.95'
 
 #pages to exclude in menu
-exclude_pages: [ "index.html", 'home.md']
+exclude_pages: [ "index.html"]
 
