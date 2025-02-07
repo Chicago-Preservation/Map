@@ -5,12 +5,12 @@
   <div class="{{site.menu-type}}-content sub-menu">
     <div class="menu-links">
       <a class="close-btn" onclick="toggleMenu()"><i class="fa fa-times" aria-hidden="true"></i></a>
-      <a href="{{site.baseurl}}/" onclick="loadHome(event);">Home</a>
+      <a href="#" onclick="loadHome(event);">Home</a> <!-- Fixing Home Button -->
       {% for page in site.pages %}
       {% if site.exclude_pages contains page.path or page.path contains 'css' %}
         {% continue %}
       {% else %}
-        <a href="{{site.baseurl}}/{{page.url}}" onclick="loadPage(event, '{{page.url}}')" class="menu-link">{{page.title}}</a>
+        <a href="#" onclick="loadPage(event, '{{site.baseurl}}/{{page.url}}')" class="menu-link">{{page.title}}</a> 
       {% endif %}
       {% endfor %}
     </div>
@@ -20,7 +20,7 @@
 <!-- Main Content Area -->
 <div id="content"> 
     <div id="map-container">
-        <div id="map"></div> <!-- The map remains unchanged here -->
+        <div id="map"></div> <!-- Map remains unchanged here -->
     </div>
     <div id="page-content">
         <!-- Other page content updates dynamically here -->
@@ -28,9 +28,8 @@
 </div>
 
 <script>
-  // Ensure dropdown is visible on page load
-  $(document).ready(function () {
-      $('.dropdown-content').css("display", 'block');
+  document.addEventListener("DOMContentLoaded", function () {
+      document.querySelector('.dropdown-content')?.style.display = 'block';
   });
 
   function toggleMenu() {
@@ -39,9 +38,9 @@
   }
 
   function loadHome(event) {
-      event.preventDefault();
+      event.preventDefault(); // Prevent default navigation
       console.log("Home button clicked. Loading homepage..."); // Debugging
-      loadPage(event, "{{site.baseurl}}/index.html"); // Ensure correct home URL
+      loadPage(event, "{{site.baseurl}}/home.html"); // Ensure correct home page content loads
   }
 
   function loadPage(event, url) {
