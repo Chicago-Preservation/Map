@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Mapping Chicago Preservation"
+title: "Home"
 ---
 A digital platform of map-searchable historic preservation resources for the Chicago region.
 ---

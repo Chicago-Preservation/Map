@@ -3,7 +3,7 @@
       <div class="{{site.menu-type}}-content sub-menu" onclick="{{site.menu-type}}toggle()">
       <div class="menu-links">
       <a class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></a>
-      <a href="{{site.baseurl}}/#/home" onclick="event.preventDefault(); loadPage(event, '{{site.baseurl}}/#/home');">Home</a>
+      <a href="{{site.baseurl}}/#/home" onclick="event.preventDefault(); loadPage(event, '{{site.baseurl}}/home.html');">Home</a>
 
       {% for page in site.pages %}
       {% if site.exclude_pages contains page.path or page.path contains 'css' %}
