@@ -4,11 +4,9 @@
         <div class="menu-links">
           <a class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></a>
       
-          <!-- Home at the top -->
-          <a href="{{site.baseurl}}/#/home" onclick="event.preventDefault(); loadPage(event, '{{site.baseurl}}/home.html');">Home</a>
-      
+          <!-- Home at the top -->      
           {% for page in site.pages %}
-          {% if site.exclude_pages contains page.path or page.path contains 'css' %}
+          {% if site.exclude_pages contains page.path or page.path contains 'css' or page.url == '/home.html' %}
               {% continue %}
           {% else %}
               <a href="{{site.baseurl}}/#{{page.url}}" onclick="onClick('{{page.url}}')" class="menu-link">{{page.title}}</a>
