@@ -1,57 +1,72 @@
 <div class="{{site.menu-type}}">
-  <button class="menu-button {{site.menu-type}}" onclick="{{site.menu-type}}toggle()"><i class="fa fa-bars" aria-hidden="true"></i></button>
-      <div class="{{site.menu-type}}-content sub-menu" onclick="{{site.menu-type}}toggle()">
-      <div class="menu-links">
-      <a class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></a>
-      <a href="{{site.baseurl}}/" onclick="event.preventDefault(); loadPage('{{site.baseurl}}/');">Home</a>
+  <button class="menu-button {{site.menu-type}}" onclick="toggleMenu()">
+    <i class="fa fa-bars" aria-hidden="true"></i>
+  </button>
+  <div class="{{site.menu-type}}-content sub-menu">
+    <div class="menu-links">
+      <a class="close-btn" onclick="toggleMenu()"><i class="fa fa-times" aria-hidden="true"></i></a>
+      <a href="{{site.baseurl}}/" onclick="loadHome(event);">Home</a>
       {% for page in site.pages %}
       {% if site.exclude_pages contains page.path or page.path contains 'css' %}
- 
-      {% continue %}
+        {% continue %}
       {% else %}
-        <a href="{{site.baseurl}}/#{{page.url}}" onclick="onClick('{{page.url}}')" class="menu-link">{{page.title}}</a>
-     {% endif %}
-     {% endfor %}
-     </div>
- </div>
- </div>
- 
- <script>
-   // Function to ensure dropdown is visible on page load
-   $(document).ready(function() {
-       $('.dropdown-content').css("display", 'block'); // Set dropdown to open by default
-   });
- 
-   function circletoggle() {
-       if ($('.circle-content').css("height") == '0px') {
-           $('.circle-content').css("height", '{{site.menu-height}}');
-           $('.circle-content').css("width", '{{site.menu-width}}');
-           $('.circle-content').css("opacity", '{{site.menu-opacity}}');
-           $('.menu-button').css("display", "none");
-       } else {
-           $('.circle-content').css("height", '0px');
-           $('.circle-content').css("width", '0px');
-           $('.circle-content').css("opacity", '0');
-           $('.menu-button').css("display", "inline-block");
-       }
-   }
- 
-   function dropdowntoggle() {
-       if ($('.dropdown-content').css("display") == 'none') {
-           $('.dropdown-content').css("display", 'block'); // Added missing semicolon
-       } else {
-           $('.dropdown-content').css("display", 'none'); // Added missing semicolon
-       }
-   }
- 
-   function loadPage(url) {
-       fetch(url)
-           .then(response => response.text())
-           .then(html => {
-               document.getElementById("content").innerHTML = html; // Load new content
-               history.pushState(null, '', url); // Update URL without refresh
-           })
-           .catch(error => console.error("Error loading page:", error));
-   }
- </script>
- 
+        <a href="{{site.baseurl}}/{{page.url}}" onclick="loadPage(event, '{{page.url}}')" class="menu-link">{{page.title}}</a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- Main Content Area -->
+<div id="content"> 
+    <div id="map-container">
+        <div id="map"></div> <!-- The map remains unchanged here -->
+    </div>
+    <div id="page-content">
+        <!-- Other page content updates dynamically here -->
+    </div>
+</div>
+
+<script>
+  // Ensure dropdown is visible on page load
+  $(document).ready(function () {
+      $('.dropdown-content').css("display", 'block');
+  });
+
+  function toggleMenu() {
+      let menu = document.querySelector('.sub-menu');
+      menu.classList.toggle('open');
+  }
+
+  function loadHome(event) {
+      event.preventDefault();
+      console.log("Home button clicked. Loading homepage..."); // Debugging
+      loadPage(event, "{{site.baseurl}}/index.html"); // Ensure correct home URL
+  }
+
+  function loadPage(event, url) {
+      if (event) event.preventDefault(); // Prevent full page reload
+
+      console.log("Loading page:", url); // Debugging
+
+      let contentDiv = document.getElementById("page-content"); // Only update this section
+      if (!contentDiv) {
+          console.error("Error: Page content div not found.");
+          return;
+      }
+
+      fetch(url)
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error(`HTTP error! Status: ${response.status}`);
+              }
+              return response.text();
+          })
+          .then(html => {
+              console.log("Page loaded successfully!");
+              contentDiv.innerHTML = html; // Updates only page content, NOT the map
+              history.pushState(null, '', url); // Update URL without refresh
+          })
+          .catch(error => console.error("Error loading page:", error));
+  }
+</script>
