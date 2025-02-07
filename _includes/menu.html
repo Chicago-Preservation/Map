@@ -8,7 +8,7 @@
           <a href="{{site.baseurl}}/#/home" onclick="event.preventDefault(); loadPage(event, '{{site.baseurl}}/home.html');">Home</a>
       
           {% for page in site.pages %}
-          {% if site.exclude_pages contains page.path or page.path contains 'css' or page.url == '/home.html' %}
+          {% if site.exclude_pages contains page.path or page.path contains 'css' %}
               {% continue %}
           {% else %}
               <a href="{{site.baseurl}}/#{{page.url}}" onclick="onClick('{{page.url}}')" class="menu-link">{{page.title}}</a>
