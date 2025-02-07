@@ -45,32 +45,7 @@
        }
    }
  
-   function loadHome() {
-    console.log("Home button clicked. Navigating to #/home..."); // Debugging
-
-    let contentDiv = document.getElementById("page-content"); // Ensure only content updates
-    if (!contentDiv) {
-        console.error("Error: Page content div not found.");
-        return;
-    }
-
-    // Load the home content dynamically inside the page-content div
-    fetch("{{site.baseurl}}/home.html")
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.text();
-        })
-        .then(html => {
-            console.log("Home page loaded successfully!");
-            contentDiv.innerHTML = html; // Update only page content
-            window.location.hash = "/home"; // Ensure #/home is updated in the URL
-        })
-        .catch(error => console.error("Error loading home page:", error));
-}
-
-
+   
   function loadPage(event, url) {
     if (event) event.preventDefault(); // Prevent full page reload
 
