@@ -13,13 +13,6 @@
             {% endif %}
           {% endfor %}
       
-          {% for page in sorted_pages %}
-            {% if page.url == 'home.html' or page.url == '/home/' or page.path contains 'home.md' %}
-                {% continue %}  <!-- Skip home.md/home.html since it's already added above -->
-            {% else %}
-                <a href="{{site.baseurl}}/#{{page.url}}" onclick="onClick('{{page.url}}')" class="menu-link">{{page.title}}</a>
-            {% endif %}
-          {% endfor %}
       </div>
       
 
