@@ -2,21 +2,17 @@
   <button class="menu-button {{site.menu-type}}" onclick="{{site.menu-type}}toggle()"><i class="fa fa-bars" aria-hidden="true"></i></button>
       <div class="{{site.menu-type}}-content sub-menu" onclick="{{site.menu-type}}toggle()">
         <div class="menu-links">
-    <a class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></a>
-
-    <!-- Home is manually placed first -->
-    <a href="{{site.baseurl}}/#/home" onclick="event.preventDefault(); loadPage(event, '{{site.baseurl}}/home.html');">Home</a>
-
-    <!-- Loop through all pages but exclude home.md -->
-    {% for page in site.pages %}
-      {% if page.url == 'home.html' or page.url == '/home/' or page.path contains 'home.md' %}
-          {% continue %}  <!-- Skip home.md/home.html so it doesn't appear twice -->
-      {% else %}
-          <a href="{{site.baseurl}}/#{{page.url}}" onclick="onClick('{{page.url}}')" class="menu-link">{{page.title}}</a>
-      {% endif %}
-    {% endfor %}
-</div>
-
+          <a class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></a>
+      
+          <!-- Home at the top -->      
+          {% for page in site.pages %}
+          {% if site.exclude_pages contains page.path or page.path contains 'css' or page.url == '/home.html' %}
+              {% continue %}
+          {% else %}
+              <a href="{{site.baseurl}}/#{{page.url}}" onclick="onClick('{{page.url}}')" class="menu-link">{{page.title}}</a>
+          {% endif %}
+          {% endfor %}
+      </div>
  </div>
  </div>
  
