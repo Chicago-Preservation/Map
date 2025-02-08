@@ -3,21 +3,16 @@
       <div class="{{site.menu-type}}-content sub-menu" onclick="{{site.menu-type}}toggle()">
         <div class="menu-links">
           <a class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></a>
-
+      
           {% assign sorted_pages = site.pages | sort: "url" %}
           
-          <!-- Loop through all pages, ensuring home.md is placed first -->
           {% for page in sorted_pages %}
             {% if page.url == 'home.html' or page.url == '/home/' or page.path contains 'home.md' %}
-                <!-- Ensure Home is only added once -->
-                {% unless home_added %}
-                  <a href="{{site.baseurl}}/#{{page.url}}" onclick="onClick('{{page.url}}')" class="menu-link">{{page.title}}</a>
-                  {% assign home_added = true %}
-                {% endunless %}
+                <!-- Move home.md to the top -->
+                <a href="{{site.baseurl}}/#{{page.url}}" onclick="onClick('{{page.url}}')" class="menu-link">{{page.title}}</a>
             {% endif %}
           {% endfor %}
-
-          <!-- Loop again for all other pages except Home -->
+      
           {% for page in sorted_pages %}
             {% if page.url == 'home.html' or page.url == '/home/' or page.path contains 'home.md' %}
                 {% continue %}  <!-- Skip home.md/home.html since it's already added above -->
@@ -26,9 +21,6 @@
             {% endif %}
           {% endfor %}
       </div>
-</div>
-
-        
       
 
  </div>
