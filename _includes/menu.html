@@ -4,15 +4,25 @@
         <div class="menu-links">
           <a class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></a>
       
-          <!-- Home at the top -->      
-          {% for page in site.pages %}
-          {% if site.exclude_pages contains page.path or page.path contains 'css' or page.url == '/home.html' %}
-              {% continue %}
-          {% else %}
-              <a href="{{site.baseurl}}/#{{page.url}}" onclick="onClick('{{page.url}}')" class="menu-link">{{page.title}}</a>
-          {% endif %}
+          {% assign sorted_pages = site.pages | sort: "url" %}
+      
+          <!-- Move home.md to the top -->
+          {% for page in sorted_pages %}
+              {% if page.path contains 'home.md' %}
+                  <a href="{{site.baseurl}}/#{{page.url}}" onclick="onClick('{{page.url}}')" class="menu-link">{{page.title}}</a>
+              {% endif %}
+          {% endfor %}
+      
+          <!-- Add remaining pages dynamically (excluding home.md) -->
+          {% for page in sorted_pages %}
+              {% if page.path contains 'home.md' or site.exclude_pages contains page.path or page.path contains 'css' %}
+                  {% continue %}
+              {% else %}
+                  <a href="{{site.baseurl}}/#{{page.url}}" onclick="onClick('{{page.url}}')" class="menu-link">{{page.title}}</a>
+              {% endif %}
           {% endfor %}
       </div>
+      
  </div>
  </div>
  
