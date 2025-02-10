@@ -189,24 +189,21 @@ var boundariesLayer = L.geoJSON(null, {
   },
 
   onEachFeature: function (feature, layer) {
-    var centroid = turf.centroid(feature).geometry.coordinates;
-    var lat = centroid[1];
-    var lng = centroid[0];
-
+    var center = layer.getBounds().getCenter();
     var communityName = feature.properties.community || 'Unknown';
 
     // Create label but do NOT add it to the map yet
-    var labelMarker = L.marker([lat, lng], {
+    var labelMarker = L.marker(center, {
       icon: L.divIcon({
         className: 'community-label',
         html: '<div style="font-size: 10px; font-weight: bold; text-align: center;">' + communityName + '</div>',
-        iconSize: [80, 15]
+        iconSize: [80, 15] // Keep label small
       })
     });
 
-    // Function to toggle label visibility based on zoom level
+    // Function to show/hide labels based on zoom level
     function toggleLabels() {
-      if (map.getZoom() >= 12) { // Change "12" to your desired zoom level
+      if (map.getZoom() >= 14) { // Show labels at zoom level 14 or higher
         if (!map.hasLayer(labelMarker)) {
           map.addLayer(labelMarker);
         }
