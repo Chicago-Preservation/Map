@@ -189,20 +189,42 @@ var boundariesLayer = L.geoJSON(null, {
   },
 
   onEachFeature: function (feature, layer) {
-    var center = layer.getBounds().getCenter();
+    var centroid = turf.centroid(feature).geometry.coordinates;
+    var lat = centroid[1];
+    var lng = centroid[0];
+
     var communityName = feature.properties.community || 'Unknown';
 
-    // Create a label with a smaller font size
-    var communityLabel = L.divIcon({
-      className: 'community-label',
-      html: '<div style="font-size: 10px; font-weight: bold; text-align: center;">' + communityName + '</div>',
-      iconSize: [80, 15]  // Make the label box smaller
+    // Create label but do NOT add it to the map yet
+    var labelMarker = L.marker([lat, lng], {
+      icon: L.divIcon({
+        className: 'community-label',
+        html: '<div style="font-size: 10px; font-weight: bold; text-align: center;">' + communityName + '</div>',
+        iconSize: [80, 15]
+      })
     });
 
-    // Add label to map
-    L.marker(center, { icon: communityLabel }).addTo(map);
+    // Function to toggle label visibility based on zoom level
+    function toggleLabels() {
+      if (map.getZoom() >= 12) { // Change "12" to your desired zoom level
+        if (!map.hasLayer(labelMarker)) {
+          map.addLayer(labelMarker);
+        }
+      } else {
+        if (map.hasLayer(labelMarker)) {
+          map.removeLayer(labelMarker);
+        }
+      }
+    }
+
+    // Run function when zoom changes
+    map.on('zoomend', toggleLabels);
+
+    // Run function once on page load to set initial visibility
+    toggleLabels();
   }
 });
+
 
 
 fetch('https://chicago-preservation.github.io/Map/GeoJson_files_layers/boundaries.geojson')
