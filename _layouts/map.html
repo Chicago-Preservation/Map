@@ -26,6 +26,13 @@
 
    <div id="map"> </div>
 
+   <body>
+
+    {% include sidebar.html %}
+  
+    <!-- Load Turf.js before map initialization -->
+    <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+
 
    <script>
 
@@ -178,6 +185,7 @@ if (markergrouping == 'grouped') {
 }
 // boundaries layer
 
+// Ensure Turf.js is loaded in your project before using this
 var boundariesLayer = L.geoJSON(null, {
   options: { name: "Boundaries" },
   style: function (feature) {
@@ -189,20 +197,27 @@ var boundariesLayer = L.geoJSON(null, {
   },
 
   onEachFeature: function (feature, layer) {
-    var center = layer.getBounds().getCenter();
+    // Get true geometric centroid of the boundary
+    var centroid = turf.centroid(feature).geometry.coordinates;
+    var lat = centroid[1];
+    var lng = centroid[0];
+
+    // Adjust positioning slightly to prevent overlap
+    lat = lat - 0.001; // Shift up slightly to reduce overlap
+
     var communityName = feature.properties.community || 'Unknown';
 
-    // Create a label with a smaller font size
-    var communityLabel = L.divIcon({
-      className: 'community-label',
-      html: '<div style="font-size: 10px; font-weight: bold; text-align: center;">' + communityName + '</div>',
-      iconSize: [80, 15]  // Make the label box smaller
-    });
-
-    // Add label to map
-    L.marker(center, { icon: communityLabel }).addTo(map);
+    // Add label at the true centroid
+    L.marker([lat, lng], {
+      icon: L.divIcon({
+        className: 'community-label',
+        html: '<div style="font-size: 10px; font-weight: bold; text-align: center;">' + communityName + '</div>',
+        iconSize: [80, 15]  // Keep text compact
+      })
+    }).addTo(map);
   }
 });
+
 
 
 fetch('https://chicago-preservation.github.io/Map/GeoJson_files_layers/boundaries.geojson')
