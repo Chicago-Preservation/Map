@@ -372,6 +372,42 @@ var mapLayersControl = L.control.layers(null, geojsonLayerControl, {
   collapsed: false  // Ensure it's open by default
 }).addTo(map);
 
+function restoreActiveLayers() {
+    let savedLayers = localStorage.getItem('activeLayers');
+    if (savedLayers) {
+        savedLayers = JSON.parse(savedLayers);
+        savedLayers.forEach(layerName => {
+            map.eachLayer(function(layer) {
+                if (layer.options && layer.options.name === layerName) {
+                    map.addLayer(layer);
+                }
+            });
+        });
+    }
+}
+
+// Restore layers when the page loads
+restoreActiveLayers();
+
+// Function to save active layers before refresh
+function saveActiveLayers() {
+    let activeLayers = [];
+    map.eachLayer(function(layer) {
+        if (layer.options && layer.options.name) {
+            activeLayers.push(layer.options.name);
+        }
+    });
+    localStorage.setItem('activeLayers', JSON.stringify(activeLayers));
+}
+
+// Save layers when toggled
+map.on('overlayadd', saveActiveLayers);
+map.on('overlayremove', saveActiveLayers);
+
+// Save layers before page refresh
+window.addEventListener('beforeunload', saveActiveLayers);
+
+
 
 
 // Add the "Map Layers" title as part of the control box (bottom-right)
