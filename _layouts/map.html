@@ -177,33 +177,33 @@ if (markergrouping == 'grouped') {
  
 }
 // boundaries layer
+
 var boundariesLayer = L.geoJSON(null, {
   options: { name: "Boundaries" },
   style: function (feature) {
     return {
       color: "#000000",  // Boundary color
       weight: 2,         // Boundary thickness
-      fillOpacity: 0     // No fill for better visibility
+      fillOpacity: 0     // No fill
     };
   },
 
   onEachFeature: function (feature, layer) {
-    // Compute the center of the boundary
     var center = layer.getBounds().getCenter();
-
-    // Get community name
     var communityName = feature.properties.community || 'Unknown';
 
-    // Add label at the computed center
-    L.marker(center, {
-      icon: L.divIcon({
-        className: 'community-label',
-        html: '<div style="font-size: 14px; font-weight: bold; text-align: center;">' + communityName + '</div>',
-        iconSize: [100, 20] // Adjust size for better positioning
-      })
-    }).addTo(map);
+    // Create a label with a smaller font size
+    var communityLabel = L.divIcon({
+      className: 'community-label',
+      html: '<div style="font-size: 10px; font-weight: bold; text-align: center;">' + communityName + '</div>',
+      iconSize: [80, 15]  // Make the label box smaller
+    });
+
+    // Add label to map
+    L.marker(center, { icon: communityLabel }).addTo(map);
   }
 });
+
 
 fetch('https://chicago-preservation.github.io/Map/GeoJson_files_layers/boundaries.geojson')
 
