@@ -197,27 +197,27 @@ var boundariesLayer = L.geoJSON(null, {
   },
 
   onEachFeature: function (feature, layer) {
-    // Get true geometric centroid of the boundary
+    // Compute the TRUE centroid of the boundary using Turf.js
     var centroid = turf.centroid(feature).geometry.coordinates;
     var lat = centroid[1];
     var lng = centroid[0];
 
-    // Adjust positioning slightly to prevent overlap
-    lat = lat - 0.001; // Shift up slightly to reduce overlap
+    // Small vertical offset to prevent overlap in dense areas
+    lat = lat - 0.001;  // Move slightly up (adjust as needed)
 
     var communityName = feature.properties.community || 'Unknown';
 
-    // Add label at the true centroid
-    L.marker([lat, lng], {
-      icon: L.divIcon({
-        className: 'community-label',
-        html: '<div style="font-size: 10px; font-weight: bold; text-align: center;">' + communityName + '</div>',
-        iconSize: [80, 15]  // Keep text compact
-      })
-    }).addTo(map);
+    // Create a label with a smaller font and better positioning
+    var communityLabel = L.divIcon({
+      className: 'community-label',
+      html: '<div style="font-size: 10px; font-weight: bold; text-align: center;">' + communityName + '</div>',
+      iconSize: [80, 15]  // Smaller size to reduce overlap
+    });
+
+    // Add label to the map
+    L.marker([lat, lng], { icon: communityLabel }).addTo(map);
   }
 });
-
 
 
 fetch('https://chicago-preservation.github.io/Map/GeoJson_files_layers/boundaries.geojson')
