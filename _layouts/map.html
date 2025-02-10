@@ -183,21 +183,25 @@ var boundariesLayer = L.geoJSON(null, {
     return {
       color: "#000000",  // Boundary color
       weight: 2,         // Boundary thickness
-      fillOpacity: 0     // Set fill opacity to 0 for no fill
+      fillOpacity: 0     // No fill for better visibility
     };
   },
 
-
   onEachFeature: function (feature, layer) {
+    // Compute the center of the boundary
     var center = layer.getBounds().getCenter();
+
+    // Get community name
     var communityName = feature.properties.community || 'Unknown';
-    var formattedCommunityName = communityName.split(' ').join('<br>');
-    var communityLabel = L.divIcon({
-      className: 'community-label',
-      html: '<div>' + formattedCommunityName + '</div>',
-      iconSize: [100, 20]
-    });
-    L.marker(center, { icon: communityLabel }).addTo(map);
+
+    // Add label at the computed center
+    L.marker(center, {
+      icon: L.divIcon({
+        className: 'community-label',
+        html: '<div style="font-size: 14px; font-weight: bold; text-align: center;">' + communityName + '</div>',
+        iconSize: [100, 20] // Adjust size for better positioning
+      })
+    }).addTo(map);
   }
 });
 
