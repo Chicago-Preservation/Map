@@ -26,14 +26,7 @@
 
    <div id="map"> </div>
 
-   <body>
-
-    {% include sidebar.html %}
-  
-    <!-- Load Turf.js before map initialization -->
-    <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
-
-
+   
    <script>
 
 
@@ -197,42 +190,27 @@ var boundariesLayer = L.geoJSON(null, {
   },
 
   onEachFeature: function (feature, layer) {
+    // Compute the TRUE centroid of the boundary using Turf.js
     var centroid = turf.centroid(feature).geometry.coordinates;
     var lat = centroid[1];
     var lng = centroid[0];
 
+    // Small vertical offset to prevent overlap in dense areas
+    lat = lat - 0.001;  // Move slightly up (adjust as needed)
+
     var communityName = feature.properties.community || 'Unknown';
 
-    // Create label but do NOT add it to the map yet
-    var labelMarker = L.marker([lat, lng], {
-      icon: L.divIcon({
-        className: 'community-label',
-        html: '<div style="font-size: 10px; font-weight: bold; text-align: center;">' + communityName + '</div>',
-        iconSize: [80, 15]
-      })
+    // Create a label with a smaller font and better positioning
+    var communityLabel = L.divIcon({
+      className: 'community-label',
+      html: '<div style="font-size: 10px; font-weight: bold; text-align: center;">' + communityName + '</div>',
+      iconSize: [80, 15]  // Smaller size to reduce overlap
     });
 
-    // Function to toggle label visibility based on zoom level
-    function toggleLabels() {
-      if (map.getZoom() >= 14) { // Change "12" to your desired zoom level
-        if (!map.hasLayer(labelMarker)) {
-          map.addLayer(labelMarker);
-        }
-      } else {
-        if (map.hasLayer(labelMarker)) {
-          map.removeLayer(labelMarker);
-        }
-      }
-    }
-
-    // Run function when zoom changes
-    map.on('zoomend', toggleLabels);
-
-    // Run function once on page load to set initial visibility
-    toggleLabels();
+    // Add label to the map
+    L.marker([lat, lng], { icon: communityLabel }).addTo(map);
   }
 });
-
 
 
 fetch('https://chicago-preservation.github.io/Map/GeoJson_files_layers/boundaries.geojson')
