@@ -178,6 +178,7 @@ if (markergrouping == 'grouped') {
 }
 // boundaries layer
 var boundariesLayer = L.geoJSON(null, {
+  options: { name: "Boundaries" },
   style: function (feature) {
     return {
       color: "#000000",  // Boundary color
@@ -185,6 +186,8 @@ var boundariesLayer = L.geoJSON(null, {
       fillOpacity: 0     // Set fill opacity to 0 for no fill
     };
   },
+
+
   onEachFeature: function (feature, layer) {
     var center = layer.getBounds().getCenter();
     var communityName = feature.properties.community || 'Unknown';
@@ -210,6 +213,7 @@ fetch('https://chicago-preservation.github.io/Map/GeoJson_files_layers/boundarie
   // Added District 2012 layer here
 
  var nrDistricts2012Layer = L.geoJSON(null, {
+  options: { name: "National Register Districts" }, // 👈 Added unique name
   onEachFeature: function (feature, layer) {
     var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
       '<em>Address:</em> ' + (feature.properties.ADDRESS || 'Unknown') + '<br>' ;
@@ -233,6 +237,7 @@ fetch('https://Chicago-Preservation.github.io/Map/GeoJson_files_layers/NR_Distri
 
     // Adding other layers (Landmarks and Boundaries)
 var landmarksLayer = L.geoJSON(null, {
+  options: { name: "Landmarks" }, // 👈 Added unique name
   onEachFeature: function (feature, layer) {
     var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
       '<em>Architect:</em> ' + (feature.properties.ARCHITECT || 'Unknown') + '<br>' +
@@ -250,12 +255,13 @@ fetch('https://Chicago-Preservation.github.io/Map/GeoJson_files_layers/landmarka
   
 /// Adding Historic Resources Survey Layer
 var historicResourcesLayer = L.geoJSON(null, {
+  options: { name: "Historic Resources Survey" }, // 👈 Added unique name
+
   onEachFeature: function (feature, layer) {
     var startYear = feature.properties["STARTYEAR"];
     var decade = feature.properties["DECADE"];
 
     var startYear = parseInt(feature.properties["STARTYEAR"], 10);
-
     var displayYear = (startYear && startYear !== 0) ? startYear : ((decade && decade !== 0) ? decade : 'NA');
 
 
@@ -285,6 +291,8 @@ fetch('https://Chicago-Preservation.github.io/Map/GeoJson_files_layers/Historic_
 
 // Adding NR_Properties_Filtered Layer
 var nrPropertiesFilteredLayer = L.geoJSON(null, {
+  options: { name: "NR Properties Filtered" }, // 👈 Added unique name
+
   onEachFeature: function (feature, layer) {
     var popupContent = '<strong>' +
       (feature.properties.SignificantName || 'No Name') +
@@ -315,6 +323,8 @@ fetch('https://Chicago-Preservation.github.io/Map/GeoJson_files_layers/NR_Proper
 
 // Adding Mural Registry Layer
 var muralRegistryLayer = L.geoJSON(null, {
+  options: { name: "Mural Registry Layer" }, // 👈 Added unique name
+
   onEachFeature: function (feature, layer) {
     var popupContent = '<strong>' + (feature.properties["Artwork Title"] || 'Unknown') + '</strong><br>' +
       '<em>Artist:</em> ' + (feature.properties["Artist Credit"] || 'Unknown') + '<br>' +
@@ -376,10 +386,12 @@ function restoreActiveLayers() {
     let savedLayers = localStorage.getItem('activeLayers');
     if (savedLayers) {
         savedLayers = JSON.parse(savedLayers);
+        
+        // Loop through stored layers and add them back to the map
         savedLayers.forEach(layerName => {
-            map.eachLayer(function(layer) {
-                if (layer.options && layer.options.name === layerName) {
-                    map.addLayer(layer);
+            Object.keys(geojsonLayerControl).forEach(layerKey => {
+                if (geojsonLayerControl[layerKey].options && geojsonLayerControl[layerKey].options.name === layerName) {
+                    map.addLayer(geojsonLayerControl[layerKey]);
                 }
             });
         });
@@ -387,8 +399,10 @@ function restoreActiveLayers() {
 }
 
 // Restore layers when the page loads
-restoreActiveLayers();
+setTimeout(restoreActiveLayers, 500); // Delay to ensure layers are loaded
 
+
+// Function to save active layers before refresh
 // Function to save active layers before refresh
 function saveActiveLayers() {
     let activeLayers = [];
@@ -406,6 +420,7 @@ map.on('overlayremove', saveActiveLayers);
 
 // Save layers before page refresh
 window.addEventListener('beforeunload', saveActiveLayers);
+
 
 
 
