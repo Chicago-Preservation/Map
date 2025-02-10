@@ -26,7 +26,7 @@
 
    <div id="map"> </div>
 
-   
+
    <script>
 
 
@@ -178,7 +178,6 @@ if (markergrouping == 'grouped') {
 }
 // boundaries layer
 
-// Ensure Turf.js is loaded in your project before using this
 var boundariesLayer = L.geoJSON(null, {
   options: { name: "Boundaries" },
   style: function (feature) {
@@ -190,25 +189,18 @@ var boundariesLayer = L.geoJSON(null, {
   },
 
   onEachFeature: function (feature, layer) {
-    // Compute the TRUE centroid of the boundary using Turf.js
-    var centroid = turf.centroid(feature).geometry.coordinates;
-    var lat = centroid[1];
-    var lng = centroid[0];
-
-    // Small vertical offset to prevent overlap in dense areas
-    lat = lat - 0.001;  // Move slightly up (adjust as needed)
-
+    var center = layer.getBounds().getCenter();
     var communityName = feature.properties.community || 'Unknown';
 
-    // Create a label with a smaller font and better positioning
+    // Create a label with a smaller font size
     var communityLabel = L.divIcon({
       className: 'community-label',
       html: '<div style="font-size: 10px; font-weight: bold; text-align: center;">' + communityName + '</div>',
-      iconSize: [80, 15]  // Smaller size to reduce overlap
+      iconSize: [80, 15]  // Make the label box smaller
     });
 
-    // Add label to the map
-    L.marker([lat, lng], { icon: communityLabel }).addTo(map);
+    // Add label to map
+    L.marker(center, { icon: communityLabel }).addTo(map);
   }
 });
 
