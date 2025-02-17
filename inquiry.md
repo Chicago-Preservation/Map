@@ -8,12 +8,6 @@ permalink: /submit-inquiry/
 <!-- need to change to direct link and updating the format of the information through html ; potentially choose 2 options-->
 
 
-
-<h2>Submit an Inquiry</h2>
-<p>Have a question or need more information? Fill out our inquiry form by clicking the button below.</p>
-
-<!-- Button to Open Google Form -->
-
 <h2>Submit an Inquiry</h2>
 <p>Have a question or need more information? Fill out our inquiry form by clicking the button below.</p>
 
