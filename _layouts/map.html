@@ -281,20 +281,64 @@ var historicResourcesLayer = L.geoJSON(null, {
   options: { name: "Historic Resources Survey" }, // 👈 Added unique name
 
   onEachFeature: function (feature, layer) {
-    var props = feature.properties; // Shorter reference to properties
-    
-    var popupContent = '<strong>' + (props.SignificantName || 'No Name') + '</strong><br>' +
-      '<em>Location:</em> ' + (props.Location || 'Unknown') + '<br>' +
-      '<em>Architect:</em> ' + (props.Architect || 'Unknown') + '<br>' +
-      '<em>Year:</em> ' + (props.BeginYear || 'Unknown') + '<br>' +
-      '<em>Attachment:</em> <a href="' + (props.NR_properties_filtered_column_attachment || '#') + 
-      '" target="_blank" style="color:#0073e6; text-decoration:underline;">Open Attachment</a><br>' +
-      '<em>Photo:</em> <a href="' + (props.NR_properties_filtered_column_photo || '#') + 
-      '" target="_blank" style="color:#0073e6; text-decoration:underline;">View Photo</a><br>';
+    var startYear = feature.properties["STARTYEAR"];
+    var decade = feature.properties["DECADE"];
+
+    var startYear = parseInt(feature.properties["STARTYEAR"], 10);
+    var displayYear = (startYear && startYear !== 0) ? startYear : ((decade && decade !== 0) ? decade : 'NA');
+
+
+
+    var popupContent = '<strong>' +
+      (feature.properties["LANDMARKNA"] || 'No Name') + '</strong><br>' +
+      '<em>Address:</em> ' + (feature.properties["ADDRESSDES"] || 'Unknown') + '<br>' +
+      '<em>Year:</em> ' + displayYear;
 
     layer.bindPopup(popupContent);
-},
-  
+  },
+  style: function (feature) {
+    return {
+      color: "#FF5733", // **Orange color**
+      weight: 2,
+      fillOpacity: 0.5
+    };
+  }
+});
+
+// Fetch and Add Historic Resources Survey GeoJSON Data
+fetch('https://Chicago-Preservation.github.io/Map/GeoJson_files_layers/Historic_Resources_Survey.geojson')
+  .then(response => response.json())
+  .then(data => {
+    historicResourcesLayer.addData(data);
+  });
+
+// Adding NR_Properties_Filtered Layer
+var nrPropertiesFilteredLayer = L.geoJSON(null, {
+  options: { name: "NR Properties Filtered" },
+
+  onEachFeature: function (feature, layer) {
+    var props = feature.properties; // Shorter reference to properties
+    var popupContent = '<strong>' + (props.SignificantName || 'No Name') + '</strong><br>' +
+      (props.Location ? '<em>Location:</em> ' + props.Location + '<br>' : '') +
+      (props.Architect ? '<em>Architect:</em> ' + props.Architect + '<br>' : '') +
+      (props.BeginYear ? '<em>Year:</em> ' + props.BeginYear + '<br>' : '');
+
+    // Add attachment as a simple hyperlink if it exists
+    if (props.NR_properties_filtered_column_attachment && props.NR_properties_filtered_column_attachment.trim() !== "") {
+      popupContent += '<em>Attachment:</em> ' +
+        '<a href="' + props.NR_properties_filtered_column_attachment + 
+        '" target="_blank" style="color:#0073e6; text-decoration:underline;">Open Attachment</a><br>';
+    }
+
+    // Add photo as a hyperlink if it exists
+    if (props.NR_properties_filtered_column_photo && props.NR_properties_filtered_column_photo.trim() !== "") {
+      popupContent += '<em>Photo:</em> ' +
+        '<a href="' + props.NR_properties_filtered_column_photo + 
+        '" target="_blank" style="color:#0073e6; text-decoration:underline;">View Photo</a><br>';
+    }
+
+    layer.bindPopup(popupContent);
+  },
 
   pointToLayer: function (feature, latlng) {
     return L.circleMarker(latlng, {
