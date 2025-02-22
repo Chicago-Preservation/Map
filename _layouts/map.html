@@ -337,7 +337,7 @@ var nrPropertiesFilteredLayer = L.geoJSON(null, {
   }
 });
 
-fetch('https://Chicago-Preservation.github.io/Map/GeoJson_files_layers/NR_Properties_filtered.geojson')
+fetch('https://Chicago-Preservation.github.io/Map/GeoJson_files_layers/NR_Properties_filtered_updated.geojson')
   .then(response => response.json())
   .then(data => {
     nrPropertiesFilteredLayer.addData(data);
@@ -424,8 +424,6 @@ function restoreActiveLayers() {
 // Restore layers when the page loads
 setTimeout(restoreActiveLayers, 500); // Delay to ensure layers are loaded
 
-
-// Function to save active layers before refresh
 // Function to save active layers before refresh
 function saveActiveLayers() {
     let activeLayers = [];
