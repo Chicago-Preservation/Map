@@ -20,15 +20,6 @@ permalink: /Inquiries-and-contributions/
 <h2>Contribute to Our Work</h2>
 <p>We are always looking to expand and refine our understanding. If you have a new dataset, historical insight, or a document that could add value to our work, we’d love to hear from you.</p>
 
----
-layout: page
-title: "Inquiries and Contributions"
-permalink: /Inquiries-and-contributions/
----
-
-<h2>Inquiries</h2>
-<p>If you have a question about our work, data, or documentation, please submit your inquiry below. Our team will review your request and get back to you as soon as possible.</p>
-
 <!-- Embedded Google Form -->
 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeFJ2QOwwp7uJlxd9KDesjl4Bqiwz_noEjQ9z_yxzLKpAD4ww/viewform?embedded=true" 
         width="100%" 
