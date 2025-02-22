@@ -313,6 +313,7 @@ fetch('https://Chicago-Preservation.github.io/Map/GeoJson_files_layers/Historic_
   });
 
 // Adding NR_Properties_Filtered Layer
+// Adding NR_Properties_Filtered Layer
 var nrPropertiesFilteredLayer = L.geoJSON(null, {
   options: { name: "NR Properties Filtered" }, // 👈 Added unique name
 
@@ -322,9 +323,25 @@ var nrPropertiesFilteredLayer = L.geoJSON(null, {
       '</strong><br>' +
       '<em>Location:</em> ' + (feature.properties.Location || 'Unknown') + '<br>' +
       '<em>Architect:</em> ' + (feature.properties.Architect || 'Unknown') + '<br>' +
-      '<em>Year:</em> ' + (feature.properties.BeginYear || 'Unknown');
+      '<em>Year:</em> ' + (feature.properties.BeginYear || 'Unknown') + '<br>';
+
+    // Add attachment as hyperlink (if exists)
+    if (feature.properties.NR_properties_filtered_column_attachment) {
+      popupContent += '<br><strong>Attachment:</strong> ' +
+        '<a href="' + feature.properties.NR_properties_filtered_column_attachment + 
+        '" target="_blank">View File</a>';
+    }
+
+    // Add photo (if exists)
+    if (feature.properties.NR_properties_filtered_column_photo) {
+      popupContent += '<br><br><strong>Photo:</strong><br>' +
+        '<img src="' + feature.properties.NR_properties_filtered_column_photo + 
+        '" alt="Property Photo" style="width:100%; max-width:250px; border-radius:5px;">';
+    }
+
     layer.bindPopup(popupContent);
   },
+
   pointToLayer: function (feature, latlng) {
     return L.circleMarker(latlng, {
       radius: 4, // **Smaller size**
@@ -337,12 +354,14 @@ var nrPropertiesFilteredLayer = L.geoJSON(null, {
   }
 });
 
+// Fetch updated GeoJSON data
 fetch('https://Chicago-Preservation.github.io/Map/GeoJson_files_layers/NR_Properties_filtered_updated.geojson')
   .then(response => response.json())
   .then(data => {
     nrPropertiesFilteredLayer.addData(data);
     nrPropertiesFilteredLayer.bringToFront();
   });
+
 
 // Adding Mural Registry Layer
 var muralRegistryLayer = L.geoJSON(null, {
