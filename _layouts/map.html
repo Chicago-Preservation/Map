@@ -313,9 +313,8 @@ fetch('https://Chicago-Preservation.github.io/Map/GeoJson_files_layers/Historic_
   });
 
 // Adding NR_Properties_Filtered Layer
-// Adding NR_Properties_Filtered Layer
 var nrPropertiesFilteredLayer = L.geoJSON(null, {
-  options: { name: "NR Properties Filtered" }, // 👈 Added unique name
+  options: { name: "NR Properties Filtered" },
 
   onEachFeature: function (feature, layer) {
     var props = feature.properties; // Shorter reference to properties
@@ -324,11 +323,11 @@ var nrPropertiesFilteredLayer = L.geoJSON(null, {
       (props.Architect ? '<em>Architect:</em> ' + props.Architect + '<br>' : '') +
       (props.BeginYear ? '<em>Year:</em> ' + props.BeginYear + '<br>' : '');
 
-    // Add attachment as a hyperlink if it exists
+    // Add attachment as a simple hyperlink if it exists
     if (props.NR_properties_filtered_column_attachment && props.NR_properties_filtered_column_attachment.trim() !== "") {
       popupContent += '<em>Attachment:</em> ' +
         '<a href="' + props.NR_properties_filtered_column_attachment + 
-        '" target="_blank" style="color:#0073e6; text-decoration:underline;">View File</a><br>';
+        '" target="_blank" style="color:#0073e6; text-decoration:underline;">Open Attachment</a><br>';
     }
 
     // Add photo as a hyperlink if it exists
