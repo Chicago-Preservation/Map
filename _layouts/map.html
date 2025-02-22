@@ -324,16 +324,16 @@ var nrPropertiesFilteredLayer = L.geoJSON(null, {
       (props.BeginYear ? '<em>Year:</em> ' + props.BeginYear + '<br>' : '');
 
     // Add attachment as a simple hyperlink if it exists
-    if (props.NR_properties_filtered_column_attachment && props.NR_properties_filtered_column_attachment.trim() !== "") {
+    if (props.NR_Properties_Filtered_Column_Attachment && props.NR_Properties_Filtered_Column_Attachment.trim() !== "") {
       popupContent += '<em>Attachment:</em> ' +
-        '<a href="' + props.NR_properties_filtered_column_attachment + 
+        '<a href="' + props.NR_Properties_Filtered_Column_Attachment + 
         '" target="_blank" style="color:#0073e6; text-decoration:underline;">Open Attachment</a><br>';
     }
 
     // Add photo as a hyperlink if it exists
-    if (props.NR_properties_filtered_column_photo && props.NR_properties_filtered_column_photo.trim() !== "") {
+    if (props.NR_Properties_Filtered_Column_Photo && props.NR_Properties_Filtered_Column_Photo.trim() !== "") {
       popupContent += '<em>Photo:</em> ' +
-        '<a href="' + props.NR_properties_filtered_column_photo + 
+        '<a href="' + props.NR_Properties_Filtered_Column_Photo + 
         '" target="_blank" style="color:#0073e6; text-decoration:underline;">View Photo</a><br>';
     }
 
