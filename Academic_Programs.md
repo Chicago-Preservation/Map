@@ -56,4 +56,5 @@ Click on a program to see more details.
     }
 </style>
 
-<script src="/assets/js/academicTable.js"></script>
+<script src="{{ site.baseurl }}/assets/js/academicTable.js"></script>
+
