@@ -20,7 +20,18 @@ Click on a program to see more details.
             <th>Exhibitions</th>
         </tr>
     </thead>
-    <tbody></tbody>
+  <tbody>
+    <tr>
+        <td>Masters in Historic Preservation</td>
+        <td>SAIC</td>
+        <td>Department of Historic Preservation</td>
+        <td>Richard Friedman; Nicholas Lowe</td>
+        <td>Preservation Law; Physical Documentation</td>
+        <td><a href="https://www.saic.edu/historic-preservation" target="_blank">View Program</a></td>
+        <td><a href="https://www.saic.edu/historic-preservation/people/projects" target="_blank">View Exhibition</a></td>
+    </tr>
+</tbody>
+
 </table>
 
 {% raw %}
