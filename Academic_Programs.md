@@ -4,32 +4,148 @@ title: Academic Programs
 status: category
 ---
 
+## Academic Programs
+
 # Preservation Programs in the US
 
-### Click to Expand the Full Table
-<details>
-  <summary>Show Full Table</summary>
-
-| Program | Institution | Department | Faculty | Courses | Link | Projects |
-|---------|------------|------------|---------|---------|------|----------|
-| Masters in Historic Preservation | SAIC | Department of Historic Preservation | Richard Friedman; Nicholas Lowe | Preservation Law; Physical Documentation; Restoration Design Studio | [Program Link](https://www.saic.edu/historic-preservation) | [Projects](https://www.saic.edu/historic-preservation/people/projects) |
-| Master of Historic Preservation | University of Florida | College of Design, Construction and Planning | Cleary Larkin; Linda Stevenson | DCP 6710 History and Theory of Historic Preservation
+<table id="academicTable">
+    <thead>
+        <tr>
+            <th>Program</th>
+            <th>Institution</th>
+            <th>Department</th>
+            <th>Faculty</th>
+            <th>Courses</th>
+            <th>Link</th>
+            <th>Exhibitions</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Masters in Historic Preservation</td>
+            <td>SAIC</td>
+            <td>Department of Historic Preservation</td>
+            <td>Richard Friedman; Nicholas Lowe</td>
+            <td>Preservation Law; Physical Documentation; Restoration Design Studio</td>
+            <td><a href="https://www.saic.edu/historic-preservation" target="_blank">Program Link</a></td><td><a href="https://www.saic.edu/historic-preservation/people/projects" target="_blank">Projects</a></td><td><button onclick="toggleDetails(this)">Show Details</button></td>
+        </tr>
+        <tr>
+            <td>Master of Historic Preservation</td>
+            <td>University of Florida</td>
+            <td>College of Design, Construction and Planning</td>
+            <td>Cleary Larkin; Linda Stevenson</td>
+            <td>DCP 6710 History and Theory of Historic Preservation
 
 https://dcp.ufl.edu/wp-content/uploads/2019/07/DCP4000-Syllabus_Fall-2019_preliminary.pdf
 
-DCP 6714 – Built Heritage Documentation | [Program Link](https://dcp.ufl.edu/historic-preservation/) | [Projects](https://dcp.ufl.edu/historic-preservation/projects/) |
-| Master of Science in Historic Preservation; Ph.D. in Historic Preservation | University of Texas | School of Architecture | Tara Dudley; Juliana Felkner | American Architecture; National Register Documentation; Materials Conservation: Laboratory Methods; Preservation Law | [Program Link](https://soa.utexas.edu/historic-preservation/courses-overview) | [Projects](https://soa.utexas.edu/historic-preservation/resources) |
-| Master of Science in Historic Preservation | Clemson University | School of Architecture | Amalia Leifeste | History and Theory of Historic Preservation; American Architecture; Preservation Studio; Conservation Laboratory Science; Adaptive Use | [Program Link](https://www.clemson.edu/caac/academics/architecture/programs/historic-preservation/mshp.html) | [Projects](https://open.clemson.edu/theses_historic_pres/) |
-| Historic Preservation, MSHP | University of Pennsylvania | Weitzman School of Design | Frank G. Matero; Randall F. Mason | American Architecture; Public History of the Built Environment: Theory and Practice; Preservation Through Public Policy; Conservation Science | [Program Link](https://catalog.upenn.edu/graduate/programs/historic-preservation-mshp/) | [Projects](https://www.design.upenn.edu/historic-preservation/thesis) |
-| Initiative in the History of the Built Environment, Doctoral Fellows | University of Pennsylvania | Weitzman School of Design | Francesca Russello Ammon | nan | [Program Link](https://www.design.upenn.edu/city-regional-planning/hbe) | N/A |
-| MS in Historic Preservation; Undergraduate minor | University of Oregon | School of Architecture | Chris Bell; Larissa Rudnicki | Pacific Northwest Preservation Field School; Preservation Economics; Legal Issues in Historic Preservation; American Architecture
-from a Preservation Perspective | [Program Link](https://archenvironment.uoregon.edu/hp) | [Projects](https://archenvironment.uoregon.edu/hp/research) |
-| History, Theory, and Preservation (HTP), part of Architecture major; Graduate Minor in Heritage Studies | UIUC | School of Architecture | Kathryn E. Holliday | Special Problems in Urbanism | [Program Link](https://arch.illinois.edu/programs-applying/program-areas/htp/) | [Projects](https://arch.illinois.edu/programs-applying/chicago-studio/) |
-| Master of Historic Preservation and Master of Real Estate Development (dual degree) | University of Maryland | Graduate school | Rhonda Sincavage; Frederick Stachura | Preservation Policy and Planning; Historic Preservation Professional Practice; Historic Preservation Studio Workshop; Historic Preservation Law | [Program Link](https://academiccatalog.umd.edu/graduate/programs/historic-preservation-real-estate-development-hpdv/historic-preservation-real-estate-development-dual-degree-mhp-mred/) | N/A |
-| Historic Preservation, MS | Pratt College | Graduate Center for Planning and the Environment | Vicki Weiner; Harriet Harriss | History and Theory of Preservation; Preservation Law and Policy; PDF | [Program Link](https://www.pratt.edu/architecture/graduate-center-for-planning-and-the-environment/historic-preservation-ms/) | [Projects](https://www.pratt.edu/architecture/graduate-center-for-planning-and-the-environment/historic-preservation-ms/student-achievement/) |
-| Historic Preservation Certificate; Online MDS in Historic Preservation
- | Boston Architectural College | nan | nan | Historic Preservation Philosophy and Practice; Adaptive Reuse and Development Process | [Program Link](https://the-bac.edu/continuing-education/certificates/historic-preservation-certificate) | N/A |
-| Diploma in Heritage Conservation | Willowbank School of Restoration Arts | nan | Ashleigh Bell; Alex Blades | History of Architecture; Window Conservation; Heritage Project Management | [Program Link](https://www.willowbank.ca/) | N/A |
-| Master of Science in Historic Preservation | Notre Dame | School of Architecture | Steven Semes; Paul Kapp | nan | [Program Link](https://architecture.nd.edu/academics/graduate-programs/m-s-historic-preservation/) | N/A |
+DCP 6714 – Built Heritage Documentation</td>
+            <td><a href="https://dcp.ufl.edu/historic-preservation/" target="_blank">Program Link</a></td><td><a href="https://dcp.ufl.edu/historic-preservation/projects/" target="_blank">Projects</a></td><td><button onclick="toggleDetails(this)">Show Details</button></td>
+        </tr>
+        <tr>
+            <td>Master of Science in Historic Preservation; Ph.D. in Historic Preservation</td>
+            <td>University of Texas</td>
+            <td>School of Architecture</td>
+            <td>Tara Dudley; Juliana Felkner</td>
+            <td>American Architecture; National Register Documentation; Materials Conservation: Laboratory Methods; Preservation Law</td>
+            <td><a href="https://soa.utexas.edu/historic-preservation/courses-overview" target="_blank">Program Link</a></td><td><a href="https://soa.utexas.edu/historic-preservation/resources" target="_blank">Projects</a></td><td><button onclick="toggleDetails(this)">Show Details</button></td>
+        </tr>
+        <tr>
+            <td>Master of Science in Historic Preservation</td>
+            <td>Clemson University</td>
+            <td>School of Architecture</td>
+            <td>Amalia Leifeste</td>
+            <td>History and Theory of Historic Preservation; American Architecture; Preservation Studio; Conservation Laboratory Science; Adaptive Use</td>
+            <td><a href="https://www.clemson.edu/caac/academics/architecture/programs/historic-preservation/mshp.html" target="_blank">Program Link</a></td><td><a href="https://open.clemson.edu/theses_historic_pres/" target="_blank">Projects</a></td><td><button onclick="toggleDetails(this)">Show Details</button></td>
+        </tr>
+        <tr>
+            <td>Historic Preservation, MSHP</td>
+            <td>University of Pennsylvania</td>
+            <td>Weitzman School of Design</td>
+            <td>Frank G. Matero; Randall F. Mason</td>
+            <td>American Architecture; Public History of the Built Environment: Theory and Practice; Preservation Through Public Policy; Conservation Science</td>
+            <td><a href="https://catalog.upenn.edu/graduate/programs/historic-preservation-mshp/" target="_blank">Program Link</a></td><td><a href="https://www.design.upenn.edu/historic-preservation/thesis" target="_blank">Projects</a></td><td><button onclick="toggleDetails(this)">Show Details</button></td>
+        </tr>
+        <tr>
+            <td>Initiative in the History of the Built Environment, Doctoral Fellows</td>
+            <td>University of Pennsylvania</td>
+            <td>Weitzman School of Design</td>
+            <td>Francesca Russello Ammon</td>
+            <td>nan</td>
+            <td><a href="https://www.design.upenn.edu/city-regional-planning/hbe" target="_blank">Program Link</a></td><td>N/A</td><td><button onclick="toggleDetails(this)">Show Details</button></td>
+        </tr>
+        <tr>
+            <td>MS in Historic Preservation; Undergraduate minor</td>
+            <td>University of Oregon</td>
+            <td>School of Architecture</td>
+            <td>Chris Bell; Larissa Rudnicki</td>
+            <td>Pacific Northwest Preservation Field School; Preservation Economics; Legal Issues in Historic Preservation; American Architecture
+from a Preservation Perspective</td>
+            <td><a href="https://archenvironment.uoregon.edu/hp" target="_blank">Program Link</a></td><td><a href="https://archenvironment.uoregon.edu/hp/research" target="_blank">Projects</a></td><td><button onclick="toggleDetails(this)">Show Details</button></td>
+        </tr>
+        <tr>
+            <td>History, Theory, and Preservation (HTP), part of Architecture major; Graduate Minor in Heritage Studies</td>
+            <td>UIUC</td>
+            <td>School of Architecture</td>
+            <td>Kathryn E. Holliday</td>
+            <td>Special Problems in Urbanism</td>
+            <td><a href="https://arch.illinois.edu/programs-applying/program-areas/htp/" target="_blank">Program Link</a></td><td><a href="https://arch.illinois.edu/programs-applying/chicago-studio/" target="_blank">Projects</a></td><td><button onclick="toggleDetails(this)">Show Details</button></td>
+        </tr>
+        <tr>
+            <td>Master of Historic Preservation and Master of Real Estate Development (dual degree)</td>
+            <td>University of Maryland</td>
+            <td>Graduate school</td>
+            <td>Rhonda Sincavage; Frederick Stachura</td>
+            <td>Preservation Policy and Planning; Historic Preservation Professional Practice; Historic Preservation Studio Workshop; Historic Preservation Law</td>
+            <td><a href="https://academiccatalog.umd.edu/graduate/programs/historic-preservation-real-estate-development-hpdv/historic-preservation-real-estate-development-dual-degree-mhp-mred/" target="_blank">Program Link</a></td><td>N/A</td><td><button onclick="toggleDetails(this)">Show Details</button></td>
+        </tr>
+        <tr>
+            <td>Historic Preservation, MS</td>
+            <td>Pratt College</td>
+            <td>Graduate Center for Planning and the Environment</td>
+            <td>Vicki Weiner; Harriet Harriss</td>
+            <td>History and Theory of Preservation; Preservation Law and Policy; PDF</td>
+            <td><a href="https://www.pratt.edu/architecture/graduate-center-for-planning-and-the-environment/historic-preservation-ms/" target="_blank">Program Link</a></td><td><a href="https://www.pratt.edu/architecture/graduate-center-for-planning-and-the-environment/historic-preservation-ms/student-achievement/" target="_blank">Projects</a></td><td><button onclick="toggleDetails(this)">Show Details</button></td>
+        </tr>
+        <tr>
+            <td>Historic Preservation Certificate; Online MDS in Historic Preservation
+</td>
+            <td>Boston Architectural College</td>
+            <td>nan</td>
+            <td>nan</td>
+            <td>Historic Preservation Philosophy and Practice; Adaptive Reuse and Development Process</td>
+            <td><a href="https://the-bac.edu/continuing-education/certificates/historic-preservation-certificate" target="_blank">Program Link</a></td><td>N/A</td><td><button onclick="toggleDetails(this)">Show Details</button></td>
+        </tr>
+        <tr>
+            <td>Diploma in Heritage Conservation</td>
+            <td>Willowbank School of Restoration Arts</td>
+            <td>nan</td>
+            <td>Ashleigh Bell; Alex Blades</td>
+            <td>History of Architecture; Window Conservation; Heritage Project Management</td>
+            <td><a href="https://www.willowbank.ca/" target="_blank">Program Link</a></td><td>N/A</td><td><button onclick="toggleDetails(this)">Show Details</button></td>
+        </tr>
+        <tr>
+            <td>Master of Science in Historic Preservation</td>
+            <td>Notre Dame</td>
+            <td>School of Architecture</td>
+            <td>Steven Semes; Paul Kapp</td>
+            <td>nan</td>
+            <td><a href="https://architecture.nd.edu/academics/graduate-programs/m-s-historic-preservation/" target="_blank">Program Link</a></td><td>N/A</td><td><button onclick="toggleDetails(this)">Show Details</button></td>
+        </tr>
+    </tbody>
+</table>
 
-</details>
+<script>
+function toggleDetails(button) {
+    var row = button.parentNode.parentNode;
+    var details = row.querySelectorAll("td:nth-child(n+4):nth-child(-n+7)");
+    details.forEach(cell => cell.style.display = cell.style.display === "none" ? "table-cell" : "none");
+    button.textContent = button.textContent === "Show Details" ? "Hide Details" : "Show Details";
+}
+
+// Hide all detail columns initially
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll("td:nth-child(n+4):nth-child(-n+7)").forEach(cell => cell.style.display = "none");
+});
+</script>
+
