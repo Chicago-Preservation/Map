@@ -16,7 +16,7 @@ status: category
         text-align: left;
     }
     th {
-        background-color:rgb(182, 18, 18);
+        background-color:rgba(182, 18, 18, 0.48);
     }
     .hiddenRow {
         display: none;
