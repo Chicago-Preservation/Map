@@ -30,43 +30,45 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     ];
 
-    data.forEach((row) => {
-        console.log("🔍 Adding program:", row["Program"]);
+    // Function to populate the table
+    function populateTable() {
+        data.forEach((row) => {
+            console.log("🔍 Adding program:", row["Program"]);
 
-        // Create the main row
-        let mainRow = document.createElement("tr");
-        mainRow.innerHTML = `
-            <td>${row["Program"]}</td>
-            <td>${row["Institution"]}</td>
-            <td>${row["Department"]}</td>
-            <td>${row["Faculty"]}</td>
-            <td>${row["Courses"]}</td>
-            <td><a href="${row["Link"]}" target="_blank">View Program</a></td>
-            <td><a href="${row["Exhibition"]}" target="_blank">View Exhibition</a></td>
-            <td><button class="show-more-btn">Show More</button></td>
-        `;
+            let mainRow = document.createElement("tr");
+            mainRow.innerHTML = `
+                <td>${row["Program"]}</td>
+                <td>${row["Institution"]}</td>
+                <td>${row["Department"]}</td>
+                <td>${row["Faculty"]}</td>
+                <td>${row["Courses"]}</td>
+                <td><a href="${row["Link"]}" target="_blank">View Program</a></td>
+                <td><a href="${row["Exhibition"]}" target="_blank">View Exhibition</a></td>
+                <td><button class="show-more-btn">Show More</button></td>
+            `;
 
-        // Create the hidden details row
-        let detailsRow = document.createElement("tr");
-        detailsRow.classList.add("details-row", "hidden");
-        let detailsTd = document.createElement("td");
-        detailsTd.setAttribute("colspan", "8");
-        detailsTd.innerHTML = `<strong>More Info:</strong> ${row["Details"]}`;
-        detailsRow.appendChild(detailsTd);
+            let detailsRow = document.createElement("tr");
+            detailsRow.classList.add("details-row", "hidden");
+            let detailsTd = document.createElement("td");
+            detailsTd.setAttribute("colspan", "8");
+            detailsTd.innerHTML = `<strong>More Info:</strong> ${row["Details"]}`;
+            detailsRow.appendChild(detailsTd);
 
-        // Add event listener to the "Show More" button
-        const showMoreBtn = mainRow.querySelector(".show-more-btn");
-        showMoreBtn.addEventListener("click", function(event) {
-            event.stopPropagation();
-            detailsRow.classList.toggle("hidden");
-            showMoreBtn.textContent = detailsRow.classList.contains("hidden") ? "Show More" : "Show Less";
-            console.log("🔄 Toggled details for:", row["Program"]);
+            const showMoreBtn = mainRow.querySelector(".show-more-btn");
+            showMoreBtn.addEventListener("click", function(event) {
+                event.stopPropagation();
+                detailsRow.classList.toggle("hidden");
+                showMoreBtn.textContent = detailsRow.classList.contains("hidden") ? "Show More" : "Show Less";
+                console.log("🔄 Toggled details for:", row["Program"]);
+            });
+
+            tableBody.appendChild(mainRow);
+            tableBody.appendChild(detailsRow);
         });
+    }
 
-        // Append rows to the table
-        tableBody.appendChild(mainRow);
-        tableBody.appendChild(detailsRow);
-    });
+    // Call the function to populate the table immediately
+    populateTable();
 
     console.log("✅ Table populated successfully!");
 });
