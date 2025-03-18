@@ -12,12 +12,12 @@ Click on a program to see more details.
     <thead>
         <tr>
             <th>Program</th>
-            <th class="hidden">Institution / Location</th>
-            <th class="hidden">Department</th>
-            <th class="hidden">Faculty</th>
-            <th class="hidden">Courses</th>
-            <th class="hidden">Link</th>
-            <th class="hidden">Exhibitions</th>
+            <th >Institution / Location</th>
+            <th >Department</th>
+            <th >Faculty</th>
+            <th >Courses</th>
+            <th >Link</th>
+            <th >Exhibitions</th>
         </tr>
     </thead>
     <tbody></tbody>
