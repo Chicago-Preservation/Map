@@ -274,6 +274,7 @@ fetch('https://Chicago-Preservation.github.io/Map/GeoJson_files_layers/landmarka
   .then(response => response.json())
   .then(data => {
     landmarksLayer.addData(data);
+    map.addLayer(landmarksLayer);
   });
   
 /// Adding Historic Resources Survey Layer
