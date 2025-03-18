@@ -25,29 +25,55 @@ Click on a program to see more details.
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        fetch('https://raw.githubusercontent.com/Chicago-Preservation/Map/master/Resources/academic_programs.json')
-            .then(response => response.json())
-            .then(data => {
-                const tableBody = document.querySelector("#academicTable tbody");
+        // Manually enter data here instead of fetching from JSON
+        const data = [
+            {
+                "Program": "Masters in Historic Preservation",
+                "Institution": "SAIC",
+                "Department": "Department of Historic Preservation",
+                "Faculty": "Richard Friedman; Nicholas Lowe",
+                "Courses": "Preservation Law; Physical Documentation; Restoration Design Studio",
+                "Link": "https://www.saic.edu/historic-preservation",
+                "Exhibition": "https://www.saic.edu/historic-preservation/people/projects"
+            },
+            {
+                "Program": "Master of Historic Preservation",
+                "Institution": "University of Florida",
+                "Department": "College of Design, Construction and Planning",
+                "Faculty": "Cleary Larkin; Linda Stevenson",
+                "Courses": "DCP 6710 History and Theory of Historic Preservation",
+                "Link": "https://dcp.ufl.edu/historic-preservation/",
+                "Exhibition": "https://dcp.ufl.edu/historic-preservation/projects"
+            },
+            {
+                "Program": "Master of Science in Historic Preservation",
+                "Institution": "University of Texas",
+                "Department": "School of Architecture",
+                "Faculty": "Tara Dudley; Juliana Felkner",
+                "Courses": "American Architecture; National Register Documentation",
+                "Link": "https://soa.utexas.edu/historic-preservation/certificates",
+                "Exhibition": "https://soa.utexas.edu/historic-preservation/research"
+            }
+        ];
 
-                data.forEach(row => {
-                    let tr = document.createElement("tr");
-                    tr.innerHTML = `
-                        <td class="main">${row["Program/certification/concentration"]}</td>
-                        <td class="hidden">${row["institution / location"]}</td>
-                        <td class="hidden">${row["department housed in"]}</td>
-                        <td class="hidden">${row["faculty who teach"]}</td>
-                        <td class="hidden">${row["what courses are (skill/social concerns)"]}</td>
-                        <td class="hidden"><a href="${row["Link"]}" target="_blank">Link</a></td>
-                        <td class="hidden"><a href="${row["public facing - digital exhibition (link) to projects, + description of projects"]}" target="_blank">Exhibition</a></td>
-                    `;
-                    tr.addEventListener("click", function() {
-                        this.querySelectorAll("td.hidden").forEach(td => td.classList.toggle("show"));
-                    });
-                    tableBody.appendChild(tr);
-                });
-            })
-            .catch(error => console.error("Error loading data:", error));
+        const tableBody = document.querySelector("#academicTable tbody");
+
+        data.forEach(row => {
+            let tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td class="main">${row["Program"]}</td>
+                <td class="hidden">${row["Institution"]}</td>
+                <td class="hidden">${row["Department"]}</td>
+                <td class="hidden">${row["Faculty"]}</td>
+                <td class="hidden">${row["Courses"]}</td>
+                <td class="hidden"><a href="${row["Link"]}" target="_blank">Link</a></td>
+                <td class="hidden"><a href="${row["Exhibition"]}" target="_blank">Exhibition</a></td>
+            `;
+            tr.addEventListener("click", function() {
+                this.querySelectorAll("td.hidden").forEach(td => td.classList.toggle("show"));
+            });
+            tableBody.appendChild(tr);
+        });
     });
 </script>
 
