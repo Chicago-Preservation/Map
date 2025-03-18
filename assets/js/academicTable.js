@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     console.log("📊 Data array:", data);
 
-    // Function to populate the table
+    // Function to populate the table  potential issue in function to populate table. 
     function populateTable() {
         const tableBody = document.querySelector("#academicTable tbody");
         if (!tableBody) {
