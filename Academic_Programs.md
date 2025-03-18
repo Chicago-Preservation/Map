@@ -12,12 +12,12 @@ Click on a program to see more details.
     <thead>
         <tr>
             <th>Program</th>
-            <th>Institution / Location</th>
-            <th>Department</th>
-            <th>Faculty</th>
-            <th>Courses</th>
-            <th>Link</th>
-            <th>Exhibitions</th>
+            <th class="toggle-header">Institution / Location</th>
+            <th class="toggle-header">Department</th>
+            <th class="toggle-header">Faculty</th>
+            <th class="toggle-header">Courses</th>
+            <th class="toggle-header">Link</th>
+            <th class="toggle-header">Exhibitions</th>
         </tr>
     </thead>
     <tbody></tbody>
@@ -64,29 +64,31 @@ document.addEventListener("DOMContentLoaded", function() {
         // First column (Program) is always visible
         tr.innerHTML = `<td class="main">${row["Program"]}</td>`;
 
-        // Other columns are hidden by default
-        Object.keys(row).forEach((key, index) => {
-            if (index > 0) { // Skip the first column
-                let td = document.createElement("td");
-                td.classList.add("hidden"); // Hide by default
-                if (row[key].startsWith("http")) {
-                    td.innerHTML = `<a href="${row[key]}" target="_blank">Link</a>`;
-                } else {
-                    td.innerText = row[key];
-                }
-                tr.appendChild(td);
-            }
-        });
+        // Create another row for hidden details (initially hidden)
+        let detailsRow = document.createElement("tr");
+        detailsRow.classList.add("details-row", "hidden");
 
-        // Add click event to toggle visibility
+        let detailsTd = document.createElement("td");
+        detailsTd.setAttribute("colspan", "7"); // Spans all columns
+
+        // Add content for hidden row
+        detailsTd.innerHTML = `
+            <strong>Institution:</strong> ${row["Institution"]} <br>
+            <strong>Department:</strong> ${row["Department"]} <br>
+            <strong>Faculty:</strong> ${row["Faculty"]} <br>
+            <strong>Courses:</strong> ${row["Courses"]} <br>
+            <strong>Link:</strong> <a href="${row["Link"]}" target="_blank">View Program</a> <br>
+            <strong>Exhibition:</strong> <a href="${row["Exhibition"]}" target="_blank">View Exhibition</a>
+        `;
+        detailsRow.appendChild(detailsTd);
+
+        // Click event to show/hide details
         tr.addEventListener("click", function() {
-            let cells = this.querySelectorAll("td.hidden");
-            cells.forEach(cell => {
-                cell.classList.toggle("show");
-            });
+            detailsRow.classList.toggle("hidden");
         });
 
         tableBody.appendChild(tr);
+        tableBody.appendChild(detailsRow);
     });
 });
 </script>
@@ -103,14 +105,13 @@ document.addEventListener("DOMContentLoaded", function() {
         text-align: left;
     }
     .hidden {
-        display: none;  /* Hides additional columns initially */
+        display: none;  /* Hides the details row initially */
     }
-    .show {
-        display: table-cell !important; /* Forces visibility when toggled */
+    .details-row td {
+        background-color: #f9f9f9; /* Light background for details */
     }
     tr:hover {
         background-color: #f1f1f1;
         cursor: pointer;
     }
 </style>
-
