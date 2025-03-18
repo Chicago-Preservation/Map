@@ -7,6 +7,36 @@ status: category
 ## Academic Programs
 
 # Preservation Programs in the US
+# Preservation Programs in the US
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    .hiddenRow {
+        display: none;
+    }
+    button {
+        margin-top: 10px;
+        padding: 8px 12px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+</style>
 
 <table id="academicTable">
     <thead>
@@ -141,3 +171,4 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll(".hiddenRow").forEach(row => row.style.display = "none");
 });
 </script>
+
