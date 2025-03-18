@@ -36,9 +36,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Function to populate the table
     function populateTable() {
-        data.forEach((row) => {
-            console.log("🔍 Adding row for:", row["Program"]);
-
+        const tableBody = document.querySelector("#academicTable tbody");
+        if (!tableBody) {
+            console.error("❌ Table body not found! JavaScript is running too early or the HTML is incorrect.");
+            return;
+        }
+    
+        console.log("📌 Populating table with data...");
+    
+        data.forEach((row, index) => {
+            console.log(`🔍 Adding row ${index + 1}:`, row["Program"]);
+    
             let mainRow = document.createElement("tr");
             mainRow.innerHTML = `
                 <td>${row["Program"]}</td>
@@ -48,29 +56,15 @@ document.addEventListener("DOMContentLoaded", function() {
                 <td>${row["Courses"]}</td>
                 <td><a href="${row["Link"]}" target="_blank">View Program</a></td>
                 <td><a href="${row["Exhibition"]}" target="_blank">View Exhibition</a></td>
-                <td><button class="show-more-btn">Show More</button></td>
+                <td>${row["Details"]}</td>  <!-- ✅ Now always visible -->
             `;
-
-            let detailsRow = document.createElement("tr");
-            detailsRow.classList.add("details-row", "hidden");
-            let detailsTd = document.createElement("td");
-            detailsTd.setAttribute("colspan", "8");
-            detailsTd.innerHTML = `<strong>More Info:</strong> ${row["Details"]}`;
-            detailsRow.appendChild(detailsTd);
-
-            const showMoreBtn = mainRow.querySelector(".show-more-btn");
-            showMoreBtn.addEventListener("click", function(event) {
-                event.stopPropagation();
-                detailsRow.classList.toggle("hidden");
-                showMoreBtn.textContent = detailsRow.classList.contains("hidden") ? "Show More" : "Show Less";
-                console.log("🔄 Toggled details for:", row["Program"]);
-            });
-
+    
             tableBody.appendChild(mainRow);
-            tableBody.appendChild(detailsRow);
         });
+    
+        console.log("✅ Table populated successfully!");
     }
-
+    
     // Call the function to populate the table
     populateTable();
 

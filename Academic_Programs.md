@@ -18,11 +18,10 @@ Click on a program to see more details.
             <th>Courses</th>
             <th>Link</th>
             <th>Exhibitions</th>
-            <th>More Info</th>
+            <th>Details</th>  <!-- ✅ Always visible -->
         </tr>
     </thead>
-    <tbody>
-        <!-- JavaScript will populate this -->
+    <tbody> <!-- ✅ This is REQUIRED for JavaScript to work -->
     </tbody>
 </table>
 
@@ -36,25 +35,6 @@ Click on a program to see more details.
         border: 1px solid #ddd;
         text-align: left;
     }
-    .hidden {
-        display: none;
-    }
-    .details-row td {
-        background-color: #f9f9f9;
-        font-style: italic;
-    }
-    .show-more-btn {
-        padding: 5px 10px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        cursor: pointer;
-        border-radius: 4px;
-    }
-    .show-more-btn:hover {
-        background-color: #0056b3;
-    }
 </style>
 
-<script src="{{ site.baseurl }}/assets/js/academicTable.js"></script>
-
+<script src="/assets/js/academicTable.js"></script>
