@@ -25,7 +25,8 @@ Click on a program to see more details.
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // Manually enter data here instead of fetching from JSON
+        const tableBody = document.querySelector("#academicTable tbody");
+
         const data = [
             {
                 "Program": "Masters in Historic Preservation",
@@ -56,22 +57,33 @@ Click on a program to see more details.
             }
         ];
 
-        const tableBody = document.querySelector("#academicTable tbody");
-
         data.forEach(row => {
             let tr = document.createElement("tr");
-            tr.innerHTML = `
-                <td class="main">${row["Program"]}</td>
-                <td class="hidden">${row["Institution"]}</td>
-                <td class="hidden">${row["Department"]}</td>
-                <td class="hidden">${row["Faculty"]}</td>
-                <td class="hidden">${row["Courses"]}</td>
-                <td class="hidden"><a href="${row["Link"]}" target="_blank">Link</a></td>
-                <td class="hidden"><a href="${row["Exhibition"]}" target="_blank">Exhibition</a></td>
-            `;
-            tr.addEventListener("click", function() {
-                this.querySelectorAll("td.hidden").forEach(td => td.classList.toggle("show"));
+
+            // The first row, always visible
+            tr.innerHTML = `<td class="main">${row["Program"]}</td>`;
+
+            // Hidden rows, initially hidden
+            Object.keys(row).forEach((key, index) => {
+                if (index > 0) { // Skip the first column (Program)
+                    let td = document.createElement("td");
+                    td.classList.add("hidden");
+                    if (row[key].startsWith("http")) {
+                        td.innerHTML = `<a href="${row[key]}" target="_blank">Link</a>`;
+                    } else {
+                        td.innerText = row[key];
+                    }
+                    tr.appendChild(td);
+                }
             });
+
+            tr.addEventListener("click", function() {
+                let cells = this.querySelectorAll("td.hidden");
+                cells.forEach(cell => {
+                    cell.classList.toggle("show");
+                });
+            });
+
             tableBody.appendChild(tr);
         });
     });
@@ -88,10 +100,10 @@ Click on a program to see more details.
         text-align: left;
     }
     .hidden {
-        display: none;
+        display: none;  /* Initially hidden */
     }
     .show {
-        display: table-cell;
+        display: table-cell !important; /* Ensures it overrides hidden */
     }
     tr:hover {
         background-color: #f1f1f1;
