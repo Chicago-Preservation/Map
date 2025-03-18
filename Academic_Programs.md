@@ -3,10 +3,6 @@ layout: page
 title: Academic Programs
 status: category
 ---
-
-## Academic Programs
-
-# Preservation Programs in the US
 # Preservation Programs in the US
 
 <style>
@@ -20,7 +16,7 @@ status: category
         text-align: left;
     }
     th {
-        background-color: #f2f2f2;
+        background-color:rgb(182, 18, 18);
     }
     .hiddenRow {
         display: none;
@@ -64,10 +60,10 @@ status: category
             <td>College of Design, Construction and Planning</td>
             <td>Cleary Larkin; Linda Stevenson</td>
             <td>DCP 6710 History and Theory of Historic Preservation
+            <a href="https://dcp.ufl.edu/wp-content/uploads/2019/07/DCP4000-Syllabus_Fall-2019_preliminary.pdf" target="_blank">[Syllabus]</a>
 
-https://dcp.ufl.edu/wp-content/uploads/2019/07/DCP4000-Syllabus_Fall-2019_preliminary.pdf
-
-DCP 6714 – Built Heritage Documentation</td>
+DCP 6714 – Built Heritage Documentation
+</td>
             <td><a href="https://dcp.ufl.edu/historic-preservation/" target="_blank">Program Link</a></td><td><a href="https://dcp.ufl.edu/historic-preservation/projects/" target="_blank">Projects</a></td></tr>
         <tr class="hiddenRow">
             <td>Master of Science in Historic Preservation; Ph.D. in Historic Preservation</td>
