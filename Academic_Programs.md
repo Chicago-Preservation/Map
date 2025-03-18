@@ -12,18 +12,17 @@ Click on a program to see more details.
     <thead>
         <tr>
             <th>Program</th>
-            <th >Institution / Location</th>
-            <th >Department</th>
-            <th >Faculty</th>
-            <th >Courses</th>
-            <th >Link</th>
-            <th >Exhibitions</th>
+            <th>Institution / Location</th>
+            <th>Department</th>
+            <th>Faculty</th>
+            <th>Courses</th>
+            <th>Link</th>
+            <th>Exhibitions</th>
         </tr>
     </thead>
     <tbody></tbody>
 </table>
 
-{% raw %}
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const tableBody = document.querySelector("#academicTable tbody");
@@ -61,14 +60,14 @@ document.addEventListener("DOMContentLoaded", function() {
     data.forEach(row => {
         let tr = document.createElement("tr");
 
-        // The first row, always visible
+        // First column (Program) is always visible
         tr.innerHTML = `<td class="main">${row["Program"]}</td>`;
 
-        // Hidden rows, initially hidden
+        // Other columns are hidden by default
         Object.keys(row).forEach((key, index) => {
-            if (index > 0) { // Skip the first column (Program)
+            if (index > 0) { // Skip the first column
                 let td = document.createElement("td");
-                td.classList.add("hidden");
+                td.classList.add("hidden"); // Hide by default
                 if (row[key].startsWith("http")) {
                     td.innerHTML = `<a href="${row[key]}" target="_blank">Link</a>`;
                 } else {
@@ -78,6 +77,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
 
+        // Add click event to toggle visibility
         tr.addEventListener("click", function() {
             let cells = this.querySelectorAll("td.hidden");
             cells.forEach(cell => {
@@ -89,8 +89,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 </script>
-{% endraw %}
-
 
 <style>
     table {
@@ -103,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function() {
         text-align: left;
     }
     .hidden {
-        display: none;  /* Initially hidden */
+        display: none;  /* Hides data rows initially */
     }
     .show {
         display: table-cell !important; /* Ensures it overrides hidden */
