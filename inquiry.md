@@ -15,9 +15,10 @@ permalink: /Inquiries-and-contributions/
     Loading…
 </iframe>
 
-<p>Your submission will be directed to the appropriate team member, and we will aim to respond within [X] days</p>
+<p>Your submission will be directed to the appropriate team member, and we will aim to respond within 10 days.</p>
 
 <h2>Contribute to Our Work</h2>
+
 <p>We are always looking to expand and refine our understanding. If you have a new dataset, historical insight, or a document that could add value to our work, we’d love to hear from you.</p>
 
 <!-- Embedded Google Form -->
@@ -30,4 +31,4 @@ permalink: /Inquiries-and-contributions/
     Loading…
 </iframe>
 
-<p>Your submission will be reviewed for relevance and accuracy. If we find your contribution valuable, we’ll reach out to discuss potential next steps.</p>
+<p>Your submission is greatly valued. We will reach out to you to discuss potential next steps if necessary.</p>
