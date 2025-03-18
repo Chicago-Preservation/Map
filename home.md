@@ -17,8 +17,15 @@ You can use the map to explore, by zooming in, panning, and selecting "sites," w
 >
 Or, you can use the dropdown menu located on the upper right corner of the map to go directly to a specific page.
 
-#### Credits
+#### Note
+>
+Mapping Chicago Preservation is an evolving digital humanities project aimed at democratizing access to historic preservation resources. We recognize that digital platforms require ongoing maintenance, updates, and sustainable infrastructure, yet resources for long-term preservation and accessibility remain a challenge across digital humanities initiatives.
+>
+While we strive to maintain accuracy and relevance, this platform is a work in progress. Some datasets may be incomplete or require updates over time, and we welcome feedback, collaboration, and contributions to enhance the project’s longevity.
+>
+Our goal is to advance equitable access to preservation knowledge while remaining mindful of the inherent challenges in sustaining digital resources. We appreciate your understanding as we continue to refine and expand this platform.
 
+#### Credits
 >
 Map layers sourced from the <a href="https://data.cityofchicago.org/Historic-Preservation/Mural-Registry/we8h-apcf/about_data" target="_blank">Chicago Data Portal</a> courtesy of the City of Chicago
 >
