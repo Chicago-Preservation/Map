@@ -57,4 +57,4 @@ Click on a program to see more details.
 </style>
 
 
-<script src="{{ '/assets/js/academicTable.js' | relative_url }}"></script>
+<script src="{{ site.baseurl }}/assets/js/academicTable.js"></script>
