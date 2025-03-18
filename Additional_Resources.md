@@ -26,9 +26,9 @@ Chicago’s spatial boundaries can be defined in multiple ways, each serving dif
 While **Community Areas** provide the most reliable framework for research, we acknowledge that **political boundaries, cultural landscapes, and evolving neighborhood identities** are integral to understanding **Chicago’s development**.
 
 ## Land Acknowledgment 
-
-"Chicago stands on the ancestral homelands of the Council of the Three Fires- the Ojibwe, Odawa, and Potawatomi Nations- as well as the Miami, Ho-Chunk, Menominee, Sac, Fox, Peoria, Kaskaskia, Wea, Kickapoo, and Mascouten Nations.
+>
+Chicago stands on the ancestral homelands of the Council of the Three Fires- the Ojibwe, Odawa, and Potawatomi Nations- as well as the Miami, Ho-Chunk, Menominee, Sac, Fox, Peoria, Kaskaskia, Wea, Kickapoo, and Mascouten Nations.
 >
 Indigenous peoples were the first preservationists, safeguarding the land through sustainable stewardship, cultural traditions, and knowledge systems passed down for generations. Their histories, resilience, and contributions continue to shape this region today.
 >
-Chicago remains home to a thriving Indigenous community, with Native people from many tribal nations enriching the city’s cultural and historical fabric. We honor and acknowledge all Native peoples- past, present, and future- who have shaped and continue to shape this land."
+Chicago remains home to a thriving Indigenous community, with Native people from many tribal nations enriching the city’s cultural and historical fabric. We honor and acknowledge all Native peoples- past, present, and future- who have shaped and continue to shape this land.
