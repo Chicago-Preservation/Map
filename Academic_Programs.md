@@ -3,8 +3,6 @@ layout: page
 title: Academic Programs
 status: category
 ---
-# Preservation Programs in the US
-
 <style>
     table {
         width: 100%;
