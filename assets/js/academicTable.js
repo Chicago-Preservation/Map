@@ -1,3 +1,5 @@
+console.log("✅ Checking if academicTable.js is loaded!");
+
 document.addEventListener("DOMContentLoaded", function() {
     console.log("✅ academicTable.js is running!");
 
@@ -30,10 +32,12 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     ];
 
+    console.log("📊 Data array:", data);
+
     // Function to populate the table
     function populateTable() {
         data.forEach((row) => {
-            console.log("🔍 Adding program:", row["Program"]);
+            console.log("🔍 Adding row for:", row["Program"]);
 
             let mainRow = document.createElement("tr");
             mainRow.innerHTML = `
@@ -67,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Call the function to populate the table immediately
+    // Call the function to populate the table
     populateTable();
 
     console.log("✅ Table populated successfully!");
