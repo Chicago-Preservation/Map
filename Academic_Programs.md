@@ -23,6 +23,7 @@ Click on a program to see more details.
     <tbody></tbody>
 </table>
 
+{% raw %}
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const tableBody = document.querySelector("#academicTable tbody");
@@ -89,6 +90,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 </script>
+{% endraw %}
 
 <style>
     table {
@@ -101,13 +103,14 @@ document.addEventListener("DOMContentLoaded", function() {
         text-align: left;
     }
     .hidden {
-        display: none;  /* Hides data rows initially */
+        display: none;  /* Hides additional columns initially */
     }
     .show {
-        display: table-cell !important; /* Ensures it overrides hidden */
+        display: table-cell !important; /* Forces visibility when toggled */
     }
     tr:hover {
         background-color: #f1f1f1;
         cursor: pointer;
     }
 </style>
+
