@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("✅ Script loaded successfully");
+    console.log("✅ academicTable.js is running!");
 
     const tableBody = document.querySelector("#academicTable tbody");
     if (!tableBody) {
@@ -30,7 +30,10 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     ];
 
-    data.forEach(row => {
+    data.forEach((row) => {
+        console.log("🔍 Adding program:", row["Program"]);
+
+        // Create the main row
         let mainRow = document.createElement("tr");
         mainRow.innerHTML = `
             <td>${row["Program"]}</td>
@@ -43,22 +46,27 @@ document.addEventListener("DOMContentLoaded", function() {
             <td><button class="show-more-btn">Show More</button></td>
         `;
 
+        // Create the hidden details row
         let detailsRow = document.createElement("tr");
         detailsRow.classList.add("details-row", "hidden");
-
         let detailsTd = document.createElement("td");
-        detailsTd.setAttribute("colspan", "8"); // Adjusted colspan to fit the new button column
+        detailsTd.setAttribute("colspan", "8");
         detailsTd.innerHTML = `<strong>More Info:</strong> ${row["Details"]}`;
         detailsRow.appendChild(detailsTd);
 
+        // Add event listener to the "Show More" button
         const showMoreBtn = mainRow.querySelector(".show-more-btn");
         showMoreBtn.addEventListener("click", function(event) {
-            event.stopPropagation(); // Prevent row click interference
+            event.stopPropagation();
             detailsRow.classList.toggle("hidden");
             showMoreBtn.textContent = detailsRow.classList.contains("hidden") ? "Show More" : "Show Less";
+            console.log("🔄 Toggled details for:", row["Program"]);
         });
 
+        // Append rows to the table
         tableBody.appendChild(mainRow);
         tableBody.appendChild(detailsRow);
     });
+
+    console.log("✅ Table populated successfully!");
 });
