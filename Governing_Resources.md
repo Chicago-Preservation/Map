@@ -18,7 +18,7 @@ Preservation efforts rely on a network of governing bodies, regulatory framework
         text-align: left;
     }
     th {
-        background-color: #992345;
+        background-color: rgba(182, 18, 18, 0.48);
     }
     .hiddenRow {
         display: none;
@@ -26,13 +26,13 @@ Preservation efforts rely on a network of governing bodies, regulatory framework
     button {
         margin-top: 10px;
         padding: 8px 12px;
-        background-color: #992345;
+        background-color: rgba(182, 18, 18, 0.48);
         color: white;
         border: none;
         cursor: pointer;
     }
     button:hover {
-        background-color: #992345;
+        background-color: rgba(182, 18, 18, 0.48);
     }
 </style>
 
