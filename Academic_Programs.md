@@ -9,6 +9,8 @@ Preservation education plays a vital role in shaping the next generation of hist
 
 This page serves as a centralized database of academic programs, drawing from established resources to provide comprehensive information on preservation education. The National Council for Preservation Education (NCPE) maintains a regularly updated <a href="https://www.ncpe.us/graduate-historic-preservation-programs/"> database of historic preservation programs</a>.
 
+
+
 <style>
     table {
         width: 100%;
@@ -28,13 +30,13 @@ This page serves as a centralized database of academic programs, drawing from es
     button {
         margin-top: 10px;
         padding: 8px 12px;
-        background-color: #007bff;
+        background-color: #992345;
         color: white;
         border: none;
         cursor: pointer;
     }
     button:hover {
-        background-color: #0056b3;
+        background-color: #992345;
     }
 </style>
 

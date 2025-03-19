@@ -26,13 +26,13 @@ Preservation efforts rely on a network of governing bodies, regulatory framework
     button {
         margin-top: 10px;
         padding: 8px 12px;
-        background-color: #007bff;
+        background-color: #992345;
         color: white;
         border: none;
         cursor: pointer;
     }
     button:hover {
-        background-color: #0056b3;
+        background-color: #992345;
     }
 </style>
 
