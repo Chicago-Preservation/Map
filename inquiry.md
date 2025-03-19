@@ -3,7 +3,7 @@ layout: page
 title: "Inquiries and Contributions"
 permalink: /Inquiries-and-contributions/
 ---
-<h2>Inquiries</h2>
+<h2>Submit an Inquiry</h2>
 <p>If you have a question about our work, data, or documentation, please submit your inquiry below. Our team will review your request and get back to you as soon as possible.</p>
 
 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfYWZq5pdnyEdRakpwySyIRCDTE7rBV60VQfykXDhdt_DqXOQ/viewform?embedded=true" 
