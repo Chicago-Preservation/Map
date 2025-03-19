@@ -3,6 +3,13 @@ layout: page
 title: Academic Programs
 status: category
 ---
+
+Preservation education plays a vital role in shaping the next generation of historians, architects, planners, and advocates working to protect our built heritage. Across the United States, universities and institutions offer degree programs, certificates, and specialized courses that provide training in preservation theory, policy, and practice.
+
+This page serves as a centralized database of academic programs, drawing from established resources to provide comprehensive information on preservation education. The National Council for Preservation Education (NCPE) maintains a regularly <a href="https://www.ncpe.us/graduate-historic-preservation-programs/">updated database of historic preservation programs</a>
+
+
+
 <style>
     table {
         width: 100%;
@@ -144,6 +151,7 @@ from a Preservation Perspective</td>
             <td><a href="https://architecture.nd.edu/academics/graduate-programs/m-s-historic-preservation/" target="_blank">Program Link</a></td><td>N/A</td></tr>
     </tbody>
 </table>
+For a broader overview of available educational programs, including certificates and continuing education opportunities, visit: [Link 2].
 
 <!-- Show/Hide Button -->
 <button id="toggleRows" onclick="toggleRows()">Show All</button>
