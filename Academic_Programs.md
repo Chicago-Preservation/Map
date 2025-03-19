@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Academic Programs
+link: Academic-Programs
 status: category
 ---
 
