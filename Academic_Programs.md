@@ -22,7 +22,7 @@ This page serves as a centralized database of academic programs, drawing from es
         text-align: left;
     }
     th {
-        background-color:rgba(182, 18, 18, 0.48);
+        background-color: #992345;
     }
     .hiddenRow {
         display: none;
