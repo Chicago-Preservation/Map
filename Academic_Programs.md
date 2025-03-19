@@ -9,8 +9,6 @@ Preservation education plays a vital role in shaping the next generation of hist
 
 This page serves as a centralized database of academic programs, drawing from established resources to provide comprehensive information on preservation education. The National Council for Preservation Education (NCPE) maintains a regularly updated <a href="https://www.ncpe.us/graduate-historic-preservation-programs/"> database of historic preservation programs</a>.
 
-
-
 <style>
     table {
         width: 100%;
@@ -97,7 +95,7 @@ DCP 6714 – Built Heritage Documentation
             <td>University of Pennsylvania</td>
             <td>Weitzman School of Design</td>
             <td>Francesca Russello Ammon</td>
-            <td>nan</td>
+            <td>-</td>
             <td><a href="https://www.design.upenn.edu/city-regional-planning/hbe" target="_blank">Program Link</a></td><td>N/A</td></tr>
         <tr class="hiddenRow">
             <td>MS in Historic Preservation; Undergraduate minor</td>
@@ -132,14 +130,14 @@ from a Preservation Perspective</td>
             <td>Historic Preservation Certificate; Online MDS in Historic Preservation
 </td>
             <td>Boston Architectural College</td>
-            <td>nan</td>
-            <td>nan</td>
+            <td>-</td>
+            <td>-</td>
             <td>Historic Preservation Philosophy and Practice; Adaptive Reuse and Development Process</td>
             <td><a href="https://the-bac.edu/continuing-education/certificates/historic-preservation-certificate" target="_blank">Program Link</a></td><td>N/A</td></tr>
         <tr class="hiddenRow">
             <td>Diploma in Heritage Conservation</td>
             <td>Willowbank School of Restoration Arts</td>
-            <td>nan</td>
+            <td>-</td>
             <td>Ashleigh Bell; Alex Blades</td>
             <td>History of Architecture; Window Conservation; Heritage Project Management</td>
             <td><a href="https://www.willowbank.ca/" target="_blank">Program Link</a></td><td>N/A</td></tr>
@@ -148,7 +146,7 @@ from a Preservation Perspective</td>
             <td>Notre Dame</td>
             <td>School of Architecture</td>
             <td>Steven Semes; Paul Kapp</td>
-            <td>nan</td>
+            <td>-</td>
             <td><a href="https://architecture.nd.edu/academics/graduate-programs/m-s-historic-preservation/" target="_blank">Program Link</a></td><td>N/A</td></tr>
     </tbody>
 </table>
