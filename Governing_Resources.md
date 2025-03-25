@@ -9,12 +9,13 @@ status: category
 >
 <details>
   <summary>
-    <h3 style="color:rgba(182, 18, 18, 0.48); font-weight: bold; display: inline;">
+    <h3 style="color:#661313; font-weight: bold; display: inline;">
       National Register of Historic Places
     </h3>
   </summary>
 
-  <p><strong>Managed By:</strong><br>National Park Service</p>
+  <p><strong>Managed By:</strong><br>
+  National Park Service</p>
 
   <p><strong>What it Covers:</strong></p>
   <ol>
@@ -30,12 +31,11 @@ status: category
   </ol>
 
   <p><strong>Financial Assistance:</strong><br>
-    Federal Historic Preservation Tax Credit: 20% credit for income-producing properties undergoing substantial rehabilitation.
-  </p>
+  Federal Historic Preservation Tax Credit: 20% credit for income-producing properties undergoing substantial rehabilitation.</p>
 
   <p><strong>How to Apply:</strong><br>
-    <a href="https://www.google.com/url?q=https://www.nps.gov/subjects/nationalregister/upload/NPS-Form-10-900-NRHP-RegistrationForm-2023-2026_508.docx&sa=D&source=editors&ust=1742347509749720&usg=AOvVaw1eTUB1ESJlq734GZWp12hv" target="_blank" style="color:rgba(182, 18, 18, 0.48);">NPS Form 10-900</a><br>
-    <a href="https://www.nps.gov/subjects/nationalregister/upload/NRB16A-Complete.pdf" target="_blank" style="color:rgba(182, 18, 18, 0.48);">Guide to Completing the Form</a>
+    <a href="https://www.nps.gov/subjects/nationalregister/upload/NPS-Form-10-900-NRHP-RegistrationForm-2023-2026_508.docx" target="_blank" style="color:#661313;">NPS Form 10-900</a><br>
+    <a href="https://www.nps.gov/subjects/nationalregister/upload/NRB16A-Complete.pdf" target="_blank" style="color:#661313;">Guide to Completing the Form</a>
   </p>
 
   <p><strong>Evaluation Criteria:</strong></p>
@@ -47,15 +47,15 @@ status: category
 
 <br>
 
-
 <details>
   <summary>
-    <h3 style="color:rgba(182, 18, 18, 0.48); font-weight: bold; display: inline;">
+    <h3 style="color:#661313; font-weight: bold; display: inline;">
       Chicago Landmark Designation
     </h3>
   </summary>
 
-  <p><strong>Managed By:</strong><br>Commission on Chicago Landmarks</p>
+  <p><strong>Managed By:</strong><br>
+  Commission on Chicago Landmarks</p>
 
   <p><strong>What it Covers:</strong></p>
   <ol>
@@ -64,17 +64,19 @@ status: category
   </ol>
 
   <p><strong>What it Doesn’t Cover:</strong></p>
-  <p>Owner consent is required for designation of religious properties used for worship.</p>
+  <ol>
+    <li>Owner consent is required for designation of religious properties used for worship.</li>
+  </ol>
 
   <p><strong>Financial Assistance:</strong></p>
-  <ul>
+  <ol>
     <li>Property Tax Assessment Freeze: For owner-occupied historic residences undergoing rehabilitation.</li>
     <li>Class L Property Tax Incentive: Reduces property tax assessment levels for designated commercial, industrial, or income-producing non-residential properties undergoing significant rehabilitation.</li>
-  </ul>
+  </ol>
 
   <p><strong>How to Apply:</strong><br>
-    <a href="https://www.chicago.gov/content/dam/city/depts/zlup/Historic_Preservation/Publications/Public_Suggestion_Form_rev2.pdf" target="_blank" style="color:rgba(182, 18, 18, 0.48);">Landmark Proposal Form</a><br>
-    <a href="https://www.chicago.gov/city/en/depts/dcd/supp_info/chicago_landmarks-publicationsandadditionalinformation.html" target="_blank" style="color:rgba(182, 18, 18, 0.48);">Additional Information</a>
+    <a href="https://www.chicago.gov/content/dam/city/depts/zlup/Historic_Preservation/Publications/Public_Suggestion_Form_rev2.pdf" target="_blank" style="color:#661313;">Landmark Proposal Form</a><br>
+    <a href="https://www.chicago.gov/city/en/depts/dcd/supp_info/chicago_landmarks-publicationsandadditionalinformation.html" target="_blank" style="color:#661313;">Additional Information</a>
   </p>
 
   <p><strong>Evaluation Criteria:</strong></p>
@@ -89,12 +91,13 @@ status: category
 
 <details>
   <summary>
-    <h3 style="color:rgba(182, 18, 18, 0.48); font-weight: bold; display: inline;">
+    <h3 style="color:#661313; font-weight: bold; display: inline;">
       Illinois State Historic Preservation Office (SHPO)
     </h3>
   </summary>
 
-  <p><strong>Managed By:</strong><br>Illinois Department of Natural Resources</p>
+  <p><strong>Managed By:</strong><br>
+  Illinois Department of Natural Resources</p>
 
   <p><strong>What it Covers:</strong></p>
   <ol>
@@ -102,19 +105,21 @@ status: category
     <li>Administration of state tax incentives for the rehabilitation of historic properties.</li>
   </ol>
 
-  <p><strong>What it Doesn’t Cover:</strong><br>
-  No regulatory authority over privately owned properties unless state or federal funds are involved.</p>
+  <p><strong>What it Doesn’t Cover:</strong></p>
+  <ol>
+    <li>No regulatory authority over privately owned properties unless state or federal funds are involved.</li>
+  </ol>
 
   <p><strong>Financial Assistance:</strong></p>
-  <ul>
+  <ol>
     <li>25% Illinois Historic Preservation Tax Credit: For qualified rehabilitation of income-producing historic properties.</li>
     <li>Property Tax Assessment Freeze: For owner-occupied historic residences undergoing rehabilitation.</li>
-  </ul>
+  </ol>
 
   <p><strong>How to Apply:</strong><br>
-    <a href="https://dnrhistoric.illinois.gov/content/dam/soi/en/web/dnrhistoric/preserve/siteassets/pages/places/preliminary-historic-district.pdf" target="_blank" style="color:rgba(182, 18, 18, 0.48);">Preliminary Application</a><br>
-    <a href="https://dnrhistoric.illinois.gov/content/dam/soi/en/web/dnrhistoric/preserve/siteassets/pages/places/how-to-complete-the-preliminary-form.pdf" target="_blank" style="color:rgba(182, 18, 18, 0.48);">Application Guide</a><br>
-    <a href="https://dnrhistoric.illinois.gov/content/dam/soi/en/web/dnrhistoric/documents/National%20Register%20Submittal%20Policy_2025.pdf" target="_blank" style="color:rgba(182, 18, 18, 0.48);">GIS Support</a>
+    <a href="https://dnrhistoric.illinois.gov/content/dam/soi/en/web/dnrhistoric/preserve/siteassets/pages/places/preliminary-historic-district.pdf" target="_blank" style="color:#661313;">Preliminary Application</a><br>
+    <a href="https://dnrhistoric.illinois.gov/content/dam/soi/en/web/dnrhistoric/preserve/siteassets/pages/places/how-to-complete-the-preliminary-form.pdf" target="_blank" style="color:#661313;">Application Guide</a><br>
+    <a href="https://dnrhistoric.illinois.gov/content/dam/soi/en/web/dnrhistoric/documents/National%20Register%20Submittal%20Policy_2025.pdf" target="_blank" style="color:#661313;">GIS Support</a>
   </p>
 
   <p><strong>Evaluation Criteria:</strong></p>
@@ -128,12 +133,13 @@ status: category
 
 <details>
   <summary>
-    <h3 style="color:rgba(182, 18, 18, 0.48); font-weight: bold; display: inline;">
+    <h3 style="color:#661313; font-weight: bold; display: inline;">
       Chicago Historic Resources Survey (CHRS)
     </h3>
   </summary>
 
-  <p><strong>Managed By:</strong><br>City of Chicago</p>
+  <p><strong>Managed By:</strong><br>
+  City of Chicago</p>
 
   <p><strong>What it Covers:</strong></p>
   <ol>
@@ -142,30 +148,34 @@ status: category
     <li>City of Chicago’s Demolition-Delay Ordinance, which initiates a 90 day review period for "red" and "orange" properties to determine Landmark eligibility.</li>
   </ol>
 
-  <p><strong>What it Doesn’t Cover:</strong><br>
-  Properties that were newer than 40 years at time of survey, as well as "green" and "blue" properties (about 14,000) determined to be less significant.</p>
+  <p><strong>What it Doesn’t Cover:</strong></p>
+  <ol>
+    <li>Properties that were newer than 40 years at time of survey.</li>
+    <li>"Green" and "blue" properties, i.e., those determined to be less significant at time of survey (~14,000 properties).</li>
+  </ol>
 
-  <p><strong>Financial Assistance:</strong><br>–</p>
+  <p><strong>Financial Assistance:</strong><br>
+  –</p>
 
   <p><strong>How to Apply:</strong><br>
-    <a href="https://webapps1.chicago.gov/landmarksweb/web/historicfaq.htm" target="_blank" style="color:rgba(182, 18, 18, 0.48);">Searchable Online Database</a>
+    <a href="https://webapps1.chicago.gov/landmarksweb/web/historicfaq.htm" target="_blank" style="color:#661313;">Searchable Online Database</a>
   </p>
 
   <p><strong>Evaluation Criteria:</strong><br>
-  Significance Ratings: Properties are categorized based on their historical and architectural importance, guiding future preservation efforts.
-  </p>
+  Significance Ratings: Properties are categorized based on their historical and architectural importance, guiding future preservation efforts.</p>
 </details>
 
 <br>
 
 <details>
   <summary>
-    <h3 style="color:rgba(182, 18, 18, 0.48); font-weight: bold; display: inline;">
+    <h3 style="color:#661313; font-weight: bold; display: inline;">
       Mural Registry
     </h3>
   </summary>
 
-  <p><strong>Managed By:</strong><br>Department of Cultural Affairs & Special Events (DCASE)</p>
+  <p><strong>Managed By:</strong><br>
+  Department of Cultural Affairs & Special Events (DCASE)</p>
 
   <p><strong>What it Covers:</strong></p>
   <ol>
@@ -174,15 +184,16 @@ status: category
   </ol>
 
   <p><strong>What it Doesn’t Cover:</strong></p>
-  <ul>
+  <ol>
     <li>No financial assistance for the creation or maintenance of murals.</li>
     <li>No protection from alteration or destruction (the registry is primarily for documentation and recognition).</li>
-  </ul>
+  </ol>
 
-  <p><strong>Financial Assistance:</strong><br>–</p>
+  <p><strong>Financial Assistance:</strong><br>
+  –</p>
 
   <p><strong>How to Apply:</strong><br>
-    <a href="https://www.surveymonkey.com/r/95FYR9C" target="_blank" style="color:rgba(182, 18, 18, 0.48);">Online Application</a>
+    <a href="https://www.surveymonkey.com/r/95FYR9C" target="_blank" style="color:#661313;">Online Application</a>
   </p>
 
   <p><strong>Evaluation Criteria:</strong></p>
@@ -196,12 +207,13 @@ status: category
 
 <details>
   <summary>
-    <h3 style="color:rgba(182, 18, 18, 0.48); font-weight: bold; display: inline;">
+    <h3 style="color:#661313; font-weight: bold; display: inline;">
       Landmarks Illinois
     </h3>
   </summary>
 
-  <p><strong>Managed By:</strong><br>Nonprofit Organization</p>
+  <p><strong>Managed By:</strong><br>
+  Nonprofit Organization</p>
 
   <p><strong>What it Covers:</strong></p>
   <ol>
@@ -209,15 +221,15 @@ status: category
     <li>Educational programs and technical assistance to support preservation efforts.</li>
   </ol>
 
-  <p><strong>What it Doesn’t Cover:</strong><br>–</p>
+  <p><strong>What it Doesn’t Cover:</strong><br>
+  –</p>
 
   <p><strong>Financial Assistance:</strong><br>
-  Preservation Heritage Fund Grants: Financial support for significant structures or sites under threat, in need of stabilization, or requiring structural or reuse evaluation.
-  </p>
+  Preservation Heritage Fund Grants: Financial support for significant structures or sites under threat, in need of stabilization, or requiring structural or reuse evaluation.</p>
 
   <p><strong>How to Apply:</strong><br>
-    <a href="https://landmarksillinois.submittable.com/submit/302680/preservation-heritage-fund" target="_blank" style="color:rgba(182, 18, 18, 0.48);">Online Submission</a><br>
-    <a href="https://www.landmarks.org/wp-content/uploads/2022/08/GUIDELINES_PreservationHeritageFund.pdf" target="_blank" style="color:rgba(182, 18, 18, 0.48);">Submission Criteria</a>
+    <a href="https://landmarksillinois.submittable.com/submit/302680/preservation-heritage-fund" target="_blank" style="color:#661313;">Online Submission</a><br>
+    <a href="https://www.landmarks.org/wp-content/uploads/2022/08/GUIDELINES_PreservationHeritageFund.pdf" target="_blank" style="color:#661313;">Submission Criteria</a>
   </p>
 
   <p><strong>Evaluation Criteria:</strong></p>
