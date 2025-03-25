@@ -9,7 +9,7 @@ status: category
 >
 <details>
   <summary>
-    <h3 style="color:#661313; font-weight: bold; display: inline;">
+    <h3 style="color:#661313; font-weight: normal; display: inline;">
       National Register of Historic Places
     </h3>
   </summary>
