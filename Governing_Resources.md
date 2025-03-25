@@ -5,41 +5,33 @@ status: category
 ---
 
 <details>
-<summary><strong>National Register of Historic Places</strong></summary>
+  <summary><strong>National Register of Historic Places</strong></summary>
+  <p><strong>Managed By:</strong><br>National Park Service</p>
 
----
+  <p><strong>What it Covers:</strong><br>
+    1. Federal recognition of properties significant in American history, architecture, archaeology, engineering, or culture.<br>
+    2. Access to federal tax credits for the rehabilitation of income-producing historic properties.<br>
+    3. Section 106 Review: Required for federally funded projects affecting historic properties.
+  </p>
 
-**Managed By:**  
-National Park Service
+  <p><strong>What it Doesn’t Cover:</strong><br>
+    1. No direct control over private property.<br>
+    2. Listing does not prevent demolition or alterations.
+  </p>
 
----
+  <p><strong>Financial Assistance:</strong><br>
+    Federal Historic Preservation Tax Credit: 20% credit for income-producing properties undergoing substantial rehabilitation.
+  </p>
 
-**What it Covers:**  
-1. Federal recognition of properties significant in American history, architecture, archaeology, engineering, or culture  
-2. Access to federal tax credits for the rehabilitation of income-producing historic properties  
-3. Section 106 Review: Required for federally funded projects affecting historic properties
+  <p><strong>How to Apply:</strong><br>
+    <a href="https://www.nps.gov/subjects/nationalregister/upload/NPS-Form-10-900-NRHP-RegistrationForm-2023-2026_508.docx" target="_blank">NPS Form 10-900</a><br>
+    <a href="https://www.nps.gov/subjects/nationalregister/upload/NRB16A-Complete.pdf" target="_blank">Guide to Completing the Form</a>
+  </p>
 
----
-
-**What it Doesn’t Cover:**  
-1. No direct control over private property  
-2. Listing does not prevent demolition or alterations
-
----
-
-**Financial Assistance:**  
-Federal Historic Preservation Tax Credit: 20% credit for income-producing properties undergoing substantial rehabilitation
-
----
-
-**How to Apply:**  
-- [NPS Form 10-900](https://www.nps.gov/subjects/nationalregister/upload/NPS-Form-10-900-NRHP-RegistrationForm-2023-2026_508.docx)  
-- [Guide to Completing the Form](https://www.nps.gov/subjects/nationalregister/upload/NRB16A-Complete.pdf)
-
----
-
-**Evaluation Criteria:**  
-1. **Significance**: Association with historical events, activities, or developments; significant persons; distinctive architectural characteristics; or potential to provide important information about prehistory or history  
-2. **Integrity**: Preservation of location, design, setting, materials, workmanship, feeling, and association
-
+  <p><strong>Evaluation Criteria:</strong><br>
+    1. <strong>Significance:</strong> Association with historical events, activities, or developments; significant persons; distinctive architectural characteristics; or potential to provide important information about prehistory or history.<br>
+    2. <strong>Integrity:</strong> Preservation of location, design, setting, materials, workmanship, feeling, and association.
+  </p>
 </details>
+
+
