@@ -371,6 +371,31 @@ display: inline-block;
   }
 }
 
+@media (max-width: 768px) {
+  .menu-button,
+  #choose {
+    padding: 10px;
+    font-size: 14px;
+    right: 10px;
+    z-index: 999;
+  }
+
+  .dropdown-content {
+    position: fixed;
+    top: auto;
+    bottom: 60px;
+    right: 10px;
+    width: 80vw;
+    z-index: 999;
+  }
+
+  .dropdown-content a {
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+}
+
+
 /* Liquid attributes */
 .caption {
   font-family: 'EB Garamond', serif;
