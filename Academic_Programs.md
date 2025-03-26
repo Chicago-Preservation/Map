@@ -98,7 +98,7 @@ For a broader listing of educational opportunities, including certificate and co
             <td>Weitzman School of Design</td>
             <td><a href="https://www.design.upenn.edu/people/francesca-russello-ammon" target="_blank">Francesca Russello Ammon</a></td>
             <td>-</td>
-            <td><a href="https://www.design.upenn.edu/city-regional-planning/hbe" target="_blank">Program Link</a></td><td>N/A</td></tr>
+            <td><a href="https://www.design.upenn.edu/city-regional-planning/hbe" target="_blank">Program Link</a></td><td>-</td></tr>
         <tr class="hiddenRow">
             <td>MS in Historic Preservation; Undergraduate minor</td>
             <td>University of Oregon</td>
@@ -120,7 +120,7 @@ from a Preservation Perspective</td>
             <td>Graduate school</td>
             <td><a href="https://arch.umd.edu/people/rhonda-sincavage" target="_blank">Rhonda Sincavage</a>; <a href="https://arch.umd.edu/people/frederick-stachura" target="_blank">Frederick Stachura</a></td>
             <td>Preservation Policy and Planning; Historic Preservation Professional Practice; Historic Preservation Studio Workshop; Historic Preservation Law</td>
-            <td><a href="https://academiccatalog.umd.edu/graduate/programs/historic-preservation-real-estate-development-hpdv/historic-preservation-real-estate-development-dual-degree-mhp-mred/" target="_blank">Program Link</a></td><td>N/A</td></tr>
+            <td><a href="https://academiccatalog.umd.edu/graduate/programs/historic-preservation-real-estate-development-hpdv/historic-preservation-real-estate-development-dual-degree-mhp-mred/" target="_blank">Program Link</a></td><td>-</td></tr>
         <tr class="hiddenRow">
             <td>Historic Preservation, MS</td>
             <td>Pratt College</td>
@@ -135,21 +135,21 @@ from a Preservation Perspective</td>
             <td>-</td>
             <td>-</td>
             <td><a href="https://explore.the-bac.edu/historic-preservation-philosophy-and-practice" target="_blank">Historic Preservation Philosophy and Practice</a>; <a href="https://explore.the-bac.edu/adaptive-reuse-and-development-process" target="_blank">Adaptive Reuse and Development Process</a></td>
-            <td><a href="https://the-bac.edu/continuing-education/certificates/historic-preservation-certificate" target="_blank">Program Link</a></td><td>N/A</td></tr>
+            <td><a href="https://the-bac.edu/continuing-education/certificates/historic-preservation-certificate" target="_blank">Program Link</a></td><td>-</td></tr>
         <tr class="hiddenRow">
             <td>Diploma in Heritage Conservation</td>
             <td>Willowbank School of Restoration Arts</td>
             <td>-</td>
             <td><a href="https://www.willowbank.ca/faculty/ashleigh-bell" target="_blank">Ashleigh Bell</a>; <a href="https://www.willowbank.ca/faculty/alex-blades" target="_blank">Alex Blades</a></td>
             <td>History of Architecture; Window Conservation; Heritage Project Management</td>
-            <td><a href="https://www.willowbank.ca/" target="_blank">Program Link</a></td><td>N/A</td></tr>
+            <td><a href="https://www.willowbank.ca/" target="_blank">Program Link</a></td><td>-</td></tr>
         <tr class="hiddenRow">
             <td>Master of Science in Historic Preservation</td>
             <td>Notre Dame</td>
             <td>School of Architecture</td>
             <td><a href="https://architecture.nd.edu/about/directory/semes/" target="_blank">Steven Semes</a>; <a href="https://architecture.nd.edu/about/directory/paul-kapp/" target="_blank">Paul Kapp</a></td>
             <td>-</td>
-            <td><a href="https://architecture.nd.edu/academics/graduate-programs/m-s-historic-preservation/" target="_blank">Program Link</a></td><td>N/A</td></tr>
+            <td><a href="https://architecture.nd.edu/academics/graduate-programs/m-s-historic-preservation/" target="_blank">Program Link</a></td><td>-</td></tr>
     </tbody>
 </table>
 
