@@ -5,11 +5,11 @@ link: Academic-Programs
 status: category
 ---
 
-Preservation education plays a vital role in shaping the next generation of historians, architects, planners, and advocates working to protect our built heritage. Across the United States, universities and institutions offer degree programs, certificates, and specialized courses that provide training in preservation theory, policy, and practice.
+Preservation education plays a vital role in shaping the next generation of historians, architects, planners, and advocates dedicated to protecting our built heritage. Across the United States, universities and institutions offer degree programs, certificates, and specialized courses that provide training in preservation theory, policy, and practice.
 
-This page serves as a centralized database of academic programs, drawing from established resources to provide comprehensive information on preservation education. The National Council for Preservation Education (NCPE) maintains a regularly updated <a href="https://www.ncpe.us/graduate-historic-preservation-programs/"> database of historic preservation programs</a>.
+The table below highlights a selection of master’s programs, including key details such as course offerings, faculty, and affiliated departments. For a more comprehensive overview of preservation education programs, visit the regularly updated database maintained by the <a href="https://www.ncpe.us/graduate-historic-preservation-programs/"> National Council for Preservation Education (NCPE)</a>.
 
-
+For a broader listing of educational opportunities, including certificate and continuing education programs, visit <a href="https://www.preservationdirectory.com/preservationorganizationsresources/OrganizationListings.aspx?catid=8">PreservationDirectory.com</a>.
 
 <style>
     table {
@@ -57,7 +57,7 @@ This page serves as a centralized database of academic programs, drawing from es
             <td>Masters in Historic Preservation</td>
             <td>SAIC</td>
             <td>Department of Historic Preservation</td>
-            <td>Richard Friedman; Nicholas Lowe</td>
+            <td><a href="https://www.saic.edu/profiles/faculty/richard-friedman" target="_blank">Richard Friedman</a>; <a href="https://www.saic.edu/profiles/faculty/nicholas-lowe" target="_blank">Nicholas Lowe</a></td>
             <td>Preservation Law; Physical Documentation; Restoration Design Studio</td>
             <td><a href="https://www.saic.edu/historic-preservation" target="_blank">Program Link</a></td><td><a href="https://www.saic.edu/historic-preservation/people/projects" target="_blank">Projects</a></td></tr>
         <tr class="hiddenRow">
@@ -68,7 +68,7 @@ This page serves as a centralized database of academic programs, drawing from es
             <td>DCP 6710 History and Theory of Historic Preservation
             <a href="https://dcp.ufl.edu/wp-content/uploads/2019/07/DCP4000-Syllabus_Fall-2019_preliminary.pdf" target="_blank">[Syllabus]</a>
 
-DCP 6714 – Built Heritage Documentation
+; DCP 6714 – Built Heritage Documentation
 </td>
             <td><a href="https://dcp.ufl.edu/historic-preservation/" target="_blank">Program Link</a></td><td><a href="https://dcp.ufl.edu/historic-preservation/projects/" target="_blank">Projects</a></td></tr>
         <tr class="hiddenRow">
@@ -174,4 +174,3 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-For a broader overview of available educational programs, including certificates and continuing education opportunities, visit <a href="https://www.preservationdirectory.com/preservationorganizationsresources/OrganizationListings.aspx?catid=8">PreservationDirectory.com</a>.
