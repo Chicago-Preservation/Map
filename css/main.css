@@ -245,36 +245,60 @@ display: inline-block;
 
 /* Media */
 @media (max-width:768px) {
-    html {
-        font-size: 14px;
-    }
-    #map {
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 40vh;
-        width: 100vw;
-    }
-    .sidebar {
-        position: absolute;
-        left: 0;
-        top: 40vh;
-        height: 60vh;
-        width: 100vw
-    }
+  html {
+    font-size: 14px;
+  }
 
-	  div.wrapper {
-		    width: 100vw;
-		    height: 40vh;
-		    overflow: auto;
-	  }
+  #map {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 50vh; /* 🔄 CHANGED from 40vh */
+    width: 100vw;
+  }
 
-    .sub-menu, .menu-button {
-	     right: 0vw;
-	  }
-	#choose {
-	     bottom: 60vh;
-	  }
+  .sidebar {
+    position: absolute;
+    left: 0;
+    top: 50vh;  /* 🔄 CHANGED from 40vh */
+    height: 50vh; /* 🔄 CHANGED from 60vh */
+    width: 100vw;
+    overflow-y: auto; /* ✅ ADDED for scroll if needed */
+    padding-bottom: 1em; /* ✅ ADDED for spacing */
+    z-index: 2;
+  }
+
+  div#sidebar-content {
+    padding: 1em; /* ✅ ADDED for better spacing */
+  }
+
+  div.wrapper {
+    width: 100vw;
+    height: 50vh; /* 🔄 was 40vh */
+    overflow: auto;
+  }
+
+  .sub-menu, .menu-button {
+    right: 10px; /* 🔄 was 0vw */
+    z-index: 999;
+  }
+
+  #choose {
+    bottom: 50vh; /* 🔄 was 60vh */
+  }
+
+  .dropdown-content {
+    position: fixed;
+    bottom: 60px;
+    right: 10px;
+    width: 80vw;
+    z-index: 999;
+  }
+
+  .dropdown-content a {
+    font-size: 14px;
+    padding: 10px 15px;
+  }
 }
 
 @media (min-width:768px) and (max-width:1100px) {
@@ -371,29 +395,6 @@ display: inline-block;
   }
 }
 
-@media (max-width: 768px) {
-  .menu-button,
-  #choose {
-    padding: 10px;
-    font-size: 14px;
-    right: 10px;
-    z-index: 999;
-  }
-
-  .dropdown-content {
-    position: fixed;
-    top: auto;
-    bottom: 60px;
-    right: 10px;
-    width: 80vw;
-    z-index: 999;
-  }
-
-  .dropdown-content a {
-    font-size: 14px;
-    padding: 10px 15px;
-  }
-}
 
 
 /* Liquid attributes */
