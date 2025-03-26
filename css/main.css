@@ -258,23 +258,18 @@ display: inline-block;
   }
 
   .sidebar {
-    display: none; 
     position: absolute;
     left: 0;
-    top: 50vh;
-    height: 50vh;
+    top: 50vh;  /* 🔄 CHANGED from 40vh */
+    height: 50vh; /* 🔄 CHANGED from 60vh */
     width: 100vw;
-    overflow-y: auto;
-    padding-bottom: 1em;
+    overflow-y: auto; /* ✅ ADDED for scroll if needed */
+    padding-bottom: 1em; /* ✅ ADDED for spacing */
     z-index: 2;
-    background-color: #767676;
-    transition: all 0.3s ease;
   }
+
   
-  .sidebar.active {
-    display: block;
-  }
-  
+
   div#sidebar-content {
     padding: 1em; /* ✅ ADDED for better spacing */
   }
