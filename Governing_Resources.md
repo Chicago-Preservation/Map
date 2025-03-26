@@ -9,7 +9,7 @@ status: category
 >
 <details>
   <summary>
-    <h3 style="color:#661313; font-weight: Bold; display: inline;">
+    <h3 style="color:rgb(128,0,0); font-weight: Bold; display: inline;">
       National Register of Historic Places
     </h3>
   </summary>
@@ -49,7 +49,7 @@ status: category
 
 <details>
   <summary>
-    <h3 style="color:#661313; font-weight: bold; display: inline;">
+    <h3 style="color:rgb(128,0,0); font-weight: bold; display: inline;">
       Chicago Landmark Designation
     </h3>
   </summary>
@@ -91,7 +91,7 @@ status: category
 
 <details>
   <summary>
-    <h3 style="color:#661313; font-weight: bold; display: inline;">
+    <h3 style="color:rgb(128,0,0); font-weight: bold; display: inline;">
       Illinois State Historic Preservation Office (SHPO)
     </h3>
   </summary>
@@ -133,7 +133,7 @@ status: category
 
 <details>
   <summary>
-    <h3 style="color:#661313; font-weight: bold; display: inline;">
+    <h3 style="color:rgb(128,0,0); font-weight: bold; display: inline;">
       Chicago Historic Resources Survey (CHRS)
     </h3>
   </summary>
@@ -169,7 +169,7 @@ status: category
 
 <details>
   <summary>
-    <h3 style="color:#661313; font-weight: bold; display: inline;">
+    <h3 style="color:rgb(128,0,0); font-weight: bold; display: inline;">
       Mural Registry
     </h3>
   </summary>
@@ -207,7 +207,7 @@ status: category
 
 <details>
   <summary>
-    <h3 style="color:#661313; font-weight: bold; display: inline;">
+    <h3 style="color:rgb(128,0,0); font-weight: bold; display: inline;">
       Landmarks Illinois
     </h3>
   </summary>
