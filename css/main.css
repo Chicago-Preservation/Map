@@ -253,7 +253,7 @@ display: inline-block;
     position: absolute;
     left: 0;
     top: 0;
-    height: 50vh; /* 🔄 CHANGED from 40vh */
+    height: 50vh;
     width: 100vw;
   }
 
@@ -298,6 +298,12 @@ display: inline-block;
   .dropdown-content a {
     font-size: 14px;
     padding: 10px 15px;
+  }
+
+  .leaflet-control-layers {
+    top: 10px !important;
+    left: 10px !important;
+    right: auto !important;
   }
 }
 
