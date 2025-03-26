@@ -21,7 +21,6 @@ permalink: /Inquiries-and-contributions/
 
 <p>We are always looking to expand and refine our understanding. If you have a new dataset, historical insight, or a document that could add value to our work, we’d love to hear from you.</p>
 
-<!-- Embedded Google Form -->
 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeFJ2QOwwp7uJlxd9KDesjl4Bqiwz_noEjQ9z_yxzLKpAD4ww/viewform?embedded=true" 
         width="100%" 
         height="800px" 

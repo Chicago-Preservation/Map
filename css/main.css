@@ -290,6 +290,7 @@ display: inline-block;
   }
 
   .dropdown-content {
+    display: none;
     position: fixed;
     bottom: 60px;
     right: 10px;
