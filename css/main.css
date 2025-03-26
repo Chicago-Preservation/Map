@@ -258,12 +258,7 @@ display: inline-block;
   }
 
   .sidebar {
-    display: none;
-    transition: all 0.3s ease;
-  }
-
-  .sidebar.active {
-    display: block;
+    display: none; 
     position: absolute;
     left: 0;
     top: 50vh;
@@ -272,9 +267,14 @@ display: inline-block;
     overflow-y: auto;
     padding-bottom: 1em;
     z-index: 2;
-    background-color: #767676; /* ensure it's visible */
+    background-color: #767676;
+    transition: all 0.3s ease;
   }
-
+  
+  .sidebar.active {
+    display: block;
+  }
+  
   div#sidebar-content {
     padding: 1em; /* ✅ ADDED for better spacing */
   }
