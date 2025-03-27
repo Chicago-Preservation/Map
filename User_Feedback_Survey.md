@@ -5,7 +5,7 @@ permalink: /User-feedback-survey/
 ---
 
 <p>
-  <strong>We’re committed to making Mapping Chicago Preservation a valuable and evolving resource.</strong> We recognize that digital platforms require ongoing maintenance, updates, and sustainable infrastructure, yet resources for long-term preservation and accessibility remain a challenge across digital humanities initiatives. While we strive to maintain accuracy and relevance, this platform is a work in progress. Some datasets may be incomplete or require updates over time, and we welcome feedback, collaboration, and contributions to enhance the project’s longevity.
+  <strong>We’re committed to making Mapping Chicago Preservation a valuable and evolving resource.</strong> We recognize that digital platforms require ongoing maintenance, updates, and sustainable infrastructure, yet resources for long-term preservation and accessibility remain a challenge across digital humanities initiatives. While we strive to maintain accuracy and relevance, this platform is a work in progress. 
 </p>
 
 <p>
@@ -18,5 +18,4 @@ permalink: /User-feedback-survey/
   </button>
 </a>
 
-<p>If you have additional questions, comments,  or contributions, please consider using our Inquiries/ Contributions Form(s).</p>
-
+<p>If you have additional questions, comments, or contributions, please consider using our Inquiries/ Contributions Form(s).</p>
