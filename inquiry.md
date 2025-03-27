@@ -19,15 +19,16 @@ permalink: /Inquiries-and-contributions/
 
 <h2>Contribute to Our Work</h2>
 
-<p>We are always looking to expand and refine our understanding. If you have a new dataset, historical insight, or a document that could add value to our work, we’d love to hear from you.</p>
+<p>
+  We are continually seeking to expand and refine our understanding of preservation in Chicago. If you have a dataset, historical insight, or relevant documentation that could support or enhance our work, we invite you to share it with us.
+</p>
 
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeFJ2QOwwp7uJlxd9KDesjl4Bqiwz_noEjQ9z_yxzLKpAD4ww/viewform?embedded=true" 
-        width="100%" 
-        height="800px" 
-        frameborder="0" 
-        marginheight="0" 
-        marginwidth="0">
-    Loading…
-</iframe>
+<p>
+  Contributions may include, but are not limited to, archival records, research data, community histories, or references to underrepresented landmarks. Your submission will be reviewed by our team, and we may follow up to discuss how your contribution can be integrated into the platform.
+</p>
 
-<p>Your submission is greatly valued. We will reach out to you to discuss potential next steps if necessary.</p>
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSeFJ2QOwwp7uJlxd9KDesjl4Bqiwz_noEjQ9z_yxzLKpAD4ww/viewform?embedded=true" target="_blank">
+  <button style="padding: 10px 20px; background-color: #800000; color: white; border: none; border-radius: 5px;">
+    Submit a Contribution
+  </button>
+</a>
