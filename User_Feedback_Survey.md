@@ -13,7 +13,7 @@ permalink: /User-feedback-survey/
 </p>
 
 <a href="https://docs.google.com/forms/d/e/1FAIpQLSc89UZV9ghgWuaKlfHL_zgEu-t0Nr-zLdx0_r7EZo_QxNtYGw/viewform?usp=header" target="_blank">
-  <button style="padding: 10px 20px; background-color: #800000; color: white; border: none; border-radius: 5px;">
+  <button style="padding: 10px 20px; background-color: rgb(128,0,0); color: white; border: none; border-radius: 5px;">
     Submit your feedback here!
   </button>
 </a>
