@@ -28,7 +28,7 @@ permalink: /Inquiries-and-contributions/
 </p>
 
 <a href="https://docs.google.com/forms/d/e/1FAIpQLSeFJ2QOwwp7uJlxd9KDesjl4Bqiwz_noEjQ9z_yxzLKpAD4ww/viewform?embedded=true" target="_blank">
-  <button style="padding: 10px 20px; background-color: #800000; color: white; border: none; border-radius: 5px;">
-    Submit a Contribution
+  <button style="padding: 10px 20px; background-color:rgb(128,0,0); color: white; border: none; border-radius: 5px;">
+    Submit a Contribution here!
   </button>
 </a>
