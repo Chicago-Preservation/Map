@@ -203,8 +203,9 @@ ul {
     position: absolute;
     display: inline-block;
 }
+
 .menu-button.circle {
-	border-radius: 100%;
+	border-radius: 50%;
 }
 
 .dropdown-content {
@@ -259,6 +260,9 @@ display: inline-block;
   }
 
   /* Keep sidebar always visible */
+
+  
+
   .sidebar {
     position: absolute;
     left: 0;
@@ -315,6 +319,10 @@ display: inline-block;
   /* Show map layers when checkbox is checked */
   #toggle-map:checked ~ .leaflet-control-layers {
     display: block;
+  }
+
+  .menu-button {
+    display = none;
   }
 }
 
