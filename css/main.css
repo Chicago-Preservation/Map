@@ -260,7 +260,7 @@ display: inline-block;
 
   /* Hide sidebar and map layers by default */
   .sidebar, .map-layers {
-    position: hidden;
+    position: hidden; /* might be absolute, can change  */ 
     left: 0;
     top: 50vh;
     height: 10vh;
@@ -272,7 +272,6 @@ display: inline-block;
   }
 
   /* Toggle visibility when checkbox is checked */
-  #toggle-sidebar:checked ~ .sidebar,
   #toggle-map:checked ~ .map-layers {
     display: block;
   }
