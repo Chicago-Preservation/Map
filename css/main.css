@@ -319,8 +319,8 @@ display: inline-block;
   #toggle-map:checked ~ .leaflet-control-layers {
     display: block;
   }
-
-  .circle-content {
+ 
+  .dropdown-content {  
     display: none;
   }
 }
