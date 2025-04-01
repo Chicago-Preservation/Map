@@ -12,6 +12,7 @@ body {
   padding:0;
 }
 
+
 html {
   font-family: 'EB Garamond', serif;
   color: #ffffff;
@@ -244,7 +245,7 @@ display: inline-block;
 }
 
 /* Media */
-@media (max-width:768px) {
+@media (max-width: 768px) {
   html {
     font-size: 14px;
   }
@@ -257,58 +258,48 @@ display: inline-block;
     width: 100vw;
   }
 
-  .sidebar {
+  /* Hide sidebar and map layers by default */
+  .sidebar, .map-layers {
     position: absolute;
     left: 0;
-    top: 50vh;  /* 🔄 CHANGED from 40vh */
-    height: 50vh; /* 🔄 CHANGED from 60vh */
+    top: 50vh;
+    height: 50vh;
     width: 100vw;
-    overflow-y: auto; /* ✅ ADDED for scroll if needed */
-    padding-bottom: 1em; /* ✅ ADDED for spacing */
+    overflow-y: auto;
+    padding-bottom: 1em;
     z-index: 2;
+    display: none; /* Initially hidden */
   }
 
-  
-
-  div#sidebar-content {
-    padding: 1em; /* ✅ ADDED for better spacing */
+  /* Toggle visibility when checkbox is checked */
+  #toggle-sidebar:checked ~ .sidebar,
+  #toggle-map:checked ~ .map-layers {
+    display: block;
   }
 
-  div.wrapper {
-    width: 100vw;
-    height: 50vh; /* 🔄 was 40vh */
-    overflow: auto;
-  }
-
-  .sub-menu, .menu-button {
-    right: 10px; /* 🔄 was 0vw */
-    z-index: 999;
-  }
-
-  #choose {
-    bottom: 50vh; /* 🔄 was 60vh */
-  }
-
-  .dropdown-content {
-    display: none;
+  /* Style for the toggle buttons */
+  label.toggle-button, label.toggle-map {
     position: fixed;
-    bottom: 60px;
-    right: 10px;
-    width: 80vw;
-    z-index: 999;
+    top: 10px;
+    left: 10px;
+    background-color: #800000;
+    color: white;
+    padding: 0.5em;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
   }
 
-  .dropdown-content a {
-    font-size: 14px;
-    padding: 10px 15px;
+  label.toggle-map {
+    top: 60px; /* Position below the first button */
   }
 
-  .leaflet-control-layers {
-    top: 10px !important;
-    left: 10px !important;
-    right: auto !important;
+  /* Hide the checkboxes themselves */
+  #toggle-sidebar, #toggle-map {
+    display: none;
   }
 }
+
 
 @media (min-width:768px) and (max-width:1100px) {
     html {
