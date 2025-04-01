@@ -263,8 +263,8 @@ display: inline-block;
     position: absolute;
     left: 0;
     top: 50vh;
-    height: 50vh;
-    width: 100vw;
+    height: 25vh;
+    width: 50vw;
     overflow-y: auto;
     padding-bottom: 1em;
     z-index: 2;
@@ -309,8 +309,6 @@ display: inline-block;
     display: block;
   }
 }
-
-
 
 @media (min-width:768px) and (max-width:1100px) {
     html {
