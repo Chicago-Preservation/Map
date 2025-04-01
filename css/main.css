@@ -266,7 +266,7 @@ display: inline-block;
     position: absolute;
     left: 0;
     top: 50vh;
-    height: 50vh; /* Adjust as needed */
+    height: auto;
     width: 100vw;
     overflow-y: auto;
     padding-bottom: 0;
@@ -284,7 +284,7 @@ display: inline-block;
     overflow-y: auto;
     padding-bottom: 1em;
     z-index: 2;
-    display: none; /* Initially hidden for mobile */
+    display: none;
   }
 
   /* Toggle visibility when map checkbox is checked */
