@@ -322,7 +322,7 @@ display: inline-block;
   }
 
   .menu-button {
-    display = none;
+    display: none;
   }
 }
 
