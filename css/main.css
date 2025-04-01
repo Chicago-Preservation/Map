@@ -168,6 +168,7 @@ ul {
   font-variant: small-caps;
 }
 
+
 /* Menus */
 .circle-content {
 	transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -261,8 +262,6 @@ display: inline-block;
 
   /* Keep sidebar always visible */
 
-  
-
   .sidebar {
     position: absolute;
     left: 0;
@@ -272,7 +271,7 @@ display: inline-block;
     overflow-y: auto;
     padding-bottom: 1em;
     z-index: 2;
-    display: block; /* Always show the sidebar */
+    display: block;
   }
 
   /* Map Layers Toggle */
@@ -321,7 +320,7 @@ display: inline-block;
     display: block;
   }
 
-  .menu-button {
+  .circle-content {
     display: none;
   }
 }
