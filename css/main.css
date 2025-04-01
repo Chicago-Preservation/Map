@@ -268,7 +268,7 @@ display: inline-block;
     overflow-y: auto;
     padding-bottom: 1em;
     z-index: 2;
-    display: none; /* Initially hidden on mobile */
+    display: none;
   }
 
   /* Toggle visibility when checkbox is checked */
@@ -299,16 +299,17 @@ display: inline-block;
     display: none;
   }
 
-  /* Map Layers Visibility for Mobile */
+  /* Map Layers Visibility */
   .leaflet-control-layers {
-    display: none; /* Hidden by default on mobile */
+    display: none;
   }
 
   /* Show map layers when checkbox is checked */
   #toggle-map:checked ~ .leaflet-control-layers {
-    display: block !important;
+    display: block;
   }
 }
+
 
 
 @media (min-width:768px) and (max-width:1100px) {
