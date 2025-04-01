@@ -267,6 +267,7 @@ display: inline-block;
     left: 0;
     top: 50vh;
     height: auto;
+    max-height: 50vh;
     width: 100vw;
     overflow-y: auto;
     padding-bottom: 0;
