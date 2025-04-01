@@ -260,11 +260,11 @@ display: inline-block;
 
   /* Hide sidebar and map layers by default */
   .sidebar, .map-layers {
-    position: absolute;
+    position: hidden;
     left: 0;
     top: 50vh;
-    height: 25vh;
-    width: 50vw;
+    height: 10vh;
+    width: 25vw;
     overflow-y: auto;
     padding-bottom: 1em;
     z-index: 2;
