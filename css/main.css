@@ -258,28 +258,41 @@ display: inline-block;
     width: 100vw;
   }
 
-  /* Hide sidebar and map layers by default */
-  .sidebar, .map-layers {
-    position: hidden; /* might be absolute, can change  */ 
+  /* Keep sidebar always visible */
+  .sidebar {
+    position: absolute;
     left: 0;
     top: 50vh;
-    height: 10vh;
-    width: 25vw;
+    height: 50vh; /* Adjust as needed */
+    width: 100vw;
     overflow-y: auto;
     padding-bottom: 1em;
     z-index: 2;
-    display: none;
+    display: block; /* Always show the sidebar */
   }
 
-  /* Toggle visibility when checkbox is checked */
+  /* Map Layers Toggle */
+  .map-layers {
+    position: absolute;
+    left: 0;
+    top: 50vh;
+    height: 50vh;
+    width: 100vw;
+    overflow-y: auto;
+    padding-bottom: 1em;
+    z-index: 2;
+    display: none; /* Initially hidden for mobile */
+  }
+
+  /* Toggle visibility when map checkbox is checked */
   #toggle-map:checked ~ .map-layers {
     display: block;
   }
 
-  /* Style for the toggle buttons */
-  label.toggle-button, label.toggle-map {
+  /* Style for the toggle button */
+  label.toggle-map {
     position: fixed;
-    top: 10px;
+    top: 60px;
     left: 10px;
     background-color: #800000;
     color: white;
@@ -289,12 +302,8 @@ display: inline-block;
     z-index: 1000;
   }
 
-  label.toggle-map {
-    top: 60px; /* Position below the first button */
-  }
-
-  /* Hide the checkboxes themselves */
-  #toggle-sidebar, #toggle-map {
+  /* Hide the map checkbox itself */
+  #toggle-map {
     display: none;
   }
 
@@ -308,6 +317,7 @@ display: inline-block;
     display: block;
   }
 }
+
 
 @media (min-width:768px) and (max-width:1100px) {
     html {
