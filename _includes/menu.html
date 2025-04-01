@@ -1,104 +1,129 @@
 <div class="{{site.menu-type}}">
-  <button class="menu-button {{site.menu-type}}" onclick="{{site.menu-type}}toggle()"><i class="fa fa-bars" aria-hidden="true"></i></button>
-      <div class="{{site.menu-type}}-content sub-menu" onclick="{{site.menu-type}}toggle()">
-        <div class="menu-links">
-          <a class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></a>
-      
-          {% assign sorted_pages = site.pages | sort: "url" %}
-      
-          <!-- Move home.md to the top -->
-          {% for page in sorted_pages %}
-              {% if page.path contains 'home.md' %}
-                  <a href="{{site.baseurl}}/#{{page.url}}" onclick="onClick('{{page.url}}')" class="menu-link">{{page.title}}</a>
-              {% endif %}
-          {% endfor %}
-      
-          <!-- Add remaining pages dynamically (excluding home.md) -->
-          {% for page in sorted_pages %}
-              {% if page.path contains 'home.md' or site.exclude_pages contains page.path or page.path contains 'css' %}
-                  {% continue %}
-              {% else %}
-                  <a href="{{site.baseurl}}/#{{page.url}}" onclick="onClick('{{page.url}}')" class="menu-link">{{page.title}}</a>
-              {% endif %}
-          {% endfor %}
+    <!-- Main Menu Button -->
+    <button class="menu-button {{site.menu-type}}" onclick="{{site.menu-type}}toggle()">
+      <i class="fa fa-bars" aria-hidden="true"></i>
+    </button>
+  
+    <!-- Map Layers Toggle Button -->
+    <input type="checkbox" id="toggle-map-layers" hidden>
+    <label for="toggle-map-layers" class="toggle-map">Toggle Map Layers</label>
+  
+    <!-- Dropdown Menu Content -->
+    <div class="{{site.menu-type}}-content sub-menu" onclick="{{site.menu-type}}toggle()">
+      <div class="menu-links">
+        <a class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></a>
+  
+        {% assign sorted_pages = site.pages | sort: "url" %}
+        
+        <!-- Move home.md to the top -->
+        {% for page in sorted_pages %}
+            {% if page.path contains 'home.md' %}
+                <a href="{{site.baseurl}}/#{{page.url}}" onclick="onClick('{{page.url}}')" class="menu-link">{{page.title}}</a>
+            {% endif %}
+        {% endfor %}
+  
+        <!-- Add remaining pages dynamically (excluding home.md) -->
+        {% for page in sorted_pages %}
+            {% if page.path contains 'home.md' or site.exclude_pages contains page.path or page.path contains 'css' %}
+                {% continue %}
+            {% else %}
+                <a href="{{site.baseurl}}/#{{page.url}}" onclick="onClick('{{page.url}}')" class="menu-link">{{page.title}}</a>
+            {% endif %}
+        {% endfor %}
       </div>
-      
- </div>
- </div>
- 
- <script>
-   // Function to ensure dropdown is visible on page load
-   $(document).ready(function() {
-       $('.dropdown-content').css("display", 'block'); // Set dropdown to open by default
-   });
- 
-   function circletoggle() {
-       if ($('.circle-content').css("height") == '0px') {
-           $('.circle-content').css("height", '{{site.menu-height}}');
-           $('.circle-content').css("width", '{{site.menu-width}}');
-           $('.circle-content').css("opacity", '{{site.menu-opacity}}');
-           $('.menu-button').css("display", "none");
-       } else {
-           $('.circle-content').css("height", '0px');
-           $('.circle-content').css("width", '0px');
-           $('.circle-content').css("opacity", '0');
-           $('.menu-button').css("display", "inline-block");
-       }
-   }
- 
-   function dropdowntoggle() {
-       if ($('.dropdown-content').css("display") == 'none') {
-           $('.dropdown-content').css("display", 'block'); // Added missing semicolon
-       } else {
-           $('.dropdown-content').css("display", 'none'); // Added missing semicolon
-       }
-   }
- 
-   
-   function loadPage(event, url) {
-    if (event) event.preventDefault(); // Prevent full page reload
-
-    console.log("Loading page:", url); // Debugging
-
-    let contentDiv = document.getElementById("page-content"); // Target only the content
-    if (!contentDiv) {
-        console.error("Error: Page content div not found.");
-        return;
-    }
-
-    // Check if the user is clicking "Home"
-    if (url.includes("#/home")) {
-        console.log("Home button clicked. Loading home content...");
-
-        // Load home page content
-        fetch("{{site.baseurl}}/home.html") // Change to .md if needed
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.text();
-            })
-            .then(html => {
-                console.log("Home page loaded successfully!");
-                contentDiv.innerHTML = html; // Update only page content
-                window.location.hash = "/home"; // Ensure #/home is updated in the URL
-            })
-            .catch(error => console.error("Error loading home page:", error));
-
-        return; // Stop further execution
-    }
-
-    // Default behavior for other pages
-    fetch(url)
-        .then(response => response.text())
-        .then(html => {
-            console.log("Page loaded successfully!");
-            contentDiv.innerHTML = html; // Updates only the content section, NOT the map
-            history.pushState(null, '', url); // Update URL without refresh
-        })
-        .catch(error => console.error("Error loading page:", error));
-}
-
-
- </script>
- 
+    </div>
+  </div>
+  
+  <script>
+     // Function to ensure dropdown is visible on page load
+     $(document).ready(function() {
+         $('.dropdown-content').css("display", 'block'); // Set dropdown to open by default
+     });
+  
+     function circletoggle() {
+         if ($('.circle-content').css("height") == '0px') {
+             $('.circle-content').css("height", '{{site.menu-height}}');
+             $('.circle-content').css("width", '{{site.menu-width}}');
+             $('.circle-content').css("opacity", '{{site.menu-opacity}}');
+             $('.menu-button').css("display", "none");
+         } else {
+             $('.circle-content').css("height", '0px');
+             $('.circle-content').css("width", '0px');
+             $('.circle-content').css("opacity", '0');
+             $('.menu-button').css("display", "inline-block");
+         }
+     }
+  
+     function dropdowntoggle() {
+         if ($('.dropdown-content').css("display") == 'none') {
+             $('.dropdown-content').css("display", 'block');
+         } else {
+             $('.dropdown-content').css("display", 'none');
+         }
+     }
+  
+     // Toggle Map Layers Visibility
+     document.addEventListener("DOMContentLoaded", function() {
+         const mapLayersCheckbox = document.getElementById("toggle-map-layers");
+  
+         mapLayersCheckbox.addEventListener("change", function() {
+             const mapLayersControl = document.querySelector('.leaflet-control-layers');
+             if (mapLayersControl) {
+                 if (mapLayersCheckbox.checked) {
+                     mapLayersControl.style.display = "block";
+                 } else {
+                     mapLayersControl.style.display = "none";
+                 }
+             }
+         });
+  
+         // Set the initial state based on the checkbox
+         const mapLayersControl = document.querySelector('.leaflet-control-layers');
+         if (mapLayersControl) {
+             mapLayersControl.style.display = mapLayersCheckbox.checked ? "block" : "none";
+         }
+     });
+  
+     // Load page content without a full page reload
+     function loadPage(event, url) {
+         if (event) event.preventDefault();
+         console.log("Loading page:", url);
+  
+         let contentDiv = document.getElementById("page-content");
+         if (!contentDiv) {
+             console.error("Error: Page content div not found.");
+             return;
+         }
+  
+         // Check if the user clicked "Home"
+         if (url.includes("#/home")) {
+             console.log("Home button clicked. Loading home content...");
+             fetch("{{site.baseurl}}/home.html")
+                 .then(response => {
+                     if (!response.ok) {
+                         throw new Error(`HTTP error! Status: ${response.status}`);
+                     }
+                     return response.text();
+                 })
+                 .then(html => {
+                     console.log("Home page loaded successfully!");
+                     contentDiv.innerHTML = html;
+                     window.location.hash = "/home";
+                 })
+                 .catch(error => console.error("Error loading home page:", error));
+  
+             return;
+         }
+  
+         // Default behavior for other pages
+         fetch(url)
+             .then(response => response.text())
+             .then(html => {
+                 console.log("Page loaded successfully!");
+                 contentDiv.innerHTML = html;
+                 history.pushState(null, '', url);
+             })
+             .catch(error => console.error("Error loading page:", error));
+     }
+  </script>
+  
