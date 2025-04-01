@@ -258,7 +258,7 @@ display: inline-block;
   }
 
   .sidebar {
-    display: none;
+    visibility: hidden;
     left: 0;
     top: 50vh;  /* 🔄 CHANGED from 40vh */
     height: 50vh; /* 🔄 CHANGED from 60vh */
