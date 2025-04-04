@@ -387,39 +387,6 @@ display: inline-block;
 	  }
 }
 
-@media (orientation: portrait) {
-  html {
-      font-size: 15px;
-  }
-  #map {
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 40vh;
-      width: 100vw;
-  }
-  .sidebar {
-      height: 40vh;
-      width: 100vw;
-      top: 40vh;
-  }
-
-  .sub-menu, .menu-button {
-	   right: 0vw;
-  }
-
-  #choose {
-	bottom:60vh;
-  }
-
-  div.wrapper {
-      width: 100vw;
-      height: 40vh;
-      overflow: auto;
-  }
-}
-
-
 
 /* Liquid attributes */
 .caption {
