@@ -297,8 +297,8 @@ display: inline-block;
   /* Style for the toggle button */
   label.toggle-map {
     position: fixed;
-    top: 60px;
-    left: 10px;
+    top: 90px;
+    left: 0px;
     background-color: #800000;
     color: white;
     padding: 0.5em;
