@@ -22,7 +22,7 @@ For a broader listing of educational opportunities, including certificate and co
         text-align: left;
     }
     th {
-        background-color:rgba(182, 18, 18, 0.48);
+        background-color:rgb(128,0,0);
     }
     .hiddenRow {
         display: none;
@@ -30,13 +30,13 @@ For a broader listing of educational opportunities, including certificate and co
     button {
         margin-top: 10px;
         padding: 8px 12px;
-        background-color: rgba(182, 18, 18, 0.48);
+        background-color: rgb(128,0,0);
         color: white;
         border: none;
         cursor: pointer;
     }
     button:hover {
-        background-color: rgba(182, 18, 18, 0.48);
+        background-color: rgb(128,0,0);
     }
 </style>
 
