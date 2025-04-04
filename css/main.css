@@ -299,9 +299,18 @@ display: inline-block;
     background-color: rgba (255, 255, 255, 0.8);
   }
 
+
   /* Toggle visibility when map checkbox is checked */
   #toggle-map:checked ~ .map-layers {
     display: block;
+    right: 0;
+    bottom: 0;
+    height: 30%;
+    width: 30%;
+    overflow-y: auto;
+    padding-bottom: 10x;
+    z-index: 10;
+    background-color: rgba (255, 255, 255, 0.8);
   }
 
   /* Style for the toggle button */
