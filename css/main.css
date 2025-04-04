@@ -320,13 +320,7 @@ display: inline-block;
   #toggle-map:checked ~ .leaflet-control-layers {
     display: block;
   }
- 
-  .dropdown-content {  
-    display: none;
-  }
-  .dropdown-content a {
-    display: none;
-  }
+
 }
 
 
