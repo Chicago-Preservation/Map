@@ -283,9 +283,9 @@ display: inline-block;
     height: 50vh;
     width: 100vw;
     overflow-y: auto;
-    padding-bottom: 1em;
+    padding-bottom: 0;
     z-index: 2;
-    display: none;
+    display: block;
   }
 
   /* Toggle visibility when map checkbox is checked */
