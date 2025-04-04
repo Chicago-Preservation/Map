@@ -277,7 +277,7 @@ display: inline-block;
 
   /* Map Layers Toggle */
   .map-layers {
-    position: absolute;
+    position: fixed;
     left: 0;
     bottom: 0;
     height: 30%;
