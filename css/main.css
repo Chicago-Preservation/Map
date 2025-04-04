@@ -326,10 +326,6 @@ s
     z-index: 1000;
   }
 
-  /* Hide the map checkbox itself */
-  #toggle-map {
-    display: none;
-  }
 
   /* Map Layers Visibility */
   .leaflet-control-layers {
@@ -340,10 +336,7 @@ s
   #toggle-map:checked ~ .leaflet-control-layers {
     display: block;
   }
-
-
   }
-
 
 @media (min-width:768px) and (max-width:1100px) {
     html {
