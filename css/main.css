@@ -274,6 +274,13 @@ display: inline-block;
     z-index: 2;
     display: block;
   }
+  
+  .menu-button {
+    position: absolute;
+    right: 0;
+  }
+
+
 
   /* Map Layers Toggle */
   .map-layers {
@@ -320,6 +327,9 @@ display: inline-block;
   /* Show map layers when checkbox is checked */
   #toggle-map:checked ~ .leaflet-control-layers {
     display: block;
+  }
+
+
   }
 
 }
