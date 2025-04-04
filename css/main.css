@@ -274,10 +274,13 @@ display: inline-block;
     z-index: 2;
     display: block;
   }
-  
+
+  /* modify menu-button location for mobile */ 
+
   .menu-button {
     position: absolute;
     right: 0;
+    padding-bottom: 0;
   }
 
 
