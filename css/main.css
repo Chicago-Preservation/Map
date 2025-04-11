@@ -331,6 +331,10 @@ s
   /* Map Layers Visibility */
   .leaflet-control-layers {
     display: block;
+    top: unset !important;
+    right: unset !important;
+    bottom: 10px !important;
+    left: 10px !important;
   }
 
   /* Show map layers when checkbox is checked */
