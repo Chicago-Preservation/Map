@@ -301,7 +301,7 @@ display: inline-block;
 s
   /* Toggle visibility when map checkbox is checked */
 
-  #toggle-map:checked ~ .map-layers {
+  #toggle-map-layers:checked ~ .map-layers {
     position: absolute;
     top: 70px;
     left: 10px;
