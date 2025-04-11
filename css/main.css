@@ -335,6 +335,10 @@ s
 
   /* Show map layers when checkbox is checked */
   #toggle-map:checked ~ .leaflet-control-layers {
+    top: unset !important;
+    right: unset !important;
+    bottom: 10px !important;
+    left: 10px !important;
     display: block;
 
 
