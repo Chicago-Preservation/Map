@@ -330,7 +330,7 @@ s
   
   /* Map Layers Visibility */
   .leaflet-control-layers {
-    display: none;
+    display: block;
   }
 
   /* Show map layers when checkbox is checked */
