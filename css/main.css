@@ -327,29 +327,18 @@ s
     cursor: pointer;
     z-index: 1000;
   }
-
-  .leaflet-top.leaflet-right {
-    top: unset !important;
-    right: unset !important;
-  }
-
-  /* Move Leaflet’s layer control to bottom-left on mobile */
+  
+  /* Map Layers Visibility */
   .leaflet-control-layers {
-    top: unset !important;
-    right: unset !important;
-    bottom: 10px !important;
-    left: 10px !important;
+    display: none;
   }
-}
-
 
   /* Show map layers when checkbox is checked */
   #toggle-map:checked ~ .leaflet-control-layers {
     display: block;
 
-  
 
-
+  }
   }
 
 @media (min-width:768px) and (max-width:1100px) {
