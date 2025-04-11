@@ -12,7 +12,7 @@ body {
   padding:0;
 }
 
-
+ 
 html {
   font-family: 'EB Garamond', serif;
   color: #ffffff;
@@ -300,19 +300,23 @@ display: inline-block;
   }
 s
   /* Toggle visibility when map checkbox is checked */
+
   #toggle-map:checked ~ .map-layers {
     position: absolute;
+    top: 70px;
+    left: 10px;
+    width: 80vw;
+    height: auto;
+    max-height: 50vh;
     display: block;
-    left: 0;
-    bottom: 0;
-    height: 30%;
-    width: 30%;
     overflow-y: auto;
-    padding-bottom: 10x;
-    z-index: 10;
-    background-color: rgba (255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 1em;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    z-index: 1000;
   }
-
+  
   /* Style for the toggle button */
   label.toggle-map {
     position: fixed;
