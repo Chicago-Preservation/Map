@@ -336,22 +336,16 @@ s
 
   }
 
-  /* Show map layers when checkbox is checked */
-  #toggle-map:checked ~ .leaflet-control-layers {
-   
-    display: block;
-    bottom: 10px;
-    left: 10px;
-
-
+  .leaflet-bottom.leaflet-right .leaflet-panel-layers {
+    display: none !important;
+    }
+  
+  .leaflet-bottom.leaflet-left .leaflet-panel-layers {
+      display: block !important;
+      margin: 10px;
+    }
   }
-
-  [ .leaflet-bottom.leaflet-right
-
-
-  ]
-  }
-
+  
 @media (min-width:768px) and (max-width:1100px) {
     html {
       font-size: 15px;
@@ -508,14 +502,3 @@ padding-top: 6em;
 }
 
 
-@media (max-width: 768px) {
-  /* Move leaflet-panel-layers to bottom-left on mobile */
-  .leaflet-bottom.leaflet-right .leaflet-panel-layers {
-    display: none !important;
-  }
-
-  .leaflet-bottom.leaflet-left .leaflet-panel-layers {
-    display: block !important;
-    margin: 10px;
-  }
-}
