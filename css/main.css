@@ -488,16 +488,3 @@ padding-top: 6em;
   background-image: url('{{site.baseurl}}/assets/leaflet/images/icon.png');
   background-size: 20px 30px;
 }
-
-@media (max-width: 768px) {
-  /* Hide the panel from the default bottom-right */
-  .leaflet-bottom.leaflet-right .leaflet-panel-layers {
-    display: none !important;
-  }
-
-  /* Show it on the bottom-left */
-  .leaflet-bottom.leaflet-left .leaflet-panel-layers {
-    display: block !important;
-    margin: 10px;
-  }
-}
