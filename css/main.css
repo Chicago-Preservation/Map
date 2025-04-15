@@ -209,7 +209,7 @@ ul {
 }
 
 .dropdown-content {
-    display: none;
+    display: block;
     position: absolute;
     background-color: {{ site.accent_color }};
     z-index: 1;
