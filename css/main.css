@@ -345,6 +345,11 @@ s
 
 
   }
+
+  [ .leaflet-bottom.leaflet-right
+
+
+  ]
   }
 
 @media (min-width:768px) and (max-width:1100px) {
@@ -500,4 +505,17 @@ padding-top: 6em;
 .leaflet-retina .leaflet-control-layers-toggle  {
   background-image: url('{{site.baseurl}}/assets/leaflet/images/icon.png');
   background-size: 20px 30px;
+}
+
+
+@media (max-width: 768px) {
+  /* Move leaflet-panel-layers to bottom-left on mobile */
+  .leaflet-bottom.leaflet-right .leaflet-panel-layers {
+    display: none !important;
+  }
+
+  .leaflet-bottom.leaflet-left .leaflet-panel-layers {
+    display: block !important;
+    margin: 10px;
+  }
 }
