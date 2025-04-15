@@ -182,12 +182,12 @@
 @media (max-width: 768px) {
 	/* Hide panel from bottom right */
 	.leaflet-bottom.leaflet-right .leaflet-panel-layers {
-	  display: none !important;
+	  display: none;
 	}
   
 	/* Show panel on bottom left */
 	.leaflet-bottom.leaflet-left .leaflet-panel-layers {
-	  display: block !important;
+	  display: block;
 	  margin: 10px;
 	}
   }
