@@ -330,7 +330,7 @@ s
   /* Map Layers Visibility */
   .leaflet-control-layers {
     position: relative;
-    display: none;
+    display: block;
     bottom: 10px;
     left: 10px;
 
