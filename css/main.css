@@ -11,7 +11,6 @@ body {
   margin:0;
   padding:0;
 }
-
  
 html {
   font-family: 'EB Garamond', serif;
@@ -336,11 +335,11 @@ s
 
   }
 
-  .leaflet-bottom.leaflet-right .leaflet-panel-layers {
+  .leaflet-bottom.leaflet-right .leaflet-control-layers {
     display: none !important;
     }
   
-  .leaflet-bottom.leaflet-left .leaflet-panel-layers {
+  .leaflet-bottom.leaflet-left .leaflet-control-layers {
       display: block !important;
       margin: 10px;
     }
@@ -501,4 +500,15 @@ padding-top: 6em;
   background-size: 20px 30px;
 }
 
+@media (max-width: 768px) {
+  /* Hide the panel from the default bottom-right */
+  .leaflet-bottom.leaflet-right .leaflet-panel-layers {
+    display: none !important;
+  }
 
+  /* Show it on the bottom-left */
+  .leaflet-bottom.leaflet-left .leaflet-panel-layers {
+    display: block !important;
+    margin: 10px;
+  }
+}
