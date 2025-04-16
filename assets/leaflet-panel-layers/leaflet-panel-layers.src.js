@@ -54,7 +54,7 @@ L.Control.PanelLayers = L.Control.Layers.extend({
 		buildItem: null,				//function that return row item html node(or html string)
 		title: '',						//title of panel
 		className: '',					//additional class name for panel
-		position: 'topright'
+		position: 'bottomright'
 	},
 
 	initialize: function (baseLayers, overlays, options) {
