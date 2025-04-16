@@ -462,8 +462,6 @@ window.addEventListener('beforeunload', saveActiveLayers);
 
 
 
-
-
 // Add the "Map Layers" title as part of the control box (bottom-right)
 var layersContainer = document.querySelector('.leaflet-control-layers');
 var mapLayersTitle = document.createElement('div');
@@ -471,10 +469,24 @@ mapLayersTitle.className = 'leaflet-control-layers-title';
 mapLayersTitle.innerHTML = '<h4>Map Layers</h4>';
 layersContainer.insertBefore(mapLayersTitle, layersContainer.firstChild);
 
+if (window.innerWidth <= 768) {
+  const leftContainer = document.querySelector('.leaflet-bottom.leaflet-left');
 
+  const panelControl = document.querySelector('.leaflet-panel-layers');
+  if (panelControl && leftContainer && !leftContainer.contains(panelControl)) {
+    leftContainer.appendChild(panelControl);
+  }
+
+  const mapLayersControlBox = document.querySelector('.leaflet-control-layers');
+  if (mapLayersControlBox && leftContainer && !leftContainer.contains(mapLayersControlBox)) {
+    leftContainer.appendChild(mapLayersControlBox);
+  }
+}
      // Set map view
      map.setView([41.8781, -87.6298], 12); // Center on Chicago
      //map.fitBounds(markers.getBounds());
+
+
 
 
      return items;
