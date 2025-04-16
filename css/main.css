@@ -334,9 +334,16 @@ display: inline-block;
   .leaflet-bottom.leaflet-left .leaflet-panel-layers {
     display: block !important;
     margin: 10px;
+    max-width: 80vw;
+    width: auto;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    overflow-y: auto;
+    max-height: 40vh;
+}
   }
-
- }
 
 
   /* Map Layers Visibility */
