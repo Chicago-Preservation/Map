@@ -326,11 +326,17 @@ display: inline-block;
     z-index: 1000;
   }
 
-  .leaflet-bottom.leaflet-right .leaflet-control-layers {
-    display: none;
+ .leaflet-bottom.leaflet-right .leaflet-control-layers,
+  .leaflet-bottom.leaflet-right .leaflet-panel-layers {
+    display: none !important;
+  }
+  .leaflet-bottom.leaflet-left .leaflet-control-layers,
+  .leaflet-bottom.leaflet-left .leaflet-panel-layers {
+    display: block !important;
+    margin: 10px;
   }
 
-  }
+ }
 
 
   /* Map Layers Visibility */
@@ -340,8 +346,6 @@ display: inline-block;
     left: 10px;
 
   }
-
-}
 
 @media (min-width:768px) and (max-width:1100px) {
     html {
