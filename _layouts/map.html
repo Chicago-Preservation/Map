@@ -32,6 +32,7 @@
 
    map = L.map('map' , {scrollWheelZoom: false}).setView([41.8781, -87.6298], 12); // Center on Chicago
    var markers = '';
+   map.addControl(L.control.attribution({ position: 'bottomleft' }));
 
 
    window.change_map = function(){
