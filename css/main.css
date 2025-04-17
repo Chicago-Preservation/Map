@@ -315,14 +315,6 @@ display: inline-block;
     max-height: 40vh;
 }
 
-  /* Map Layers Visibility */
-  .leaflet-control-layers {
-    display: None;
-    bottom: 10px;
-    left: 10px;
-
-  }
-
 }
 
 @media (min-width:768px) and (max-width:1100px) {
