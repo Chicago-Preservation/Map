@@ -313,20 +313,19 @@ display: inline-block;
     z-index: 1000;
   }
   .toggle-panel-btn {
-    position: fixed;                 /* Keeps the button stuck to a specific location on screen */
-    bottom: 10px;                    /* 10px from the bottom of the screen */
-    left: 10px;                      /* 10px from the left side of the screen */
-    background-color: #800000;       /* Maroon background */
-    color: white;                    /* White text */
-    padding: 0.5em 1em;              /* Space inside the button: top/bottom 0.5em, left/right 1em */
-    border: none;                    /* No default button border */
-    border-radius: 8px;              /* Rounded corners */
-    z-index: 1100;                   /* High stacking order so it appears above other elements */
-    font-size: 14px;                 /* Medium text size */
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);  /* Soft shadow under the button */
+    position: absolute;              /* Position relative to the map container */
+    top: 80px;                       /* Below the + / - zoom buttons */
+    left: 10px;                      /* Align with zoom buttons on the left */
+    background-color: #800000;
+    color: white;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 8px;
+    z-index: 1000;                   /* Lower than 1100, but high enough */
+    font-size: 14px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
   }
   
-
 
  .leaflet-bottom.leaflet-right .leaflet-control-layers,
   .leaflet-bottom.leaflet-right .leaflet-panel-layers {
