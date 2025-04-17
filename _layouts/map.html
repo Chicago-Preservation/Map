@@ -461,39 +461,24 @@ map.on('overlayremove', saveActiveLayers);
 // Save layers before page refresh
 window.addEventListener('beforeunload', saveActiveLayers);
 
-
-
-// Add the "Map Layers" title as part of the control box (bottom-right)
 // Add the "Map Layers" title as part of the control box (bottom-right)
 var layersContainer = document.querySelector('.leaflet-control-layers');
 var mapLayersTitle = document.createElement('div');
 mapLayersTitle.className = 'leaflet-control-layers-title';
 mapLayersTitle.innerHTML = '<h4>Map Layers</h4>';
 layersContainer.insertBefore(mapLayersTitle, layersContainer.firstChild);
-
 if (window.innerWidth <= 768) {
   const leftContainer = document.querySelector('.leaflet-bottom.leaflet-left');
 
-  const panelControl = document.querySelector('.leaflet-panel-layers');
-  if (panelControl && leftContainer && !leftContainer.contains(panelControl)) {
-    leftContainer.appendChild(panelControl);
+  const panel = document.querySelector('.leaflet-control-layers'); // ✅ applies to both PanelLayers and control-layers
+  if (panel && leftContainer && !leftContainer.contains(panel)) {
+    leftContainer.appendChild(panel);
   }
 
-  const mapLayersControlBox = document.querySelector('.leaflet-control-layers');
-  if (mapLayersControlBox && leftContainer && !leftContainer.contains(mapLayersControlBox)) {
-    leftContainer.appendChild(mapLayersControlBox);
-  }
-
-  // 🕒 Wait for DOM to render
   setTimeout(() => {
-    const panel = document.querySelector('.leaflet-panel-layers');
+    if (!panel) return;
 
-    if (!panel) {
-      console.warn("Map layer panel not found!");
-      return;
-    }
-
-    // ✨ Style the panel
+    // Style the panel
     panel.style.maxWidth = '45vw';
     panel.style.maxHeight = '40vh';
     panel.style.fontSize = '13px';
@@ -503,26 +488,24 @@ if (window.innerWidth <= 768) {
     panel.style.margin = '10px';
     panel.style.padding = '10px';
     panel.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)';
-    panel.style.display = 'none';
+    panel.style.display = 'none'; // initially hidden
 
-    // ✅ Create Toggle Button
+    // Add toggle button
     const toggleBtn = document.createElement('button');
     toggleBtn.id = 'toggle-panel-btn';
     toggleBtn.className = 'toggle-panel-btn';
     toggleBtn.innerText = 'Map Layers ⌄';
 
-    // 🔗 Append it inside the map container so it appears with zoom controls
     const mapContainer = document.getElementById('map');
-    if (mapContainer) {
-      mapContainer.appendChild(toggleBtn);
-    }
+    if (mapContainer) mapContainer.appendChild(toggleBtn);
 
-    // 🖱 Toggle panel on click
     toggleBtn.addEventListener('click', () => {
-      panel.style.display = (panel.style.display === 'none') ? 'block' : 'none';
+      panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
     });
-  }, 300); // delay ensures panel is in the DOM
+  }, 300);
 }
+
+
      // Set map view
      map.setView([41.8781, -87.6298], 12); // Center on Chicago
      //map.fitBounds(markers.getBounds());
