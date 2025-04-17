@@ -474,13 +474,13 @@ window.addEventListener('beforeunload', saveActiveLayers);
      return items;
    }
 // Add the "Map Layers" title as part of the control box (bottom-right)
-// Add the "Map Layers" title as part of the control box (bottom-right)
 var layersContainer = document.querySelector('.leaflet-control-layers');
 var mapLayersTitle = document.createElement('div');
 mapLayersTitle.className = 'leaflet-control-layers-title';
 mapLayersTitle.innerHTML = '<h4>Map Layers</h4>';
 layersContainer.insertBefore(mapLayersTitle, layersContainer.firstChild);
 
+// 👇 MOBILE-SPECIFIC LOGIC
 if (window.innerWidth <= 768) {
   const leftContainer = document.querySelector('.leaflet-bottom.leaflet-left');
 
@@ -494,39 +494,42 @@ if (window.innerWidth <= 768) {
     leftContainer.appendChild(mapLayersControlBox);
   }
 
-  // 💅 Add styling to shrink the panel for mobile
+  // 🕒 Wait for DOM to render the panel, then style and toggle
   setTimeout(() => {
     const panel = document.querySelector('.leaflet-panel-layers');
-    if (panel) {
-      panel.style.maxWidth = '45vw';
-      panel.style.maxHeight = '40vh';
-      panel.style.fontSize = '13px';
-      panel.style.overflowY = 'auto';
-      panel.style.background = 'rgba(255,255,255,0.95)';
-      panel.style.borderRadius = '10px';
-      panel.style.margin = '10px';
-      panel.style.padding = '10px';
-      panel.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)';
-      panel.style.display = 'none'; // start hidden
+
+    if (!panel) {
+      console.warn("Map layer panel not found!");
+      return;
     }
 
-    // ➕ Add toggle button for mobile to show/hide map layer panel
+    // 🧼 Style panel and hide it initially
+    panel.style.maxWidth = '45vw';
+    panel.style.maxHeight = '40vh';
+    panel.style.fontSize = '13px';
+    panel.style.overflowY = 'auto';
+    panel.style.background = 'rgba(255,255,255,0.95)';
+    panel.style.borderRadius = '10px';
+    panel.style.margin = '10px';
+    panel.style.padding = '10px';
+    panel.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)';
+    panel.style.display = 'none'; // 🔒 hidden by default
+
+    // ➕ Add toggle button near zoom controls
     const toggleBtn = document.createElement('button');
     toggleBtn.id = 'toggle-panel-btn';
     toggleBtn.className = 'toggle-panel-btn';
     toggleBtn.innerText = 'Map Layers ⌄';
-    document.body.appendChild(toggleBtn);
 
-    toggleBtn.addEventListener('click', function () {
-      if (panel && panel.style.display === 'none') {
-        panel.style.display = 'block';
-      } else if (panel) {
-        panel.style.display = 'none';
-      }
+    document.querySelector('#map').appendChild(toggleBtn);
+
+    // 🔁 Toggle functionality
+    toggleBtn.addEventListener('click', () => {
+      const panel = document.querySelector('.leaflet-panel-layers');
+      panel.style.display = (panel.style.display === 'none') ? 'block' : 'none';
     });
-  }, 300); // delay to ensure the panel is in the DOM
+  }, 300); // ⏳ Ensure DOM is ready
 }
-
 
 
    </script>
