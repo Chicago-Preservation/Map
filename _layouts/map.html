@@ -161,12 +161,14 @@ if (markergrouping == 'grouped') {
  }
  control.addTo(map);
 } else if (markergrouping == 'single') {
- var panelLayers = new L.Control.PanelLayers(null, overLayers, {
-   compact: true,
-   collapsed: false,
-   position: 'bottomright'  // Change position to bottom-right
- });
- map.addControl(panelLayers);
+
+// editing out panellayers might need it again
+// var panelLayers = new L.Control.PanelLayers(null, overLayers, {
+//   compact: true,
+//   collapsed: false,
+//   position: 'bottomright'  // Change position to bottom-right
+//  });
+//  map.addControl(panelLayers);
 
 
  // Add "Categories" title to the control panel (bottom-right)

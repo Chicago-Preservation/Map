@@ -301,13 +301,13 @@ display: inline-block;
   }
   
 
- .leaflet-bottom.leaflet-right .leaflet-control-layers,
-  .leaflet-bottom.leaflet-right .leaflet-panel-layers {
+ .leaflet-bottom.leaflet-right .leaflet-control-layers
+  {
     display: none;
   }
 
-  .leaflet-bottom.leaflet-left .leaflet-control-layers,
-  .leaflet-bottom.leaflet-left .leaflet-panel-layers {
+  .leaflet-bottom.leaflet-left .leaflet-control-layers
+  { 
     display: block;
     margin: 60px 10px 10px 10px;  /* top right bottom left */
     max-width: 80vw;
