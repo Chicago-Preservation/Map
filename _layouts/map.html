@@ -464,6 +464,16 @@ window.addEventListener('beforeunload', saveActiveLayers);
 
 
 // Add the "Map Layers" title as part of the control box (bottom-right)
+
+
+
+     // Set map view
+     map.setView([41.8781, -87.6298], 12); // Center on Chicago
+     //map.fitBounds(markers.getBounds());
+
+     return items;
+   }
+// Add the "Map Layers" title as part of the control box (bottom-right)
 // Add the "Map Layers" title as part of the control box (bottom-right)
 var layersContainer = document.querySelector('.leaflet-control-layers');
 var mapLayersTitle = document.createElement('div');
@@ -516,15 +526,6 @@ if (window.innerWidth <= 768) {
     });
   }, 300); // delay to ensure the panel is in the DOM
 }
-
-
-     // Set map view
-     map.setView([41.8781, -87.6298], 12); // Center on Chicago
-     //map.fitBounds(markers.getBounds());
-
-     return items;
-   }
-
 
 
 
