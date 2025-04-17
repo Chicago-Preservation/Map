@@ -250,6 +250,7 @@ display: inline-block;
     font-size: 14px;
   }
 
+  
   #map {
     position: absolute;
     left: 0;
@@ -281,6 +282,10 @@ display: inline-block;
     padding-bottom: 0;
   }
 
+  .dropdown-content {
+    display: none;
+  }
+
   .toggle-panel-btn {
     position: absolute;              /* Position relative to the map container */
     top: 80px;                       /* Below the + / - zoom buttons */
@@ -298,7 +303,7 @@ display: inline-block;
 
  .leaflet-bottom.leaflet-right .leaflet-control-layers,
   .leaflet-bottom.leaflet-right .leaflet-panel-layers {
-    display: none ;
+    display: none;
   }
 
   .leaflet-bottom.leaflet-left .leaflet-control-layers,
