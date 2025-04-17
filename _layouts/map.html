@@ -464,6 +464,7 @@ window.addEventListener('beforeunload', saveActiveLayers);
 
 
 // Add the "Map Layers" title as part of the control box (bottom-right)
+// Add the "Map Layers" title as part of the control box (bottom-right)
 var layersContainer = document.querySelector('.leaflet-control-layers');
 var mapLayersTitle = document.createElement('div');
 mapLayersTitle.className = 'leaflet-control-layers-title';
@@ -496,9 +497,26 @@ if (window.innerWidth <= 768) {
       panel.style.margin = '10px';
       panel.style.padding = '10px';
       panel.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)';
+      panel.style.display = 'none'; // start hidden
     }
-  }, 300); // slight delay to ensure DOM is ready
+
+    // ➕ Add toggle button for mobile to show/hide map layer panel
+    const toggleBtn = document.createElement('button');
+    toggleBtn.id = 'toggle-panel-btn';
+    toggleBtn.className = 'toggle-panel-btn';
+    toggleBtn.innerText = 'Map Layers ⌄';
+    document.body.appendChild(toggleBtn);
+
+    toggleBtn.addEventListener('click', function () {
+      if (panel && panel.style.display === 'none') {
+        panel.style.display = 'block';
+      } else if (panel) {
+        panel.style.display = 'none';
+      }
+    });
+  }, 300); // delay to ensure the panel is in the DOM
 }
+
 
      // Set map view
      map.setView([41.8781, -87.6298], 12); // Center on Chicago
