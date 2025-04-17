@@ -298,11 +298,11 @@ display: inline-block;
 
  .leaflet-bottom.leaflet-right .leaflet-control-layers,
   .leaflet-bottom.leaflet-right .leaflet-panel-layers {
-    display: none !important;
+    display: none ;
   }
   .leaflet-bottom.leaflet-left .leaflet-control-layers,
   .leaflet-bottom.leaflet-left .leaflet-panel-layers {
-    display: block !important;
+    display: block;
     margin: 10px;
     max-width: 80vw;
     width: auto;
