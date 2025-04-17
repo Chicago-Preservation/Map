@@ -300,6 +300,7 @@ display: inline-block;
   .leaflet-bottom.leaflet-right .leaflet-panel-layers {
     display: none ;
   }
+  
   .leaflet-bottom.leaflet-left .leaflet-control-layers,
   .leaflet-bottom.leaflet-left .leaflet-panel-layers {
     display: block;
