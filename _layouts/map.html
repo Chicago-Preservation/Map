@@ -480,7 +480,6 @@ mapLayersTitle.className = 'leaflet-control-layers-title';
 mapLayersTitle.innerHTML = '<h4>Map Layers</h4>';
 layersContainer.insertBefore(mapLayersTitle, layersContainer.firstChild);
 
-// 👇 MOBILE-SPECIFIC LOGIC
 if (window.innerWidth <= 768) {
   const leftContainer = document.querySelector('.leaflet-bottom.leaflet-left');
 
@@ -494,7 +493,7 @@ if (window.innerWidth <= 768) {
     leftContainer.appendChild(mapLayersControlBox);
   }
 
-  // 🕒 Wait for DOM to render the panel, then style and toggle
+  // 🕒 Wait for DOM to render
   setTimeout(() => {
     const panel = document.querySelector('.leaflet-panel-layers');
 
@@ -503,7 +502,7 @@ if (window.innerWidth <= 768) {
       return;
     }
 
-    // 🧼 Style panel and hide it initially
+    // ✨ Style the panel
     panel.style.maxWidth = '45vw';
     panel.style.maxHeight = '40vh';
     panel.style.fontSize = '13px';
@@ -513,24 +512,26 @@ if (window.innerWidth <= 768) {
     panel.style.margin = '10px';
     panel.style.padding = '10px';
     panel.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)';
-    panel.style.display = 'none'; // 🔒 hidden by default
+    panel.style.display = 'none';
 
-    // ➕ Add toggle button near zoom controls
+    // ✅ Create Toggle Button
     const toggleBtn = document.createElement('button');
     toggleBtn.id = 'toggle-panel-btn';
     toggleBtn.className = 'toggle-panel-btn';
     toggleBtn.innerText = 'Map Layers ⌄';
 
-    document.querySelector('#map').appendChild(toggleBtn);
+    // 🔗 Append it inside the map container so it appears with zoom controls
+    const mapContainer = document.getElementById('map');
+    if (mapContainer) {
+      mapContainer.appendChild(toggleBtn);
+    }
 
-    // 🔁 Toggle functionality
+    // 🖱 Toggle panel on click
     toggleBtn.addEventListener('click', () => {
-      const panel = document.querySelector('.leaflet-panel-layers');
       panel.style.display = (panel.style.display === 'none') ? 'block' : 'none';
     });
-  }, 300); // ⏳ Ensure DOM is ready
+  }, 300); // delay ensures panel is in the DOM
 }
-
 
    </script>
 
