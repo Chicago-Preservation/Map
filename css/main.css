@@ -309,7 +309,7 @@ display: inline-block;
   .leaflet-bottom.leaflet-left .leaflet-control-layers
   { 
     display: block;
-    margin: 60px 10px 10px 10px;  /* top right bottom left */
+    margin:90px 10px 10px 10px;  /* top right bottom left */
     max-width: 80vw;
     width: auto;
     font-size: 14px;
