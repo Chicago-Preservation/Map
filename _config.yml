@@ -2,8 +2,8 @@
 title: "Mapping Chicago Preservation"
 email: rovnermelissa@gmail.com
 description: description here
-baseurl: "/Map"  # the subpath of your site, e.g. /blog/
-url: ""  # the base hostname & protocol for your site
+baseurl: ""  # the subpath of your site, e.g. /blog/
+url: "https://mappingchicagopreservation.org"  # the base hostname & protocol for your site
 github_repo: https://github.com/Chicago-Preservation/Map
 
 # --COPYRIGHT-- (Date generated from last build)
