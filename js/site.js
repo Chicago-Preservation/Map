@@ -1,5 +1,6 @@
 $(document).ready(function(){
   console.log(map);
+reloadhtml(); // ADD THIS LINE
 });
 function reloadhtml(){
     url = window.location.href;
