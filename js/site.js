@@ -2,18 +2,22 @@ $(document).ready(function(){
   console.log(map);
 });
 function reloadhtml(){
-  	url = window.location.href;
-  	if (url.includes("article/")) {
-  	  article_url = url.replace("/#", "");
-      item_id = url.split("#")[1];
-      articlerender(article_url, item_id);
-  	} else if (url.includes("#") == true) {
-		page_url = url.replace("/#", "");
-		pagerender(page_url);
-  	} else {
-    	home_url = window.location.origin + window.location.pathname + "home/"
-	console.log("Home URL:", home_url);	
-    	pagerender(home_url);
+    url = window.location.href;
+    console.log("Current URL:", url);  // ADD THIS LINE
+    
+    if (url.includes("article/")) {
+        article_url = url.replace("/#", "");
+        item_id = url.split("#")[1];
+        console.log("Article URL:", article_url);  // ADD THIS LINE
+        articlerender(article_url, item_id);
+    } else if (url.includes("#") == true) {
+        page_url = url.replace("/#", "");
+        console.log("Page URL:", page_url);  // ADD THIS LINE
+        pagerender(page_url);
+    } else {
+        home_url = window.location.origin + window.location.pathname + "home/"
+        console.log("Home URL:", home_url);  // ADD THIS LINE
+        pagerender(home_url);
     }
 };
 
