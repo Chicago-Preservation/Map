@@ -227,7 +227,7 @@ var boundariesLayer = L.geoJSON(null, {
 
 
 
-fetch('https://chicago-preservation.github.io/Map/GeoJson_files_layers/boundaries.geojson')
+fetch('GeoJson_files_layers/boundaries.geojson')
 
   .then(response => response.json())
   .then(data => {
@@ -254,7 +254,7 @@ fetch('https://chicago-preservation.github.io/Map/GeoJson_files_layers/boundarie
   }
 });
 
-fetch('https://Chicago-Preservation.github.io/Map/GeoJson_files_layers/NR_Districts_2012.geojson')
+fetch('GeoJson_files_layers/NR_Districts_2012.geojson')
   .then(response => response.json())
   .then(data => {
     nrDistricts2012Layer.addData(data);
@@ -273,7 +273,7 @@ var landmarksLayer = L.geoJSON(null, {
   }
 });
 
-fetch('https://Chicago-Preservation.github.io/Map/GeoJson_files_layers/landmarkareas.geojson')
+fetch('GeoJson_files_layers/landmarkareas.geojson')
   .then(response => response.json())
   .then(data => {
     landmarksLayer.addData(data);
@@ -310,7 +310,7 @@ var historicResourcesLayer = L.geoJSON(null, {
 });
 
 // Fetch and Add Historic Resources Survey GeoJSON Data
-fetch('https://Chicago-Preservation.github.io/Map/GeoJson_files_layers/Historic_Resources_Survey.geojson')
+fetch('GeoJson_files_layers/Historic_Resources_Survey.geojson')
   .then(response => response.json())
   .then(data => {
     historicResourcesLayer.addData(data);
@@ -357,7 +357,7 @@ var nrPropertiesFilteredLayer = L.geoJSON(null, {
 });
 
 // Fetch updated GeoJSON data
-fetch('https://Chicago-Preservation.github.io/Map/GeoJson_files_layers/NR_Properties_filtered_updated.geojson')
+fetch('GeoJson_files_layers/NR_Properties_filtered_updated.geojson')
   .then(response => response.json())
   .then(data => {
     nrPropertiesFilteredLayer.addData(data);
@@ -389,7 +389,7 @@ var muralRegistryLayer = L.geoJSON(null, {
 });
 
 // Fetch and Add Mural Registry GeoJSON Data
-fetch('https://Chicago-Preservation.github.io/Map/GeoJson_files_layers/mural_registry.geojson')
+fetch('GeoJson_files_layers/mural_registry.geojson')
   .then(response => response.json())
   .then(data => {
     muralRegistryLayer.addData(data);
