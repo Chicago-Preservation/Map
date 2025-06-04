@@ -12,6 +12,7 @@ function reloadhtml(){
 		pagerender(page_url);
   	} else {
     	home_url = window.location.origin + window.location.pathname + "home/"
+	console.log("Home URL:", home_url);	
     	pagerender(home_url);
     }
 };
