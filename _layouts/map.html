@@ -316,9 +316,9 @@ fetch('GeoJson_files_layers/Historic_Resources_Survey.geojson')
     historicResourcesLayer.addData(data);
   });
 
-// Adding NR_Properties_Filtered Layer
-var nrPropertiesFilteredLayer = L.geoJSON(null, {
-  options: { name: "NR Properties Filtered" },
+// Adding NR_Properties_With_PDF_Info Layer
+var nrPropertiesWithPDFInfoLayer = L.geoJSON(null, {
+  options: { name: "NR Properties With PDF Info" },
 
   onEachFeature: function (feature, layer) {
     var props = feature.properties; // Shorter reference to properties
@@ -328,16 +328,16 @@ var nrPropertiesFilteredLayer = L.geoJSON(null, {
       (props.BeginYear ? '<em>Year:</em> ' + props.BeginYear + '<br>' : '');
 
     // Add attachment as a simple hyperlink if it exists
-    if (props.NR_Properties_Filtered_Column_Attachment && props.NR_Properties_Filtered_Column_Attachment.trim() !== "") {
+    if (props.NR_Properties_With_PDF_Info_Column_Attachment && props.NR_Properties_With_PDF_Info_Column_Attachment.trim() !== "") {
       popupContent += '<em>Attachment:</em> ' +
-        '<a href="' + props.NR_Properties_Filtered_Column_Attachment + 
+        '<a href="' + props.NR_Properties_With_PDF_Info_Column_Attachment + 
         '" target="_blank" style="color:#0073e6; text-decoration:underline;">Open Attachment</a><br>';
     }
 
     // Add photo as a hyperlink if it exists
-    if (props.NR_Properties_Filtered_Column_Photo && props.NR_Properties_Filtered_Column_Photo.trim() !== "") {
+    if (props.NR_Properties_With_PDF_Info_Column_Photo && props.NR_Properties_With_PDF_Info_Column_Photo.trim() !== "") {
       popupContent += '<em>Photo:</em> ' +
-        '<a href="' + props.NR_Properties_Filtered_Column_Photo + 
+        '<a href="' + props.NR_Properties_With_PDF_Info_Column_Photo + 
         '" target="_blank" style="color:#0073e6; text-decoration:underline;">View Photo</a><br>';
     }
 
@@ -357,11 +357,11 @@ var nrPropertiesFilteredLayer = L.geoJSON(null, {
 });
 
 // Fetch updated GeoJSON data
-fetch('GeoJson_files_layers/NR_Properties_filtered_updated.geojson')
+fetch('GeoJson_files_layers/NR_Properties_With_PDF_Info.geojson')
   .then(response => response.json())
   .then(data => {
-    nrPropertiesFilteredLayer.addData(data);
-    nrPropertiesFilteredLayer.bringToFront();
+    nrPropertiesWithPDFInfoLayer.addData(data);
+    nrPropertiesWithPDFInfoLayer.bringToFront();
   });
 
 
