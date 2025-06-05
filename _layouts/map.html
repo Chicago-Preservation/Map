@@ -325,7 +325,9 @@ var nrPropertiesFilteredLayer = L.geoJSON(null, {
     var popupContent = '<strong>' + (props.SignificantName || 'No Name') + '</strong><br>' +
       (props.Location ? '<em>Location:</em> ' + props.Location + '<br>' : '') +
       (props.Architect ? '<em>Architect:</em> ' + props.Architect + '<br>' : '') +
-      (props.BeginYear ? '<em>Year:</em> ' + props.BeginYear + '<br>' : '');
+      (props.BeginYear ? '<em>Year:</em> ' + props.BeginYear + '<br>' : '') +
+      (props.URL ? '<em>Attachment:</em> ' + props.URL + '<br>' : '') +
+      (props.Url_img ? '<em>Photo:</em> ' + props.URL + '<br>' : '');
 
     // Add attachment as a simple hyperlink if it exists
     if (props.NR_Properties_Filtered_Column_URL && props.NR_Properties_Filtered_Column_URL.trim() !== "") {
