@@ -90,3 +90,48 @@ function new_map(site_grouping){
   map = L.map('map' , {scrollWheelZoom: true}).setView([0, 0], 1);
   items = makeMap(markergrouping, map);
 }
+
+/* --- ACCORDION MENU AND LAYER CONTROL LOGIC --- */
+document.addEventListener("DOMContentLoaded", function() {
+    var accordions = document.getElementsByClassName("accordion-button");
+    for (var i = 0; i < accordions.length; i++) {
+      accordions[i].addEventListener("click", function() {
+        for (var j = 0; j < accordions.length; j++) {
+          if (this !== accordions[j]) {
+            accordions[j].classList.remove("active");
+            accordions[j].nextElementSibling.style.maxHeight = null;
+          }
+        }
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.maxHeight) {
+          panel.style.maxHeight = null;
+        } else {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+        }
+      });
+    }
+
+    function setupLayerToggle(checkboxId, layer) {
+        if (typeof map === 'undefined' || !map) {
+            setTimeout(function() { setupLayerToggle(checkboxId, layer); }, 100);
+            return;
+        }
+        const checkbox = document.getElementById(checkboxId);
+        if (!checkbox || !layer) return;
+        const toggle = () => {
+            if (checkbox.checked) {
+                if (!map.hasLayer(layer)) map.addLayer(layer);
+            } else {
+                if (map.hasLayer(layer)) map.removeLayer(layer);
+            }
+        };
+        checkbox.addEventListener('click', toggle);
+    }
+    setupLayerToggle('landmarks-layer-toggle', window.landmarksLayer);
+    setupLayerToggle('nr-properties-filtered-layer-toggle', window.nrPropertiesFilteredLayer);
+    setupLayerToggle('nr-districts-2012-layer-toggle', window.nrDistricts2012Layer);
+    setupLayerToggle('mural-registry-layer-toggle', window.muralRegistryLayer);
+    setupLayerToggle('historic-resources-layer-toggle', window.historicResourcesLayer);
+    setupLayerToggle('boundaries-layer-toggle', window.boundariesLayer);
+});
