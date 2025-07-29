@@ -409,6 +409,23 @@ map.on('overlayadd', function (eventLayer) {
 });
 
 
+// GeoJSON Layers (New Layer Control for GeoJSON in the bottom-right)
+
+var geojsonLayerControl = {
+  '<a href="https://webapps1.chicago.gov/landmarksweb/web/listings.htm" target="_blank" class="layer-link">Chicago Landmarks</a>': landmarksLayer,
+  '<a href="https://www.nps.gov/subjects/nationalregister/index.htm" target="_blank" class="layer-link">National Register of Historic Places</a>': nrPropertiesFilteredLayer,
+  '<a href="https://www.nps.gov/subjects/nationalregister/index.htm" target="_blank" class="layer-link">National Register Districts</a>': nrDistricts2012Layer,
+  '<a href="https://www.chicago.gov/city/en/depts/dca/supp_info/mural_registry.html" target="_blank" class="layer-link">Mural Registry</a>': muralRegistryLayer,
+  '<a href="https://www.preservationchicago.org/resources/chicago-historic-resources-survey-chrs/?srsltid=AfmBOopcGN7LGooQRSL-UybluDqA0qxd1V6-ZPu3lE02ovtIX6MUr-kh" target="_blank" class="layer-link">Historic Resources Survey</a>': historicResourcesLayer,
+  '<a href="https://www.chicago.gov/city/en/depts/2fm/supp_info/citywide_maps.html" target="_blank" class="layer-link">Community Areas</a>': boundariesLayer,
+};
+
+// Add the GeoJSON layer control to the bottom-right and stack it with the categories control
+var mapLayersControl = L.control.layers(null, geojsonLayerControl, {
+  position: 'bottomright',
+  collapsed: false  // Ensure it's open by default
+}).addTo(map);
+
 function restoreActiveLayers() {
     let savedLayers = localStorage.getItem('activeLayers');
     if (savedLayers) {
