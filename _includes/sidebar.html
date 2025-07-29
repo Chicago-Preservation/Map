@@ -1,14 +1,37 @@
-<!-- Toggle checkboxes (hidden) -->
-<input type="checkbox" id="toggle-sidebar">
-<input type="checkbox" id="toggle-map">
-
-<!-- Toggle buttons (styled as labels) -->
-<label for="toggle-sidebar" class="toggle-button">Toggle Menu</label>
-<label for="toggle-map" class="toggle-map">Map Layers ⌄ </label>
-
-<!-- Sidebar Structure -->
-<div class="sidebar">
-    <div id="sidebar-content">
-        <!-- Your existing sidebar content -->
+<div id="sidebar" class="sidebar">
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <a href="#" class="close-sidebar-button">×</a>
+      <h1><a href="{{ site.baseurl }}/">{{ site.title }}</a></h1>
     </div>
+    <div class="sidebar-body">
+      <p class="description">{{ site.description }}</p>
+
+      <button class="accordion-button">Municipal Governance</button>
+      <div class="accordion-panel">
+          <label class="layer-checkbox-group">Chicago Landmarks<input type="checkbox" id="landmarks-layer-toggle"><span class="checkmark"></span></label>
+          <label class="layer-checkbox-group">National Register of Historic Places<input type="checkbox" id="nr-properties-filtered-layer-toggle"><span class="checkmark"></span></label>
+          <label class="layer-checkbox-group">National Register Districts<input type="checkbox" id="nr-districts-2012-layer-toggle"><span class="checkmark"></span></label>
+          <label class="layer-checkbox-group">Mural Registry<input type="checkbox" id="mural-registry-layer-toggle"><span class="checkmark"></span></label>
+          <label class="layer-checkbox-group">Historic Resources Survey<input type="checkbox" id="historic-resources-layer-toggle"><span class="checkmark"></span></label>
+          <label class="layer-checkbox-group">Community Areas<input type="checkbox" id="boundaries-layer-toggle"><span class="checkmark"></span></label>
+      </div>
+
+      <button class="accordion-button">Student Projects</button>
+      <div class="accordion-panel" id="student-projects-container">
+          {% for category in site.categories %}
+            {% capture category_name %}{{ category | first }}{% endcapture %}
+            <div class="article">
+              <a href="#" class="article_onclick" id="{{category_name}}">
+                <h3 class="category-name">{{ category_name }}</h3>
+              </a>
+            </div>
+          {% endfor %}
+      </div>
+
+      <button class="accordion-button">Template1</button>
+      <div class="accordion-panel">
+          </div>
+    </div>
+  </div>
 </div>
