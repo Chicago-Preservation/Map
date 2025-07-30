@@ -25,86 +25,72 @@
 
 
    <div id="map"> </div>
+  
+   <div id="category-control-container" style="display: none;">
 
-		<div id="category-control-container" style="display: none;">
-		     {% for category in site.categories %}
-		     counter += 1;
-		
-		
-		     {% capture category_name %}{{ category | first }}{% endcapture %}
-		     var layers = [];
-		     if (markergrouping == 'grouped') {
-		       groups[counter] = L.featureGroup.subGroup(markers);
-		       var control = L.control.layers(null, null, { collapsed: false, position: 'bottomright' });
-		     }
-		
-		
-		     {% for post in site.categories[category_name] %}
-		     lat = {{ post.lat }};
-		     lng = {{ post.lng }};
-		
-		
-		     if ($(window).height() < {{site.window-height}} || $(window).width() < {{site.window-width}}){
-		       content = "<strong>{{ post.title | truncatewords: 2}}</strong>";
-		     } else {
-		       content = "<strong>{{ post.title }}</strong><br>{{ post.desc }}";
-		     }
-		
-		
-		     var iconurl = "{{site.baseurl}}" + icons[counter];
-		     var mbox = L.icon({
-		       iconUrl: iconurl,
-		       iconSize : [50, 54],
-		       iconAnchor : [17, 36],
-		       popupAnchor : [-1, 8]
-		     });
-		     var marker = L.marker([lat, lng], {
-		       icon: mbox,
-		     }).bindPopup(content, {offset:new L.Point(0,-30)});
-		     marker.iconURL = iconurl;
-		
-		
-		     if (markergrouping == 'grouped') {
-		       marker.addTo(groups[counter]);
-		     } else if (markergrouping == 'single') {
-		       layers.push(marker);
-		     }
-		
-		
-		     filename = "{{post.url}}";
-		     if (items[filename] == undefined) {
-		       items[filename] = [marker];
-		     } else {
-		       items[filename].push(marker);
-		     }
-		
-		
-		     marker.on('click', function(){
-		       post_url = "{{site.baseurl}}/#{{post.url}}";
-		       article_url = '{{site.baseurl}}{{post.url}}';
-		       item_id = "{{post.url}}";
-		       window.location = (post_url);
-		       articlerender(article_url, item_id);
-		     });
-		
-		
-		     {% endfor %}
-		
-		
-		     var imageurl = '<img class="legend" src="' + iconurl + '">';
-		     if (markergrouping == 'grouped') {
-		       map.addLayer(markers);
-		       var name = imageurl + ' ' + '{{category_name}}';
-		       overLayers.push({"name":name, "layer":groups[counter]});
-		     } else if (markergrouping == 'single') {
-		       var name = '{{category_name}}';
-		       overLayers.push({"name":name, icon: imageurl, active: true, "layer":L.layerGroup(layers)});
-		     }
-		     {% endfor %}
-		
-		
-		     // End of existing category layers loop
-		</div>
+    {% for category in site.categories %}
+          counter += 1;
+     
+     
+          {% capture category_name %}{{ category | first }}{% endcapture %}
+          var layers = [];
+          if (markergrouping == 'grouped') {
+            groups[counter] = L.featureGroup.subGroup(markers);
+            var control = L.control.layers(null, null, { collapsed: false, position: 'bottomright' });
+          }
+     
+     
+          {% for post in site.categories[category_name] %}
+          lat = {{ post.lat }};
+          lng = {{ post.lng }};
+     
+     
+          if ($(window).height() < {{site.window-height}} || $(window).width() < {{site.window-width}}){
+            content = "<strong>{{ post.title | truncatewords: 2}}</strong>";
+          } else {
+            content = "<strong>{{ post.title }}</strong><br>{{ post.desc }}";
+          }
+     
+     
+          var iconurl = "{{site.baseurl}}" + icons[counter];
+          var mbox = L.icon({
+            iconUrl: iconurl,
+            iconSize : [50, 54],
+            iconAnchor : [17, 36],
+            popupAnchor : [-1, 8]
+          });
+          var marker = L.marker([lat, lng], {
+            icon: mbox,
+          }).bindPopup(content, {offset:new L.Point(0,-30)});
+          marker.iconURL = iconurl;
+     
+     
+          if (markergrouping == 'grouped') {
+            marker.addTo(groups[counter]);
+          } else if (markergrouping == 'single') {
+            layers.push(marker);
+          }
+     
+     
+          filename = "{{post.url}}";
+          if (items[filename] == undefined) {
+            items[filename] = [marker];
+          } else {
+            items[filename].push(marker);
+          }
+     
+     
+          marker.on('click', function(){
+            post_url = "{{site.baseurl}}/#{{post.url}}";
+            article_url = '{{site.baseurl}}{{post.url}}';
+            item_id = "{{post.url}}";
+            window.location = (post_url);
+            articlerender(article_url, item_id);
+          });
+     
+   	{% endfor %}
+    
+   </div>
 
    <script>
 
@@ -150,6 +136,86 @@
 
      var counter = -1;
      var groups = {};
+
+
+     {% for category in site.categories %}
+     counter += 1;
+
+
+     {% capture category_name %}{{ category | first }}{% endcapture %}
+     var layers = [];
+     if (markergrouping == 'grouped') {
+       groups[counter] = L.featureGroup.subGroup(markers);
+       var control = L.control.layers(null, null, { collapsed: false, position: 'bottomright' });
+     }
+
+
+     {% for post in site.categories[category_name] %}
+     lat = {{ post.lat }};
+     lng = {{ post.lng }};
+
+
+     if ($(window).height() < {{site.window-height}} || $(window).width() < {{site.window-width}}){
+       content = "<strong>{{ post.title | truncatewords: 2}}</strong>";
+     } else {
+       content = "<strong>{{ post.title }}</strong><br>{{ post.desc }}";
+     }
+
+
+     var iconurl = "{{site.baseurl}}" + icons[counter];
+     var mbox = L.icon({
+       iconUrl: iconurl,
+       iconSize : [50, 54],
+       iconAnchor : [17, 36],
+       popupAnchor : [-1, 8]
+     });
+     var marker = L.marker([lat, lng], {
+       icon: mbox,
+     }).bindPopup(content, {offset:new L.Point(0,-30)});
+     marker.iconURL = iconurl;
+
+
+     if (markergrouping == 'grouped') {
+       marker.addTo(groups[counter]);
+     } else if (markergrouping == 'single') {
+       layers.push(marker);
+     }
+
+
+     filename = "{{post.url}}";
+     if (items[filename] == undefined) {
+       items[filename] = [marker];
+     } else {
+       items[filename].push(marker);
+     }
+
+
+     marker.on('click', function(){
+       post_url = "{{site.baseurl}}/#{{post.url}}";
+       article_url = '{{site.baseurl}}{{post.url}}';
+       item_id = "{{post.url}}";
+       window.location = (post_url);
+       articlerender(article_url, item_id);
+     });
+
+
+     {% endfor %}
+
+
+     var imageurl = '<img class="legend" src="' + iconurl + '">';
+     if (markergrouping == 'grouped') {
+       map.addLayer(markers);
+       var name = imageurl + ' ' + '{{category_name}}';
+       overLayers.push({"name":name, "layer":groups[counter]});
+     } else if (markergrouping == 'single') {
+       var name = '{{category_name}}';
+       overLayers.push({"name":name, icon: imageurl, active: true, "layer":L.layerGroup(layers)});
+     }
+     {% endfor %}
+
+
+     // End of existing category layers loop
+
 
 // Add category control panel to the map (now positioned in the bottom-right)
 if (markergrouping == 'grouped') {
@@ -514,59 +580,56 @@ if (window.innerWidth <= 768) {
    }
    </script>
 
-		/* --- FLOATING ACCORDION CONTROL LOGIC --- */
-	L.Control.Accordion = L.Control.extend({
-	    onAdd: function(map) {
-	        var container = L.DomUtil.create('div', 'leaflet-control-accordion');
-	        L.DomEvent.disableClickPropagation(container);
-	
-	        var govButton = L.DomUtil.create('button', 'accordion-button', container);
-	        govButton.innerHTML = 'Municipal Governance';
-	        var govPanel = L.DomUtil.create('div', 'accordion-panel', container);
-	
-	        var stuButton = L.DomUtil.create('button', 'accordion-button', container);
-	        stuButton.innerHTML = 'Student Projects';
-	        var stuPanel = L.DomUtil.create('div', 'accordion-panel', container);
-	
-	        [govButton, stuButton].forEach(button => {
-	            L.DomEvent.on(button, 'click', function() {
-	                this.classList.toggle('active');
-	                var panel = this.nextElementSibling;
-	                if (panel.style.maxHeight) {
-	                    panel.style.maxHeight = null;
-	                } else {
-	                    panel.style.maxHeight = '220px'; // Max height for scroll
-	                }
-	            });
-	        });
-	
-	        setTimeout(function() {
-	            var layersControl = document.querySelector('.leaflet-control-layers');
-	            if (layersControl) {
-	                var title = layersControl.querySelector('.leaflet-control-layers-title');
-	                if (title) title.remove();
-	                govPanel.appendChild(layersControl);
-	            }
-	
-	            var categoryControl = document.getElementById('category-control-container');
-	            if (categoryControl) {
-	                stuPanel.appendChild(categoryControl);
-	                categoryControl.style.display = 'block';
-	            }
-	        }, 500);
-	
-	        return container;
-	    },
-	    onRemove: function(map) {}
-	});
-	
-	new L.Control.Accordion({ position: 'bottomright' }).addTo(map);
-	/* --- END --- */
-
+							/* --- FLOATING ACCORDION CONTROL LOGIC --- */
+				L.Control.Accordion = L.Control.extend({
+				    onAdd: function(map) {
+				        var container = L.DomUtil.create('div', 'leaflet-control-accordion');
+				        L.DomEvent.disableClickPropagation(container);
+				
+				        var govButton = L.DomUtil.create('button', 'accordion-button', container);
+				        govButton.innerHTML = 'Municipal Governance';
+				        var govPanel = L.DomUtil.create('div', 'accordion-panel', container);
+				
+				        var stuButton = L.DomUtil.create('button', 'accordion-button', container);
+				        stuButton.innerHTML = 'Student Projects';
+				        var stuPanel = L.DomUtil.create('div', 'accordion-panel', container);
+				
+				        [govButton, stuButton].forEach(button => {
+				            L.DomEvent.on(button, 'click', function() {
+				                this.classList.toggle('active');
+				                var panel = this.nextElementSibling;
+				                if (panel.style.maxHeight) {
+				                    panel.style.maxHeight = null;
+				                } else {
+				                    panel.style.maxHeight = '220px'; // Max height for scroll
+				                }
+				            });
+				        });
+				
+				        setTimeout(function() {
+				            var layersControl = document.querySelector('.leaflet-control-layers');
+				            if (layersControl) {
+				                var title = layersControl.querySelector('.leaflet-control-layers-title');
+				                if (title) title.remove();
+				                govPanel.appendChild(layersControl);
+				            }
+				
+				            var categoryControl = document.getElementById('category-control-container');
+				            if (categoryControl) {
+				                stuPanel.appendChild(categoryControl);
+				                categoryControl.style.display = 'block';
+				            }
+				        }, 500);
+				
+				        return container;
+				    },
+				    onRemove: function(map) {}
+				});
+				
+				new L.Control.Accordion({ position: 'bottomright' }).addTo(map);
+				/* --- END --- */
 
    {% include menu.html %}
    {% include dropdown.html %}
  </body>
 </html>
-
-
