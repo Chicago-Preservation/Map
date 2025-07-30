@@ -72,7 +72,7 @@
      var counter = -1;
      var groups = {};
 
-
+<div id="category-control-container" style="display: none;">
      {% for category in site.categories %}
      counter += 1;
 
@@ -135,7 +135,7 @@
 
 
      {% endfor %}
-
+</div>
 
      var imageurl = '<img class="legend" src="' + iconurl + '">';
      if (markergrouping == 'grouped') {
