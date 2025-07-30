@@ -1,15 +1,61 @@
-/* -- Accordion Menu Styles -- */
-.accordion-button { background-color: #f8f9fa; color: #343a40; cursor: pointer; padding: 15px 20px; width: 100%; text-align: left; border: none; border-bottom: 1px solid #dee2e6; outline: none; transition: background-color 0.3s; font-size: 16px; font-weight: 500; }
-.accordion-button.active, .accordion-button:hover { background-color: #e9ecef; }
-.accordion-button:after { content: '▸'; font-size: 14px; color: #6c757d; float: right; transition: transform 0.2s; }
-.accordion-button.active:after { content: '▾'; }
-.accordion-panel { padding: 0 18px; background-color: white; max-height: 0; overflow-y: hidden; transition: max-height 0.2s ease-out; }
-.accordion-panel .article { padding: 8px 0; border-bottom: 1px solid #f1f1f1; }
-.layer-checkbox-group { display: block; position: relative; padding: 8px 0px 8px 35px; cursor: pointer; font-size: 15px; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; border-bottom: 1px solid #f1f1f1; }
-.layer-checkbox-group input { position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0; }
-.checkmark { position: absolute; top: 10px; left: 0; height: 20px; width: 20px; background-color: #eee; border: 1px solid #ccc; border-radius: 3px; }
-.layer-checkbox-group:hover input ~ .checkmark { background-color: #ccc; }
-.layer-checkbox-group input:checked ~ .checkmark { background-color: #2196F3; }
-.checkmark:after { content: ""; position: absolute; display: none; }
-.layer-checkbox-group input:checked ~ .checkmark:after { display: block; }
-.layer-checkbox-group .checkmark:after { left: 6px; top: 2px; width: 5px; height: 10px; border: solid white; border-width: 0 3px 3px 0; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); }
+/* -- Floating Accordion Control Styles -- */
+.leaflet-control-accordion {
+    background: #fff;
+    border: 2px solid rgba(0,0,0,0.2);
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    width: 250px;
+}
+
+.leaflet-control-accordion .accordion-button {
+  background-color: #f8f9fa;
+  color: #343a40;
+  cursor: pointer;
+  padding: 10px 15px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  border-top: 1px solid #dee2e6;
+  outline: none;
+  transition: background-color 0.3s;
+  font-size: 14px;
+  font-weight: bold;
+}
+.leaflet-control-accordion .accordion-button:first-child {
+    border-top: none;
+}
+
+.leaflet-control-accordion .accordion-button.active,
+.leaflet-control-accordion .accordion-button:hover {
+  background-color: #e9ecef;
+}
+
+.leaflet-control-accordion .accordion-button:after {
+  content: '▸';
+  font-size: 12px;
+  color: #6c757d;
+  float: right;
+  transition: transform 0.2s;
+}
+
+.leaflet-control-accordion .accordion-button.active:after {
+  content: '▾';
+}
+
+.leaflet-control-accordion .accordion-panel {
+  padding: 5px 10px;
+  background-color: white;
+  max-height: 0;
+  overflow-y: auto;
+  transition: max-height 0.3s ease-out;
+}
+
+/* Styles for the controls once moved inside the panel */
+.leaflet-control-accordion .leaflet-control-layers {
+    border: none;
+    box-shadow: none;
+    width: 100%;
+}
+.leaflet-control-accordion #category-control-container {
+    padding: 5px;
+}
