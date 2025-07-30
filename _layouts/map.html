@@ -26,52 +26,6 @@
 
    <div id="map"> </div>
 
-
-   <script>
-
-
-   map = L.map('map' , {scrollWheelZoom: false}).setView([41.8781, -87.6298], 12); // Center on Chicago
-   var markers = '';
-   map.addControl(L.control.attribution({ position: 'bottomleft' }));
-
-
-   window.change_map = function(){
-     localStorage.setItem('selectedtem', document.getElementById("choose").value);
-     new_map();
-   }
-
-
-   function makeMap(markergrouping, map){
-     if (markergrouping == 'grouped') { markers = new L.markerClusterGroup({showCoverageOnHover: false});}
-     else if (markergrouping == 'single') { markers = new L.featureGroup();}
-     var items = {};
-
-
-     // Base map layer (ESRI Gray Light) 
-     L.tileLayer('{{site.map-tileset}}', {
-       attribution : '{{site.map-credits}}',
-       minZoom : {{site.minZoom}},
-       maxZoom : {{site.maxZoom}},
-       errorTileUrl : "img/error-tile-image.png",
-       subdomains : ["a", "b", "c", "d"],
-       detectRetina : true,
-     }).addTo(map);
-  
-     // Existing categories layer control setup
-     var overLayers = [];
-     var icons = [];
-
-
-     {% for image in site.static_files %}
-       {% if image.path contains 'assets/leaflet/img' %}
-         icons.push('{{ image.path }}');
-       {% endif %}
-     {% endfor %}
-
-
-     var counter = -1;
-     var groups = {};
-
    <div id="category-control-container" style="display: none;">
      {% for category in site.categories %}
      counter += 1;
@@ -137,6 +91,52 @@
      {% endfor %}
    </div>
 
+   <script>
+
+
+   map = L.map('map' , {scrollWheelZoom: false}).setView([41.8781, -87.6298], 12); // Center on Chicago
+   var markers = '';
+   map.addControl(L.control.attribution({ position: 'bottomleft' }));
+
+
+   window.change_map = function(){
+     localStorage.setItem('selectedtem', document.getElementById("choose").value);
+     new_map();
+   }
+
+
+   function makeMap(markergrouping, map){
+     if (markergrouping == 'grouped') { markers = new L.markerClusterGroup({showCoverageOnHover: false});}
+     else if (markergrouping == 'single') { markers = new L.featureGroup();}
+     var items = {};
+
+
+     // Base map layer (ESRI Gray Light) 
+     L.tileLayer('{{site.map-tileset}}', {
+       attribution : '{{site.map-credits}}',
+       minZoom : {{site.minZoom}},
+       maxZoom : {{site.maxZoom}},
+       errorTileUrl : "img/error-tile-image.png",
+       subdomains : ["a", "b", "c", "d"],
+       detectRetina : true,
+     }).addTo(map);
+  
+     // Existing categories layer control setup
+     var overLayers = [];
+     var icons = [];
+
+
+     {% for image in site.static_files %}
+       {% if image.path contains 'assets/leaflet/img' %}
+         icons.push('{{ image.path }}');
+       {% endif %}
+     {% endfor %}
+
+
+     var counter = -1;
+     var groups = {};
+
+   
      var imageurl = '<img class="legend" src="' + iconurl + '">';
      if (markergrouping == 'grouped') {
        map.addLayer(markers);
