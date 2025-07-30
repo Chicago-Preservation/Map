@@ -28,157 +28,160 @@
 
 
    <script>
-map = L.map('map' , {scrollWheelZoom: false}).setView([41.8781, -87.6298], 12); // Center on Chicago
-   var markers = '';
-   map.addControl(L.control.attribution({ position: 'bottomleft' }));
-
-   window.change_map = function(){
-     localStorage.setItem('selectedtem', document.getElementById("choose").value);
-     new_map();
-   }
-
-   function makeMap(markergrouping, map){
-     if (markergrouping == 'grouped') { markers = new L.markerClusterGroup({showCoverageOnHover: false});}
-     else if (markergrouping == 'single') { markers = new L.featureGroup();}
-     var items = {};
-
-     L.tileLayer('{{site.map-tileset}}', {
-       attribution : '{{site.map-credits}}',
-       minZoom : {{site.minZoom}},
-       maxZoom : {{site.maxZoom}},
-       errorTileUrl : "img/error-tile-image.png",
-       subdomains : ["a", "b", "c", "d"],
-       detectRetina : true,
-     }).addTo(map);
-  
-     var studentProjectLayers = {};
-     var icons = [];
-
-     {% for image in site.static_files %}
-       {% if image.path contains 'assets/leaflet/img' %}
-         icons.push('{{ image.path }}');
-       {% endif %}
-     {% endfor %}
-
-     var counter = -1;
-     var groups = {};
-
-     {% for category in site.categories %}
-       counter += 1;
-       {% capture category_name %}{{ category | first }}{% endcapture %}
-       var layers = [];
-       if (markergrouping == 'grouped') {
-         groups[counter] = L.featureGroup.subGroup(markers);
-       }
-       {% for post in site.categories[category_name] %}
-         lat = {{ post.lat }};
-         lng = {{ post.lng }};
-         if ($(window).height() < {{site.window-height}} || $(window).width() < {{site.window-width}}){
-           content = "<strong>{{ post.title | truncatewords: 2}}</strong>";
-         } else {
-           content = "<strong>{{ post.title }}</strong><br>{{ post.desc }}";
-         }
-         var iconurl = "{{site.baseurl}}" + icons[counter];
-         var mbox = L.icon({ iconUrl: iconurl, iconSize : [50, 54], iconAnchor : [17, 36], popupAnchor : [-1, 8] });
-         var marker = L.marker([lat, lng], { icon: mbox }).bindPopup(content, {offset:new L.Point(0,-30)});
-         marker.iconURL = iconurl;
-         if (markergrouping == 'grouped') {
-           marker.addTo(groups[counter]);
-         } else if (markergrouping == 'single') {
-           layers.push(marker);
-         }
-         filename = "{{post.url}}";
-         if (items[filename] == undefined) {
-           items[filename] = [marker];
-         } else {
-           items[filename].push(marker);
-         }
-         marker.on('click', function(){
-           post_url = "{{site.baseurl}}/#{{post.url}}";
-           article_url = '{{site.baseurl}}{{post.url}}';
-           item_id = "{{post.url}}";
-           window.location = (post_url);
-           articlerender(article_url, item_id);
-         });
-       {% endfor %}
-       var imageurl = '<img class="legend" src="' + iconurl + '">';
-       if (markergrouping == 'grouped') {
-         map.addLayer(markers);
-         var name = imageurl + ' ' + '{{category_name}}';
-         studentProjectLayers[name] = groups[counter];
-       } else if (markergrouping == 'single') {
-         var name = '{{category_name}}';
-         studentProjectLayers[name] = L.layerGroup(layers);
-       }
-     {% endfor %}
-
-    var boundariesLayer = L.geoJSON(null, { /* ... boundaries layer code ... */ });
-    fetch('GeoJson_files_layers/boundaries.geojson').then(response => response.json()).then(data => { boundariesLayer.addData(data); map.addLayer(boundariesLayer); boundariesLayer.bringToBack(); });
-    var nrDistricts2012Layer = L.geoJSON(null, { /* ... nr districts layer code ... */ });
-    fetch('GeoJson_files_layers/NR_Districts_2012.geojson').then(response => response.json()).then(data => { nrDistricts2012Layer.addData(data); nrDistricts2012Layer.bringToBack(); });
-    var landmarksLayer = L.geoJSON(null, { /* ... landmarks layer code ... */ });
-    fetch('GeoJson_files_layers/landmarkareas.geojson').then(response => response.json()).then(data => { landmarksLayer.addData(data); map.addLayer(landmarksLayer); });
-    var historicResourcesLayer = L.geoJSON(null, { /* ... historic resources layer code ... */ });
-    fetch('GeoJson_files_layers/Historic_Resources_Survey.geojson').then(response => response.json()).then(data => { historicResourcesLayer.addData(data); });
-    var nrPropertiesFilteredLayer = L.geoJSON(null, { /* ... nr properties layer code ... */ });
-    fetch('GeoJson_files_layers/NR_Properties_filtered_updated.geojson').then(response => response.json()).then(data => { nrPropertiesFilteredLayer.addData(data); nrPropertiesFilteredLayer.bringToFront(); });
-    var muralRegistryLayer = L.geoJSON(null, { /* ... mural registry layer code ... */ });
-    fetch('GeoJson_files_layers/mural_registry.geojson').then(response => response.json()).then(data => { muralRegistryLayer.addData(data); muralRegistryLayer.bringToFront(); });
-
-    map.on('overlayadd', function (eventLayer) { /* ... overlay add code ... */ });
-
-    var geojsonLayerControl = {
-      '<a href="..." target="_blank">Chicago Landmarks</a>': landmarksLayer,
-      '<a href="..." target="_blank">National Register of Historic Places</a>': nrPropertiesFilteredLayer,
-      '<a href="..." target="_blank">National Register Districts</a>': nrDistricts2012Layer,
-      '<a href="..." target="_blank">Mural Registry</a>': muralRegistryLayer,
-      '<a href="..." target="_blank">Historic Resources Survey</a>': historicResourcesLayer,
-      '<a href="..." target="_blank">Community Areas</a>': boundariesLayer,
-    };
-    
-    // IMPORTANT: Create the controls but DO NOT add them to the map yet.
-    var mapLayersControl = L.control.layers(null, geojsonLayerControl, { collapsed: false });
-    var studentProjectsControl = L.control.layers(null, studentProjectLayers, { collapsed: false });
-
-    L.Control.Accordion = L.Control.extend({
-        onAdd: function(map) {
-            var container = L.DomUtil.create('div', 'leaflet-control-accordion');
-            L.DomEvent.disableClickPropagation(container);
-            
-            var content = L.DomUtil.create('div', 'leaflet-control-accordion-content', container);
-
-            var govButton = L.DomUtil.create('button', 'accordion-button', content);
-            govButton.innerHTML = 'Municipal Governance';
-            var govPanel = L.DomUtil.create('div', 'accordion-panel', content);
-
-            var stuButton = L.DomUtil.create('button', 'accordion-button', content);
-            stuButton.innerHTML = 'Student Projects';
-            var stuPanel = L.DomUtil.create('div', 'accordion-panel', content);
-            
-            [govButton, stuButton].forEach(button => {
-                L.DomEvent.on(button, 'click', function() {
-                    this.classList.toggle('active');
-                    var panel = this.nextElementSibling;
-                    if (panel.style.maxHeight) {
-                        panel.style.maxHeight = null;
-                    } else {
-                        panel.style.maxHeight = '220px';
-                    }
+    document.addEventListener('DOMContentLoaded', function() { // <-- ADD THIS LINE
+     
+       map = L.map('map' , {scrollWheelZoom: false}).setView([41.8781, -87.6298], 12); // Center on Chicago
+          var markers = '';
+          map.addControl(L.control.attribution({ position: 'bottomleft' }));
+       
+          window.change_map = function(){
+            localStorage.setItem('selectedtem', document.getElementById("choose").value);
+            new_map();
+          }
+       
+          function makeMap(markergrouping, map){
+            if (markergrouping == 'grouped') { markers = new L.markerClusterGroup({showCoverageOnHover: false});}
+            else if (markergrouping == 'single') { markers = new L.featureGroup();}
+            var items = {};
+       
+            L.tileLayer('{{site.map-tileset}}', {
+              attribution : '{{site.map-credits}}',
+              minZoom : {{site.minZoom}},
+              maxZoom : {{site.maxZoom}},
+              errorTileUrl : "img/error-tile-image.png",
+              subdomains : ["a", "b", "c", "d"],
+              detectRetina : true,
+            }).addTo(map);
+         
+            var studentProjectLayers = {};
+            var icons = [];
+       
+            {% for image in site.static_files %}
+              {% if image.path contains 'assets/leaflet/img' %}
+                icons.push('{{ image.path }}');
+              {% endif %}
+            {% endfor %}
+       
+            var counter = -1;
+            var groups = {};
+       
+            {% for category in site.categories %}
+              counter += 1;
+              {% capture category_name %}{{ category | first }}{% endcapture %}
+              var layers = [];
+              if (markergrouping == 'grouped') {
+                groups[counter] = L.featureGroup.subGroup(markers);
+              }
+              {% for post in site.categories[category_name] %}
+                lat = {{ post.lat }};
+                lng = {{ post.lng }};
+                if ($(window).height() < {{site.window-height}} || $(window).width() < {{site.window-width}}){
+                  content = "<strong>{{ post.title | truncatewords: 2}}</strong>";
+                } else {
+                  content = "<strong>{{ post.title }}</strong><br>{{ post.desc }}";
+                }
+                var iconurl = "{{site.baseurl}}" + icons[counter];
+                var mbox = L.icon({ iconUrl: iconurl, iconSize : [50, 54], iconAnchor : [17, 36], popupAnchor : [-1, 8] });
+                var marker = L.marker([lat, lng], { icon: mbox }).bindPopup(content, {offset:new L.Point(0,-30)});
+                marker.iconURL = iconurl;
+                if (markergrouping == 'grouped') {
+                  marker.addTo(groups[counter]);
+                } else if (markergrouping == 'single') {
+                  layers.push(marker);
+                }
+                filename = "{{post.url}}";
+                if (items[filename] == undefined) {
+                  items[filename] = [marker];
+                } else {
+                  items[filename].push(marker);
+                }
+                marker.on('click', function(){
+                  post_url = "{{site.baseurl}}/#{{post.url}}";
+                  article_url = '{{site.baseurl}}{{post.url}}';
+                  item_id = "{{post.url}}";
+                  window.location = (post_url);
+                  articlerender(article_url, item_id);
                 });
-            });
-            
-            // Add the controls to their panels
-            govPanel.appendChild(mapLayersControl.onAdd(map));
-            stuPanel.appendChild(studentProjectsControl.onAdd(map));
-
-            return container;
-        },
-        onRemove: function(map) {}
-    });
-    new L.Control.Accordion({ position: 'bottomright' }).addTo(map);
-
-     return items;
-   }
+              {% endfor %}
+              var imageurl = '<img class="legend" src="' + iconurl + '">';
+              if (markergrouping == 'grouped') {
+                map.addLayer(markers);
+                var name = imageurl + ' ' + '{{category_name}}';
+                studentProjectLayers[name] = groups[counter];
+              } else if (markergrouping == 'single') {
+                var name = '{{category_name}}';
+                studentProjectLayers[name] = L.layerGroup(layers);
+              }
+            {% endfor %}
+       
+           var boundariesLayer = L.geoJSON(null, { /* ... boundaries layer code ... */ });
+           fetch('GeoJson_files_layers/boundaries.geojson').then(response => response.json()).then(data => { boundariesLayer.addData(data); map.addLayer(boundariesLayer); boundariesLayer.bringToBack(); });
+           var nrDistricts2012Layer = L.geoJSON(null, { /* ... nr districts layer code ... */ });
+           fetch('GeoJson_files_layers/NR_Districts_2012.geojson').then(response => response.json()).then(data => { nrDistricts2012Layer.addData(data); nrDistricts2012Layer.bringToBack(); });
+           var landmarksLayer = L.geoJSON(null, { /* ... landmarks layer code ... */ });
+           fetch('GeoJson_files_layers/landmarkareas.geojson').then(response => response.json()).then(data => { landmarksLayer.addData(data); map.addLayer(landmarksLayer); });
+           var historicResourcesLayer = L.geoJSON(null, { /* ... historic resources layer code ... */ });
+           fetch('GeoJson_files_layers/Historic_Resources_Survey.geojson').then(response => response.json()).then(data => { historicResourcesLayer.addData(data); });
+           var nrPropertiesFilteredLayer = L.geoJSON(null, { /* ... nr properties layer code ... */ });
+           fetch('GeoJson_files_layers/NR_Properties_filtered_updated.geojson').then(response => response.json()).then(data => { nrPropertiesFilteredLayer.addData(data); nrPropertiesFilteredLayer.bringToFront(); });
+           var muralRegistryLayer = L.geoJSON(null, { /* ... mural registry layer code ... */ });
+           fetch('GeoJson_files_layers/mural_registry.geojson').then(response => response.json()).then(data => { muralRegistryLayer.addData(data); muralRegistryLayer.bringToFront(); });
+       
+           map.on('overlayadd', function (eventLayer) { /* ... overlay add code ... */ });
+       
+           var geojsonLayerControl = {
+             '<a href="..." target="_blank">Chicago Landmarks</a>': landmarksLayer,
+             '<a href="..." target="_blank">National Register of Historic Places</a>': nrPropertiesFilteredLayer,
+             '<a href="..." target="_blank">National Register Districts</a>': nrDistricts2012Layer,
+             '<a href="..." target="_blank">Mural Registry</a>': muralRegistryLayer,
+             '<a href="..." target="_blank">Historic Resources Survey</a>': historicResourcesLayer,
+             '<a href="..." target="_blank">Community Areas</a>': boundariesLayer,
+           };
+           
+           // IMPORTANT: Create the controls but DO NOT add them to the map yet.
+           var mapLayersControl = L.control.layers(null, geojsonLayerControl, { collapsed: false });
+           var studentProjectsControl = L.control.layers(null, studentProjectLayers, { collapsed: false });
+       
+           L.Control.Accordion = L.Control.extend({
+               onAdd: function(map) {
+                   var container = L.DomUtil.create('div', 'leaflet-control-accordion');
+                   L.DomEvent.disableClickPropagation(container);
+                   
+                   var content = L.DomUtil.create('div', 'leaflet-control-accordion-content', container);
+       
+                   var govButton = L.DomUtil.create('button', 'accordion-button', content);
+                   govButton.innerHTML = 'Municipal Governance';
+                   var govPanel = L.DomUtil.create('div', 'accordion-panel', content);
+       
+                   var stuButton = L.DomUtil.create('button', 'accordion-button', content);
+                   stuButton.innerHTML = 'Student Projects';
+                   var stuPanel = L.DomUtil.create('div', 'accordion-panel', content);
+                   
+                   [govButton, stuButton].forEach(button => {
+                       L.DomEvent.on(button, 'click', function() {
+                           this.classList.toggle('active');
+                           var panel = this.nextElementSibling;
+                           if (panel.style.maxHeight) {
+                               panel.style.maxHeight = null;
+                           } else {
+                               panel.style.maxHeight = '220px';
+                           }
+                       });
+                   });
+                   
+                   // Add the controls to their panels
+                   govPanel.appendChild(mapLayersControl.onAdd(map));
+                   stuPanel.appendChild(studentProjectsControl.onAdd(map));
+       
+                   return container;
+               },
+               onRemove: function(map) {}
+           });
+           new L.Control.Accordion({ position: 'bottomright' }).addTo(map);
+       
+            return items;
+          }
+    }); // <-- ADD THIS LINE
    </script>
 
 
