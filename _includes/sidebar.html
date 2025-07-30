@@ -72,3 +72,114 @@
         <!-- Your existing sidebar content -->
     </div>
 </div>
+
+<script>
+// Navigation Menu JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 Initializing navigation menu...');
+    
+    const menuToggle = document.getElementById('new-menu-toggle');
+    const menuDropdown = document.getElementById('new-menu-dropdown');
+    const menuClose = document.getElementById('new-menu-close');
+    const menuLinks = document.querySelectorAll('.new-menu-link');
+    
+    console.log('Menu elements found:', {
+        toggle: !!menuToggle,
+        dropdown: !!menuDropdown,
+        close: !!menuClose,
+        links: menuLinks.length
+    });
+    
+    // Toggle menu visibility
+    function toggleMenu() {
+        const isVisible = menuDropdown.style.display === 'block';
+        menuDropdown.style.display = isVisible ? 'none' : 'block';
+        
+        if (!isVisible) {
+            menuDropdown.classList.add('active');
+        } else {
+            menuDropdown.classList.remove('active');
+        }
+        
+        console.log('🔄 Menu toggled, visible:', !isVisible);
+    }
+    
+    // Close menu
+    function closeMenu() {
+        menuDropdown.style.display = 'none';
+        menuDropdown.classList.remove('active');
+        console.log('❌ Menu closed');
+    }
+    
+    // Event listeners
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            console.log('🎯 Menu button clicked');
+            toggleMenu();
+        });
+    }
+    
+    if (menuClose) {
+        menuClose.addEventListener('click', function(e) {
+            e.stopPropagation();
+            console.log('🎯 Close button clicked');
+            closeMenu();
+        });
+    }
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (menuDropdown && !menuDropdown.contains(e.target) && !menuToggle.contains(e.target)) {
+            closeMenu();
+        }
+    });
+    
+    // Handle menu link clicks
+    menuLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const pageName = this.getAttribute('data-page');
+            console.log('🔗 Navigating to:', pageName);
+            
+            // Close menu
+            closeMenu();
+            
+            // Navigate to page using existing pagerender function
+            if (pageName === 'home') {
+                // Handle home page specially
+                const homeUrl = window.location.origin + window.location.pathname + 'home/';
+                if (typeof pagerender === 'function') {
+                    pagerender(homeUrl);
+                } else {
+                    // Fallback for pagerender
+                    $.get(homeUrl, function(data) {
+                        $("#sidebar-content").html(data);
+                    });
+                }
+                window.location.hash = '/home';
+            } else {
+                // Handle other pages
+                const pageUrl = window.location.origin + window.location.pathname + pageName + '/';
+                if (typeof pagerender === 'function') {
+                    pagerender(pageUrl);
+                } else {
+                    // Fallback for pagerender
+                    $.get(pageUrl, function(data) {
+                        $("#sidebar-content").html(data);
+                    });
+                }
+                window.location.hash = '/' + pageName;
+            }
+        });
+    });
+    
+    // Initialize menu state
+    if (menuDropdown) {
+        menuDropdown.style.display = 'none';
+    }
+    
+    console.log('✅ Navigation menu initialized successfully');
+});
+</script>

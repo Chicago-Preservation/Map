@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Student Project in Legend</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: 'EB Garamond', serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .test-button {
+            background: rgb(128,0,0);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'EB Garamond', serif;
+        }
+        
+        .test-button:hover {
+            background: rgb(100,0,0);
+        }
+        
+        .legend-test {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            padding: 0;
+            margin: 20px;
+            min-width: 250px;
+            max-width: 300px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(128, 0, 0, 0.2);
+        }
+        
+        .enhanced-accordion {
+            padding: 0;
+            margin: 0;
+        }
+        
+        .enhanced-section {
+            border-bottom: 1px solid rgba(128, 0, 0, 0.1);
+        }
+        
+        .enhanced-section:last-child {
+            border-bottom: none;
+        }
+        
+        .enhanced-header {
+            background: rgb(128, 0, 0);
+            color: white;
+            padding: 12px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 14px;
+            transition: background-color 0.2s ease;
+            user-select: none;
+        }
+        
+        .enhanced-header:hover {
+            background: rgb(100, 0, 0);
+        }
+        
+        .enhanced-header i:first-child {
+            margin-right: 8px;
+            width: 16px;
+            text-align: center;
+        }
+        
+        .enhanced-arrow {
+            transition: transform 0.3s ease;
+            font-size: 12px;
+        }
+        
+        .enhanced-content {
+            display: none;
+            padding: 8px 0;
+            max-height: 400px;
+            overflow-y: auto;
+            background: white;
+        }
+        
+        .enhanced-content label {
+            display: block;
+            padding: 8px 16px;
+            margin: 0;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            color: #333;
+            border-bottom: 1px solid rgba(128, 0, 0, 0.05);
+            transition: background-color 0.2s ease;
+            white-space: normal;
+            word-wrap: break-word;
+            min-height: 20px;
+            line-height: 1.4;
+        }
+        
+        .enhanced-content label:last-child {
+            border-bottom: none;
+        }
+        
+        .enhanced-content label:hover {
+            background-color: rgba(128, 0, 0, 0.1);
+        }
+        
+        .enhanced-content input[type="checkbox"] {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Test Student Project in Legend</h1>
+        
+        <div class="test-section">
+            <h3>Student Project Legend Test</h3>
+            <p>This test shows how the student project should appear in the Student Projects section of the legend.</p>
+            
+            <button class="test-button" onclick="testStudentProject()">Test Student Project</button>
+            <button class="test-button" onclick="toggleStudentSection()">Toggle Student Section</button>
+        </div>
+        
+        <div class="test-section">
+            <h3>Debug Information</h3>
+            <div id="debug-output"></div>
+        </div>
+    </div>
+    
+    <!-- Test Legend -->
+    <div class="legend-test">
+        <div class="enhanced-accordion">
+            <div class="enhanced-section" id="municipal-governance">
+                <div class="enhanced-header">
+                    <i class="fa fa-building"></i>
+                    <span>Municipal Governance</span>
+                    <i class="fa fa-chevron-down enhanced-arrow"></i>
+                </div>
+                <div class="enhanced-content">
+                    <label>
+                        <input type="checkbox" checked> Chicago Landmarks
+                    </label>
+                    <label>
+                        <input type="checkbox" checked> National Register Properties
+                    </label>
+                    <label>
+                        <input type="checkbox"> Historic Resources Survey
+                    </label>
+                </div>
+            </div>
+            
+            <div class="enhanced-section" id="student-projects">
+                <div class="enhanced-header">
+                    <i class="fa fa-graduation-cap"></i>
+                    <span>Student Projects</span>
+                    <i class="fa fa-chevron-down enhanced-arrow"></i>
+                </div>
+                <div class="enhanced-content">
+                    <label>
+                        <input type="checkbox" checked> 
+                        <img src="assets/leaflet/img/noun_33862_cc_student.svg" style="width: 16px; height: 16px; margin-right: 8px;">
+                        Sample Student Project
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Test functions
+        function testStudentProject() {
+            const studentSection = document.querySelector('#student-projects .enhanced-content');
+            const studentCheckbox = studentSection.querySelector('input[type="checkbox"]');
+            
+            console.log('Student project checkbox:', studentCheckbox);
+            console.log('Student project checked:', studentCheckbox.checked);
+            
+            const debugOutput = document.getElementById('debug-output');
+            debugOutput.innerHTML = `
+                <p>✅ Student project found in legend</p>
+                <p>📋 Checkbox state: ${studentCheckbox.checked ? 'checked' : 'unchecked'}</p>
+                <p>🎯 Icon: assets/leaflet/img/noun_33862_cc_student.svg</p>
+            `;
+        }
+        
+        function toggleStudentSection() {
+            const studentHeader = document.querySelector('#student-projects .enhanced-header');
+            const studentContent = document.querySelector('#student-projects .enhanced-content');
+            const arrow = studentHeader.querySelector('.enhanced-arrow');
+            
+            const isOpen = studentContent.style.display === 'block';
+            
+            if (isOpen) {
+                studentContent.style.display = 'none';
+                arrow.style.transform = 'rotate(0deg)';
+            } else {
+                studentContent.style.display = 'block';
+                arrow.style.transform = 'rotate(180deg)';
+            }
+            
+            console.log('🔄 Student section toggled, visible:', !isOpen);
+        }
+        
+        // Initialize accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const headers = document.querySelectorAll('.enhanced-header');
+            
+            headers.forEach(header => {
+                header.addEventListener('click', function() {
+                    const section = this.parentElement;
+                    const content = section.querySelector('.enhanced-content');
+                    const arrow = this.querySelector('.enhanced-arrow');
+                    
+                    // Close all sections first
+                    document.querySelectorAll('.enhanced-content').forEach(content => {
+                        content.style.display = 'none';
+                    });
+                    
+                    document.querySelectorAll('.enhanced-arrow').forEach(arrow => {
+                        arrow.style.transform = 'rotate(0deg)';
+                    });
+                    
+                    // Open clicked section if it was closed
+                    const isOpen = content.style.display === 'block';
+                    if (!isOpen) {
+                        content.style.display = 'block';
+                        arrow.style.transform = 'rotate(180deg)';
+                    }
+                });
+            });
+            
+            // Open Municipal Governance by default
+            const municipalHeader = document.querySelector('#municipal-governance .enhanced-header');
+            if (municipalHeader) {
+                municipalHeader.click();
+            }
+            
+            console.log('✅ Legend test initialized');
+            
+            // Update debug output
+            const debugOutput = document.getElementById('debug-output');
+            debugOutput.innerHTML = `
+                <p>✅ Legend test loaded successfully</p>
+                <p>📋 Student project should appear in Student Projects section</p>
+                <p>🎯 Click "Test Student Project" to verify</p>
+            `;
+        });
+    </script>
+</body>
+</html> 
