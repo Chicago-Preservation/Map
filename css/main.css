@@ -481,8 +481,8 @@ padding-top: 6em;
   background-size: 20px 30px;
 }
 
-/* Unified Layer Accordion Styles */
-.unified-layer-accordion {
+/* Enhanced Layer Control Styles */
+.enhanced-layer-control {
   position: absolute;
   bottom: 20px;
   right: 20px;
@@ -496,15 +496,15 @@ padding-top: 6em;
   max-height: 80vh;
 }
 
-.accordion-section {
+.enhanced-section {
   border-bottom: 1px solid rgba(128, 0, 0, 0.2);
 }
 
-.accordion-section:last-child {
+.enhanced-section:last-child {
   border-bottom: none;
 }
 
-.accordion-header {
+.enhanced-header {
   width: 100%;
   padding: 12px 16px;
   background: rgba(128, 0, 0, 0.9);
@@ -521,11 +521,11 @@ padding-top: 6em;
   transition: background-color 0.2s ease;
 }
 
-.accordion-header:hover {
+.enhanced-header:hover {
   background: rgba(128, 0, 0, 1);
 }
 
-.accordion-header.expanded {
+.enhanced-header.expanded {
   background: rgba(128, 0, 0, 1);
 }
 
@@ -538,14 +538,14 @@ padding-top: 6em;
   transition: transform 0.2s ease;
 }
 
-.accordion-header.expanded .expand-icon {
+.enhanced-header.expanded .expand-icon {
   transform: rotate(180deg);
 }
 
-.accordion-content {
+.enhanced-content {
   background: rgba(255, 255, 255, 0.98);
   padding: 12px;
-  max-height: 400px; /* Increased from 300px */
+  max-height: 400px;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -559,25 +559,25 @@ padding-top: 6em;
   border-bottom: 1px solid rgba(128, 0, 0, 0.1);
 }
 
-.accordion-content .leaflet-control-layers {
+.enhanced-content .leaflet-control-layers {
   background: transparent;
   box-shadow: none;
   border: none;
   padding: 0;
   margin: 0;
-  max-height: none; /* Remove any max-height restrictions */
+  max-height: none;
 }
 
-.accordion-content .leaflet-control-layers-title {
-  display: none; /* Hide the original titles since we have our own */
+.enhanced-content .leaflet-control-layers-title {
+  display: none;
 }
 
-.accordion-content .leaflet-control-layers-overlays {
+.enhanced-content .leaflet-control-layers-overlays {
   margin-top: 8px;
-  max-height: none; /* Ensure no height restrictions */
+  max-height: none;
 }
 
-.accordion-content .leaflet-control-layers-overlays label {
+.enhanced-content .leaflet-control-layers-overlays label {
   font-size: 13px;
   font-weight: 400;
   padding: 6px 0;
@@ -586,39 +586,39 @@ padding-top: 6em;
   color: #333;
   line-height: 1.4;
   border-bottom: 1px solid rgba(128, 0, 0, 0.05);
-  white-space: normal; /* Allow text to wrap */
+  white-space: normal;
   word-wrap: break-word;
 }
 
-.accordion-content .leaflet-control-layers-overlays label:last-child {
+.enhanced-content .leaflet-control-layers-overlays label:last-child {
   border-bottom: none;
 }
 
-.accordion-content .leaflet-control-layers-overlays input[type="checkbox"] {
+.enhanced-content .leaflet-control-layers-overlays input[type="checkbox"] {
   margin-right: 8px;
   margin-top: 2px;
   float: left;
 }
 
 /* Better organization for layer controls */
-.accordion-content .leaflet-control-layers-overlays {
+.enhanced-content .leaflet-control-layers-overlays {
   margin-top: 8px;
 }
 
 /* Ensure all content is visible */
-.accordion-content .leaflet-control-layers-overlays label {
+.enhanced-content .leaflet-control-layers-overlays label {
   border-bottom: 1px solid rgba(128, 0, 0, 0.05);
   padding: 6px 0;
-  min-height: 20px; /* Ensure minimum height for clickability */
+  min-height: 20px;
 }
 
-.accordion-content .leaflet-control-layers-overlays label:last-child {
+.enhanced-content .leaflet-control-layers-overlays label:last-child {
   border-bottom: none;
 }
 
 /* Mobile responsive adjustments */
 @media (max-width: 768px) {
-  .unified-layer-accordion {
+  .enhanced-layer-control {
     bottom: 10px;
     right: 10px;
     left: 10px;
@@ -627,16 +627,16 @@ padding-top: 6em;
     max-height: 60vh;
   }
   
-  .accordion-content {
+  .enhanced-content {
     max-height: 200px;
   }
   
-  .accordion-header {
+  .enhanced-header {
     padding: 10px 12px;
     font-size: 13px;
   }
   
-  .accordion-content .leaflet-control-layers-overlays label {
+  .enhanced-content .leaflet-control-layers-overlays label {
     font-size: 12px;
   }
   
@@ -645,8 +645,8 @@ padding-top: 6em;
   }
 }
 
-/* Hide the original layer controls when unified control is active */
-.unified-layer-accordion ~ .leaflet-control-layers {
+/* Hide the original layer controls when enhanced control is active */
+.enhanced-layer-control ~ .leaflet-control-layers {
   display: none !important;
 }
 
@@ -655,6 +655,6 @@ padding-top: 6em;
   z-index: 999;
 }
 
-.unified-layer-accordion {
+.enhanced-layer-control {
   z-index: 1000;
 }
