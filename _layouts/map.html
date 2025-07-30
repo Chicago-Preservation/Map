@@ -39,7 +39,7 @@
             new_map();
           }
        
-          function makeMap(markergrouping, map){
+          window.makeMap = function(markergrouping, map){
             if (markergrouping == 'grouped') { markers = new L.markerClusterGroup({showCoverageOnHover: false});}
             else if (markergrouping == 'single') { markers = new L.featureGroup();}
             var items = {};
@@ -178,8 +178,8 @@
                onRemove: function(map) {}
            });
            new L.Control.Accordion({ position: 'bottomright' }).addTo(map);
-       
-            return items;
+         map.setView([41.8781, -87.6298], 12);
+         return items;
           }
     }); // <-- ADD THIS LINE
    </script>
