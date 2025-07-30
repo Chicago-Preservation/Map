@@ -118,16 +118,30 @@ document.addEventListener('DOMContentLoaded', function() {
             // Close menu
             closeMenu();
             
-            // Navigate to page
+            // Navigate to page using existing pagerender function
             if (pageName === 'home') {
                 // Handle home page specially
                 const homeUrl = window.location.origin + window.location.pathname + 'home/';
-                pagerender(homeUrl);
+                if (typeof pagerender === 'function') {
+                    pagerender(homeUrl);
+                } else {
+                    // Fallback for pagerender
+                    $.get(homeUrl, function(data) {
+                        $("#sidebar-content").html(data);
+                    });
+                }
                 window.location.hash = '/home';
             } else {
                 // Handle other pages
                 const pageUrl = window.location.origin + window.location.pathname + pageName + '/';
-                pagerender(pageUrl);
+                if (typeof pagerender === 'function') {
+                    pagerender(pageUrl);
+                } else {
+                    // Fallback for pagerender
+                    $.get(pageUrl, function(data) {
+                        $("#sidebar-content").html(data);
+                    });
+                }
                 window.location.hash = '/' + pageName;
             }
         });
