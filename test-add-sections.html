@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Adding Sections to Unified Layer Control</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        body {
+            font-family: 'EB Garamond', serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .test-button {
+            background: rgb(128,0,0);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'EB Garamond', serif;
+        }
+        
+        .test-button:hover {
+            background: rgb(100,0,0);
+        }
+        
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .code-block {
+            background: #f8f8f8;
+            padding: 10px;
+            border-radius: 3px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Test Adding Sections to Unified Layer Control</h1>
+        
+        <p>This page demonstrates how to add new sections to the unified layer control using the template system.</p>
+        
+        <div class="test-section">
+            <h3>Available Templates</h3>
+            <p>Click the buttons below to add sections using predefined templates:</p>
+            
+            <button class="test-button" onclick="addAcademicSection()">Add Academic Research</button>
+            <button class="test-button" onclick="addCommunitySection()">Add Community Projects</button>
+            <button class="test-button" onclick="addHistoricalSection()">Add Historical Sites</button>
+            <button class="test-button" onclick="addAdvocacySection()">Add Preservation Advocacy</button>
+            <button class="test-button" onclick="addEventsSection()">Add Preservation Events</button>
+            <button class="test-button" onclick="addResourcesSection()">Add Preservation Resources</button>
+        </div>
+        
+        <div class="test-section">
+            <h3>Custom Sections</h3>
+            <p>Add custom sections with specific configurations:</p>
+            
+            <button class="test-button" onclick="addCustomSection()">Add Custom Section</button>
+            <button class="test-button" onclick="addMultipleSections()">Add Multiple Sections</button>
+        </div>
+        
+        <div class="test-section">
+            <h3>Code Examples</h3>
+            
+            <h4>Add a template section:</h4>
+            <div class="code-block">
+SectionTemplate.addSectionFromTemplate("academic");
+            </div>
+            
+            <h4>Add a custom section:</h4>
+            <div class="code-block">
+const customSection = {
+    id: 'my-custom-section',
+    title: 'My Custom Section',
+    description: 'Description of what this section contains',
+    defaultExpanded: false
+};
+
+window.unifiedLayerControl.addSection(customSection);
+            </div>
+            
+            <h4>Add multiple sections:</h4>
+            <div class="code-block">
+const templates = ["academic", "community", "historical"];
+templates.forEach(template => {
+    SectionTemplate.addSectionFromTemplate(template);
+});
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Debug Information</h3>
+            <button class="test-button" onclick="showDebugInfo()">Show Debug Info</button>
+            <div id="debug-output"></div>
+        </div>
+    </div>
+    
+    <script src="js/unified-layer-control.js"></script>
+    <script src="js/section-template.js"></script>
+    <script>
+        // Test functions for adding sections
+        
+        function addAcademicSection() {
+            if (window.unifiedLayerControl) {
+                SectionTemplate.addSectionFromTemplate("academic");
+                console.log('✅ Added academic research section');
+            } else {
+                console.log('❌ Unified control not ready');
+            }
+        }
+        
+        function addCommunitySection() {
+            if (window.unifiedLayerControl) {
+                SectionTemplate.addSectionFromTemplate("community");
+                console.log('✅ Added community projects section');
+            }
+        }
+        
+        function addHistoricalSection() {
+            if (window.unifiedLayerControl) {
+                SectionTemplate.addSectionFromTemplate("historical");
+                console.log('✅ Added historical sites section');
+            }
+        }
+        
+        function addAdvocacySection() {
+            if (window.unifiedLayerControl) {
+                SectionTemplate.addSectionFromTemplate("advocacy");
+                console.log('✅ Added preservation advocacy section');
+            }
+        }
+        
+        function addEventsSection() {
+            if (window.unifiedLayerControl) {
+                SectionTemplate.addSectionFromTemplate("events");
+                console.log('✅ Added preservation events section');
+            }
+        }
+        
+        function addResourcesSection() {
+            if (window.unifiedLayerControl) {
+                SectionTemplate.addSectionFromTemplate("resources");
+                console.log('✅ Added preservation resources section');
+            }
+        }
+        
+        function addCustomSection() {
+            if (window.unifiedLayerControl) {
+                const customSection = {
+                    id: 'test-custom-section',
+                    title: 'Test Custom Section',
+                    description: 'This is a test custom section',
+                    defaultExpanded: true
+                };
+                
+                window.unifiedLayerControl.addSection(customSection);
+                console.log('✅ Added custom section');
+            }
+        }
+        
+        function addMultipleSections() {
+            if (window.unifiedLayerControl) {
+                const templates = ["academic", "community", "historical"];
+                templates.forEach(template => {
+                    SectionTemplate.addSectionFromTemplate(template);
+                });
+                console.log('✅ Added multiple sections');
+            }
+        }
+        
+        function showDebugInfo() {
+            const debugOutput = document.getElementById('debug-output');
+            let info = '';
+            
+            if (window.unifiedLayerControl) {
+                info += '<h4>Unified Control Status:</h4>';
+                info += '<p>✅ Unified control is available</p>';
+                info += '<p>Initialized: ' + window.unifiedLayerControl.isInitialized + '</p>';
+                info += '<p>Sections: ' + window.unifiedLayerControl.config.sections.length + '</p>';
+                
+                info += '<h4>Available Templates:</h4>';
+                info += '<ul>';
+                Object.keys(SectionTemplate.templates).forEach(template => {
+                    info += '<li>' + template + ': ' + SectionTemplate.templates[template].title + '</li>';
+                });
+                info += '</ul>';
+            } else {
+                info += '<p>❌ Unified control not available</p>';
+            }
+            
+            debugOutput.innerHTML = info;
+        }
+        
+        // Wait for everything to load
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                console.log('🔄 Test page loaded, unified control should be ready');
+                if (window.unifiedLayerControl) {
+                    console.log('✅ Unified control is available for testing');
+                }
+            }, 2000);
+        });
+    </script>
+</body>
+</html> 
