@@ -496,6 +496,74 @@ if (window.innerWidth <= 768) {
 
      return items;
    }
+
+     /* --- FLOATING ACCORDION CONTROL LOGIC --- */
+   L.Control.Accordion = L.Control.extend({
+       onAdd: function(map) {
+           // Create the main container for our control
+           var container = L.DomUtil.create('div', 'leaflet-control-accordion');
+           L.DomEvent.disableClickPropagation(container);
+   
+           // -- Accordion Button 1: Municipal Governance --
+           var govButton = L.DomUtil.create('button', 'accordion-button', container);
+           govButton.innerHTML = 'Municipal Governance';
+           var govPanel = L.DomUtil.create('div', 'accordion-panel', container);
+   
+           // -- Accordion Button 2: Student Projects --
+           var stuButton = L.DomUtil.create('button', 'accordion-button', container);
+           stuButton.innerHTML = 'Student Projects';
+           var stuPanel = L.DomUtil.create('div', 'accordion-panel', container);
+   
+           // Function to handle accordion clicks
+           [govButton, stuButton].forEach(button => {
+               L.DomEvent.on(button, 'click', function() {
+                   this.classList.toggle('active');
+                   var panel = this.nextElementSibling;
+                   if (panel.style.maxHeight) {
+                       panel.style.maxHeight = null;
+                   } else {
+                       panel.style.maxHeight = '200px'; // Set a max height for scroll
+                   }
+               });
+           });
+   
+           // Move the existing controls into our new panels
+           // We use a timeout to make sure they have been created first
+           setTimeout(function() {
+               // Move the "Map Layers" control
+               var layersControl = document.querySelector('.leaflet-control-layers');
+               if (layersControl) {
+                   var title = layersControl.querySelector('.leaflet-control-layers-title');
+                   if (title) title.remove(); // Remove old title
+                   govPanel.appendChild(layersControl);
+               }
+   
+               // Move the "Student Projects" (Category) control
+               var categoryControl = document.getElementById('category-control-container');
+               if (categoryControl) {
+                   stuPanel.appendChild(categoryControl);
+                   categoryControl.style.display = 'block'; // Make it visible again
+               }
+           }, 500); // Wait 500ms
+   
+           return container;
+       },
+   
+       onRemove: function(map) {
+           // Nothing to do here
+       }
+   });
+   
+   // Add our new custom control to the map
+   new L.Control.Accordion({ position: 'bottomright' }).addTo(map);
+   
+   // Finally, remove the old layer control that is now inside our accordion
+   var oldLayersControl = document.querySelector('.leaflet-control-layers');
+   if(oldLayersControl) {
+     oldLayersControl.remove();
+   }
+   
+   /* --- END OF FLOATING ACCORDION LOGIC --- */
    </script>
 
 
