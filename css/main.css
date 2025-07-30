@@ -480,3 +480,133 @@ padding-top: 6em;
   background-image: url('{{site.baseurl}}/assets/leaflet/images/icon.png');
   background-size: 20px 30px;
 }
+
+/* Unified Layer Accordion Styles */
+.unified-layer-accordion {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 280px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  font-family: 'EB Garamond', serif;
+  overflow: hidden;
+}
+
+.accordion-section {
+  border-bottom: 1px solid rgba(128, 0, 0, 0.2);
+}
+
+.accordion-section:last-child {
+  border-bottom: none;
+}
+
+.accordion-header {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(128, 0, 0, 0.9);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-family: 'EB Garamond', serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.accordion-header:hover {
+  background: rgba(128, 0, 0, 1);
+}
+
+.accordion-header.expanded {
+  background: rgba(128, 0, 0, 1);
+}
+
+.header-text {
+  flex: 1;
+}
+
+.expand-icon {
+  font-size: 16px;
+  transition: transform 0.2s ease;
+}
+
+.accordion-header.expanded .expand-icon {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  background: rgba(255, 255, 255, 0.98);
+  padding: 12px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.accordion-content .leaflet-control-layers {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.accordion-content .leaflet-control-layers-title {
+  display: none; /* Hide the original titles since we have our own */
+}
+
+.accordion-content .leaflet-control-layers-overlays label {
+  font-size: 13px;
+  font-weight: 400;
+  padding: 4px 0;
+  margin: 2px 0;
+  display: block;
+  color: #333;
+}
+
+.accordion-content .leaflet-control-layers-overlays input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .unified-layer-accordion {
+    bottom: 10px;
+    right: 10px;
+    left: 10px;
+    width: auto;
+    max-width: calc(100vw - 20px);
+  }
+  
+  .accordion-content {
+    max-height: 200px;
+  }
+  
+  .accordion-header {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .accordion-content .leaflet-control-layers-overlays label {
+    font-size: 12px;
+  }
+}
+
+/* Hide the original layer controls when unified control is active */
+.unified-layer-accordion ~ .leaflet-control-layers {
+  display: none !important;
+}
+
+/* Ensure proper z-index stacking */
+.leaflet-control-layers {
+  z-index: 999;
+}
+
+.unified-layer-accordion {
+  z-index: 1000;
+}
