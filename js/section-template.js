@@ -1,12 +1,12 @@
-// Section Template for Unified Layer Control
-// This file shows how to add new sections to the accordion
+// Section Template for Enhanced Layer Control
+// This file shows how to add new sections to the enhanced layer control
 
-// Example: How to add a new section to the unified layer control
+// Example: How to add a new section to the enhanced layer control
 function addNewSection() {
-    // Get the unified control instance
-    const unifiedControl = window.unifiedLayerControl;
+    // Get the enhanced control instance
+    const enhancedControl = window.enhancedLayerControl;
     
-    if (unifiedControl) {
+    if (enhancedControl) {
         // Define your new section configuration
         const newSectionConfig = {
             id: 'community-initiatives',
@@ -16,7 +16,7 @@ function addNewSection() {
         };
         
         // Add the section
-        unifiedControl.addSection(newSectionConfig);
+        enhancedControl.addSection(newSectionConfig);
         
         console.log('✅ Added new section:', newSectionConfig.title);
     }
@@ -24,9 +24,9 @@ function addNewSection() {
 
 // Example: How to add multiple sections at once
 function addMultipleSections() {
-    const unifiedControl = window.unifiedLayerControl;
+    const enhancedControl = window.enhancedLayerControl;
     
-    if (unifiedControl) {
+    if (enhancedControl) {
         const newSections = [
             {
                 id: 'research-projects',
@@ -49,7 +49,7 @@ function addMultipleSections() {
         ];
         
         newSections.forEach(section => {
-            unifiedControl.addSection(section);
+            enhancedControl.addSection(section);
         });
         
         console.log('✅ Added', newSections.length, 'new sections');
@@ -58,11 +58,11 @@ function addMultipleSections() {
 
 // Example: How to modify existing sections
 function modifyExistingSections() {
-    const unifiedControl = window.unifiedLayerControl;
+    const enhancedControl = window.enhancedLayerControl;
     
-    if (unifiedControl) {
+    if (enhancedControl) {
         // You can modify the config to change section properties
-        unifiedControl.config.sections.forEach(section => {
+        enhancedControl.config.sections.forEach(section => {
             if (section.id === 'municipal-governance') {
                 section.title = 'Government Data';
                 section.description = 'Official preservation data from government sources';
@@ -73,9 +73,9 @@ function modifyExistingSections() {
 
 // Example: How to create a custom section with specific layer controls
 function createCustomSection() {
-    const unifiedControl = window.unifiedLayerControl;
+    const enhancedControl = window.enhancedLayerControl;
     
-    if (unifiedControl) {
+    if (enhancedControl) {
         const customSection = {
             id: 'custom-data',
             title: 'Custom Data Layers',
@@ -85,7 +85,7 @@ function createCustomSection() {
             customProperty: 'value'
         };
         
-        unifiedControl.addSection(customSection);
+        enhancedControl.addSection(customSection);
     }
 }
 
@@ -151,14 +151,14 @@ const sectionTemplates = {
 
 // Function to add a section using a template
 function addSectionFromTemplate(templateName) {
-    const unifiedControl = window.unifiedLayerControl;
+    const enhancedControl = window.enhancedLayerControl;
     const template = sectionTemplates[templateName];
     
-    if (unifiedControl && template) {
-        unifiedControl.addSection(template);
+    if (enhancedControl && template) {
+        enhancedControl.addSection(template);
         console.log('✅ Added section from template:', template.title);
     } else {
-        console.error('❌ Template not found or unified control not available');
+        console.error('❌ Template not found or enhanced control not available');
     }
 }
 
