@@ -72,7 +72,7 @@
      var counter = -1;
      var groups = {};
 
-
+   <div id="category-control-container" style="display: none;">
      {% for category in site.categories %}
      counter += 1;
 
@@ -135,7 +135,7 @@
 
 
      {% endfor %}
-
+   </div>
 
      var imageurl = '<img class="legend" src="' + iconurl + '">';
      if (markergrouping == 'grouped') {
@@ -513,6 +513,49 @@ if (window.innerWidth <= 768) {
 
      return items;
    }
+
+   /* --- FLOATING ACCORDION CONTROL LOGIC --- */
+   L.Control.Accordion = L.Control.extend({
+       onAdd: function(map) {
+           var container = L.DomUtil.create('div', 'leaflet-control-accordion');
+           L.DomEvent.disableClickPropagation(container);
+           var govButton = L.DomUtil.create('button', 'accordion-button', container);
+           govButton.innerHTML = 'Municipal Governance';
+           var govPanel = L.DomUtil.create('div', 'accordion-panel', container);
+           var stuButton = L.DomUtil.create('button', 'accordion-button', container);
+           stuButton.innerHTML = 'Student Projects';
+           var stuPanel = L.DomUtil.create('div', 'accordion-panel', container);
+           [govButton, stuButton].forEach(button => {
+               L.DomEvent.on(button, 'click', function() {
+                   this.classList.toggle('active');
+                   var panel = this.nextElementSibling;
+                   if (panel.style.maxHeight) {
+                       panel.style.maxHeight = null;
+                   } else {
+                       panel.style.maxHeight = '200px';
+                   }
+               });
+           });
+           setTimeout(function() {
+               var layersControl = document.querySelector('.leaflet-control-layers');
+               if (layersControl) {
+                   var title = layersControl.querySelector('.leaflet-control-layers-title');
+                   if (title) title.remove();
+                   govPanel.appendChild(layersControl);
+               }
+               var categoryControl = document.getElementById('category-control-container');
+               if (categoryControl) {
+                   stuPanel.appendChild(categoryControl);
+                   categoryControl.style.display = 'block';
+               }
+           }, 500);
+           return container;
+       },
+       onRemove: function(map) {}
+   });
+   new L.Control.Accordion({ position: 'bottomright' }).addTo(map);
+   /* --- END OF FLOATING ACCORDION LOGIC --- */
+    
    </script>
 
 
