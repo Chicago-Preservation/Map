@@ -1,79 +1,60 @@
-// Enhanced Leaflet Layer Control
-// This script enhances the original Leaflet layer control to have an accordion-style appearance
-// instead of creating a separate unified control
+// Unified Layer Control - Accordion Implementation
+// This script creates a single, clean accordion interface that combines
+// both the category layers (Student Projects) and GeoJSON layers (Municipal Governance)
 
-class EnhancedLayerControl {
+class UnifiedLayerControl {
     constructor() {
+        this.accordionContainer = null;
+        this.sections = {};
         this.isInitialized = false;
-        this.originalControl = null;
-        this.enhancedControl = null;
+        this.config = {
+            sections: [
+                {
+                    id: 'municipal-governance',
+                    title: 'Municipal Governance',
+                    description: 'Official preservation data layers',
+                    defaultExpanded: true
+                },
+                {
+                    id: 'student-projects', 
+                    title: 'Student Projects',
+                    description: 'Academic research and projects',
+                    defaultExpanded: false
+                }
+                // Add more sections here as needed
+            ]
+        };
     }
 
-    // Find and enhance the original Leaflet layer control
-    enhanceOriginalControl() {
-        console.log('🔍 Looking for original Leaflet layer control...');
-        
-        // Find the original Leaflet layer control
-        const originalControl = document.querySelector('.leaflet-control-layers');
-        
-        if (!originalControl) {
-            console.log('❌ No original Leaflet layer control found');
-            return;
+    // Step 1: Create the accordion structure
+    createAccordionStructure() {
+        // Create main container
+        this.accordionContainer = document.createElement('div');
+        this.accordionContainer.className = 'unified-layer-accordion';
+        this.accordionContainer.id = 'unified-layer-accordion';
+
+        // Create sections based on config
+        this.config.sections.forEach(sectionConfig => {
+            const section = this.createSection(sectionConfig);
+            this.accordionContainer.appendChild(section);
+            this.sections[sectionConfig.id] = section;
+        });
+
+        // Add to map
+        const mapContainer = document.getElementById('map');
+        if (mapContainer) {
+            mapContainer.appendChild(this.accordionContainer);
         }
-
-        this.originalControl = originalControl;
-        console.log('✅ Found original Leaflet layer control');
-
-        // Create enhanced control structure
-        this.createEnhancedStructure();
-        
-        // Move existing content to enhanced structure
-        this.moveContentToEnhanced();
-        
-        // Apply enhanced styling
-        this.applyEnhancedStyling();
-        
-        console.log('✅ Enhanced layer control created successfully');
-    }
-
-    // Create enhanced accordion structure
-    createEnhancedStructure() {
-        // Create the enhanced container
-        this.enhancedControl = document.createElement('div');
-        this.enhancedControl.className = 'enhanced-layer-control';
-        this.enhancedControl.id = 'enhanced-layer-control';
-
-        // Create Municipal Governance section
-        const municipalSection = this.createSection({
-            id: 'municipal-governance',
-            title: 'Municipal Governance',
-            description: 'Official preservation data layers'
-        });
-
-        // Create Student Projects section
-        const studentSection = this.createSection({
-            id: 'student-projects',
-            title: 'Student Projects',
-            description: 'Academic research and projects'
-        });
-
-        // Assemble the enhanced control
-        this.enhancedControl.appendChild(municipalSection);
-        this.enhancedControl.appendChild(studentSection);
-
-        // Replace the original control with enhanced one
-        this.originalControl.parentNode.insertBefore(this.enhancedControl, this.originalControl);
-        this.originalControl.style.display = 'none';
     }
 
     // Create individual section
     createSection(config) {
         const section = document.createElement('div');
-        section.className = 'enhanced-section';
-        section.id = `enhanced-section-${config.id}`;
+        section.className = 'accordion-section';
+        section.id = `section-${config.id}`;
         
         const header = document.createElement('button');
-        header.className = `enhanced-header ${config.id}-header`;
+        header.className = `accordion-header ${config.id}-header`;
         header.innerHTML = `
             <span class="header-text">${config.title}</span>
             <span class="expand-icon">⌄</span>
@@ -82,9 +63,9 @@ class EnhancedLayerControl {
         header.setAttribute('data-section', config.id);
         
         const content = document.createElement('div');
-        content.className = `enhanced-content ${config.id}-content`;
+        content.className = `accordion-content ${config.id}-content`;
         content.style.display = 'none';
-        content.id = `enhanced-content-${config.id}`;
+        content.id = `content-${config.id}`;
         
         // Add description if provided
         if (config.description) {
@@ -103,48 +84,151 @@ class EnhancedLayerControl {
         return section;
     }
 
-    // Move content from original control to enhanced structure
-    moveContentToEnhanced() {
-        const municipalContent = document.getElementById('enhanced-content-municipal-governance');
-        const studentContent = document.getElementById('enhanced-content-student-projects');
+    // Step 2: Move existing layer controls into accordion
+    moveExistingControls() {
+        console.log('🔍 Looking for existing layer controls...');
 
-        // Find all layer controls and organize them
-        const allLayerControls = this.originalControl.querySelectorAll('.leaflet-control-layers-overlays');
-        
-        allLayerControls.forEach((layerControl, index) => {
-            // Determine if this is municipal governance or student projects
-            const isMunicipal = this.isMunicipalControl(layerControl);
-            
-            if (isMunicipal) {
-                console.log('🏛️ Moving municipal governance content');
-                municipalContent.appendChild(layerControl.cloneNode(true));
+        // Find and organize all layer controls
+        const allControls = document.querySelectorAll('.leaflet-control-layers');
+        console.log('📊 Found', allControls.length, 'total controls');
+
+        // Municipal Governance controls (GeoJSON layers)
+        const municipalControls = [];
+        const studentControls = [];
+
+        allControls.forEach((control, index) => {
+            // More robust detection of municipal governance controls
+            const isMunicipalControl = 
+                control.classList.contains('municipal-governance-control') ||
+                control.querySelector('a[href*="chicago.gov"]') ||
+                control.querySelector('a[href*="nps.gov"]') ||
+                control.querySelector('a[href*="preservationchicago.org"]') ||
+                control.querySelector('label:contains("Chicago Landmarks")') ||
+                control.querySelector('label:contains("National Register")') ||
+                control.querySelector('label:contains("Mural Registry")') ||
+                control.querySelector('label:contains("Historic Resources")') ||
+                control.querySelector('label:contains("Community Areas")') ||
+                // Check if control contains municipal governance specific text
+                control.textContent.includes('Chicago Landmarks') ||
+                control.textContent.includes('National Register') ||
+                control.textContent.includes('Mural Registry') ||
+                control.textContent.includes('Historic Resources') ||
+                control.textContent.includes('Community Areas');
+
+            if (isMunicipalControl) {
+                municipalControls.push(control);
+                console.log('🏛️ Identified municipal control:', control.textContent.substring(0, 50) + '...');
             } else {
-                console.log('🎓 Moving student projects content');
-                studentContent.appendChild(layerControl.cloneNode(true));
+                // Assume it's a student project control
+                studentControls.push(control);
+                console.log('🎓 Identified student control:', control.textContent.substring(0, 50) + '...');
             }
         });
 
-        // Expand Municipal Governance by default
-        this.toggleSection('municipal-governance');
+        // Move municipal controls - only use the first one to avoid duplicates
+        if (municipalControls.length > 0) {
+            console.log('🏛️ Moving', municipalControls.length, 'municipal governance controls');
+            const municipalContent = this.sections['municipal-governance'].querySelector('.accordion-content');
+            
+            // Only use the first municipal control to avoid duplicates
+            const primaryMunicipalControl = municipalControls[0];
+            const clonedControl = primaryMunicipalControl.cloneNode(true);
+            
+            // Ensure the cloned control maintains functionality
+            this.setupClonedControl(clonedControl, primaryMunicipalControl);
+            
+            municipalContent.appendChild(clonedControl);
+            
+            // Hide all original municipal controls
+            municipalControls.forEach(control => {
+                control.style.display = 'none';
+            });
+        }
+
+        // Move student controls
+        if (studentControls.length > 0) {
+            console.log('🎓 Moving', studentControls.length, 'student project controls');
+            const studentContent = this.sections['student-projects'].querySelector('.accordion-content');
+            
+            // Only use the first student control to avoid duplicates
+            const primaryStudentControl = studentControls[0];
+            const clonedControl = primaryStudentControl.cloneNode(true);
+            
+            // Ensure the cloned control maintains functionality
+            this.setupClonedControl(clonedControl, primaryStudentControl);
+            
+            studentContent.appendChild(clonedControl);
+            
+            // Hide all original student controls
+            studentControls.forEach(control => {
+                control.style.display = 'none';
+            });
+        }
+
+        // If no controls found, hide the entire accordion
+        if (municipalControls.length === 0 && studentControls.length === 0) {
+            console.log('⚠️ No controls found, hiding accordion');
+            this.accordionContainer.style.display = 'none';
+        } else {
+            console.log('✅ Controls moved successfully');
+        }
     }
 
-    // Determine if a control is municipal governance
-    isMunicipalControl(layerControl) {
-        const text = layerControl.textContent || '';
-        return text.includes('Chicago Landmarks') ||
-               text.includes('National Register') ||
-               text.includes('Mural Registry') ||
-               text.includes('Historic Resources') ||
-               text.includes('Community Areas');
+    // Setup cloned control to maintain functionality
+    setupClonedControl(clonedControl, originalControl) {
+        // Copy event listeners and functionality
+        const checkboxes = clonedControl.querySelectorAll('input[type="checkbox"]');
+        const originalCheckboxes = originalControl.querySelectorAll('input[type="checkbox"]');
+        
+        checkboxes.forEach((checkbox, index) => {
+            const originalCheckbox = originalCheckboxes[index];
+            if (originalCheckbox) {
+                // Copy the checked state
+                checkbox.checked = originalCheckbox.checked;
+                
+                // Add event listener that triggers the original checkbox
+                checkbox.addEventListener('change', (e) => {
+                    // Trigger the original checkbox
+                    originalCheckbox.checked = checkbox.checked;
+                    
+                    // Dispatch change event on original checkbox to trigger Leaflet's layer toggle
+                    const changeEvent = new Event('change', { bubbles: true });
+                    originalCheckbox.dispatchEvent(changeEvent);
+                    
+                    // Also trigger click event for better compatibility
+                    const clickEvent = new Event('click', { bubbles: true });
+                    originalCheckbox.dispatchEvent(clickEvent);
+                    
+                    console.log('🔄 Layer toggled:', checkbox.checked ? 'on' : 'off');
+                });
+            }
+        });
+
+        // Copy radio button functionality if present
+        const radios = clonedControl.querySelectorAll('input[type="radio"]');
+        const originalRadios = originalControl.querySelectorAll('input[type="radio"]');
+        
+        radios.forEach((radio, index) => {
+            const originalRadio = originalRadios[index];
+            if (originalRadio) {
+                radio.checked = originalRadio.checked;
+                
+                radio.addEventListener('change', (e) => {
+                    originalRadio.checked = radio.checked;
+                    const changeEvent = new Event('change', { bubbles: true });
+                    originalRadio.dispatchEvent(changeEvent);
+                });
+            }
+        });
     }
 
-    // Toggle section visibility
+    // Step 3: Add accordion functionality
     toggleSection(sectionId) {
-        const section = document.getElementById(`enhanced-section-${sectionId}`);
+        const section = this.sections[sectionId];
         if (!section) return;
 
-        const header = section.querySelector('.enhanced-header');
-        const content = section.querySelector('.enhanced-content');
+        const header = section.querySelector('.accordion-header');
+        const content = section.querySelector('.accordion-content');
         const expandIcon = header.querySelector('.expand-icon');
         const isExpanded = header.getAttribute('aria-expanded') === 'true';
 
@@ -163,69 +247,174 @@ class EnhancedLayerControl {
         }
     }
 
-    // Apply enhanced styling
-    applyEnhancedStyling() {
-        // The styling is handled by CSS classes
-        this.enhancedControl.classList.add('enhanced-layer-control-styled');
+    // Add new section dynamically
+    addSection(config) {
+        const section = this.createSection(config);
+        this.accordionContainer.appendChild(section);
+        this.sections[config.id] = section;
+        
+        // Re-initialize if already initialized
+        if (this.isInitialized) {
+            this.moveExistingControls();
+        }
     }
 
-    // Initialize the enhanced control
+    // Hide original Leaflet controls properly
+    hideOriginalControls() {
+        // Find all original Leaflet layer controls
+        const originalControls = document.querySelectorAll('.leaflet-control-layers');
+        
+        originalControls.forEach(control => {
+            // Hide the control but keep it functional
+            control.style.display = 'none';
+            control.style.visibility = 'hidden';
+            control.style.opacity = '0';
+            control.style.pointerEvents = 'none';
+            
+            // Move it off-screen to prevent any interference
+            control.style.position = 'absolute';
+            control.style.left = '-9999px';
+            control.style.top = '-9999px';
+        });
+        
+        console.log('👻 Hidden', originalControls.length, 'original Leaflet controls');
+    }
+
+    // Debug function to check layer control functionality
+    debugLayerControls() {
+        console.log('🔍 Debugging layer controls...');
+        
+        // Check if original controls are hidden
+        const originalControls = document.querySelectorAll('.leaflet-control-layers');
+        console.log('📊 Original controls found:', originalControls.length);
+        
+        originalControls.forEach((control, index) => {
+            console.log(`Control ${index}:`, {
+                display: control.style.display,
+                visibility: control.style.visibility,
+                opacity: control.style.opacity,
+                position: control.style.position
+            });
+        });
+        
+        // Check cloned controls in accordion
+        const accordionControls = document.querySelectorAll('#unified-layer-accordion .leaflet-control-layers');
+        console.log('📊 Accordion controls found:', accordionControls.length);
+        
+        accordionControls.forEach((control, index) => {
+            const checkboxes = control.querySelectorAll('input[type="checkbox"]');
+            console.log(`Accordion control ${index}:`, {
+                checkboxes: checkboxes.length,
+                visible: control.style.display !== 'none'
+            });
+            
+            checkboxes.forEach((checkbox, cbIndex) => {
+                console.log(`  Checkbox ${cbIndex}:`, {
+                    checked: checkbox.checked,
+                    disabled: checkbox.disabled,
+                    hasEventListener: checkbox.onchange !== null
+                });
+            });
+        });
+        
+        // Check if map layers are accessible
+        if (typeof map !== 'undefined') {
+            console.log('🗺️ Map layers:', map._layers);
+        }
+    }
+
+    // Initialize the unified control
     init() {
         if (this.isInitialized) return;
         
-        console.log('🔄 Initializing Enhanced Layer Control...');
+        console.log('🔄 Initializing Unified Layer Control...');
         
-        // Wait for the map and original control to be ready
-        const initEnhancedControl = () => {
+        // Wait for the map and existing controls to be ready
+        const initUnifiedControl = () => {
+            // Check if the map and controls are ready
             const mapContainer = document.getElementById('map');
-            const originalControl = document.querySelector('.leaflet-control-layers');
+            const existingControls = document.querySelectorAll('.leaflet-control-layers');
             
             console.log('📍 Map container:', mapContainer ? 'Found' : 'Not found');
-            console.log('🎛️ Original control:', originalControl ? 'Found' : 'Not found');
+            console.log('🎛️ Existing controls:', existingControls.length);
             
-            if (mapContainer && originalControl) {
-                console.log('✅ Creating enhanced layer control...');
-                this.enhanceOriginalControl();
+            if (mapContainer && existingControls.length > 0) {
+                console.log('✅ Creating unified accordion structure...');
+                this.createAccordionStructure();
+                this.moveExistingControls();
+                this.hideOriginalControls(); // Hide original controls
                 this.isInitialized = true;
-                console.log('✅ Enhanced Layer Control initialized successfully!');
+                
+                // Expand default sections
+                this.config.sections.forEach(section => {
+                    if (section.defaultExpanded) {
+                        this.toggleSection(section.id);
+                    }
+                });
+                
+                // Debug layer controls after initialization
+                setTimeout(() => {
+                    this.debugLayerControls();
+                }, 1000);
+                
+                console.log('✅ Unified Layer Control initialized successfully!');
             } else {
-                console.log('⏳ Waiting for map and original control to be ready...');
-                setTimeout(initEnhancedControl, 500);
+                console.log('⏳ Waiting for map and controls to be ready...');
+                // Try again in 500ms
+                setTimeout(initUnifiedControl, 500);
             }
         };
         
         // Start the initialization process
-        setTimeout(initEnhancedControl, 1000);
+        setTimeout(initUnifiedControl, 1000);
     }
 }
 
+// Global debug function for troubleshooting
+window.debugUnifiedControl = function() {
+    if (window.unifiedLayerControl) {
+        console.log('🔍 Debugging Unified Layer Control...');
+        window.unifiedLayerControl.debugLayerControls();
+        
+        // Test layer toggling
+        const checkboxes = document.querySelectorAll('#unified-layer-accordion input[type="checkbox"]');
+        console.log('📋 Found', checkboxes.length, 'checkboxes in accordion');
+        
+        checkboxes.forEach((checkbox, index) => {
+            console.log(`Checkbox ${index}:`, {
+                checked: checkbox.checked,
+                disabled: checkbox.disabled,
+                label: checkbox.nextElementSibling?.textContent || 'No label'
+            });
+        });
+    } else {
+        console.log('❌ Unified Layer Control not available');
+    }
+};
+
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
-    window.enhancedLayerControl = new EnhancedLayerControl();
-    window.enhancedLayerControl.init();
+    window.unifiedLayerControl = new UnifiedLayerControl();
+    window.unifiedLayerControl.init();
 });
 
 // Also initialize when map is ready (fallback)
 if (typeof map !== 'undefined') {
-    window.enhancedLayerControl = new EnhancedLayerControl();
-    window.enhancedLayerControl.init();
+    window.unifiedLayerControl = new UnifiedLayerControl();
+    window.unifiedLayerControl.init();
 }
 
 // Additional fallback for when the map loads after DOM
 window.addEventListener('load', function() {
-    if (!document.getElementById('enhanced-layer-control')) {
-        window.enhancedLayerControl = new EnhancedLayerControl();
-        window.enhancedLayerControl.init();
+    // Check if we already have a unified control
+    if (!document.getElementById('unified-layer-accordion')) {
+        window.unifiedLayerControl = new UnifiedLayerControl();
+        window.unifiedLayerControl.init();
     }
 });
 
-// Global debug function for troubleshooting
-window.debugEnhancedControl = function() {
-    if (window.enhancedLayerControl) {
-        console.log('🔍 Debugging Enhanced Layer Control...');
-        console.log('Enhanced control:', document.getElementById('enhanced-layer-control'));
-        console.log('Original control:', document.querySelector('.leaflet-control-layers'));
-    } else {
-        console.log('❌ Enhanced Layer Control not available');
-    }
-}; 
+// Listen for map initialization events
+document.addEventListener('mapReady', function() {
+    window.unifiedLayerControl = new UnifiedLayerControl();
+    window.unifiedLayerControl.init();
+}); 
