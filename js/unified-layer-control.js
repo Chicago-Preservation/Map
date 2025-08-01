@@ -5,25 +5,11 @@
 class UnifiedLayerControl {
     constructor() {
         this.accordionContainer = null;
-        this.sections = {};
+        this.municipalPanel = null;
+        this.studentPanel = null;
+        this.municipalContent = null;
+        this.studentContent = null;
         this.isInitialized = false;
-        this.config = {
-            sections: [
-                {
-                    id: 'municipal-governance',
-                    title: 'Municipal Governance',
-                    description: 'Official preservation data layers',
-                    defaultExpanded: true
-                },
-                {
-                    id: 'student-projects', 
-                    title: 'Student Projects',
-                    description: 'Academic research and projects',
-                    defaultExpanded: false
-                }
-                // Add more sections here as needed
-            ]
-        };
     }
 
     // Step 1: Create the accordion structure
@@ -33,120 +19,148 @@ class UnifiedLayerControl {
         this.accordionContainer.className = 'unified-layer-accordion';
         this.accordionContainer.id = 'unified-layer-accordion';
 
-        // Create sections based on config
-        this.config.sections.forEach(sectionConfig => {
-            const section = this.createSection(sectionConfig);
-            this.accordionContainer.appendChild(section);
-            this.sections[sectionConfig.id] = section;
-        });
+        // Create Municipal Governance section
+        const municipalSection = document.createElement('div');
+        municipalSection.className = 'accordion-section';
+        
+        const municipalHeader = document.createElement('button');
+        municipalHeader.className = 'accordion-header municipal-header';
+        municipalHeader.innerHTML = '<span class="header-text">Municipal Governance</span><span class="expand-icon">⌄</span>';
+        municipalHeader.setAttribute('aria-expanded', 'false');
+        
+        this.municipalContent = document.createElement('div');
+        this.municipalContent.className = 'accordion-content municipal-content';
+        this.municipalContent.style.display = 'none';
+        
+        municipalSection.appendChild(municipalHeader);
+        municipalSection.appendChild(this.municipalContent);
+
+        // Create Student Projects section
+        const studentSection = document.createElement('div');
+        studentSection.className = 'accordion-section';
+        
+        const studentHeader = document.createElement('button');
+        studentHeader.className = 'accordion-header student-header';
+        studentHeader.innerHTML = '<span class="header-text">Student Projects</span><span class="expand-icon">⌄</span>';
+        studentHeader.setAttribute('aria-expanded', 'false');
+        
+        this.studentContent = document.createElement('div');
+        this.studentContent.className = 'accordion-content student-content';
+        this.studentContent.style.display = 'none';
+        
+        studentSection.appendChild(studentHeader);
+        studentSection.appendChild(this.studentContent);
+
+        // Assemble the accordion
+        this.accordionContainer.appendChild(municipalSection);
+        this.accordionContainer.appendChild(studentSection);
 
         // Add to map
         const mapContainer = document.getElementById('map');
         if (mapContainer) {
             mapContainer.appendChild(this.accordionContainer);
         }
-    }
 
-    // Create individual section
-    createSection(config) {
-        const section = document.createElement('div');
-        section.className = 'accordion-section';
-        section.id = `section-${config.id}`;
-        
-        const header = document.createElement('button');
-        header.className = `accordion-header ${config.id}-header`;
-        header.innerHTML = `
-            <span class="header-text">${config.title}</span>
-            <span class="expand-icon">⌄</span>
-        `;
-        header.setAttribute('aria-expanded', 'false');
-        header.setAttribute('data-section', config.id);
-        
-        const content = document.createElement('div');
-        content.className = `accordion-content ${config.id}-content`;
-        content.style.display = 'none';
-        content.id = `content-${config.id}`;
-        
-        // Add description if provided
-        if (config.description) {
-            const description = document.createElement('div');
-            description.className = 'section-description';
-            description.textContent = config.description;
-            content.appendChild(description);
-        }
-        
-        section.appendChild(header);
-        section.appendChild(content);
-
-        // Add click handler
-        header.addEventListener('click', () => this.toggleSection(config.id));
-        
-        return section;
+        // Add click handlers
+        municipalHeader.addEventListener('click', () => this.toggleSection('municipal'));
+        studentHeader.addEventListener('click', () => this.toggleSection('student'));
     }
 
     // Step 2: Move existing layer controls into accordion
     moveExistingControls() {
+        let municipalFound = false;
+        let studentFound = false;
+
         console.log('🔍 Looking for existing layer controls...');
 
-        // Find and organize all layer controls
-        const allControls = document.querySelectorAll('.leaflet-control-layers');
-        console.log('📊 Found', allControls.length, 'total controls');
+        // Find the existing GeoJSON layer control (Municipal Governance)
+        const municipalControl = document.querySelector('.municipal-governance-control');
+        if (municipalControl) {
+            console.log('🏛️ Found municipal governance control');
+            // Clone the content and move it to municipal panel
+            const municipalContent = municipalControl.cloneNode(true);
+            this.municipalContent.appendChild(municipalContent);
+            
+            // Hide the original control
+            municipalControl.style.display = 'none';
+            municipalFound = true;
+        } else {
+            console.log('❌ Municipal governance control not found');
+        }
 
-        // Municipal Governance controls (GeoJSON layers)
-        const municipalControls = [];
-        const studentControls = [];
+        // Find the existing category control (Student Projects)
+        const studentControl = document.querySelector('.student-projects-control');
+        if (studentControl) {
+            console.log('🎓 Found student projects control');
+            // Clone the content and move it to student panel
+            const studentContent = studentControl.cloneNode(true);
+            this.studentContent.appendChild(studentContent);
+            
+            // Hide the original control
+            studentControl.style.display = 'none';
+            studentFound = true;
+        } else {
+            console.log('❌ Student projects control not found');
+        }
 
-        allControls.forEach((control, index) => {
-            // Check if it's a municipal governance control
-            if (control.classList.contains('municipal-governance-control') || 
-                control.querySelector('a[href*="chicago.gov"]') ||
-                control.querySelector('a[href*="nps.gov"]') ||
-                control.querySelector('a[href*="preservationchicago.org"]')) {
-                municipalControls.push(control);
-            } else {
-                // Assume it's a student project control
-                studentControls.push(control);
+        // Fallback: if we can't find the specific controls, try the general approach
+        if (!municipalFound || !studentFound) {
+            console.log('🔄 Using fallback approach...');
+            const allControls = document.querySelectorAll('.leaflet-control-layers');
+            console.log('📊 Found', allControls.length, 'total controls');
+            
+            if (allControls.length >= 2) {
+                // First control is usually the municipal one
+                if (!municipalFound) {
+                    console.log('🏛️ Using first control as municipal governance');
+                    const municipalContent = allControls[0].cloneNode(true);
+                    this.municipalContent.appendChild(municipalContent);
+                    allControls[0].style.display = 'none';
+                    municipalFound = true;
+                }
+                
+                // Second control is usually the student projects
+                if (!studentFound) {
+                    console.log('🎓 Using second control as student projects');
+                    const studentContent = allControls[1].cloneNode(true);
+                    this.studentContent.appendChild(studentContent);
+                    allControls[1].style.display = 'none';
+                    studentFound = true;
+                }
+            } else if (allControls.length === 1) {
+                console.log('📋 Using single control as municipal governance');
+                // If there's only one control, put it in municipal governance
+                const content = allControls[0].cloneNode(true);
+                this.municipalContent.appendChild(content);
+                allControls[0].style.display = 'none';
+                municipalFound = true;
+                
+                // Hide the student projects section if no content
+                const studentHeader = this.accordionContainer.querySelector('.student-header');
+                const studentSection = studentHeader.parentElement;
+                studentSection.style.display = 'none';
             }
-        });
-
-        // Move municipal controls
-        if (municipalControls.length > 0) {
-            console.log('🏛️ Moving', municipalControls.length, 'municipal governance controls');
-            const municipalContent = this.sections['municipal-governance'].querySelector('.accordion-content');
-            municipalControls.forEach(control => {
-                const clonedControl = control.cloneNode(true);
-                municipalContent.appendChild(clonedControl);
-                control.style.display = 'none';
-            });
         }
 
-        // Move student controls
-        if (studentControls.length > 0) {
-            console.log('🎓 Moving', studentControls.length, 'student project controls');
-            const studentContent = this.sections['student-projects'].querySelector('.accordion-content');
-            studentControls.forEach(control => {
-                const clonedControl = control.cloneNode(true);
-                studentContent.appendChild(clonedControl);
-                control.style.display = 'none';
-            });
-        }
-
-        // If no controls found, hide the entire accordion
-        if (municipalControls.length === 0 && studentControls.length === 0) {
+        // If no controls found at all, hide the entire accordion
+        if (!municipalFound && !studentFound) {
             console.log('⚠️ No controls found, hiding accordion');
             this.accordionContainer.style.display = 'none';
         } else {
-            console.log('✅ Controls moved successfully');
+            console.log('✅ Controls moved successfully:', { municipalFound, studentFound });
         }
     }
 
     // Step 3: Add accordion functionality
-    toggleSection(sectionId) {
-        const section = this.sections[sectionId];
-        if (!section) return;
-
-        const header = section.querySelector('.accordion-header');
-        const content = section.querySelector('.accordion-content');
+    toggleSection(sectionType) {
+        const header = sectionType === 'municipal' 
+            ? this.accordionContainer.querySelector('.municipal-header')
+            : this.accordionContainer.querySelector('.student-header');
+        
+        const content = sectionType === 'municipal' 
+            ? this.municipalContent 
+            : this.studentContent;
+        
         const expandIcon = header.querySelector('.expand-icon');
         const isExpanded = header.getAttribute('aria-expanded') === 'true';
 
@@ -162,18 +176,6 @@ class UnifiedLayerControl {
             header.setAttribute('aria-expanded', 'true');
             expandIcon.textContent = '⌃';
             header.classList.add('expanded');
-        }
-    }
-
-    // Add new section dynamically
-    addSection(config) {
-        const section = this.createSection(config);
-        this.accordionContainer.appendChild(section);
-        this.sections[config.id] = section;
-        
-        // Re-initialize if already initialized
-        if (this.isInitialized) {
-            this.moveExistingControls();
         }
     }
 
@@ -198,13 +200,8 @@ class UnifiedLayerControl {
                 this.moveExistingControls();
                 this.isInitialized = true;
                 
-                // Expand default sections
-                this.config.sections.forEach(section => {
-                    if (section.defaultExpanded) {
-                        this.toggleSection(section.id);
-                    }
-                });
-                
+                // Expand Municipal Governance by default
+                this.toggleSection('municipal');
                 console.log('✅ Unified Layer Control initialized successfully!');
             } else {
                 console.log('⏳ Waiting for map and controls to be ready...');
@@ -220,27 +217,27 @@ class UnifiedLayerControl {
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
-    window.unifiedLayerControl = new UnifiedLayerControl();
-    window.unifiedLayerControl.init();
+    const unifiedControl = new UnifiedLayerControl();
+    unifiedControl.init();
 });
 
 // Also initialize when map is ready (fallback)
 if (typeof map !== 'undefined') {
-    window.unifiedLayerControl = new UnifiedLayerControl();
-    window.unifiedLayerControl.init();
+    const unifiedControl = new UnifiedLayerControl();
+    unifiedControl.init();
 }
 
 // Additional fallback for when the map loads after DOM
 window.addEventListener('load', function() {
     // Check if we already have a unified control
     if (!document.getElementById('unified-layer-accordion')) {
-        window.unifiedLayerControl = new UnifiedLayerControl();
-        window.unifiedLayerControl.init();
+        const unifiedControl = new UnifiedLayerControl();
+        unifiedControl.init();
     }
 });
 
 // Listen for map initialization events
 document.addEventListener('mapReady', function() {
-    window.unifiedLayerControl = new UnifiedLayerControl();
-    window.unifiedLayerControl.init();
+    const unifiedControl = new UnifiedLayerControl();
+    unifiedControl.init();
 }); 
