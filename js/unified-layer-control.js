@@ -97,50 +97,25 @@ class UnifiedLayerControl {
         const studentControls = [];
 
         allControls.forEach((control, index) => {
-            // More robust detection of municipal governance controls
-            const isMunicipalControl = 
-                control.classList.contains('municipal-governance-control') ||
+            // Check if it's a municipal governance control
+            if (control.classList.contains('municipal-governance-control') || 
                 control.querySelector('a[href*="chicago.gov"]') ||
                 control.querySelector('a[href*="nps.gov"]') ||
-                control.querySelector('a[href*="preservationchicago.org"]') ||
-                control.querySelector('label:contains("Chicago Landmarks")') ||
-                control.querySelector('label:contains("National Register")') ||
-                control.querySelector('label:contains("Mural Registry")') ||
-                control.querySelector('label:contains("Historic Resources")') ||
-                control.querySelector('label:contains("Community Areas")') ||
-                // Check if control contains municipal governance specific text
-                control.textContent.includes('Chicago Landmarks') ||
-                control.textContent.includes('National Register') ||
-                control.textContent.includes('Mural Registry') ||
-                control.textContent.includes('Historic Resources') ||
-                control.textContent.includes('Community Areas');
-
-            if (isMunicipalControl) {
+                control.querySelector('a[href*="preservationchicago.org"]')) {
                 municipalControls.push(control);
-                console.log('🏛️ Identified municipal control:', control.textContent.substring(0, 50) + '...');
             } else {
                 // Assume it's a student project control
                 studentControls.push(control);
-                console.log('🎓 Identified student control:', control.textContent.substring(0, 50) + '...');
             }
         });
 
-        // Move municipal controls - only use the first one to avoid duplicates
+        // Move municipal controls
         if (municipalControls.length > 0) {
             console.log('🏛️ Moving', municipalControls.length, 'municipal governance controls');
             const municipalContent = this.sections['municipal-governance'].querySelector('.accordion-content');
-            
-            // Only use the first municipal control to avoid duplicates
-            const primaryMunicipalControl = municipalControls[0];
-            const clonedControl = primaryMunicipalControl.cloneNode(true);
-            
-            // Ensure the cloned control maintains functionality
-            this.setupClonedControl(clonedControl, primaryMunicipalControl);
-            
-            municipalContent.appendChild(clonedControl);
-            
-            // Hide all original municipal controls
             municipalControls.forEach(control => {
+                const clonedControl = control.cloneNode(true);
+                municipalContent.appendChild(clonedControl);
                 control.style.display = 'none';
             });
         }
@@ -149,18 +124,9 @@ class UnifiedLayerControl {
         if (studentControls.length > 0) {
             console.log('🎓 Moving', studentControls.length, 'student project controls');
             const studentContent = this.sections['student-projects'].querySelector('.accordion-content');
-            
-            // Only use the first student control to avoid duplicates
-            const primaryStudentControl = studentControls[0];
-            const clonedControl = primaryStudentControl.cloneNode(true);
-            
-            // Ensure the cloned control maintains functionality
-            this.setupClonedControl(clonedControl, primaryStudentControl);
-            
-            studentContent.appendChild(clonedControl);
-            
-            // Hide all original student controls
             studentControls.forEach(control => {
+                const clonedControl = control.cloneNode(true);
+                studentContent.appendChild(clonedControl);
                 control.style.display = 'none';
             });
         }
@@ -172,54 +138,6 @@ class UnifiedLayerControl {
         } else {
             console.log('✅ Controls moved successfully');
         }
-    }
-
-    // Setup cloned control to maintain functionality
-    setupClonedControl(clonedControl, originalControl) {
-        // Copy event listeners and functionality
-        const checkboxes = clonedControl.querySelectorAll('input[type="checkbox"]');
-        const originalCheckboxes = originalControl.querySelectorAll('input[type="checkbox"]');
-        
-        checkboxes.forEach((checkbox, index) => {
-            const originalCheckbox = originalCheckboxes[index];
-            if (originalCheckbox) {
-                // Copy the checked state
-                checkbox.checked = originalCheckbox.checked;
-                
-                // Add event listener that triggers the original checkbox
-                checkbox.addEventListener('change', (e) => {
-                    // Trigger the original checkbox
-                    originalCheckbox.checked = checkbox.checked;
-                    
-                    // Dispatch change event on original checkbox to trigger Leaflet's layer toggle
-                    const changeEvent = new Event('change', { bubbles: true });
-                    originalCheckbox.dispatchEvent(changeEvent);
-                    
-                    // Also trigger click event for better compatibility
-                    const clickEvent = new Event('click', { bubbles: true });
-                    originalCheckbox.dispatchEvent(clickEvent);
-                    
-                    console.log('🔄 Layer toggled:', checkbox.checked ? 'on' : 'off');
-                });
-            }
-        });
-
-        // Copy radio button functionality if present
-        const radios = clonedControl.querySelectorAll('input[type="radio"]');
-        const originalRadios = originalControl.querySelectorAll('input[type="radio"]');
-        
-        radios.forEach((radio, index) => {
-            const originalRadio = originalRadios[index];
-            if (originalRadio) {
-                radio.checked = originalRadio.checked;
-                
-                radio.addEventListener('change', (e) => {
-                    originalRadio.checked = radio.checked;
-                    const changeEvent = new Event('change', { bubbles: true });
-                    originalRadio.dispatchEvent(changeEvent);
-                });
-            }
-        });
     }
 
     // Step 3: Add accordion functionality
@@ -259,70 +177,6 @@ class UnifiedLayerControl {
         }
     }
 
-    // Hide original Leaflet controls properly
-    hideOriginalControls() {
-        // Find all original Leaflet layer controls
-        const originalControls = document.querySelectorAll('.leaflet-control-layers');
-        
-        originalControls.forEach(control => {
-            // Hide the control but keep it functional
-            control.style.display = 'none';
-            control.style.visibility = 'hidden';
-            control.style.opacity = '0';
-            control.style.pointerEvents = 'none';
-            
-            // Move it off-screen to prevent any interference
-            control.style.position = 'absolute';
-            control.style.left = '-9999px';
-            control.style.top = '-9999px';
-        });
-        
-        console.log('👻 Hidden', originalControls.length, 'original Leaflet controls');
-    }
-
-    // Debug function to check layer control functionality
-    debugLayerControls() {
-        console.log('🔍 Debugging layer controls...');
-        
-        // Check if original controls are hidden
-        const originalControls = document.querySelectorAll('.leaflet-control-layers');
-        console.log('📊 Original controls found:', originalControls.length);
-        
-        originalControls.forEach((control, index) => {
-            console.log(`Control ${index}:`, {
-                display: control.style.display,
-                visibility: control.style.visibility,
-                opacity: control.style.opacity,
-                position: control.style.position
-            });
-        });
-        
-        // Check cloned controls in accordion
-        const accordionControls = document.querySelectorAll('#unified-layer-accordion .leaflet-control-layers');
-        console.log('📊 Accordion controls found:', accordionControls.length);
-        
-        accordionControls.forEach((control, index) => {
-            const checkboxes = control.querySelectorAll('input[type="checkbox"]');
-            console.log(`Accordion control ${index}:`, {
-                checkboxes: checkboxes.length,
-                visible: control.style.display !== 'none'
-            });
-            
-            checkboxes.forEach((checkbox, cbIndex) => {
-                console.log(`  Checkbox ${cbIndex}:`, {
-                    checked: checkbox.checked,
-                    disabled: checkbox.disabled,
-                    hasEventListener: checkbox.onchange !== null
-                });
-            });
-        });
-        
-        // Check if map layers are accessible
-        if (typeof map !== 'undefined') {
-            console.log('🗺️ Map layers:', map._layers);
-        }
-    }
-
     // Initialize the unified control
     init() {
         if (this.isInitialized) return;
@@ -342,7 +196,6 @@ class UnifiedLayerControl {
                 console.log('✅ Creating unified accordion structure...');
                 this.createAccordionStructure();
                 this.moveExistingControls();
-                this.hideOriginalControls(); // Hide original controls
                 this.isInitialized = true;
                 
                 // Expand default sections
@@ -351,11 +204,6 @@ class UnifiedLayerControl {
                         this.toggleSection(section.id);
                     }
                 });
-                
-                // Debug layer controls after initialization
-                setTimeout(() => {
-                    this.debugLayerControls();
-                }, 1000);
                 
                 console.log('✅ Unified Layer Control initialized successfully!');
             } else {
@@ -369,28 +217,6 @@ class UnifiedLayerControl {
         setTimeout(initUnifiedControl, 1000);
     }
 }
-
-// Global debug function for troubleshooting
-window.debugUnifiedControl = function() {
-    if (window.unifiedLayerControl) {
-        console.log('🔍 Debugging Unified Layer Control...');
-        window.unifiedLayerControl.debugLayerControls();
-        
-        // Test layer toggling
-        const checkboxes = document.querySelectorAll('#unified-layer-accordion input[type="checkbox"]');
-        console.log('📋 Found', checkboxes.length, 'checkboxes in accordion');
-        
-        checkboxes.forEach((checkbox, index) => {
-            console.log(`Checkbox ${index}:`, {
-                checked: checkbox.checked,
-                disabled: checkbox.disabled,
-                label: checkbox.nextElementSibling?.textContent || 'No label'
-            });
-        });
-    } else {
-        console.log('❌ Unified Layer Control not available');
-    }
-};
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
