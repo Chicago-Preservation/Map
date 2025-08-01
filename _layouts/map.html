@@ -160,8 +160,6 @@ if (markergrouping == 'grouped') {
    overLayers[i]['layer'].addTo(map);
  }
  control.addTo(map);
- // Add identifier for unified control
- control.getContainer().classList.add('student-projects-control');
 } else if (markergrouping == 'single') {
 
 // editing out panellayers might need it again
@@ -427,9 +425,6 @@ var mapLayersControl = L.control.layers(null, geojsonLayerControl, {
   position: 'bottomright',
   collapsed: false  // Ensure it's open by default
 }).addTo(map);
-
-// Add a unique identifier to help our unified control find this
-mapLayersControl.getContainer().classList.add('municipal-governance-control');
 
 function restoreActiveLayers() {
     let savedLayers = localStorage.getItem('activeLayers');
