@@ -52,10 +52,6 @@ class EnhancedLayerControl {
         
         console.log('✅ Enhanced Layer Control: Found original control');
         
-        // Store original layer lists before modifying
-        const originalLayerLists = originalControl.querySelectorAll('.leaflet-control-layers-overlays');
-        console.log('📋 Found', originalLayerLists.length, 'original layer lists');
-        
         // Hide the original control immediately to prevent flickering
         originalControl.style.display = 'none';
         originalControl.style.visibility = 'hidden';
@@ -68,7 +64,7 @@ class EnhancedLayerControl {
         this.createAccordionStructure(originalControl);
         
         // Move existing layer lists into accordion sections
-        this.moveLayerLists(originalControl, originalLayerLists);
+        this.moveLayerLists(originalControl);
         
         // Show the enhanced control
         originalControl.style.display = 'block';
@@ -80,6 +76,9 @@ class EnhancedLayerControl {
 
     createAccordionStructure(container) {
         console.log('🔧 Enhanced Layer Control: Creating accordion structure...');
+        
+        // Clear existing content but keep the layer lists
+        const layerLists = container.querySelectorAll('.leaflet-control-layers-overlays');
         
         // Create accordion container
         const accordionContainer = document.createElement('div');
@@ -114,13 +113,16 @@ class EnhancedLayerControl {
         container.innerHTML = '';
         container.appendChild(accordionContainer);
         
+        // Store layer lists for later use
+        this.layerLists = layerLists;
+        
         console.log('✅ Enhanced Layer Control: Accordion structure created');
     }
 
-    moveLayerLists(container, originalLayerLists) {
+    moveLayerLists(container) {
         console.log('🔧 Enhanced Layer Control: Moving layer lists...');
         
-        if (!originalLayerLists || originalLayerLists.length === 0) {
+        if (!this.layerLists || this.layerLists.length === 0) {
             console.log('❌ Enhanced Layer Control: No layer lists found');
             return;
         }
@@ -135,22 +137,14 @@ class EnhancedLayerControl {
         }
         
         // Move layer lists to appropriate sections
-        originalLayerLists.forEach((layerList, index) => {
-            console.log(`📋 Processing layer list ${index + 1}:`, layerList.textContent.substring(0, 50) + '...');
-            
-            // Clone the layer list to preserve functionality
-            const clonedLayerList = layerList.cloneNode(true);
-            
-            // Preserve all event listeners and functionality
-            this.preserveLayerFunctionality(clonedLayerList, layerList);
-            
+        this.layerLists.forEach((layerList, index) => {
             if (index === 0 && municipalSection) {
                 // First layer list goes to Municipal Governance
-                municipalSection.appendChild(clonedLayerList);
+                municipalSection.appendChild(layerList.cloneNode(true));
                 console.log('✅ Enhanced Layer Control: Moved municipal layers');
             } else if (index === 1 && studentSection) {
                 // Second layer list goes to Student Projects
-                studentSection.appendChild(clonedLayerList);
+                studentSection.appendChild(layerList.cloneNode(true));
                 console.log('✅ Enhanced Layer Control: Moved student layers');
             }
         });
@@ -162,49 +156,6 @@ class EnhancedLayerControl {
         }
         
         console.log('✅ Enhanced Layer Control: Layer lists moved successfully');
-    }
-
-    preserveLayerFunctionality(clonedList, originalList) {
-        // Find all checkboxes in both lists
-        const clonedCheckboxes = clonedList.querySelectorAll('input[type="checkbox"], input[type="radio"]');
-        const originalCheckboxes = originalList.querySelectorAll('input[type="checkbox"], input[type="radio"]');
-        
-        // Sync functionality between cloned and original checkboxes
-        clonedCheckboxes.forEach((clonedCheckbox, index) => {
-            const originalCheckbox = originalCheckboxes[index];
-            if (originalCheckbox) {
-                // Copy the checked state
-                clonedCheckbox.checked = originalCheckbox.checked;
-                
-                // Add event listener to cloned checkbox that triggers the original
-                clonedCheckbox.addEventListener('change', function() {
-                    // Update the original checkbox
-                    originalCheckbox.checked = this.checked;
-                    
-                    // Trigger the original checkbox's change event
-                    const event = new Event('change', { bubbles: true });
-                    originalCheckbox.dispatchEvent(event);
-                    
-                    console.log('🔄 Layer checkbox toggled:', this.checked, 'for layer:', this.name || this.id);
-                });
-                
-                // Add click event listener to the label
-                const clonedLabel = clonedCheckbox.parentElement;
-                if (clonedLabel && clonedLabel.tagName === 'LABEL') {
-                    clonedLabel.addEventListener('click', function(e) {
-                        // Prevent default to handle manually
-                        e.preventDefault();
-                        
-                        // Toggle the checkbox
-                        clonedCheckbox.checked = !clonedCheckbox.checked;
-                        
-                        // Trigger change event
-                        const changeEvent = new Event('change', { bubbles: true });
-                        clonedCheckbox.dispatchEvent(changeEvent);
-                    });
-                }
-            }
-        });
     }
 
     toggleSection(sectionElement) {
@@ -244,5 +195,4 @@ window.debugEnhancedControl = function() {
     console.log('- Enhanced control:', document.querySelector('.enhanced-layer-control'));
     console.log('- Accordion sections:', document.querySelectorAll('.enhanced-section'));
     console.log('- Layer lists:', document.querySelectorAll('.leaflet-control-layers-overlays'));
-    console.log('- Checkboxes:', document.querySelectorAll('.enhanced-content input[type="checkbox"]'));
 }; 
