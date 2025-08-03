@@ -331,8 +331,28 @@ console.log('Number of markers in Category layer:', studentCategoryLayer.getLaye
 // --- NEW HIERARCHICAL LEGEND CODE ---
 
 // 1. This part defines the structure of our new legend.
-// The `layer` property must exactly match the variable names from this file
-// (e.g., landmarksLayer, muralRegistryLayer).
+//
+// --- DEVELOPER TEMPLATE & GUIDE ---
+// To add new items to the legend, modify this `legendData` object.
+//
+// HOW TO ADD A NEW LAYER (SUB-OPTION) TO AN EXISTING CATEGORY:
+//   1. Make sure the layer variable (e.g., `myNewLayer`) is defined first.
+//   2. Find the 'category' you want to add it to below.
+//   3. Add a new object to its `subOptions` array, following the format:
+//      { name: 'The Display Name for the Layer', layer: myNewLayer }
+//
+// HOW TO ADD A NEW CATEGORY (MAIN OPTION):
+//   1. Add a new object to the main `legendData` array below.
+//   2. Follow this structure:
+//      {
+//          category: "My New Category Title",
+//          subOptions: [
+//              { name: 'Layer 1 Name', layer: layer1Variable },
+//              { name: 'Layer 2 Name', layer: layer2Variable }
+//          ]
+//      }
+// --- END OF GUIDE ---
+
 const legendData = [
     {
         category: "Municipal Governance",
