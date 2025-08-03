@@ -480,3 +480,53 @@ padding-top: 6em;
   background-image: url('{{site.baseurl}}/assets/leaflet/images/icon.png');
   background-size: 20px 30px;
 }
+
+/* --- Custom Legend Styles --- */
+
+/* Main container for our new legend */
+.leaflet-control-layers.leaflet-control {
+  border: 1px solid #800000; /* Maroon border */
+  border-radius: 5px;
+}
+
+/* Category Headers (e.g., "Municipal Governance") */
+.leaflet-control .legend-category-header {
+  background-color: #800000; /* Maroon background */
+  color: #ffffff; /* White text */
+  font-family: 'EB Garamond', serif; /* Match site's header font */
+  font-weight: 500; /* Slightly bolder */
+  padding: 8px 12px;
+  margin: -10px -10px 10px -10px; /* Stretch to edges */
+  cursor: pointer;
+}
+
+/* Container for the checkboxes */
+.leaflet-control .legend-sub-options {
+  margin-top: 5px;
+}
+
+/* Individual layer items */
+.leaflet-control .legend-item {
+  padding: 2px 5px;
+  border-radius: 3px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Add a hover effect for interactivity */
+.leaflet-control .legend-item:hover {
+  background-color: #f1f1f1; /* Light grey hover effect */
+}
+
+/* Style the text label for each layer */
+.leaflet-control .legend-item label {
+  color: #333333; /* Dark grey text for readability */
+  display: flex;
+  align-items: center;
+  font-size: 15px; /* Adjust as needed */
+}
+
+/* Ensure links inside the legend are styled correctly */
+.leaflet-control .legend-item a {
+  color: #800000; /* Maroon link color */
+  text-decoration: underline;
+}
