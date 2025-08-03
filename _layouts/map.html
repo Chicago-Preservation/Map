@@ -67,118 +67,7 @@
          icons.push('{{ image.path }}');
        {% endif %}
      {% endfor %}
-
-
-     var counter = -1;
-     var groups = {};
-
-
-     {% for category in site.categories %}
-     counter += 1;
-
-
-     {% capture category_name %}{{ category | first }}{% endcapture %}
-     var layers = [];
-     if (markergrouping == 'grouped') {
-       groups[counter] = L.featureGroup.subGroup(markers);
-       var control = L.control.layers(null, null, { collapsed: false, position: 'bottomright' });
-     }
-
-
-     {% for post in site.categories[category_name] %}
-     lat = {{ post.lat }};
-     lng = {{ post.lng }};
-
-
-     if ($(window).height() < {{site.window-height}} || $(window).width() < {{site.window-width}}){
-       content = "<strong>{{ post.title | truncatewords: 2}}</strong>";
-     } else {
-       content = "<strong>{{ post.title }}</strong><br>{{ post.desc }}";
-     }
-
-
-     var iconurl = "{{site.baseurl}}" + icons[counter];
-     var mbox = L.icon({
-       iconUrl: iconurl,
-       iconSize : [50, 54],
-       iconAnchor : [17, 36],
-       popupAnchor : [-1, 8]
-     });
-     var marker = L.marker([lat, lng], {
-       icon: mbox,
-     }).bindPopup(content, {offset:new L.Point(0,-30)});
-     marker.iconURL = iconurl;
-
-
-     if (markergrouping == 'grouped') {
-       marker.addTo(groups[counter]);
-     } else if (markergrouping == 'single') {
-       layers.push(marker);
-     }
-
-
-     filename = "{{post.url}}";
-     if (items[filename] == undefined) {
-       items[filename] = [marker];
-     } else {
-       items[filename].push(marker);
-     }
-
-
-     marker.on('click', function(){
-       post_url = "{{site.baseurl}}/#{{post.url}}";
-       article_url = '{{site.baseurl}}{{post.url}}';
-       item_id = "{{post.url}}";
-       window.location = (post_url);
-       articlerender(article_url, item_id);
-     });
-
-
-     {% endfor %}
-
-
-     var imageurl = '<img class="legend" src="' + iconurl + '">';
-     if (markergrouping == 'grouped') {
-       map.addLayer(markers);
-       var name = imageurl + ' ' + '{{category_name}}';
-       overLayers.push({"name":name, "layer":groups[counter]});
-     } else if (markergrouping == 'single') {
-       var name = '{{category_name}}';
-       overLayers.push({"name":name, icon: imageurl, active: true, "layer":L.layerGroup(layers)});
-     }
-     {% endfor %}
-
-
-     // End of existing category layers loop
-
-
-// Add category control panel to the map (now positioned in the bottom-right)
-if (markergrouping == 'grouped') {
- for (i = 0; i < overLayers.length; i++) {
-   control.addOverlay(overLayers[i]['layer'], overLayers[i]['name']);
-   control.addTo(map);
-   overLayers[i]['layer'].addTo(map);
- }
- control.addTo(map);
-} else if (markergrouping == 'single') {
-
-// editing out panellayers might need it again
-// var panelLayers = new L.Control.PanelLayers(null, overLayers, {
-//   compact: true,
-//   collapsed: false,
-//   position: 'bottomright'  // Change position to bottom-right
-//  });
-//  map.addControl(panelLayers);
-
-
- // Add "Categories" title to the control panel (bottom-right)
- var categoriesContainer = document.querySelector('.leaflet-control-layers');
- var categoriesTitle = document.createElement('div');
- categoriesTitle.className = 'leaflet-control-layers-title';
- categoriesTitle.innerHTML = '<h4>Categories</h4>';
- categoriesContainer.insertBefore(categoriesTitle, categoriesContainer.firstChild);
  
-}
 // boundaries layer
 
 var boundariesLayer = L.geoJSON(null, {
@@ -408,67 +297,135 @@ map.on('overlayadd', function (eventLayer) {
   }, 100); // Small delay to ensure correct ordering
 });
 
+// --- Create Student 'Category' Layer ---
+const studentCategoryLayer = L.layerGroup();
+{% for post in site.categories['Category'] %}
+  lat = {{ post.lat }};
+  lng = {{ post.lng }};
+  content = "<strong>{{ post.title }}</strong><br>{{ post.desc }}";
+  
+  var mbox = L.icon({
+    iconUrl: "{{site.baseurl}}/assets/leaflet/img/noun_33862_cc_green.svg",
+    iconSize : [50, 54],
+    iconAnchor : [17, 36],
+    popupAnchor : [-1, 8]
+  });
 
-// GeoJSON Layers (New Layer Control for GeoJSON in the bottom-right)
+  var marker = L.marker([lat, lng], { icon: mbox }).bindPopup(content, {offset:new L.Point(0,-30)});
+  
+  marker.on('click', function(){
+    post_url = "{{site.baseurl}}/#{{post.url}}";
+    article_url = '{{site.baseurl}}{{post.url}}';
+    item_id = "{{post.url}}";
+    window.location = (post_url);
+    articlerender(article_url, item_id);
+  });
 
-var geojsonLayerControl = {
-  '<a href="https://webapps1.chicago.gov/landmarksweb/web/listings.htm" target="_blank" class="layer-link">Chicago Landmarks</a>': landmarksLayer,
-  '<a href="https://www.nps.gov/subjects/nationalregister/index.htm" target="_blank" class="layer-link">National Register of Historic Places</a>': nrPropertiesFilteredLayer,
-  '<a href="https://www.nps.gov/subjects/nationalregister/index.htm" target="_blank" class="layer-link">National Register Districts</a>': nrDistricts2012Layer,
-  '<a href="https://www.chicago.gov/city/en/depts/dca/supp_info/mural_registry.html" target="_blank" class="layer-link">Mural Registry</a>': muralRegistryLayer,
-  '<a href="https://www.preservationchicago.org/resources/chicago-historic-resources-survey-chrs/?srsltid=AfmBOopcGN7LGooQRSL-UybluDqA0qxd1V6-ZPu3lE02ovtIX6MUr-kh" target="_blank" class="layer-link">Historic Resources Survey</a>': historicResourcesLayer,
-  '<a href="https://www.chicago.gov/city/en/depts/2fm/supp_info/citywide_maps.html" target="_blank" class="layer-link">Community Areas</a>': boundariesLayer,
-};
+  marker.addTo(studentCategoryLayer);
+{% endfor %}
 
-// Add the GeoJSON layer control to the bottom-right and stack it with the categories control
-var mapLayersControl = L.control.layers(null, geojsonLayerControl, {
-  position: 'bottomright',
-  collapsed: false  // Ensure it's open by default
-}).addTo(map);
+map.addLayer(studentCategoryLayer);
 
-function restoreActiveLayers() {
-    let savedLayers = localStorage.getItem('activeLayers');
-    if (savedLayers) {
-        savedLayers = JSON.parse(savedLayers);
-        
-        // Loop through stored layers and add them back to the map
-        savedLayers.forEach(layerName => {
-            Object.keys(geojsonLayerControl).forEach(layerKey => {
-                if (geojsonLayerControl[layerKey].options && geojsonLayerControl[layerKey].options.name === layerName) {
-                    map.addLayer(geojsonLayerControl[layerKey]);
-                }
-            });
-        });
+console.log('Number of markers in Category layer:', studentCategoryLayer.getLayers().length);
+
+// --- NEW HIERARCHICAL LEGEND CODE ---
+
+// 1. This part defines the structure of our new legend.
+// The `layer` property must exactly match the variable names from this file
+// (e.g., landmarksLayer, muralRegistryLayer).
+const legendData = [
+    {
+        category: "Municipal Governance",
+        subOptions: [
+            { name: '<a href="https://webapps1.chicago.gov/landmarksweb/web/listings.htm" target="_blank">Chicago Landmarks</a>', layer: landmarksLayer },
+            { name: '<a href="https://www.nps.gov/subjects/nationalregister/index.htm" target="_blank">National Register of Historic Places</a>', layer: nrPropertiesFilteredLayer },
+            { name: '<a href="https://www.nps.gov/subjects/nationalregister/index.htm" target="_blank">National Register Districts</a>', layer: nrDistricts2012Layer },
+            { name: '<a href="https://www.chicago.gov/city/en/depts/dca/supp_info/mural_registry.html" target="_blank">Mural Registry</a>', layer: muralRegistryLayer },
+            { name: '<a href="https://www.preservationchicago.org/resources/chicago-historic-resources-survey-chrs/" target="_blank">Historic Resources Survey</a>', layer: historicResourcesLayer }
+        ]
+    },
+    {
+        category: "Student Projects",
+        subOptions: [
+            { name: 'Category', layer: studentCategoryLayer }
+        ]
     }
-}
+];
 
-// Restore layers when the page loads
-setTimeout(restoreActiveLayers, 500); // Delay to ensure layers are loaded
+// 2. This function builds the HTML for the new collapsible legend.
+function buildHierarchicalLegend(data) {
+    const container = L.DomUtil.create('div', 'leaflet-control-layers leaflet-control-layers-expanded leaflet-control');
+    container.style.padding = '10px';
+    container.style.background = 'rgba(255, 255, 255, 0.95)';
+    container.style.border = '1px solid #aaa';
+    container.setAttribute('aria-haspopup', true);
 
-// Function to save active layers before refresh
-function saveActiveLayers() {
-    let activeLayers = [];
-    map.eachLayer(function(layer) {
-        if (layer.options && layer.options.name) {
-            activeLayers.push(layer.options.name);
-        }
+    L.DomEvent.disableClickPropagation(container);
+
+    data.forEach(categoryObj => {
+        const header = L.DomUtil.create('h4', 'legend-category-header', container);
+        header.innerHTML = `▼ ${categoryObj.category}`;
+        header.style.cursor = 'pointer';
+        header.style.margin = '5px 0';
+        header.style.fontSize = '16px';
+        header.style.userSelect = 'none';
+
+        const subOptionsContainer = L.DomUtil.create('div', 'legend-sub-options', container);
+
+        categoryObj.subOptions.forEach(subOption => {
+            const item = L.DomUtil.create('div', '', subOptionsContainer);
+            item.style.paddingLeft = '15px';
+
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.style.marginRight = '5px';
+            checkbox.onchange = function(e) {
+                if (e.target.checked) {
+                    if (!map.hasLayer(subOption.layer)) map.addLayer(subOption.layer);
+                } else {
+                    if (map.hasLayer(subOption.layer)) map.removeLayer(subOption.layer);
+                }
+            };
+            
+            map.on('overlayadd', (e) => {
+                if(e.layer === subOption.layer) checkbox.checked = true;
+            });
+            map.on('overlayremove', (e) => {
+                if(e.layer === subOption.layer) checkbox.checked = false;
+            });
+
+            const label = document.createElement('label');
+            label.style.display = 'flex';
+            label.style.alignItems = 'center';
+            label.style.fontSize = '14px';
+            label.appendChild(checkbox);
+            
+            const nameSpan = document.createElement('span');
+            nameSpan.innerHTML = subOption.name;
+            label.appendChild(nameSpan);
+
+            item.appendChild(label);
+        });
+
+        header.onclick = function() {
+            const isHidden = subOptionsContainer.style.display === 'none';
+            subOptionsContainer.style.display = isHidden ? 'block' : 'none';
+            header.innerHTML = isHidden ? `▼ ${categoryObj.category}` : `► ${categoryObj.category}`;
+        };
     });
-    localStorage.setItem('activeLayers', JSON.stringify(activeLayers));
+
+    return container;
 }
 
-// Save layers when toggled
-map.on('overlayadd', saveActiveLayers);
-map.on('overlayremove', saveActiveLayers);
+// 3. This creates the new legend and adds it to the map.
+const newLegendControl = L.control({position: 'bottomright'});
+newLegendControl.onAdd = function(map) {
+    return buildHierarchicalLegend(legendData);
+};
+newLegendControl.addTo(map);
 
-// Save layers before page refresh
-window.addEventListener('beforeunload', saveActiveLayers);
+// --- END OF NEW HIERARCHICAL LEGEND CODE ---
 
-// Add the "Map Layers" title as part of the control box (bottom-right)
-var layersContainer = document.querySelector('.leaflet-control-layers');
-var mapLayersTitle = document.createElement('div');
-mapLayersTitle.className = 'leaflet-control-layers-title';
-mapLayersTitle.innerHTML = '<h4>Map Layers</h4>';
-layersContainer.insertBefore(mapLayersTitle, layersContainer.firstChild);
 if (window.innerWidth <= 768) {
   const leftContainer = document.querySelector('.leaflet-bottom.leaflet-left');
 
