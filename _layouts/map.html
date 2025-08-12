@@ -297,156 +297,6 @@ map.on('overlayadd', function (eventLayer) {
   }, 100); // Small delay to ensure correct ordering
 });
 
-// --- Create Student 'Category' Layer ---
-const studentCategoryLayer = L.layerGroup();
-{% for post in site.categories['Category'] %}
-  lat = {{ post.lat }};
-  lng = {{ post.lng }};
-  content = "<strong>{{ post.title }}</strong><br>{{ post.desc }}";
-  
-  var mbox = L.icon({
-    iconUrl: "{{site.baseurl}}/assets/leaflet/img/noun_33862_cc_green.svg",
-    iconSize : [50, 54],
-    iconAnchor : [17, 36],
-    popupAnchor : [-1, 8]
-  });
-
-  var marker = L.marker([lat, lng], { icon: mbox }).bindPopup(content, {offset:new L.Point(0,-30)});
-  
-  marker.on('click', function(){
-    post_url = "{{site.baseurl}}/#{{post.url}}";
-    article_url = '{{site.baseurl}}{{post.url}}';
-    item_id = "{{post.url}}";
-    window.location = (post_url);
-    articlerender(article_url, item_id);
-  });
-
-  marker.addTo(studentCategoryLayer);
-{% endfor %}
-
-map.addLayer(studentCategoryLayer);
-
-console.log('Number of markers in Category layer:', studentCategoryLayer.getLayers().length);
-
-// --- NEW HIERARCHICAL LEGEND CODE ---
-
-// 1. This part defines the structure of our new legend.
-//
-// --- DEVELOPER TEMPLATE & GUIDE ---
-// To add new items to the legend, modify this `legendData` object.
-//
-// HOW TO ADD A NEW LAYER (SUB-OPTION) TO AN EXISTING CATEGORY:
-//   1. Make sure the layer variable (e.g., `myNewLayer`) is defined first.
-//   2. Find the 'category' you want to add it to below.
-//   3. Add a new object to its `subOptions` array, following the format:
-//      { name: 'The Display Name for the Layer', layer: myNewLayer }
-//
-// HOW TO ADD A NEW CATEGORY (MAIN OPTION):
-//   1. Add a new object to the main `legendData` array below.
-//   2. Follow this structure:
-//      {
-//          category: "My New Category Title",
-//          subOptions: [
-//              { name: 'Layer 1 Name', layer: layer1Variable },
-//              { name: 'Layer 2 Name', layer: layer2Variable }
-//          ]
-//      }
-// --- END OF GUIDE ---
-
-const legendData = [
-    {
-        category: "Municipal Governance",
-        subOptions: [
-            { name: '<a href="https://webapps1.chicago.gov/landmarksweb/web/listings.htm" target="_blank">Chicago Landmarks</a>', layer: landmarksLayer },
-            { name: '<a href="https://www.nps.gov/subjects/nationalregister/index.htm" target="_blank">National Register of Historic Places</a>', layer: nrPropertiesFilteredLayer },
-            { name: '<a href="https://www.nps.gov/subjects/nationalregister/index.htm" target="_blank">National Register Districts</a>', layer: nrDistricts2012Layer },
-            { name: '<a href="https://www.chicago.gov/city/en/depts/dca/supp_info/mural_registry.html" target="_blank">Mural Registry</a>', layer: muralRegistryLayer },
-            { name: '<a href="https://www.preservationchicago.org/resources/chicago-historic-resources-survey-chrs/" target="_blank">Historic Resources Survey</a>', layer: historicResourcesLayer },
-            { name: '<a href="https://www.chicago.gov/city/en/depts/2fm/supp_info/citywide_maps.html" target="_blank">Community Areas</a>', layer: boundariesLayer }
-        ]
-    },
-    {
-        category: "Student Projects",
-        subOptions: [
-            { name: 'Category', layer: studentCategoryLayer }
-        ]
-    }
-];
-
-// 2. This function builds the HTML for the new collapsible legend.
-function buildHierarchicalLegend(data) {
-    const container = L.DomUtil.create('div', 'leaflet-control-layers leaflet-control-layers-expanded leaflet-control');
-    container.style.padding = '10px';
-    container.style.background = 'rgba(255, 255, 255, 0.95)';
-    container.style.border = '1px solid #aaa';
-    container.setAttribute('aria-haspopup', true);
-
-    L.DomEvent.disableClickPropagation(container);
-
-    data.forEach(categoryObj => {
-        const header = L.DomUtil.create('h4', 'legend-category-header', container);
-        header.innerHTML = `▼ ${categoryObj.category}`;
-        header.style.cursor = 'pointer';
-        header.style.margin = '5px 0';
-        header.style.fontSize = '16px';
-        header.style.userSelect = 'none';
-
-        const subOptionsContainer = L.DomUtil.create('div', 'legend-sub-options', container);
-
-        categoryObj.subOptions.forEach(subOption => {
-            const item = L.DomUtil.create('div', '', subOptionsContainer);
-            item.style.paddingLeft = '15px';
-
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.style.marginRight = '5px';
-            checkbox.onchange = function(e) {
-                if (e.target.checked) {
-                    if (!map.hasLayer(subOption.layer)) map.addLayer(subOption.layer);
-                } else {
-                    if (map.hasLayer(subOption.layer)) map.removeLayer(subOption.layer);
-                }
-            };
-            
-            map.on('overlayadd', (e) => {
-                if(e.layer === subOption.layer) checkbox.checked = true;
-            });
-            map.on('overlayremove', (e) => {
-                if(e.layer === subOption.layer) checkbox.checked = false;
-            });
-
-            const label = document.createElement('label');
-            label.style.display = 'flex';
-            label.style.alignItems = 'center';
-            label.style.fontSize = '14px';
-            label.appendChild(checkbox);
-            
-            const nameSpan = document.createElement('span');
-            nameSpan.innerHTML = subOption.name;
-            label.appendChild(nameSpan);
-
-            item.appendChild(label);
-        });
-
-        header.onclick = function() {
-            const isHidden = subOptionsContainer.style.display === 'none';
-            subOptionsContainer.style.display = isHidden ? 'block' : 'none';
-            header.innerHTML = isHidden ? `▼ ${categoryObj.category}` : `► ${categoryObj.category}`;
-        };
-    });
-
-    return container;
-}
-
-// 3. This creates the new legend and adds it to the map.
-const newLegendControl = L.control({position: 'bottomright'});
-newLegendControl.onAdd = function(map) {
-    return buildHierarchicalLegend(legendData);
-};
-newLegendControl.addTo(map);
-
-// --- END OF NEW HIERARCHICAL LEGEND CODE ---
-
 // GeoJSON Layers (New Layer Control for GeoJSON in the bottom-right)
 if (window.innerWidth <= 768) {
   const leftContainer = document.querySelector('.leaflet-bottom.leaflet-left');
@@ -489,6 +339,165 @@ if (window.innerWidth <= 768) {
      // Set map view
      map.setView([41.8781, -87.6298], 12); // Center on Chicago
      //map.fitBounds(markers.getBounds());
+
+    // --- Create Student 'Category' Layer ---
+    const studentCategoryLayer = L.layerGroup();
+
+    // Define the icon just once outside the loop for efficiency
+    const categoryIconUrl = "{{site.baseurl}}/assets/leaflet/img/noun_33862_cc_green.svg";
+    const categoryIcon = L.icon({
+      iconUrl: categoryIconUrl,
+      iconSize : [50, 54],
+      iconAnchor : [17, 36],
+      popupAnchor : [-1, 8]
+    });
+
+    {% for post in site.categories['Category'] %}
+      lat = {{ post.lat }};
+      lng = {{ post.lng }};
+      content = "<strong>{{ post.title }}</strong><br>{{ post.desc }}";
+
+      var marker = L.marker([lat, lng], { icon: categoryIcon }).bindPopup(content, {offset:new L.Point(0,-30)});
+
+      marker.iconURL = categoryIconUrl; 
+
+      marker.on('click', function(){
+        post_url = "{{site.baseurl}}/#{{post.url}}";
+        article_url = '{{site.baseurl}}{{post.url}}';
+        item_id = "{{post.url}}";
+        window.location = (post_url);
+        articlerender(article_url, item_id);
+      });
+
+      marker.addTo(studentCategoryLayer);
+
+      var filename = "{{post.url}}";
+      if (items[filename] === undefined) {
+        items[filename] = [marker];
+      }
+    {% endfor %}
+
+    map.addLayer(studentCategoryLayer);
+    console.log('Number of markers in Category layer:', studentCategoryLayer.getLayers().length);
+
+    // --- NEW HIERARCHICAL LEGEND CODE ---
+
+    // 1. This part defines the structure of our new legend.
+    //
+    // --- DEVELOPER TEMPLATE & GUIDE ---
+    // To add new items to the legend, modify this `legendData` object.
+    //
+    // HOW TO ADD A NEW LAYER (SUB-OPTION) TO AN EXISTING CATEGORY:
+    //   1. Make sure the layer variable (e.g., `myNewLayer`) is defined first.
+    //   2. Find the 'category' you want to add it to below.
+    //   3. Add a new object to its `subOptions` array, following the format:
+    //      { name: 'The Display Name for the Layer', layer: myNewLayer }
+    //
+    // HOW TO ADD A NEW CATEGORY (MAIN OPTION):
+    //   1. Add a new object to the main `legendData` array below.
+    //   2. Follow this structure:
+    //      {
+    //          category: "My New Category Title",
+    //          subOptions: [
+    //              { name: 'Layer 1 Name', layer: layer1Variable },
+    //              { name: 'Layer 2 Name', layer: layer2Variable }
+    //          ]
+    //      }
+    // --- END OF GUIDE ---
+
+    const legendData = [
+        {
+            category: "Municipal Governance",
+            subOptions: [
+                { name: '<a href="https://webapps1.chicago.gov/landmarksweb/web/listings.htm" target="_blank">Chicago Landmarks</a>', layer: landmarksLayer },
+                { name: '<a href="https://www.nps.gov/subjects/nationalregister/index.htm" target="_blank">National Register of Historic Places</a>', layer: nrPropertiesFilteredLayer },
+                { name: '<a href="https://www.nps.gov/subjects/nationalregister/index.htm" target="_blank">National Register Districts</a>', layer: nrDistricts2012Layer },
+                { name: '<a href="https://www.chicago.gov/city/en/depts/dca/supp_info/mural_registry.html" target="_blank">Mural Registry</a>', layer: muralRegistryLayer },
+                { name: '<a href="https://www.preservationchicago.org/resources/chicago-historic-resources-survey-chrs/" target="_blank">Historic Resources Survey</a>', layer: historicResourcesLayer },
+                { name: '<a href="https://www.chicago.gov/city/en/depts/2fm/supp_info/citywide_maps.html" target="_blank">Community Areas</a>', layer: boundariesLayer }
+            ]
+        },
+        {
+            category: "Student Projects",
+            subOptions: [
+                { name: 'Category', layer: studentCategoryLayer }
+            ]
+        }
+    ];
+
+    // 2. This function builds the HTML for the new collapsible legend.
+    function buildHierarchicalLegend(data) {
+        const container = L.DomUtil.create('div', 'leaflet-control-layers leaflet-control-layers-expanded leaflet-control');
+        container.style.padding = '10px';
+        container.style.background = 'rgba(255, 255, 255, 0.95)';
+        container.style.border = '1px solid #aaa';
+        container.setAttribute('aria-haspopup', true);
+
+        L.DomEvent.disableClickPropagation(container);
+
+        data.forEach(categoryObj => {
+            const header = L.DomUtil.create('h4', 'legend-category-header', container);
+            header.innerHTML = `▼ ${categoryObj.category}`;
+            header.style.cursor = 'pointer';
+            header.style.margin = '5px 0';
+            header.style.fontSize = '16px';
+            header.style.userSelect = 'none';
+
+            const subOptionsContainer = L.DomUtil.create('div', 'legend-sub-options', container);
+
+            categoryObj.subOptions.forEach(subOption => {
+                const item = L.DomUtil.create('div', '', subOptionsContainer);
+                item.style.paddingLeft = '15px';
+
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.style.marginRight = '5px';
+                checkbox.onchange = function(e) {
+                    if (e.target.checked) {
+                        if (!map.hasLayer(subOption.layer)) map.addLayer(subOption.layer);
+                    } else {
+                        if (map.hasLayer(subOption.layer)) map.removeLayer(subOption.layer);
+                    }
+                };
+                
+                map.on('overlayadd', (e) => {
+                    if(e.layer === subOption.layer) checkbox.checked = true;
+                });
+                map.on('overlayremove', (e) => {
+                    if(e.layer === subOption.layer) checkbox.checked = false;
+                });
+
+                const label = document.createElement('label');
+                label.style.display = 'flex';
+                label.style.alignItems = 'center';
+                label.style.fontSize = '14px';
+                label.appendChild(checkbox);
+                
+                const nameSpan = document.createElement('span');
+                nameSpan.innerHTML = subOption.name;
+                label.appendChild(nameSpan);
+
+                item.appendChild(label);
+            });
+
+            header.onclick = function() {
+                const isHidden = subOptionsContainer.style.display === 'none';
+                subOptionsContainer.style.display = isHidden ? 'block' : 'none';
+                header.innerHTML = isHidden ? `▼ ${categoryObj.category}` : `► ${categoryObj.category}`;
+            };
+        });
+
+        return container;
+    }
+
+      // 3. This creates the new legend and adds it to the map.
+      const newLegendControl = L.control({position: 'bottomright'});
+      newLegendControl.onAdd = function(map) {
+          return buildHierarchicalLegend(legendData);
+      };
+      newLegendControl.addTo(map);
+
+      // --- END OF NEW HIERARCHICAL LEGEND CODE ---
 
      return items;
    }
