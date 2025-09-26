@@ -376,7 +376,13 @@ map.on('overlayadd', function (eventLayer) {
     if (!map.hasControl(gentrificationLegend)) {
       gentrificationLegend.addTo(map);
     }
-    document.querySelector('.gentrification-legend').style.display = 'block';
+    // Add a small delay to ensure the DOM element exists
+    setTimeout(() => {
+      var legendElement = document.querySelector('.gentrification-legend');
+      if (legendElement) {
+        legendElement.style.display = 'block';
+      }
+    }, 100);
   }
   
   // Manage layer ordering
@@ -391,10 +397,13 @@ map.on('overlayadd', function (eventLayer) {
 // Hide gentrification legend when layer is removed
 map.on('overlayremove', function (eventLayer) {
   if (eventLayer.layer === gentrificationLayer) {
-    document.querySelector('.gentrification-legend').style.display = 'none';
+    var legendElement = document.querySelector('.gentrification-legend');
+    if (legendElement) {
+      legendElement.style.display = 'none';
+    }
   }
 });
-
+    
 // GeoJSON Layers (New Layer Control for GeoJSON in the bottom-right)
 if (window.innerWidth <= 768) {
   const leftContainer = document.querySelector('.leaflet-bottom.leaflet-left');
