@@ -332,7 +332,7 @@ fetch('GeoJson_files_layers/Gentrification.geojson')
   });
 
 // CREATE A COLOR LEGEND for the gentrification layer
-var gentrificationLegend = L.control({position: 'topright'});
+var gentrificationLegend = L.control({position: 'bottomleft'});
 
 gentrificationLegend.onAdd = function (map) {
     var div = L.DomUtil.create('div', 'info legend gentrification-legend');
