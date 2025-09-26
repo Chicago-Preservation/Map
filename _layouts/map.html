@@ -358,13 +358,16 @@ gentrificationLegend.onAdd = function (map) {
 
 // Add the legend to the map immediately (always present but hidden)
 gentrificationLegend.addTo(map);  
-  // Manage layer ordering
-  setTimeout(() => {
-    boundariesLayer.bringToBack();
-    landmarksLayer.bringToFront();
-    nrPropertiesFilteredLayer.bringToFront();
-    muralRegistryLayer.bringToFront();
-  }, 100);
+// Manage layer ordering
+setTimeout(() => {
+    boundariesLayer.bringToBack();              // Community boundaries at very back
+    gentrificationLayer.bringToBack();          // Gentrification layer behind points
+    nrDistricts2012Layer.bringToFront();        // National Register Districts
+    historicResourcesLayer.bringToFront();      // Historic Resources Survey
+    landmarksLayer.bringToFront();              // Chicago Landmarks
+    nrPropertiesFilteredLayer.bringToFront();   // National Register Properties (points)
+    muralRegistryLayer.bringToFront();          // Mural Registry (points)
+}, 100);
  
 // GeoJSON Layers (New Layer Control for GeoJSON in the bottom-right)
 if (window.innerWidth <= 768) {
@@ -531,6 +534,17 @@ checkbox.onchange = function(e) {
     if (e.target.checked) {
         if (!map.hasLayer(subOption.layer)) {
             map.addLayer(subOption.layer);
+            
+            // Apply layer ordering after adding any layer
+            setTimeout(() => {
+                boundariesLayer.bringToBack();
+                gentrificationLayer.bringToBack();
+                nrDistricts2012Layer.bringToFront();
+                historicResourcesLayer.bringToFront();
+                landmarksLayer.bringToFront();
+                nrPropertiesFilteredLayer.bringToFront();
+                muralRegistryLayer.bringToFront();
+            }, 50);
             
             // Show gentrification legend
             if (subOption.layer === gentrificationLayer) {
