@@ -733,14 +733,15 @@ checkbox.onchange = function(e) {
         if (!map.hasLayer(subOption.layer)) {
             map.addLayer(subOption.layer);
             
-            // Apply simple layer ordering after adding any layer
+            // Apply layer ordering
             setTimeout(() => {
                 if (map.hasLayer(gentrificationLayer)) gentrificationLayer.bringToBack();
                 if (map.hasLayer(raceEthnicityLayer)) raceEthnicityLayer.bringToBack();
+                if (map.hasLayer(financialDataLayer)) financialDataLayer.bringToBack();
                 if (map.hasLayer(boundariesLayer)) boundariesLayer.bringToBack();
             }, 50);
             
-            // Show legends (existing code)
+            // Show appropriate legends
             if (subOption.layer === gentrificationLayer) {
                 var legendDiv = document.querySelector('.gentrification-legend');
                 if (legendDiv) legendDiv.style.display = 'block';
@@ -749,36 +750,28 @@ checkbox.onchange = function(e) {
                 var legendDiv = document.querySelector('.race-ethnicity-legend');
                 if (legendDiv) legendDiv.style.display = 'block';
             }
-         if (subOption.layer === financialDataLayer) {
-    var legendDiv = document.querySelector('.financial-data-legend');
-    if (legendDiv) {
-        legendDiv.style.display = 'block';
-    }
-        
+            if (subOption.layer === financialDataLayer) {
+                var legendDiv = document.querySelector('.financial-data-legend');
+                if (legendDiv) legendDiv.style.display = 'block';
+            }
+        }
     } else {
         if (map.hasLayer(subOption.layer)) {
             map.removeLayer(subOption.layer);
             
-            // Hide gentrification legend
+            // Hide appropriate legends
             if (subOption.layer === gentrificationLayer) {
                 var legendDiv = document.querySelector('.gentrification-legend');
-                if (legendDiv) {
-                    legendDiv.style.display = 'none';
-                }
-          
-            // Hide race/ethnicity legend
+                if (legendDiv) legendDiv.style.display = 'none';
+            }
             if (subOption.layer === raceEthnicityLayer) {
                 var legendDiv = document.querySelector('.race-ethnicity-legend');
-                if (legendDiv) {
-                    legendDiv.style.display = 'none';
-                }
+                if (legendDiv) legendDiv.style.display = 'none';
             }
-         // Hide financial data legend
-if (subOption.layer === financialDataLayer) {
-    var legendDiv = document.querySelector('.financial-data-legend');
-    if (legendDiv) {
-        legendDiv.style.display = 'none';
-    }
+            if (subOption.layer === financialDataLayer) {
+                var legendDiv = document.querySelector('.financial-data-legend');
+                if (legendDiv) legendDiv.style.display = 'none';
+            }
         }
     }
 };
