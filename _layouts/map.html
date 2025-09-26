@@ -540,11 +540,6 @@ const legendData = [
                 checkbox.type = 'checkbox';
                 checkbox.style.marginRight = '5px';
 
-             // Check if layer is already on the map and set checkbox accordingly
-if (map.hasLayer(subOption.layer)) {
-    checkbox.checked = true;
-}
-             
 checkbox.onchange = function(e) {
     if (e.target.checked) {
         if (!map.hasLayer(subOption.layer)) {
