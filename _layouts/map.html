@@ -371,16 +371,26 @@ gentrificationLegend.onAdd = function (map) {
     
 // Handle layer control events
 map.on('overlayadd', function (eventLayer) {
+  console.log('Layer added:', eventLayer.layer.options.name);
+  
   // Show gentrification legend when layer is added
   if (eventLayer.layer === gentrificationLayer) {
+    console.log('Gentrification layer detected');
+    
     if (!map.hasControl(gentrificationLegend)) {
       gentrificationLegend.addTo(map);
+      console.log('Legend control added to map');
     }
+    
     // Add a small delay to ensure the DOM element exists
     setTimeout(() => {
       var legendElement = document.querySelector('.gentrification-legend');
+      console.log('Legend element found:', legendElement);
       if (legendElement) {
         legendElement.style.display = 'block';
+        console.log('Legend display set to block');
+      } else {
+        console.log('ERROR: Legend element not found!');
       }
     }, 100);
   }
