@@ -470,6 +470,82 @@ raceEthnicityLegend.onAdd = function (map) {
 // Add the race/ethnicity legend to the map immediately (always present but hidden)
 raceEthnicityLegend.addTo(map);
 
+  // Financial Data Layer
+var financialDataLayer = L.geoJSON(null, {
+  options: { name: "Financial Data" },
+  
+  style: function (feature) {
+    var medianIncome = feature.properties.MEDINC;
+    var color;
+    
+    // Color by median income (adjust these ranges as needed)
+    if (medianIncome >= 100000) {
+      color = '#006400';      // Dark green - high income
+    } else if (medianIncome >= 75000) {
+      color = '#32CD32';      // Lime green
+    } else if (medianIncome >= 50000) {
+      color = '#FFD700';      // Gold - middle income
+    } else if (medianIncome >= 25000) {
+      color = '#FF8C00';      // Orange
+    } else {
+      color = '#DC143C';      // Crimson - low income
+    }
+    
+    return {
+      color: color,
+      fillColor: color,
+      weight: 2,
+      fillOpacity: 0.6,
+      opacity: 0.8
+    };
+  },
+  
+  onEachFeature: function (feature, layer) {
+    var props = feature.properties;
+    var popupContent = '<strong>' + (props.community || 'Community Area') + '</strong><br>' +
+      '<em>Median Income:</em> $' + (props.MEDINC ? props.MEDINC.toLocaleString() : 'N/A') + '<br>' +
+      '<em>Median Rent:</em> $' + (props.MED_RENT ? props.MED_RENT.toLocaleString() : 'N/A') + '<br>' +
+      '<em>Median Home Value:</em> $' + (props.MED_HV ? props.MED_HV.toLocaleString() : 'N/A');
+    
+    layer.bindPopup(popupContent);
+  }
+});
+
+// Load the Financial Data GeoJSON
+fetch('GeoJson_files_layers/Financial Data.geojson')
+  .then(response => response.json())
+  .then(data => {
+    financialDataLayer.addData(data);
+  })
+  .catch(error => {
+    console.log('Could not load Financial Data.geojson:', error);
+  });
+
+// Financial Data Legend
+var financialDataLegend = L.control({position: 'bottomleft'});
+
+financialDataLegend.onAdd = function (map) {
+    var div = L.DomUtil.create('div', 'financial-data-legend');
+    div.style.background = 'white';
+    div.style.border = '2px solid black';
+    div.style.borderRadius = '5px';
+    div.style.padding = '10px';
+    div.style.fontSize = '12px';
+    div.style.display = 'none';
+    div.style.zIndex = '1000';
+    
+    div.innerHTML = '<strong style="color: black;">Median Income</strong><br>' +
+        '<div style="margin: 3px 0;"><span style="background: #006400; padding: 2px 5px; border: 1px solid #ccc; color: white;">$100,000+</span></div>' +
+        '<div style="margin: 3px 0;"><span style="background: #32CD32; padding: 2px 5px; border: 1px solid #ccc; color: black;">$75,000 - $99,999</span></div>' +
+        '<div style="margin: 3px 0;"><span style="background: #FFD700; padding: 2px 5px; border: 1px solid #ccc; color: black;">$50,000 - $74,999</span></div>' +
+        '<div style="margin: 3px 0;"><span style="background: #FF8C00; padding: 2px 5px; border: 1px solid #ccc; color: white;">$25,000 - $49,999</span></div>' +
+        '<div style="margin: 3px 0;"><span style="background: #DC143C; padding: 2px 5px; border: 1px solid #ccc; color: white;">Under $25,000</span></div>';
+    
+    return div;
+};
+
+financialDataLegend.addTo(map);
+
 // Simple layer ordering - put demographic layers behind all others
 setTimeout(() => {
     if (map.hasLayer(gentrificationLayer)) {
@@ -478,7 +554,9 @@ setTimeout(() => {
     if (map.hasLayer(raceEthnicityLayer)) {
         raceEthnicityLayer.bringToBack();
     }
-    
+ if (map.hasLayer(financialDataLayer)) {
+  financialDataLayer.bringToBack();
+ }   
     // Keep boundaries at very back
     if (map.hasLayer(boundariesLayer)) {
         boundariesLayer.bringToBack();
@@ -609,7 +687,8 @@ const legendData = [
         category: "Urban Phenomena",                    // ← MOVED THIS UP
         subOptions: [
             { name: 'Gentrification Analysis', layer: gentrificationLayer },
-          { name: 'Race/Ethnicity', layer: raceEthnicityLayer }
+          { name: 'Race/Ethnicity', layer: raceEthnicityLayer },
+         { name: 'Financial Data', layer: financialDataLayer }
         ]
     },
     {
@@ -679,6 +758,11 @@ checkbox.onchange = function(e) {
                 var legendDiv = document.querySelector('.race-ethnicity-legend');
                 if (legendDiv) legendDiv.style.display = 'block';
             }
+         if (subOption.layer === financialDataLayer) {
+    var legendDiv = document.querySelector('.financial-data-legend');
+    if (legendDiv) {
+        legendDiv.style.display = 'block';
+    }
         }
     } else {
         if (map.hasLayer(subOption.layer)) {
@@ -699,6 +783,12 @@ checkbox.onchange = function(e) {
                     legendDiv.style.display = 'none';
                 }
             }
+         // Hide financial data legend
+if (subOption.layer === financialDataLayer) {
+    var legendDiv = document.querySelector('.financial-data-legend');
+    if (legendDiv) {
+        legendDiv.style.display = 'none';
+    }
         }
     }
 };
