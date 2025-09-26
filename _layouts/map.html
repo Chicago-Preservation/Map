@@ -576,12 +576,37 @@ const legendData = [
                 checkbox.type = 'checkbox';
                 checkbox.style.marginRight = '5px';
                 checkbox.onchange = function(e) {
-                    if (e.target.checked) {
-                        if (!map.hasLayer(subOption.layer)) map.addLayer(subOption.layer);
-                    } else {
-                        if (map.hasLayer(subOption.layer)) map.removeLayer(subOption.layer);
+    if (e.target.checked) {
+        if (!map.hasLayer(subOption.layer)) {
+            map.addLayer(subOption.layer);
+            
+            // Manual gentrification legend handling
+            if (subOption.layer === gentrificationLayer) {
+                if (!map.hasControl(gentrificationLegend)) {
+                    gentrificationLegend.addTo(map);
+                }
+                setTimeout(() => {
+                    var legendElement = document.querySelector('.gentrification-legend');
+                    if (legendElement) {
+                        legendElement.style.display = 'block';
                     }
-                };
+                }, 100);
+            }
+        }
+    } else {
+        if (map.hasLayer(subOption.layer)) {
+            map.removeLayer(subOption.layer);
+            
+            // Manual gentrification legend hiding
+            if (subOption.layer === gentrificationLayer) {
+                var legendElement = document.querySelector('.gentrification-legend');
+                if (legendElement) {
+                    legendElement.style.display = 'none';
+                }
+            }
+        }
+    }
+};
                 
                 map.on('overlayadd', (e) => {
                     if(e.layer === subOption.layer) checkbox.checked = true;
