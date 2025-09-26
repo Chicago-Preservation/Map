@@ -34,6 +34,11 @@
    var markers = '';
    map.addControl(L.control.attribution({ position: 'bottomleft' }));
 
+    window.change_map = function(){
+  localStorage.setItem('selectedtem', document.getElementById("choose").value);
+  new_map();
+}
+    
    function makeMap(markergrouping, map){
      if (markergrouping == 'grouped') { markers = new L.markerClusterGroup({showCoverageOnHover: false});}
      else if (markergrouping == 'single') { markers = new L.featureGroup();}
