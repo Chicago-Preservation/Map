@@ -384,12 +384,17 @@ var raceEthnicityLayer = L.geoJSON(null, {
   
   style: function (feature) {
     var majority = feature.properties["Majority Race/Ethnicity"];
-       var communityName = feature.properties.community || feature.properties.Community || feature.properties.COMMUNITY;
+       var communityName = feature.properties.community;
     
-    // Special case for Armour Square (Majority Asian)
-    if (communityName && communityName.includes('ARMOUR SQUARE')) {
+    // Debug - remove this once it works
+    if (communityName === 'ARMOUR SQUARE') {
+        console.log('Matched ARMOUR SQUARE exactly!');
+    }
+    
+    // Special case for Armour Square (exact match)
+    if (communityName === 'ARMOUR SQUARE') {
         return {
-            color: '#9932CC',      // Dark orchid for Asian majority
+            color: '#9932CC',
             fillColor: '#9932CC',
             weight: 2,
             fillOpacity: 0.6,
