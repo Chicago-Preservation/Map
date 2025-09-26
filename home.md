@@ -27,13 +27,15 @@ Our goal is to advance equitable access to preservation knowledge while remainin
 
 #### Credits
 >
-Map layers sourced from the <a href="https://data.cityofchicago.org/Historic-Preservation/Mural-Registry/we8h-apcf/about_data" target="_blank">Chicago Data Portal</a> courtesy of the City of Chicago
+Dr. Emily Talen, Professor of Urbanism, University of Chicago
 >
-Academic Consortium of Chicago Preservation
->
-Emily Talen, Professor of Urbanism, University of Chicago
->
-Melissa Rovner, Postdoctoral Scholar, University of Chicago
+Dr. Melissa Rovner, Postdoctoral Scholar, University of Chicago
 >
 Pramiti Singh, Research Assistant, University of Chicago
+>
+Academic Consortium of Chicago Preservation
+
+Map layers sourced from
+><a href="https://data.cityofchicago.org/Historic-Preservation/Mural-Registry/we8h-apcf/about_data" target="_blank">Chicago Data Portal</a> courtesy of the City of Chicago
+><a href="https://www.urbandisplacement.org/">Urban Displacement Project</a> Chapple, K., & Thomas, T., and Zuk, M. (2021). Urban Displacement Project website. Berkeley, CA.
 
