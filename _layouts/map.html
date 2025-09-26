@@ -517,9 +517,9 @@ var financialDataLayer = L.geoJSON(null, {
   onEachFeature: function (feature, layer) {
     var props = feature.properties;
     var popupContent = '<strong>' + (props.community || 'Community Area') + '</strong><br>' +
-      '<em>Median Income:</em> $' + (props.MEDINC ? props.MEDINC.toLocaleString() : 'N/A') + '<br>' +
-      '<em>Median Rent:</em> $' + (props.MED_RENT ? props.MED_RENT.toLocaleString() : 'N/A') + '<br>' +
-      '<em>Median Home Value:</em> $' + (props.MED_HV ? props.MED_HV.toLocaleString() : 'N/A');
+      '<em>Median Income:</em> $' + (props.MEDINC ? Math.round(props.MEDINC).toLocaleString() : 'N/A') + '<br>' +
+      '<em>Median Rent:</em> $' + (props.MED_RENT ? Math.round(props.MED_RENT).toLocaleString() : 'N/A') + '<br>' +
+      '<em>Median Home Value:</em> $' + (props.MED_HV ? Math.round(props.MED_HV).toLocaleString() : 'N/A');
     
     layer.bindPopup(popupContent);
   }
