@@ -384,6 +384,18 @@ var raceEthnicityLayer = L.geoJSON(null, {
   
   style: function (feature) {
     var majority = feature.properties["Majority Race/Ethnicity"];
+       var communityName = feature.properties.community || feature.properties.Community || feature.properties.COMMUNITY;
+    
+    // Special case for Armour Square (Majority Asian)
+    if (communityName && communityName.includes('ARMOUR SQUARE')) {
+        return {
+            color: '#9932CC',      // Dark orchid for Asian majority
+            fillColor: '#9932CC',
+            weight: 2,
+            fillOpacity: 0.6,
+            opacity: 0.8
+        };
+    }
     var colors = {
       'Majority White': '#4682B4',                           // Steel blue
       'Majority Black or African Amer': '#2E8B57',      // Sea green
@@ -444,6 +456,7 @@ raceEthnicityLegend.onAdd = function (map) {
         '<div style="margin: 3px 0;"><span style="background: #4682B4; padding: 2px 5px; border: 1px solid #ccc; color: white;">Majority White</span></div>' +
         '<div style="margin: 3px 0;"><span style="background: #2E8B57; padding: 2px 5px; border: 1px solid #ccc; color: white;">Majority Black or African Amer</span></div>' +
         '<div style="margin: 3px 0;"><span style="background: #CD853F; padding: 2px 5px; border: 1px solid #ccc; color: white;">Majority Hispanic or Latino</span></div>' +
+        '<div style="margin: 3px 0;"><span style="background: #9932CC; padding: 2px 5px; border: 1px solid #ccc; color: white;">Majority Asian (Armour Square)</span></div>' +
         '<div style="margin: 3px 0;"><span style="background: #808080; padding: 2px 5px; border: 1px solid #ccc; color: white;">No Majority</span></div>';
     
     return div;
