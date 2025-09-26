@@ -377,6 +377,80 @@ gentrificationLegend.onAdd = function (map) {
 
 // Add the legend to the map immediately (always present but hidden)
 gentrificationLegend.addTo(map);  
+
+   // Race/Ethnicity Layer
+var raceEthnicityLayer = L.geoJSON(null, {
+  options: { name: "Race/Ethnicity Analysis" },
+  
+  style: function (feature) {
+    var majority = feature.properties["Majority Race/Ethnicity"];
+    var colors = {
+      'Majority White': '#4682B4',                           // Steel blue
+      'Majority Black or African American': '#2E8B57',      // Sea green
+      'Majority Hispanic or Latino': '#CD853F',             // Peru
+      'No Majority': '#808080'                              // Gray
+    };
+    
+    return {
+      color: colors[majority] || '#808080',
+      fillColor: colors[majority] || '#808080',
+      weight: 2,
+      fillOpacity: 0.6,
+      opacity: 0.8
+    };
+  },
+  
+  onEachFeature: function (feature, layer) {
+    var props = feature.properties;
+    var popupContent = '<strong>' + (props.community || props.Community || 'Community Area') + '</strong><br>' +
+      '<em>Total Population:</em> ' + (props["Total Population"] || 'N/A') + '<br>' +
+      '<em>White:</em> ' + (props["White"] || 'N/A') + '<br>' +
+      '<em>Black or African American:</em> ' + (props["Black or African American"] || 'N/A') + '<br>' +
+      '<em>Native Hawaiian or Alaskan:</em> ' + (props["Native Hawaiian or Alaskan"] || 'N/A') + '<br>' +
+      '<em>Asian:</em> ' + (props["Asian"] || 'N/A') + '<br>' +
+      '<em>Hawaiian or Pacific Islander:</em> ' + (props["Hawaiian or Pacific Islander"] || 'N/A') + '<br>' +
+      '<em>Other Race:</em> ' + (props["Other Race"] || 'N/A') + '<br>' +
+      '<em>Multiracial:</em> ' + (props["Multiracial"] || 'N/A') + '<br>' +
+      '<em>Hispanic or Latino:</em> ' + (props["Hispanic or Latino"] || 'N/A');
+    
+    layer.bindPopup(popupContent);
+  }
+});
+
+// Load the Race/Ethnicity GeoJSON data
+fetch('GeoJson_files_layers/Race and Ethnicity.geojson')
+  .then(response => response.json())
+  .then(data => {
+    raceEthnicityLayer.addData(data);
+  })
+  .catch(error => {
+    console.log('Could not load Race and Ethnicity.geojson:', error);
+  });
+
+    // CREATE A COLOR LEGEND for the race/ethnicity layer
+var raceEthnicityLegend = L.control({position: 'bottomleft'});
+
+raceEthnicityLegend.onAdd = function (map) {
+    var div = L.DomUtil.create('div', 'race-ethnicity-legend');
+    div.style.background = 'white';
+    div.style.border = '2px solid black';
+    div.style.borderRadius = '5px';
+    div.style.padding = '10px';
+    div.style.fontSize = '12px';
+    div.style.display = 'none';
+    div.style.zIndex = '1000';
+    
+    div.innerHTML = '<strong style="color: black;">Race/Ethnicity Majority</strong><br>' +
+        '<div style="margin: 3px 0;"><span style="background: #4682B4; padding: 2px 5px; border: 1px solid #ccc; color: white;">Majority White</span></div>' +
+        '<div style="margin: 3px 0;"><span style="background: #2E8B57; padding: 2px 5px; border: 1px solid #ccc; color: white;">Majority Black or African American</span></div>' +
+        '<div style="margin: 3px 0;"><span style="background: #CD853F; padding: 2px 5px; border: 1px solid #ccc; color: white;">Majority Hispanic or Latino</span></div>' +
+        '<div style="margin: 3px 0;"><span style="background: #808080; padding: 2px 5px; border: 1px solid #ccc; color: white;">No Majority</span></div>';
+    
+    return div;
+};
+
+// Add the race/ethnicity legend to the map immediately (always present but hidden)
+raceEthnicityLegend.addTo(map);
  
 // GeoJSON Layers (New Layer Control for GeoJSON in the bottom-right)
 if (window.innerWidth <= 768) {
@@ -501,7 +575,8 @@ const legendData = [
     {
         category: "Urban Phenomena",                    // ← MOVED THIS UP
         subOptions: [
-            { name: 'Gentrification Analysis', layer: gentrificationLayer }
+            { name: 'Gentrification Analysis', layer: gentrificationLayer },
+          { name: 'Race/Ethnicity', layer: raceEthnicityLayer }
         ]
     },
     {
@@ -544,14 +619,20 @@ checkbox.onchange = function(e) {
     if (e.target.checked) {
         if (!map.hasLayer(subOption.layer)) {
             map.addLayer(subOption.layer);
-                   
+            
             // Show gentrification legend
             if (subOption.layer === gentrificationLayer) {
                 var legendDiv = document.querySelector('.gentrification-legend');
-                console.log('Checkbox checked, legend element:', legendDiv);
                 if (legendDiv) {
                     legendDiv.style.display = 'block';
-                    console.log('Legend should now be visible');
+                }
+            }
+            
+            // Show race/ethnicity legend
+            if (subOption.layer === raceEthnicityLayer) {
+                var legendDiv = document.querySelector('.race-ethnicity-legend');
+                if (legendDiv) {
+                    legendDiv.style.display = 'block';
                 }
             }
         }
@@ -562,6 +643,14 @@ checkbox.onchange = function(e) {
             // Hide gentrification legend
             if (subOption.layer === gentrificationLayer) {
                 var legendDiv = document.querySelector('.gentrification-legend');
+                if (legendDiv) {
+                    legendDiv.style.display = 'none';
+                }
+            }
+            
+            // Hide race/ethnicity legend
+            if (subOption.layer === raceEthnicityLayer) {
+                var legendDiv = document.querySelector('.race-ethnicity-legend');
                 if (legendDiv) {
                     legendDiv.style.display = 'none';
                 }
