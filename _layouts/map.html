@@ -469,6 +469,21 @@ raceEthnicityLegend.onAdd = function (map) {
 
 // Add the race/ethnicity legend to the map immediately (always present but hidden)
 raceEthnicityLegend.addTo(map);
+
+// Simple layer ordering - put demographic layers behind all others
+setTimeout(() => {
+    if (map.hasLayer(gentrificationLayer)) {
+        gentrificationLayer.bringToBack();
+    }
+    if (map.hasLayer(raceEthnicityLayer)) {
+        raceEthnicityLayer.bringToBack();
+    }
+    
+    // Keep boundaries at very back
+    if (map.hasLayer(boundariesLayer)) {
+        boundariesLayer.bringToBack();
+    }
+}, 200);
  
 // GeoJSON Layers (New Layer Control for GeoJSON in the bottom-right)
 if (window.innerWidth <= 768) {
@@ -638,20 +653,21 @@ checkbox.onchange = function(e) {
         if (!map.hasLayer(subOption.layer)) {
             map.addLayer(subOption.layer);
             
-            // Show gentrification legend
+            // Apply simple layer ordering after adding any layer
+            setTimeout(() => {
+                if (map.hasLayer(gentrificationLayer)) gentrificationLayer.bringToBack();
+                if (map.hasLayer(raceEthnicityLayer)) raceEthnicityLayer.bringToBack();
+                if (map.hasLayer(boundariesLayer)) boundariesLayer.bringToBack();
+            }, 50);
+            
+            // Show legends (existing code)
             if (subOption.layer === gentrificationLayer) {
                 var legendDiv = document.querySelector('.gentrification-legend');
-                if (legendDiv) {
-                    legendDiv.style.display = 'block';
-                }
+                if (legendDiv) legendDiv.style.display = 'block';
             }
-            
-            // Show race/ethnicity legend
             if (subOption.layer === raceEthnicityLayer) {
                 var legendDiv = document.querySelector('.race-ethnicity-legend');
-                if (legendDiv) {
-                    legendDiv.style.display = 'block';
-                }
+                if (legendDiv) legendDiv.style.display = 'block';
             }
         }
     } else {
