@@ -34,25 +34,6 @@
    var markers = '';
    map.addControl(L.control.attribution({ position: 'bottomleft' }));
 
-// Create custom panes with explicit z-index ordering
-map.createPane('backgroundPane');
-map.getPane('backgroundPane').style.zIndex = 200;
-
-map.createPane('gentrificationPane');
-map.getPane('gentrificationPane').style.zIndex = 210;
-
-map.createPane('landmarksPane');
-map.getPane('landmarksPane').style.zIndex = 220;
-
-map.createPane('pointsPane');
-map.getPane('pointsPane').style.zIndex = 230;
-    
-   window.change_map = function(){
-     localStorage.setItem('selectedtem', document.getElementById("choose").value);
-     new_map();
-   }
-
-
    function makeMap(markergrouping, map){
      if (markergrouping == 'grouped') { markers = new L.markerClusterGroup({showCoverageOnHover: false});}
      else if (markergrouping == 'single') { markers = new L.featureGroup();}
@@ -84,7 +65,6 @@ map.getPane('pointsPane').style.zIndex = 230;
 
 var boundariesLayer = L.geoJSON(null, {
   options: { name: "Boundaries" },
-  pane: 'backgroundPane',  // Add this line
  
  style: function (feature) {
     return {
@@ -167,7 +147,6 @@ fetch('GeoJson_files_layers/NR_Districts_2012.geojson')
     // Adding other layers (Landmarks and Boundaries)
 var landmarksLayer = L.geoJSON(null, {
   options: { name: "Landmarks" }, // 👈 Added unique name
-  pane: 'landmarksPane',  // Add this line
  
   onEachFeature: function (feature, layer) {
     var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
@@ -224,7 +203,6 @@ fetch('GeoJson_files_layers/Historic_Resources_Survey.geojson')
 // Adding NR_Properties_Filtered Layer
 var nrPropertiesFilteredLayer = L.geoJSON(null, {
   options: { name: "NR Properties Filtered" },
- pane: 'pointsPane',  // Add this line
 
   onEachFeature: function (feature, layer) {
     var props = feature.properties; // Shorter reference to properties
@@ -274,7 +252,6 @@ fetch('GeoJson_files_layers/NR_Properties_filtered_updated.geojson')
 // Adding Mural Registry Layer
 var muralRegistryLayer = L.geoJSON(null, {
   options: { name: "Mural Registry Layer" }, // 👈 Added unique name
- pane: 'pointsPane',  // Add this line
 
   onEachFeature: function (feature, layer) {
     var popupContent = '<strong>' + (feature.properties["Artwork Title"] || 'Unknown') + '</strong><br>' +
@@ -306,7 +283,6 @@ fetch('GeoJson_files_layers/mural_registry.geojson')
 // NEW: Adding Gentrification Layer
 var gentrificationLayer = L.geoJSON(null, {
   options: { name: "Gentrification Analysis" },
- pane: 'gentrificationPane',  // Change this line
  
   style: function (feature) {
     var typology = feature.properties.Typology;
