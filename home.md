@@ -40,8 +40,8 @@ Map layers
 >><a href="https://data.cityofchicago.org/Historic-Preservation/Mural-Registry/we8h-apcf/about_data" target="_blank">Chicago Data Portal</a> courtesy of the City of Chicago
   >
 >>><a href="https://data.cityofchicago.org/Community-Economic-Development/ACS-5-Year-Data-by-Community-Area-Most-Recent-Year/7umk-8dtw/about_data" target="_blank">ACS 5-Year Data by Community Area (latest 2023)</a>
-  >>><a href="https://datahub.cmap.illinois.gov/maps/945968efae634b3bb2def17185ad8dee/about" target="_blank">Community Data Snapshots 2025</a> Chicago Metropolitan Agency for Planning
-  
-  
+  >
+>>><a href="https://datahub.cmap.illinois.gov/maps/945968efae634b3bb2def17185ad8dee/about" target="_blank">Community Data Snapshots 2025</a> Chicago Metropolitan Agency for Planning
+>
 >><a href="https://www.urbandisplacement.org/">Urban Displacement Project</a> Chapple, K., & Thomas, T., and Zuk, M. (2021). Urban Displacement Project website. Berkeley, CA.
 
