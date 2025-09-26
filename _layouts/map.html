@@ -632,13 +632,23 @@ const legendData = [
 
         data.forEach(categoryObj => {
             const header = L.DomUtil.create('h4', 'legend-category-header', container);
-            header.innerHTML = `▼ ${categoryObj.category}`;
+            // Start with collapsed arrow for certain categories
+if (categoryObj.category === 'Urban Phenomena' || categoryObj.category === 'Student Projects') {
+    header.innerHTML = `► ${categoryObj.category}`;
+} else {
+    header.innerHTML = `▼ ${categoryObj.category}`;
+}
             header.style.cursor = 'pointer';
             header.style.margin = '5px 0';
             header.style.fontSize = '16px';
             header.style.userSelect = 'none';
 
             const subOptionsContainer = L.DomUtil.create('div', 'legend-sub-options', container);
+
+         // Start Urban Phenomena and Student Projects collapsed
+if (categoryObj.category === 'Urban Phenomena' || categoryObj.category === 'Student Projects') {
+    subOptionsContainer.style.display = 'none';
+}
 
             categoryObj.subOptions.forEach(subOption => {
                 const item = L.DomUtil.create('div', '', subOptionsContainer);
