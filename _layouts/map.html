@@ -288,7 +288,8 @@ fetch('GeoJson_files_layers/mural_registry.geojson')
 // NEW: Adding Gentrification Layer
 var gentrificationLayer = L.geoJSON(null, {
   options: { name: "Gentrification Analysis" },
-  
+  pane: 'overlayPane',  // Add this line
+ 
   style: function (feature) {
     var typology = feature.properties.Typology;
     var colors = {
