@@ -342,12 +342,16 @@ gentrificationLegend.onAdd = function (map) {
     div.style.display = 'none';
     div.style.zIndex = '1000';
     
-    div.innerHTML = '<strong>Gentrification Typology</strong><br>' +
-        '<div style="margin: 5px 0;"><span style="background: #FDE8E8; padding: 2px 5px;">Low-Income/Susceptible</span></div>' +
-        '<div style="margin: 5px 0;"><span style="background: #FCBABA; padding: 2px 5px;">Ongoing Displacement</span></div>' +
-        '<div style="margin: 5px 0;"><span style="background: #F87171; padding: 2px 5px;">At Risk of Gentrification</span></div>' +
-        '<div style="margin: 5px 0;"><span style="background: #EF4444; padding: 2px 5px;">Early/Ongoing Gentrification</span></div>' +
-        '<div style="margin: 5px 0;"><span style="background: #DC2626; padding: 2px 5px;">Advanced Gentrification</span></div>';
+  div.innerHTML = '<strong style="color: black;">Gentrification Typology</strong><br>' +
+        '<div style="margin: 3px 0;"><span style="background: #FDE8E8; padding: 2px 5px; border: 1px solid #ccc;">Low-Income/Susceptible to Displacement</span></div>' +
+        '<div style="margin: 3px 0;"><span style="background: #FCBABA; padding: 2px 5px; border: 1px solid #ccc;">Ongoing Displacement</span></div>' +
+        '<div style="margin: 3px 0;"><span style="background: #F87171; padding: 2px 5px; border: 1px solid #ccc;">At Risk of Gentrification</span></div>' +
+        '<div style="margin: 3px 0;"><span style="background: #EF4444; padding: 2px 5px; border: 1px solid #ccc;">Early/Ongoing Gentrification</span></div>' +
+        '<div style="margin: 3px 0;"><span style="background: #DC2626; padding: 2px 5px; border: 1px solid #ccc; color: white;">Advanced Gentrification</span></div>' +
+        '<div style="margin: 3px 0;"><span style="background: #B91C1C; padding: 2px 5px; border: 1px solid #ccc; color: white;">Stable Moderate/Mixed Income</span></div>' +
+        '<div style="margin: 3px 0;"><span style="background: #991B1B; padding: 2px 5px; border: 1px solid #ccc; color: white;">At Risk of Becoming Exclusive</span></div>' +
+        '<div style="margin: 3px 0;"><span style="background: #7F1D1D; padding: 2px 5px; border: 1px solid #ccc; color: white;">Becoming Exclusive</span></div>' +
+        '<div style="margin: 3px 0;"><span style="background: #450A0A; padding: 2px 5px; border: 1px solid #ccc; color: white;">Stable/Advanced Exclusive</span></div>';
     
     return div;
 };
