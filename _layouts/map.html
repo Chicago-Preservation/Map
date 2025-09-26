@@ -258,6 +258,33 @@ fetch('GeoJson_files_layers/NR_Properties_filtered_updated.geojson')
 var muralRegistryLayer = L.geoJSON(null, {
   options: { name: "Mural Registry Layer" }, // 👈 Added unique name
 
+  onEachFeature: function (feature, layer) {
+    var popupContent = '<strong>' + (feature.properties["Artwork Title"] || 'Unknown') + '</strong><br>' +
+      '<em>Artist:</em> ' + (feature.properties["Artist Credit"] || 'Unknown') + '<br>' +
+      '<em>Year:</em> ' + (feature.properties["Year Installed"] || 'Unknown') + '<br>' +
+      '<em>Street Address:</em> ' + (feature.properties["Street Address"] || 'Unknown');
+    layer.bindPopup(popupContent);
+  },
+  pointToLayer: function (feature, latlng) {
+    return L.circleMarker(latlng, {
+      radius: 5, // Size of the marker
+      fillColor: "#6a0dad", // Purple color for murals
+      color: "#ffffff", // White border
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    });
+  }
+});
+
+// Fetch and Add Mural Registry GeoJSON Data
+fetch('GeoJson_files_layers/mural_registry.geojson')
+  .then(response => response.json())
+  .then(data => {
+    muralRegistryLayer.addData(data);
+    muralRegistryLayer.bringToFront(); // Ensures murals stay at the top
+  });
+
 // NEW: Adding Gentrification Layer (add this after the mural registry code)
 var gentrificationLayer = L.geoJSON(null, {
   options: { name: "Gentrification Analysis" },
@@ -359,34 +386,7 @@ map.on('overlayremove', function (eventLayer) {
         document.querySelector('.gentrification-legend').style.display = 'none';
     }
 });
-  onEachFeature: function (feature, layer) {
-    var popupContent = '<strong>' + (feature.properties["Artwork Title"] || 'Unknown') + '</strong><br>' +
-      '<em>Artist:</em> ' + (feature.properties["Artist Credit"] || 'Unknown') + '<br>' +
-      '<em>Year:</em> ' + (feature.properties["Year Installed"] || 'Unknown') + '<br>' +
-      '<em>Street Address:</em> ' + (feature.properties["Street Address"] || 'Unknown');
-    layer.bindPopup(popupContent);
-  },
-  pointToLayer: function (feature, latlng) {
-    return L.circleMarker(latlng, {
-      radius: 5, // Size of the marker
-      fillColor: "#6a0dad", // Purple color for murals
-      color: "#ffffff", // White border
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
-    });
-  }
-});
-
-// Fetch and Add Mural Registry GeoJSON Data
-fetch('GeoJson_files_layers/mural_registry.geojson')
-  .then(response => response.json())
-  .then(data => {
-    muralRegistryLayer.addData(data);
-    muralRegistryLayer.bringToFront(); // Ensures murals stay at the top
-  });
-
-
+    
 // Handle layer control event to push boundariesLayer to the back when added
 map.on('overlayadd', function (eventLayer) {
   setTimeout(() => {
