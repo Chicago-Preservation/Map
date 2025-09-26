@@ -122,6 +122,15 @@ fetch('GeoJson_files_layers/boundaries.geojson')
     boundariesLayer.addData(data);
     map.addLayer(boundariesLayer);
     boundariesLayer.bringToBack(); // Ensuring it stays behind all other layers
+    // Update checkbox state
+    setTimeout(() => {
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach(cb => {
+        if (cb.parentElement.textContent.includes('Community Areas')) {
+          cb.checked = true;
+        }
+      });
+    }, 500);
   });
 
   // Added District 2012 layer here
@@ -167,6 +176,16 @@ fetch('GeoJson_files_layers/landmarkareas.geojson')
   .then(data => {
     landmarksLayer.addData(data);
     map.addLayer(landmarksLayer);
+   // Update checkbox state
+    setTimeout(() => {
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach(cb => {
+        // Find the checkbox associated with landmarks layer
+        if (cb.parentElement.textContent.includes('Chicago Landmarks')) {
+          cb.checked = true;
+        }
+      });
+    }, 500);
   });
   
 /// Adding Historic Resources Survey Layer
