@@ -478,27 +478,41 @@ var financialDataLayer = L.geoJSON(null, {
     var medianIncome = feature.properties.MEDINC;
     var color;
     
-    // Color by median income (adjust these ranges as needed)
+    // Check for N/A, null, undefined, or non-numeric values first
+    if (medianIncome === 'N/A' || medianIncome === '$N/A' || 
+        medianIncome === null || medianIncome === undefined || 
+        isNaN(medianIncome) || medianIncome === '') {
+        // Don't fill areas with no data - make them transparent
+        return {
+            color: '#808080',      // Light gray border
+            fillColor: 'transparent',  // No fill
+            weight: 1,
+            fillOpacity: 0,
+            opacity: 0.3
+        };
+    }
+    
+    // Color by median income for valid values
     if (medianIncome >= 100000) {
-      color = '#006400';      // Dark green - high income
+        color = '#006400';      // Dark green - high income
     } else if (medianIncome >= 75000) {
-      color = '#32CD32';      // Lime green
+        color = '#32CD32';      // Lime green
     } else if (medianIncome >= 50000) {
-      color = '#FFD700';      // Gold - middle income
+        color = '#FFD700';      // Gold - middle income
     } else if (medianIncome >= 25000) {
-      color = '#FF8C00';      // Orange
+        color = '#FF8C00';      // Orange
     } else {
-      color = '#DC143C';      // Crimson - low income
+        color = '#DC143C';      // Crimson - low income
     }
     
     return {
-      color: color,
-      fillColor: color,
-      weight: 2,
-      fillOpacity: 0.6,
-      opacity: 0.8
+        color: color,
+        fillColor: color,
+        weight: 2,
+        fillOpacity: 0.6,
+        opacity: 0.8
     };
-  },
+},
   
   onEachFeature: function (feature, layer) {
     var props = feature.properties;
