@@ -358,21 +358,6 @@ gentrificationLegend.onAdd = function (map) {
 
 // Add the legend to the map immediately (always present but hidden)
 gentrificationLegend.addTo(map);  
-// Manage layer ordering - AGGRESSIVE VERSION
-setTimeout(() => {
-    // First, bring background layers to back
-    if (map.hasLayer(boundariesLayer)) boundariesLayer.bringToBack();
-    if (map.hasLayer(gentrificationLayer)) gentrificationLayer.bringToBack();
-    
-    // Then bring polygon layers forward
-    if (map.hasLayer(nrDistricts2012Layer)) nrDistricts2012Layer.bringToFront();
-    if (map.hasLayer(historicResourcesLayer)) historicResourcesLayer.bringToFront();
-    if (map.hasLayer(landmarksLayer)) landmarksLayer.bringToFront();
-    
-    // Finally, bring point layers to very front
-    if (map.hasLayer(nrPropertiesFilteredLayer)) nrPropertiesFilteredLayer.bringToFront();
-    if (map.hasLayer(muralRegistryLayer)) muralRegistryLayer.bringToFront();
-}, 100);
  
 // GeoJSON Layers (New Layer Control for GeoJSON in the bottom-right)
 if (window.innerWidth <= 768) {
@@ -539,18 +524,7 @@ checkbox.onchange = function(e) {
     if (e.target.checked) {
         if (!map.hasLayer(subOption.layer)) {
             map.addLayer(subOption.layer);
-            
-            // Apply layer ordering after adding any layer
-            setTimeout(() => {
-                boundariesLayer.bringToBack();
-                gentrificationLayer.bringToBack();
-                nrDistricts2012Layer.bringToFront();
-                historicResourcesLayer.bringToFront();
-                landmarksLayer.bringToFront();
-                nrPropertiesFilteredLayer.bringToFront();
-                muralRegistryLayer.bringToFront();
-            }, 50);
-            
+                   
             // Show gentrification legend
             if (subOption.layer === gentrificationLayer) {
                 var legendDiv = document.querySelector('.gentrification-legend');
