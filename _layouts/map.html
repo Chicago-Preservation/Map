@@ -224,34 +224,31 @@ fetch('GeoJson_files_layers/Historic_Resources_Survey.geojson')
     historicResourcesLayer.addData(data);
   });
 
-// Adding NR_Properties_Filtered Layer
+// Adding NR_Properties Layer
 var nrPropertiesFilteredLayer = L.geoJSON(null, {
-  options: { name: "NR Properties Filtered" },
-
+  options: { name: "NR Properties" },
   onEachFeature: function (feature, layer) {
-    var props = feature.properties; // Shorter reference to properties
+    var props = feature.properties;
     var popupContent = '<strong>' + (props.SignificantName || 'No Name') + '</strong><br>' +
       (props.Location ? '<em>Location:</em> ' + props.Location + '<br>' : '') +
       (props.Architect ? '<em>Architect:</em> ' + props.Architect + '<br>' : '') +
       (props.BeginYear ? '<em>Year:</em> ' + props.BeginYear + '<br>' : '');
-
-    // Add attachment as a simple hyperlink if it exists
+    
+    // Add photo as thumbnail if it exists
+    if (props.Url_img && props.Url_img.trim() !== "") {
+      popupContent += '<a href="' + props.Url_img + '" target="_blank">' +
+        '<img src="' + props.Url_img + '" style="width:200px; height:auto; margin-top:5px;"><br></a>';
+    }
+    
+    // Add attachment link if it exists
     if (props.URL && props.URL.trim() !== "") {
       popupContent += '<em>Attachment:</em> ' +
         '<a href="' + props.URL + 
-        '" target="_blank" style="color:#0073e6; text-decoration:underline;">Open Attachment</a><br>';
+        '" target="_blank" style="color:#0073e6; text-decoration:underline;">Open Document</a><br>';
     }
-
-    // Add photo as a hyperlink if it exists
-    if (props.Url_img && props.Url_img.trim() !== "") {
-      popupContent += '<em>Photo:</em> ' +
-        '<a href="' + props.Url_img + 
-        '" target="_blank" style="color:#0073e6; text-decoration:underline;">View Photo</a><br>';
-    }
-
+    
     layer.bindPopup(popupContent);
   },
-
   pointToLayer: function (feature, latlng) {
     return L.circleMarker(latlng, {
       radius: 4,
@@ -264,8 +261,8 @@ var nrPropertiesFilteredLayer = L.geoJSON(null, {
   }
 });
 
-// Fetch updated GeoJSON data
-fetch('GeoJson_files_layers/NR_Properties_filtered_updated.geojson')
+// Fetch GeoJSON data
+fetch('GeoJson_files_layers/NR_Properties.geojson')
   .then(response => response.json())
   .then(data => {
     nrPropertiesFilteredLayer.addData(data);
