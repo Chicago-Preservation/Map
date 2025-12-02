@@ -439,8 +439,9 @@ var raceEthnicityLayer = L.geoJSON(null, {
     '<em>Hispanic or Latino:</em> ' + getPct(props["Hispanic or Latino"]);
   
   layer.bindPopup(popupContent);
-}
-  
+  }
+});
+    
 // Load the Race/Ethnicity GeoJSON data
 fetch('GeoJson_files_layers/Race and Ethnicity.geojson')
   .then(response => response.json())
