@@ -419,17 +419,15 @@ var raceEthnicityLayer = L.geoJSON(null, {
   
 onEachFeature: function (feature, layer) {
   var props = feature.properties;
-  var total = parseFloat((props["total_population"] || '0').replace(/,/g, '')) || 0;
+  var total = props["total_population"] || 0;
   
   function getPct(value) {
     if (!value || total === 0) return 'N/A';
-    var num = parseFloat((value + '').replace(/,/g, ''));
-    if (isNaN(num)) return 'N/A';
-    return ((num / total) * 100).toFixed(0) + '%';
+    return ((value / total) * 100).toFixed(0) + '%';
   }
   
   var popupContent = '<strong>' + (props.community || 'Community Area') + '</strong><br>' +
-    '<em>Total Population:</em> ' + (props["total_population"] || 'N/A') + '<br>' +
+    '<em>Total Population:</em> ' + total + '<br>' +
     '<em>White:</em> ' + getPct(props["white"]) + '<br>' +
     '<em>Black or African American:</em> ' + getPct(props["black_or_african_american"]) + '<br>' +
     '<em>Native Hawaiian or Alaskan:</em> ' + getPct(props["native_hawaiian_or_alaskan"]) + '<br>' +
