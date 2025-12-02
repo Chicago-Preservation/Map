@@ -419,23 +419,31 @@ var raceEthnicityLayer = L.geoJSON(null, {
   
 onEachFeature: function (feature, layer) {
   var props = feature.properties;
-  var total = props["total_population"] || 0;
+  
+  // Remove commas and convert to number
+  function toNum(value) {
+    if (!value) return 0;
+    return parseFloat((value + '').replace(/,/g, '')) || 0;
+  }
+  
+  var total = toNum(props["Total Population"]);
   
   function getPct(value) {
-    if (!value || total === 0) return 'N/A';
-    return ((value / total) * 100).toFixed(0) + '%';
+    var num = toNum(value);
+    if (num === 0 || total === 0) return '0%';
+    return ((num / total) * 100).toFixed(0) + '%';
   }
   
   var popupContent = '<strong>' + (props.community || 'Community Area') + '</strong><br>' +
-    '<em>Total Population:</em> ' + total + '<br>' +
-    '<em>White:</em> ' + getPct(props["white"]) + '<br>' +
-    '<em>Black or African American:</em> ' + getPct(props["black_or_african_american"]) + '<br>' +
-    '<em>Native Hawaiian or Alaskan:</em> ' + getPct(props["native_hawaiian_or_alaskan"]) + '<br>' +
-    '<em>Asian:</em> ' + getPct(props["asian"]) + '<br>' +
-    '<em>Hawaiian or Pacific Islander:</em> ' + getPct(props["hawaiian_or_pacific_islander"]) + '<br>' +
-    '<em>Other Race:</em> ' + getPct(props["other_race"]) + '<br>' +
-    '<em>Multiracial:</em> ' + getPct(props["multiracial"]) + '<br>' +
-    '<em>Hispanic or Latino:</em> ' + getPct(props["hispanic_or_latino"]);
+    '<em>Total Population:</em> ' + (props["Total Population"] || 'N/A') + '<br>' +
+    '<em>White:</em> ' + getPct(props["White"]) + '<br>' +
+    '<em>Black or African American:</em> ' + getPct(props["Black or African American"]) + '<br>' +
+    '<em>American Indian or Alaska Native:</em> ' + getPct(props["American Indian or Alaska Native"]) + '<br>' +
+    '<em>Asian:</em> ' + getPct(props["Asian"]) + '<br>' +
+    '<em>Native Hawaiian or Pacific Islander:</em> ' + getPct(props["Native Hawaiian or Pacific Islander"]) + '<br>' +
+    '<em>Other Race:</em> ' + getPct(props["Other Race"]) + '<br>' +
+    '<em>Multiracial:</em> ' + getPct(props["Multiracial"]) + '<br>' +
+    '<em>Hispanic or Latino:</em> ' + getPct(props["Hispanic or Latino"]);
   
   layer.bindPopup(popupContent);
 }
