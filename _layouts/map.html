@@ -227,12 +227,14 @@ fetch('GeoJson_files_layers/Historic_Resources_Survey.geojson')
 // Adding NR_Properties Layer
 var nrPropertiesFilteredLayer = L.geoJSON(null, {
   options: { name: "NR Properties" },
-  onEachFeature: function (feature, layer) {
+ onEachFeature: function (feature, layer) {
     var props = feature.properties;
-    var popupContent = '<strong>' + (props.SignificantName || 'No Name') + '</strong><br>' +
+    var popupContent = '<strong>' + (props.SignificantName || 'N/A') + '</strong><br>' +
       (props.Location ? '<em>Location:</em> ' + props.Location + '<br>' : '') +
-      (props.Architect ? '<em>Architect:</em> ' + props.Architect + '<br>' : '') +
-      (props.BeginYear ? '<em>Year:</em> ' + props.BeginYear + '<br>' : '');
+      '<em>Architect:</em> ' + (props.Architect || 'N/A') + '<br>' +
+      (props.BeginYear ? '<em>Year:</em> ' + props.BeginYear + '<br>' : '') +
+      (props.SurveyType ? '<em>Survey Type:</em> ' + props.SurveyType + '<br>' : '') +
+      (props.SurveyDate ? '<em>Survey Date:</em> ' + props.SurveyDate + '<br>' : '');
     
     // Add photo as thumbnail if it exists
     if (props.Url_img && props.Url_img.trim() !== "") {
