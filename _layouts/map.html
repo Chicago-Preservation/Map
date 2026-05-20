@@ -642,6 +642,7 @@ const categoryIcon = L.icon({
 {% for cat in site.categories %}
   studentLayers["{{ cat[0] }}"] = L.layerGroup();
   {% for post in cat[1] %}
+    {% if post.lat and post.lng %}
 var marker = L.marker([{{ post.lat }}, {{ post.lng }}], { icon: categoryIcon })
   .bindPopup("<strong>{{ post.title }}</strong><br>{{ post.desc }}", {offset: new L.Point(0,-30)});
     marker.iconURL = categoryIconUrl;
@@ -652,13 +653,13 @@ marker.on('click', function(){
   window.location = (post_url);
   articlerender(article_url, item_id);
 });
-
 marker.addTo(studentLayers["{{ cat[0] }}"]);
-    var filename = "{{post.url}}";
+var filename = "{{post.url}}";
 if (items[filename] === undefined) {
   items[filename] = [marker];
 }
- {% endfor %}
+    {% endif %}
+  {% endfor %}
 {% endfor %}
 
     // --- NEW HIERARCHICAL LEGEND CODE ---
