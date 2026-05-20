@@ -595,8 +595,8 @@ if (window.innerWidth <= 768) {
     leftContainer.appendChild(panel);
   }
 
-  setTimeout(() => {
-
+setTimeout(() => {
+    if (!panel) return;
 
     // Style the panel
     panel.style.maxWidth = '45vw';
