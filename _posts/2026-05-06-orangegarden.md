@@ -4,8 +4,8 @@ title: "Orange Garden: Chicago’s Oldest Chinese Restaurant"
 date: 2026-05-06
 categories: ["Legacy Business"]
 author: "Zoey Godnik, Epiphany Sosa"
-Lat: 41.95479147771786
-Lng: -87.6780767613274
+lat: 41.95479147771786
+lng: -87.6780767613274
 runningtitle: "Orange Garden: Chicago's Oldest Chinese Restaurant"
 desc: "Founded in the late 1920s, Orange Garden continues to be a staple of delicious Chinese food in North Center, Chicago."
 ---
