@@ -692,16 +692,15 @@ const legendData = [
          { name: 'Financial Data', layer: financialDataLayer }
         ]
     },
-{
-    category: "Student Projects",
-    subOptions: [
-        {% for category in site.categories %}
-        { name: "{{ category[0] }}", layer: studentLayers["{{ category[0] }}"] },
-        {% endfor %}
-    ]
-}
+   {
+        category: "Student Projects",
+        subOptions: [
+            {% for cat in site.categories %}
+            { name: "{{ cat[0] }}", layer: studentLayers["{{ cat[0] }}"] },
+            {% endfor %}
+        ]
+    }
 ];
-
     // 2. This function builds the HTML for the new collapsible legend.
     function buildHierarchicalLegend(data) {
         const container = L.DomUtil.create('div', 'leaflet-control-layers leaflet-control-layers-expanded leaflet-control');
