@@ -622,45 +622,25 @@ if (window.innerWidth <= 768) {
      map.setView([41.8781, -87.6298], 12); // Center on Chicago
      //map.fitBounds(markers.getBounds());
 
-    // --- Create Student 'Category' Layer ---
-    const studentCategoryLayer = L.layerGroup();
+// Auto-generate a layer for each category in site.categories
+const studentLayers = {};
+const categoryIconUrl = "{{site.baseurl}}/assets/leaflet/img/noun_33862_cc_green.svg";
+const categoryIcon = L.icon({
+  iconUrl: categoryIconUrl,
+  iconSize: [50, 54],
+  iconAnchor: [17, 36],
+  popupAnchor: [-1, 8]
+});
 
-    // Define the icon just once outside the loop for efficiency
-    const categoryIconUrl = "{{site.baseurl}}/assets/leaflet/img/noun_33862_cc_green.svg";
-    const categoryIcon = L.icon({
-      iconUrl: categoryIconUrl,
-      iconSize : [50, 54],
-      iconAnchor : [17, 36],
-      popupAnchor : [-1, 8]
-    });
-
-    {% for post in site.categories['Category'] %}
-      lat = {{ post.lat }};
-      lng = {{ post.lng }};
-      content = "<strong>{{ post.title }}</strong><br>{{ post.desc }}";
-
-      var marker = L.marker([lat, lng], { icon: categoryIcon }).bindPopup(content, {offset:new L.Point(0,-30)});
-
-      marker.iconURL = categoryIconUrl; 
-
-      marker.on('click', function(){
-        post_url = "{{site.baseurl}}/#{{post.url}}";
-        article_url = '{{site.baseurl}}{{post.url}}';
-        item_id = "{{post.url}}";
-        window.location = (post_url);
-        articlerender(article_url, item_id);
-      });
-
-      marker.addTo(studentCategoryLayer);
-
-      var filename = "{{post.url}}";
-      if (items[filename] === undefined) {
-        items[filename] = [marker];
-      }
-    {% endfor %}
-
-    map.addLayer(studentCategoryLayer);
-    console.log('Number of markers in Category layer:', studentCategoryLayer.getLayers().length);
+{% for category in site.categories %}
+  studentLayers["{{ category[0] }}"] = L.layerGroup();
+  {% for post in category[1] %}
+    L.marker([{{ post.lat }}, {{ post.lng }}], { icon: categoryIcon })
+      .bindPopup("<strong>{{ post.title }}</strong><br>{{ post.desc }}", {offset: new L.Point(0,-30)})
+      .addTo(studentLayers["{{ category[0] }}"]);
+  {% endfor %}
+  map.addLayer(studentLayers["{{ category[0] }}"]);
+{% endfor %}
 
     // --- NEW HIERARCHICAL LEGEND CODE ---
 
@@ -706,12 +686,14 @@ const legendData = [
          { name: 'Financial Data', layer: financialDataLayer }
         ]
     },
-    {
-        category: "Student Projects",                   // ← ADDED COMMA HERE
-        subOptions: [
-            { name: 'Category', layer: studentCategoryLayer }
-        ]
-    }
+{
+    category: "Student Projects",
+    subOptions: [
+        {% for category in site.categories %}
+        { name: "{{ category[0] }}", layer: studentLayers["{{ category[0] }}"] },
+        {% endfor %}
+    ]
+}
 ];
 
     // 2. This function builds the HTML for the new collapsible legend.
