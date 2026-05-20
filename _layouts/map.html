@@ -627,9 +627,9 @@ const categoryIcon = L.icon({
   popupAnchor: [-1, 8]
 });
 
-{% for category in site.categories %}
-  studentLayers["{{ category[0] }}"] = L.layerGroup();
-  {% for post in category[1] %}
+{% for cat in site.categories %}
+  studentLayers["{{ cat[0] }}"] = L.layerGroup();
+  {% for post in cat[1] %}
 var marker = L.marker([{{ post.lat }}, {{ post.lng }}], { icon: categoryIcon })
   .bindPopup("<strong>{{ post.title }}</strong><br>{{ post.desc }}", {offset: new L.Point(0,-30)});
     marker.iconURL = categoryIconUrl;
@@ -646,7 +646,9 @@ marker.addTo(studentLayers["{{ category[0] }}"]);
 if (items[filename] === undefined) {
   items[filename] = [marker];
 }
-  {% endfor %}
+ {% endfor %}
+  map.addLayer(studentLayers["{{ cat[0] }}"]);
+{% endfor %}
 
     // --- NEW HIERARCHICAL LEGEND CODE ---
 
@@ -692,7 +694,7 @@ const legendData = [
          { name: 'Financial Data', layer: financialDataLayer }
         ]
     },
-   {
+    {
         category: "Student Projects",
         subOptions: [
             {% for cat in site.categories %}
