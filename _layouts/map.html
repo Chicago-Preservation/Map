@@ -155,11 +155,23 @@ var landmarksLayer = L.geoJSON(null, {
   options: { name: "Landmarks" }, // 👈 Added unique name
  
   onEachFeature: function (feature, layer) {
-    var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
-      '<em>Architect:</em> ' + (feature.properties.ARCHITECT || 'Unknown') + '<br>' +
-      '<em>Address:</em> ' + (feature.properties.ADDRESS || 'Unknown') + '<br>' +
-      '<em>Date Built:</em> ' + (feature.properties.DATE_BUILT || 'Unknown');
-    layer.bindPopup(popupContent);
+var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
+  '<em>Architect:</em> ' + (feature.properties.ARCHITECT || 'Unknown') + '<br>' +
+  '<em>Address:</em> ' + (feature.properties.ADDRESS || 'Unknown') + '<br>' +
+  '<em>Date Built:</em> ' + (feature.properties.DATE_BUILT || 'Unknown');
+
+if (feature.properties.url_image && feature.properties.url_image.trim() !== "") {
+  popupContent += '<a href="' + feature.properties.url_image + '" target="_blank">' +
+    '<img src="' + feature.properties.url_image + '" style="width:200px; height:auto; margin-top:5px;"><br></a>';
+}
+
+if (feature.properties.url && feature.properties.url.trim() !== "") {
+  popupContent += '<em>Document:</em> ' +
+    '<a href="' + feature.properties.url +
+    '" target="_blank" style="color:#0073e6; text-decoration:underline;">Open Document</a><br>';
+}
+
+layer.bindPopup(popupContent);
   }
 });
 
