@@ -4,8 +4,8 @@ title: "Central Camera Company: Chicago’s Oldest Camera Store"
 date: 2026-05-06
 categories: ["Legacy Business"]
 author: "Rachel Fedak, Tegan Sobecki"
-Lat: 41.878739708870036
-Lng: -87.62631358039147
+lat: 41.878739708870036
+lng: -87.62631358039147
 runningtitle: "Central Camera Company"
 desc: "Central Camera Company: Chicago’s Oldest Camera Store"
 ---
