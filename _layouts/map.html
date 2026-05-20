@@ -635,9 +635,18 @@ const categoryIcon = L.icon({
 {% for category in site.categories %}
   studentLayers["{{ category[0] }}"] = L.layerGroup();
   {% for post in category[1] %}
-    L.marker([{{ post.lat }}, {{ post.lng }}], { icon: categoryIcon })
-      .bindPopup("<strong>{{ post.title }}</strong><br>{{ post.desc }}", {offset: new L.Point(0,-30)})
-      .addTo(studentLayers["{{ category[0] }}"]);
+var marker = L.marker([{{ post.lat }}, {{ post.lng }}], { icon: categoryIcon })
+  .bindPopup("<strong>{{ post.title }}</strong><br>{{ post.desc }}", {offset: new L.Point(0,-30)});
+
+marker.on('click', function(){
+  post_url = "{{site.baseurl}}/#{{post.url}}";
+  article_url = '{{site.baseurl}}{{post.url}}';
+  item_id = "{{post.url}}";
+  window.location = (post_url);
+  articlerender(article_url, item_id);
+});
+
+marker.addTo(studentLayers["{{ category[0] }}"]);
   {% endfor %}
   map.addLayer(studentLayers["{{ category[0] }}"]);
 {% endfor %}
