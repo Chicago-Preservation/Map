@@ -647,6 +647,10 @@ marker.on('click', function(){
 });
 
 marker.addTo(studentLayers["{{ category[0] }}"]);
+    var filename = "{{post.url}}";
+if (items[filename] === undefined) {
+  items[filename] = [marker];
+}
   {% endfor %}
   map.addLayer(studentLayers["{{ category[0] }}"]);
 {% endfor %}
