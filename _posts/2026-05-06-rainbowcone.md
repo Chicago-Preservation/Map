@@ -7,11 +7,11 @@ author: "Jace Rackleff"
 Lat: 41.725495
 Lng: -87.681948
 runningtitle: "Rainbow Cone: A Chicago Tradition Built on Family and Flavor"
-desc: "Founded in 1926, Rainbow Cone is a family-owned ice cream shop that has become a long lasting symbol of Chicago’s South Side and community tradition."
+desc: "Founded in 1926, Rainbow Cone is a family-owned ice cream shop that has become a long lasting symbol of Chicago's South Side and community tradition."
 ---
 
 #### History of the Neighborhood
-Rainbow Cone is located in the Beverly neighborhood on Chicago’s South Side, a community that is known for its stability and strong local identity. Unlike many neighborhoods in Chicago that experienced significant population loss or industrial decline during the mid-20th century, Beverly remained largely residential and middle-class. The area became known for its Irish-American population, historic home, and active community organizations. Western Avenue, where Rainbow cone is located, has long served as a large commercial area connecting different parts of the South Side. While other commercial areas in Chicago declined due to suburbanization and disinvestment, Beverly’s business district remained relatively stable. This sustainability allowed long-standing businesses like Rainbow Cone to continue business without relocating. The neighborhood's consistent population and community support played an important role in sustaining the business over generations.
+Rainbow Cone is located in the Beverly neighborhood on Chicago's South Side, a community that is known for its stability and strong local identity. Unlike many neighborhoods in Chicago that experienced significant population loss or industrial decline during the mid-20th century, Beverly remained largely residential and middle-class. The area became known for its Irish-American population, historic home, and active community organizations. Western Avenue, where Rainbow cone is located, has long served as a large commercial area connecting different parts of the South Side. While other commercial areas in Chicago declined due to suburbanization and disinvestment, Beverly’s business district remained relatively stable. This sustainability allowed long-standing businesses like Rainbow Cone to continue business without relocating. The neighborhood's consistent population and community support played an important role in sustaining the business over generations.
 
 ![Western Avenue in Beverly]({{site.baseurl}}/images/rainbowcone_image1.jpg)
 {:.image}
@@ -36,11 +36,12 @@ businesses struggled to compete with chain restaurants. However, Rainbow Cone re
 The original Rainbow Cone, featuring its five signature flavors stacked together in slices instead
 of scoops.
 {:.caption}
+
 #### Works cited
 {:.bibliography}
-1. “Our History.” Original Rainbow Cone, 2026.
-2. Encyclopedia of Chicago. “Beverly.” Chicago Historical Society, 2005.
-3. Louisa Chu. “Chicago’s Rainbow Cone Expands While Staying True to Its Roots.” Chicago
+1. "Our History." Original Rainbow Cone, 2026.
+2. Encyclopedia of Chicago. "Beverly." Chicago Historical Society, 2005.
+3. Louisa Chu. "Chicago's Rainbow Cone Expands While Staying True to Its Roots." Chicago
 Tribune, 2021.
-4. Robert Loerzel. *The History of Chicago’s Food Culture*. University of Illinois Press.
-5. Chicago Metropolitan Agency for Planning. “Beverly Community Data Profile,” 2025
+4. Robert Loerzel. The History of Chicago's Food Culture. University of Illinois Press.
+5. Chicago Metropolitan Agency for Planning. "Beverly Community Data Profile," 2025
