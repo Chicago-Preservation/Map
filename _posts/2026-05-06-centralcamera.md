@@ -60,22 +60,17 @@ In 1888, George Eastman introduced the Kodak box camera, the first widely availa
 
 ![Central Camera Company Catalogue No. 21]({{site.baseurl}}/images/centralcamera_image7.jpg)
    {:.image}
-Caption
-Central Camera Co., Catalogue No. 21 of Cameras, Kodaks, Lenses and Photographic Accessories 1923-1924, (Chicago: Central Camera Company, 1923). Scanned and digitized by Larry S. Pierce. Piece Vaubel digital archive, Chicago Supply House Catalogs. https://www.piercevaubel.com/cam/catalogs/1923.central.camera.co.lp1383.htm. Accessed April 23, 2026. 
-
+Central Camera Co., Catalogue No. 21 of Cameras, Kodaks, Lenses and Photographic Accessories 1923-1924, (Chicago: Central Camera Company, 1923). Scanned and digitized by Larry S. Pierce. Piece Vaubel digital archive, Chicago Supply House Catalogs, https://www.piercevaubel.com/cam/catalogs/1923.central.camera.co.lp1383.htm. Accessed April 23, 2026. 
    {:.caption}
 
 ![Central Camera Company 1958 Catalogue ]({{site.baseurl}}/images/centralcamera_image8.jpg)
    {:.image}
-caption
 Central Camera Co., Central Camera Company: Bargain Book No. 21 (Chicago: Central Camera Company, 1958), Scanned and digitized by Michael Butkus, October 16, 2006. https://www.cameramanuals.org/booklets/central_camera_1958.pdf. Accessed April 23, 2026. 
    {:.caption}
 
 ![Don Flesch Helping Customer in 1988]({{site.baseurl}}/images/centralcamera_image9.jpg)
    {:.image}
-Photo of Don Flesch and Central Camera Co. customer Clara Young found in 1988 Chicago Tribune article, “Photography: Approaching 90, Central Camera is a 3-Generation Saga” by Abigail Foerstner.
-
-Kale, Walter. December 23, 1988. Chicago Tribune (Chicago, Illinois). Pg. 164. Newspapers.com. https://www.newspapers.com/image/388957918/. Accessed April 23, 2026
+Photo of Don Flesch and Central Camera Co. customer Clara Young found in 1988 Chicago Tribune article, “Photography: Approaching 90, Central Camera is a 3-Generation Saga” by Abigail Foerstner. (Kale, Walter. December 23, 1988. Chicago Tribune, Chicago, Illinois. Pg. 164. Newspapers.com. https://www.newspapers.com/image/388957918/. Accessed April 23, 2026)
    {:.caption}
 
 #### Works cited
