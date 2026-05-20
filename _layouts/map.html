@@ -641,7 +641,7 @@ marker.on('click', function(){
   articlerender(article_url, item_id);
 });
 
-marker.addTo(studentLayers["{{ category[0] }}"]);
+marker.addTo(studentLayers["{{ cat[0] }}"]);
     var filename = "{{post.url}}";
 if (items[filename] === undefined) {
   items[filename] = [marker];
