@@ -685,7 +685,9 @@ if (items[filename] === undefined) {
     //          ]
     //      }
     // --- END OF GUIDE ---
-
+console.log('Legacy Business layer:', studentLayers["Legacy Business"]);
+console.log('Legacy Business markers:', studentLayers["Legacy Business"] ? studentLayers["Legacy Business"].getLayers().length : 'undefined');
+    
 const legendData = [
     {
         category: "Historic Recognition",
