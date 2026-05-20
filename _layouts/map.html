@@ -637,7 +637,7 @@ const categoryIcon = L.icon({
   {% for post in category[1] %}
 var marker = L.marker([{{ post.lat }}, {{ post.lng }}], { icon: categoryIcon })
   .bindPopup("<strong>{{ post.title }}</strong><br>{{ post.desc }}", {offset: new L.Point(0,-30)});
-
+    marker.iconURL = categoryIconUrl;
 marker.on('click', function(){
   post_url = "{{site.baseurl}}/#{{post.url}}";
   article_url = '{{site.baseurl}}{{post.url}}';
