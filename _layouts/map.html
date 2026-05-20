@@ -850,17 +850,58 @@ function performSearch() {
   if (!keyword) return;
   
   // Search NR Properties
-  nrPropertiesLayer.eachLayer(function(layer) {
+  nrPropertiesFilteredLayer.eachLayer(function(layer) {
     var props = layer.feature.properties;
     var name = (props.SignificantName || '').toLowerCase();
     var location = (props.Location || '').toLowerCase();
     var architect = (props.Architect || '').toLowerCase();
-    
     if (name.includes(keyword) || location.includes(keyword) || architect.includes(keyword)) {
       results.push({layer: layer, name: props.SignificantName || 'N/A', location: props.Location || ''});
     }
   });
-  
+
+  // Search Chicago Landmarks
+  landmarksLayer.eachLayer(function(layer) {
+    var props = layer.feature.properties;
+    var name = (props.NAME || '').toLowerCase();
+    var address = (props.ADDRESS || '').toLowerCase();
+    var architect = (props.ARCHITECT || '').toLowerCase();
+    if (name.includes(keyword) || address.includes(keyword) || architect.includes(keyword)) {
+      results.push({layer: layer, name: props.NAME || 'N/A', location: props.ADDRESS || ''});
+    }
+  });
+
+  // Search NR Districts
+  nrDistricts2012Layer.eachLayer(function(layer) {
+    var props = layer.feature.properties;
+    var name = (props.NAME || '').toLowerCase();
+    var address = (props.ADDRESS || '').toLowerCase();
+    if (name.includes(keyword) || address.includes(keyword)) {
+      results.push({layer: layer, name: props.NAME || 'N/A', location: props.ADDRESS || ''});
+    }
+  });
+
+  // Search Historic Resources Survey
+  historicResourcesLayer.eachLayer(function(layer) {
+    var props = layer.feature.properties;
+    var name = (props.LANDMARKNA || '').toLowerCase();
+    var address = (props.ADDRESSDES || '').toLowerCase();
+    if (name.includes(keyword) || address.includes(keyword)) {
+      results.push({layer: layer, name: props.LANDMARKNA || 'N/A', location: props.ADDRESSDES || ''});
+    }
+  });
+
+  // Search Mural Registry
+  muralRegistryLayer.eachLayer(function(layer) {
+    var props = layer.feature.properties;
+    var name = (props['Artwork Title'] || '').toLowerCase();
+    var artist = (props['Artist Credit'] || '').toLowerCase();
+    var address = (props['Street Address'] || '').toLowerCase();
+    if (name.includes(keyword) || artist.includes(keyword) || address.includes(keyword)) {
+      results.push({layer: layer, name: props['Artwork Title'] || 'N/A', location: props['Street Address'] || ''});
+    }
+  });
+
   displayResults(results);
 }
 
@@ -884,14 +925,18 @@ function displayResults(results) {
   resultsDiv.innerHTML = html;
   resultsDiv.style.display = 'block';
   
-  // Store results globally for zoom function
   window.searchResults = results;
 }
 
 function zoomToResult(index) {
   var result = window.searchResults[index];
-  map.setView(result.layer.getLatLng(), 18);
-  result.layer.openPopup();
+  var layer = result.layer;
+  if (layer.getLatLng) {
+    map.setView(layer.getLatLng(), 18);
+  } else {
+    map.fitBounds(layer.getBounds());
+  }
+  layer.openPopup();
   document.getElementById('searchResults').style.display = 'none';
 }
     
