@@ -4,8 +4,8 @@ title: "Rainbow Cone: A Chicago Tradition Built on Family and Flavor"
 date: 2026-05-06
 categories: ["Legacy Business"]
 author: "Jace Rackleff" 
-Lat: 41.725615062313594
-Lng: -87.68205924417907
+lat: 41.725615062313594
+lng: -87.68205924417907
 runningtitle: "Rainbow Cone: A Chicago Tradition Built on Family and Flavor"
 desc: "Founded in 1926, Rainbow Cone is a family-owned ice cream shop that has become a long lasting symbol of Chicago's South Side and community tradition."
 ---
