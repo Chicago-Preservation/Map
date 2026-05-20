@@ -630,7 +630,7 @@ if (window.innerWidth <= 768) {
      //map.fitBounds(markers.getBounds());
 
 // Auto-generate a layer for each category in site.categories
-const studentLayers = {};
+var studentLayers = {};
 const categoryIconUrl = "{{site.baseurl}}/assets/leaflet/img/noun_33862_cc_green.svg";
 const categoryIcon = L.icon({
   iconUrl: categoryIconUrl,
