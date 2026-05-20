@@ -128,14 +128,6 @@ fetch('GeoJson_files_layers/boundaries.geojson')
     map.addLayer(boundariesLayer);
     boundariesLayer.bringToBack(); // Ensuring it stays behind all other layers
     // Update checkbox state
-    setTimeout(() => {
-      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-      checkboxes.forEach(cb => {
-        if (cb.parentElement.textContent.includes('Community Areas')) {
-          cb.checked = true;
-        }
-      });
-    }, 500);
   });
 
   // Added District 2012 layer here
@@ -703,8 +695,7 @@ const legendData = [
             { name: '<a href="https://www.nps.gov/subjects/nationalregister/index.htm" target="_blank">National Register of Historic Places</a>', layer: nrPropertiesFilteredLayer },
             { name: '<a href="https://www.nps.gov/subjects/nationalregister/index.htm" target="_blank">National Register Districts</a>', layer: nrDistricts2012Layer },
             { name: '<a href="https://www.chicago.gov/city/en/depts/dca/supp_info/mural_registry.html" target="_blank">Mural Registry</a>', layer: muralRegistryLayer },
-            { name: '<a href="https://www.preservationchicago.org/resources/chicago-historic-resources-survey-chrs/" target="_blank">Historic Resources Survey</a>', layer: historicResourcesLayer },
-            { name: '<a href="https://www.chicago.gov/city/en/depts/2fm/supp_info/citywide_maps.html" target="_blank">Community Areas</a>', layer: boundariesLayer }
+            { name: '<a href="https://www.preservationchicago.org/resources/chicago-historic-resources-survey-chrs/" target="_blank">Historic Resources Survey</a>', layer: historicResourcesLayer } 
         ]
     },
     {
