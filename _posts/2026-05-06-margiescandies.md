@@ -2,13 +2,13 @@
 layout: post
 title: "Margie’s Candies: A History of Chicago’s Sweet Haven"
 date: 2026-05-06
-categories: ["Legacy Business”]
+categories: ["Legacy Business"]
 author: "Kris Bostick and Arisa Hocharoen"
 Lat: 41.9178529743187
 Lng: -87.68781195026543
 runningtitle: "Margie’s Candies: A History of Chicago’s Sweet Haven"
 desc: >-
-"Margie’s Candies is a popular confectionery store on the North Side of Chicago. Owned by the Poulos family, Margie’s is one part handmade candy store and one part sit-down ice cream parlor. Founded in 1921 by Greek immigrant Peter George Poulos, Margie’s was originally named Security Sweet Shop before Peter’s son, George, took over the business and renamed it 'Margie’s' in 1933, after his wife. The shop continues to make its candies using the same techniques that Peter George used when he first opened the shop. Margie’s Candies today is owned and operated by George Poulos, great-grandson of the original Peter George Poulos (Bloom, 2023)." 
+"Margie's Candies is a popular confectionery store on the North Side of Chicago. Owned by the Poulos family, Margie's is one part handmade candy store and one part sit-down ice cream parlor. Founded in 1921 by Greek immigrant Peter George Poulos, Margie's was originally named Security Sweet Shop before Peter’s son, George, took over the business and renamed it Margie's in 1933, after his wife. The shop continues to make its candies using the same techniques that Peter George used when he first opened the shop. Margie's Candies today is owned and operated by George Poulos, great-grandson of the original Peter George Poulos (Bloom, 2023)." 
 ---
 #### Geography/Neighborhood
 Margie’s Candies was founded in the Bucktown neighborhood of Logan Square, in the northwest of Chicago’s Loop. The northeast corner of Bucktown intersects with Milwaukee Avenue, one of Chicago's main thoroughfares. The first arrivals in Bucktown were Polish immigrants in 1830, soon followed by German immigrants (Bucktown Community Organization). Towards the beginning of World War I, the Bucktown area experienced an influx of Polish immigrants, and in the 1930s bringing in a new demographic of Russian-Jewish immigrants. By 1930, Logan Square was a predominantly White area, with the majority of the population composed of immigrants or their children (Encyclopedia of Chicago). The next shift in demographics came in the 1960s, with an influx of Hispanic people moving to the area, making up two-thirds of Logan Square's population by the 1990s. Present-day Bucktown/Logan Square has shifted to an upper-class neighborhood due to gentrification (Encyclopedia of Chicago).
