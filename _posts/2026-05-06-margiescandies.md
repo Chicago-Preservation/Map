@@ -4,8 +4,8 @@ title: "Margie’s Candies: A History of Chicago’s Sweet Haven"
 date: 2026-05-06
 categories: ["Legacy Business"]
 author: "Kris Bostick and Arisa Hocharoen"
-Lat: 41.9178529743187
-Lng: -87.68781195026543
+lat: 41.9178529743187
+lng: -87.68781195026543
 runningtitle: "Margie’s Candies: A History of Chicago’s Sweet Haven"
 desc: "Margie's Candies is a popular confectionery store on the North Side of Chicago. Owned by the Poulos family, Margie's is one part handmade candy store and one part sit-down ice cream parlor. Founded in 1921 by Greek immigrant Peter George Poulos, Margie's was originally named Security Sweet Shop before Peter’s son, George, took over the business and renamed it Margie's in 1933, after his wife. The shop continues to make its candies using the same techniques that Peter George used when he first opened the shop. Margie's Candies today is owned and operated by George Poulos, great-grandson of the original Peter George Poulos (Bloom, 2023)." 
 ---
