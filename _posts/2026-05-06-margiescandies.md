@@ -15,12 +15,12 @@ Margie’s Candies was founded in the Bucktown neighborhood of Logan Square, in 
 
 The next shift in demographics came in the 1960s, with an influx of Hispanic people moving to the area, making up two-thirds of Logan Square's population by the 1990s. Present-day Bucktown/Logan Square has shifted to an upper-class neighborhood due to gentrification (Encyclopedia of Chicago).
  
-![1929 USGS topo Map]({{site.baseurl}}images/margies_image1.jpg)
+![1929 USGS topo Map]({{site.baseurl}}/images/margies_image1.jpg)
    {:.image}
 United States Geological Survey / USGS Map of Bucktown Neighborhood, published in 1929. Margie’s Candies is marked with a blue tag
    {:.caption}
  
-![1896 Sanborn Fire Insurance Map from Chicago, Illinois.]({{site.baseurl}}images/margies_image2.jpg)
+![1896 Sanborn Fire Insurance Map from Chicago, Illinois.]({{site.baseurl}}/images/margies_image2.jpg)
    {:.image}
 Sanborn Map Company, Library of Congress / Sanborn Fire Insurance Map of the neighborhood block surrounding Margie’s Candies, published in 1896. Margie’s is located in the upper-right corner.
    {:.caption}
@@ -31,12 +31,12 @@ Margie’s Candies is a family owned business now spanning four generations. Gre
 
 Margie ran the store up until her passing in 1995. Her son, Peter, known as “Margie’s boy” to customers and employees, took ownership to run the store just as his mom did up until his death in 2023. Peter’s son, George, is the current owner of Margie’s (Bloom, 2023). 
  
-![Margie Poulos and son Peter Poulos]({{site.baseurl}}images/margies_image3.jpg)
+![Margie Poulos and son Peter Poulos]({{site.baseurl}}/images/margies_image3.jpg)
    {:.image}
 Block Club Chicago / Margie Poulos and her son, Peter Poulos. 
    {:.caption}
  
-![Peter Poulos holding George Poulos]({{site.baseurl}}images/margies_image4.jpg)
+![Peter Poulos holding George Poulos]({{site.baseurl}}/images/margies_image4.jpg)
    {:.image}
 Block Club Chicago / Photo of Peter Poulos holding a young George Poulos. George is currently the fourth generation owner of Margie’s. 
    {:.caption}
@@ -47,11 +47,11 @@ Since the shop’s founding in 1921, Margie’s has been serving candy and ice c
 
 The physical character of Margie’s carries this ‘classic’ feel that echoes the same sense of nostalgia that the menu echoes. Mini juke-boxes, the neon ‘Margie’s Candies’ sign, and classic counter showcasing candies in the middle of the restaurant, maintain that ‘vintage’ look that transports and draws customers back to Margie’s for a “refreshing trip back to a simpler time” (Langer, 1987).
 
-![Peter Poulos hand dipping candy]({{site.baseurl}}images/margies_image5.jpg)
+![Peter Poulos hand dipping candy]({{site.baseurl}}/images/margies_image5.jpg)
    {:.image}
 Black, Bob (Robert). 1997. ST-20001501-0002. Chicago Sun-Times Collection, Chicago History Museum. / Photo of Peter Poulos hand dipping a piece of candy into chocolate.
    {:.caption}
-![Margies interior]({{site.baseurl}}images/margies_image6.jpg)
+![Margies interior]({{site.baseurl}}/images/margies_image6.jpg)
    {:.image}
 Black, Bob (Robert). 1997. ST-20001501-0068. Chicago Sun-Times Collection, Chicago History Museum. / The interior of Margie’s Candies, from the 1990s. 
    {:.caption}
