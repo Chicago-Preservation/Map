@@ -158,7 +158,7 @@ var landmarksLayer = L.geoJSON(null, {
 var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
   '<em>Architect:</em> ' + (feature.properties.ARCHITECT || 'Unknown') + '<br>' +
   '<em>Address:</em> ' + (feature.properties.ADDRESS || 'Unknown') + '<br>' +
-  '<em>Date Built:</em> ' + (feature.properties.DATE_BUILT || 'Unknown');
+  '<em>Date Built:</em> ' + (feature.properties.DATE_BUILT || 'Unknown') + '<br>';
 
 if (feature.properties.url_image && feature.properties.url_image.trim() !== "") {
   popupContent += '<a href="' + feature.properties.url_image + '" target="_blank">' +
