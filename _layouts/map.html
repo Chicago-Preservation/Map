@@ -650,8 +650,8 @@ marker.on('click', function(){
   post_url = "{{site.baseurl}}/#{{post.url}}";
   article_url = '{{site.baseurl}}{{post.url}}';
   item_id = "{{post.url}}";
-  window.location = (post_url);
   articlerender(article_url, item_id);
+  window.location = (post_url);
 });
 marker.addTo(studentLayers["{{ cat[0] }}"]);
 var filename = "{{post.url}}";
