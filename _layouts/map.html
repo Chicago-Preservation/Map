@@ -276,7 +276,40 @@ fetch('GeoJson_files_layers/NR_Properties.geojson')
     nrPropertiesFilteredLayer.bringToFront();
   });
 
+// Adding Adaptive Reuse Layer
+var adaptiveReuseLayer = L.geoJSON(null, {
+  options: { name: "Adaptive Reuse" },
+  onEachFeature: function (feature, layer) {
+    var props = feature.properties;
+    var popupContent = '<strong>' + (props.Name || 'N/A') + '</strong><br>' +
+      (props.OtherName ? '<em>Conversion:</em> ' + props.OtherName + '<br>' : '') +
+      (props.Location ? '<em>Location:</em> ' + props.Location + '<br>' : '') +
+      '<em>Current Use:</em> ' + (props.CurrentFunction || 'N/A') + '<br>' +
+      '<em>Historic Use:</em> ' + (props.HistoricFunction || 'N/A') + '<br>' +
+      (props.YearBuilt ? '<em>Year Built:</em> ' + props.YearBuilt + '<br>' : '') +
+      '<em>Status:</em> ' + (props.Status || 'N/A') + '<br>';
 
+    layer.bindPopup(popupContent);
+  },
+  pointToLayer: function (feature, latlng) {
+    return L.circleMarker(latlng, {
+      radius: 4,
+      fillColor: "#C4754B",
+      color: "#8B4513",
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    });
+  }
+});
+// Fetch GeoJSON data
+fetch('GeoJson_files_layers/Chicago_Adaptive_Reuse.geojson')
+  .then(response => response.json())
+  .then(data => {
+    adaptiveReuseLayer.addData(data);
+    adaptiveReuseLayer.bringToFront();
+  });
+    
 // Adding Mural Registry Layer
 var muralRegistryLayer = L.geoJSON(null, {
   options: { name: "Mural Registry Layer" }, // 👈 Added unique name
@@ -705,6 +738,7 @@ const legendData = [
             { name: '<a href="https://www.chicago.gov/city/en/depts/dca/supp_info/mural_registry.html" target="_blank">Mural Registry</a>', layer: muralRegistryLayer },
             { name: '<a href="https://www.preservationchicago.org/resources/chicago-historic-resources-survey-chrs/" target="_blank">Historic Resources Survey</a>', layer: historicResourcesLayer },
             { name: '<a href="https://www.chicago.gov/city/en/depts/2fm/supp_info/citywide_maps.html" target="_blank">Community Areas</a>', layer: boundariesLayer }
+            { name: 'Adaptive Reuse Projects', layer: adaptiveReuseLayer }
         ]
     },
     {
@@ -771,6 +805,7 @@ checkbox.onchange = function(e) {
                 if (map.hasLayer(gentrificationLayer)) gentrificationLayer.bringToBack();
                 if (map.hasLayer(raceEthnicityLayer)) raceEthnicityLayer.bringToBack();
                 if (map.hasLayer(financialDataLayer)) financialDataLayer.bringToBack();
+                if (map.hasLayer(adaptiveReuseLayer)) adaptiveReuseLayer.bringToBack();
                 if (map.hasLayer(boundariesLayer)) boundariesLayer.bringToBack();
             }, 50);
             
