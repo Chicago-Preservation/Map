@@ -307,6 +307,42 @@ fetch('GeoJson_files_layers/mural_registry.geojson')
     muralRegistryLayer.bringToFront(); // Ensures murals stay at the top
   });
 
+// Adding Adaptive Reuse Layer
+var adaptiveReuseLayer = L.geoJSON(null, {
+  options: { name: "Adaptive Reuse" },
+
+  onEachFeature: function (feature, layer) {
+    var props = feature.properties;
+    var popupContent = '<strong>' + (props.Name || 'Unknown') + '</strong><br>' +
+      (props.OtherName ? '<em>Conversion Type:</em> ' + props.OtherName + '<br>' : '') +
+      '<em>Location:</em> ' + (props.Location || 'Unknown') + '<br>' +
+      (props.YearBuilt && props.YearBuilt !== '' ? '<em>Year Built:</em> ' + props.YearBuilt + '<br>' : '') +
+      '<em>Historic Use:</em> ' + (props.HistoricFunction || 'Unknown') + '<br>' +
+      '<em>Current Use:</em> ' + (props.CurrentFunction || 'Unknown') + '<br>' +
+      '<em>Category:</em> ' + (props.ReuseCategory || 'Unknown') + '<br>' +
+      '<em>Status:</em> ' + (props.Status || 'Unknown');
+    layer.bindPopup(popupContent);
+  },
+  pointToLayer: function (feature, latlng) {
+    return L.circleMarker(latlng, {
+      radius: 6,
+      fillColor: "#FF8C00",
+      color: "#7B3F00",
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.85
+    });
+  }
+});
+
+fetch('GeoJson_files_layers/Chicago_Adaptive_Reuse.geojson')
+  .then(response => response.json())
+  .then(data => {
+    adaptiveReuseLayer.addData(data);
+    map.addLayer(adaptiveReuseLayer); // checked on by default
+    adaptiveReuseLayer.bringToFront();
+  });
+
 // NEW: Adding Gentrification Layer
 var gentrificationLayer = L.geoJSON(null, {
   options: { name: "Gentrification Analysis" },
@@ -690,16 +726,22 @@ console.log('Legacy Business layer:', studentLayers["Legacy Business"]);
 console.log('Legacy Business markers:', studentLayers["Legacy Business"] ? studentLayers["Legacy Business"].getLayers().length : 'undefined');
     
 const legendData = [
-    {
-        category: "Historic Recognition",
-        subOptions: [
-            { name: '<a href="https://webapps1.chicago.gov/landmarksweb/web/listings.htm" target="_blank">Chicago Landmarks</a>', layer: landmarksLayer },
-            { name: '<a href="https://www.nps.gov/subjects/nationalregister/index.htm" target="_blank">National Register of Historic Places</a>', layer: nrPropertiesFilteredLayer },
-            { name: '<a href="https://www.nps.gov/subjects/nationalregister/index.htm" target="_blank">National Register Districts</a>', layer: nrDistricts2012Layer },
-            { name: '<a href="https://www.chicago.gov/city/en/depts/dca/supp_info/mural_registry.html" target="_blank">Mural Registry</a>', layer: muralRegistryLayer },
-            { name: '<a href="https://www.preservationchicago.org/resources/chicago-historic-resources-survey-chrs/" target="_blank">Historic Resources Survey</a>', layer: historicResourcesLayer } 
-        ]
-    },
+  {
+    category: "Historic Designation",
+    subOptions: [
+        { name: '<a href="https://webapps1.chicago.gov/landmarksweb/web/listings.htm" target="_blank">Chicago Landmarks</a>', layer: landmarksLayer },
+        { name: '<a href="https://www.nps.gov/subjects/nationalregister/index.htm" target="_blank">National Register of Historic Places</a>', layer: nrPropertiesFilteredLayer },
+        { name: '<a href="https://www.nps.gov/subjects/nationalregister/index.htm" target="_blank">National Register Districts</a>', layer: nrDistricts2012Layer },
+    ]
+},
+{
+    category: "Historic Resources & Reuse",
+    subOptions: [
+        { name: '<a href="https://www.preservationchicago.org/resources/chicago-historic-resources-survey-chrs/" target="_blank">Historic Resources Survey</a>', layer: historicResourcesLayer },
+        { name: 'Adaptive Reuse', layer: adaptiveReuseLayer },
+        { name: '<a href="https://www.chicago.gov/city/en/depts/dca/supp_info/mural_registry.html" target="_blank">Mural Registry</a>', layer: muralRegistryLayer },
+    ]
+},
     {
         category: "Urban Phenomena",                    // ← MOVED THIS UP
         subOptions: [
