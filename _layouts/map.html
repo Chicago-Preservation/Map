@@ -339,7 +339,6 @@ fetch('GeoJson_files_layers/Chicago_Adaptive_Reuse.geojson')
   .then(response => response.json())
   .then(data => {
     adaptiveReuseLayer.addData(data);
-    map.addLayer(adaptiveReuseLayer); // checked on by default
     adaptiveReuseLayer.bringToFront();
   });
 
@@ -772,7 +771,7 @@ const legendData = [
         data.forEach(categoryObj => {
             const header = L.DomUtil.create('h4', 'legend-category-header', container);
             // Start with collapsed arrow for certain categories
-if (categoryObj.category === 'Urban Phenomena' || categoryObj.category === 'Student Projects') {
+if (categoryObj.category === 'Urban Phenomena' || categoryObj.category === 'Student Projects' || categoryObj.category === 'Historic Resources & Reuse') {
     header.innerHTML = `► ${categoryObj.category}`;
 } else {
     header.innerHTML = `▼ ${categoryObj.category}`;
@@ -785,7 +784,7 @@ if (categoryObj.category === 'Urban Phenomena' || categoryObj.category === 'Stud
             const subOptionsContainer = L.DomUtil.create('div', 'legend-sub-options', container);
 
          // Start Urban Phenomena and Student Projects collapsed
-if (categoryObj.category === 'Urban Phenomena' || categoryObj.category === 'Student Projects') {
+if (categoryObj.category === 'Urban Phenomena' || categoryObj.category === 'Student Projects' || categoryObj.category === 'Historic Resources & Reuse') {
     subOptionsContainer.style.display = 'none';
 }
 
