@@ -192,29 +192,47 @@ fetch('GeoJson_files_layers/landmarkareas.geojson')
     }, 500);
   });
   
-/// Adding Historic Resources Survey Layer
+// Adding Historic Resources Survey Layer
 var historicResourcesLayer = L.geoJSON(null, {
-  options: { name: "Historic Resources Survey" }, // 👈 Added unique name
-
+  options: { name: "Historic Resources Survey" },
   onEachFeature: function (feature, layer) {
-    var startYear = feature.properties["STARTYEAR"];
-    var decade = feature.properties["DECADE"];
+    var props = feature.properties;
 
-    var startYear = parseInt(feature.properties["STARTYEAR"], 10);
+    // Year display: prefer STARTYEAR, fall back to DECADE
+    var startYear = parseInt(props["STARTYEAR"], 10);
+    var decade = props["DECADE"];
     var displayYear = (startYear && startYear !== 0) ? startYear : ((decade && decade !== 0) ? decade : 'NA');
 
+    // Build popup — only show CHRS fields if they exist
+    var popupContent = '<strong>' + (props["LANDMARKNA"] || 'No Name') + '</strong><br>';
 
+    // Address: prefer CHRS address, fall back to existing field
+    var address = props["chrs_address"] || props["ADDRESSDES"] || 'Unknown';
+    popupContent += '<em>Address:</em> ' + address + '<br>';
 
-    var popupContent = '<strong>' +
-      (feature.properties["LANDMARKNA"] || 'No Name') + '</strong><br>' +
-      '<em>Address:</em> ' + (feature.properties["ADDRESSDES"] || 'Unknown') + '<br>' +
-      '<em>Year:</em> ' + displayYear;
+    popupContent += '<em>Year:</em> ' + displayYear + '<br>';
+
+    if (props["chrs_community_area"]) {
+      popupContent += '<em>Community Area:</em> ' + props["chrs_community_area"] + '<br>';
+    }
+    if (props["chrs_style"]) {
+      popupContent += '<em>Style:</em> ' + props["chrs_style"] + '<br>';
+    }
+    if (props["chrs_bldg_type"]) {
+      popupContent += '<em>Building Type:</em> ' + props["chrs_bldg_type"] + '<br>';
+    }
+    if (props["chrs_date"]) {
+      popupContent += '<em>Date (CHRS):</em> ' + props["chrs_date"] + '<br>';
+    }
+    if (props["chrs_report_url"]) {
+      popupContent += '<a href="' + props["chrs_report_url"] + '" target="_blank">View CHRS Report</a>';
+    }
 
     layer.bindPopup(popupContent);
   },
   style: function (feature) {
     return {
-      color: "#FF5733", // **Orange color**
+      color: "#FF5733",
       weight: 2,
       fillOpacity: 0.5
     };
@@ -227,7 +245,6 @@ fetch('GeoJson_files_layers/Historic_Resources_Survey.geojson')
   .then(data => {
     historicResourcesLayer.addData(data);
   });
-
 // Adding NR_Properties Layer
 var nrPropertiesFilteredLayer = L.geoJSON(null, {
   options: { name: "NR Properties" },
