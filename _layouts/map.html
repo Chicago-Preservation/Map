@@ -221,9 +221,6 @@ var historicResourcesLayer = L.geoJSON(null, {
     if (props["chrs_bldg_type"]) {
       popupContent += '<em>Building Type:</em> ' + props["chrs_bldg_type"] + '<br>';
     }
-    if (props["chrs_date"]) {
-      popupContent += '<em>Date (CHRS):</em> ' + props["chrs_date"] + '<br>';
-    }
     if (props["chrs_report_url"]) {
       popupContent += '<a href="' + props["chrs_report_url"] + '" target="_blank">View CHRS Report</a>';
     }
