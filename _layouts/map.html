@@ -219,31 +219,30 @@ fetch('GeoJson_files_layers/Historic_Resources_Survey.geojson')
   });
 // ── Shared popup builder for all NR layers ───────────────────────────────────
 function buildNRPopup(props) {
-  var name     = props.name     || props.nr_name   || props.NAME        || props.SignificantName || null;
-  var address  = props.address  || props.ADDRESS   || props.Location    || null;
-  var arch     = props.gabi_architect || props.Architect || null;
-  var date     = props.gabi_begin_year || props.BeginYear || props.listed_date || null;
-  var category = props.category || props.TYPE_MAIN || props.SurveyType  || null;
-  var imgUrl   = props.gabi_img_url   || props.Url_img    || null;
-  var reportUrl= props.external_link  || props.URL        || props.gabi_url || null;
-  var gabiUrl  = props.gabi_url !== reportUrl ? props.gabi_url : null;
+  var name      = props.name     || props.nr_name   || props.NAME        || props.SignificantName || null;
+  var address   = props.address  || props.ADDRESS   || props.Location    || null;
+  var arch      = props.gabi_architect || props.Architect || props.architect || null;
+  var yearBuilt = props.gabi_begin_year || props.year_built || props.BeginYear || null;
+  var category  = props.category || props.SurveyType || null;
+  var imgUrl    = props.gabi_img_url  || props.Url_img  || props.img_url  || null;
+  var naraUrl   = props.external_link || null;
+  var pdfUrl    = props.gabi_url      || props.URL      || props.report_url || null;
+  // Don't show the same URL twice
+  if (pdfUrl === naraUrl) pdfUrl = null;
 
   var html = '';
-  if (name)     html += '<strong>' + name + '</strong><br>';
-  if (address)  html += '<em>Address:</em> '       + address  + '<br>';
-  if (arch)     html += '<em>Architect:</em> '     + arch     + '<br>';
-  if (date)     html += '<em>Date:</em> '          + date     + '<br>';
-  if (category) html += '<em>Property Type:</em> ' + category + '<br>';
+  if (name)      html += '<strong>' + name + '</strong><br>';
+  if (address)   html += '<em>Address:</em> '     + address   + '<br>';
+  if (yearBuilt) html += '<em>Date Built:</em> '  + yearBuilt + '<br>';
+  if (arch)      html += '<em>Architect:</em> '   + arch      + '<br>';
+  if (category)  html += '<em>Property Type:</em> ' + category + '<br>';
 
-  // Links to Reports
-  var links = [];
-  if (reportUrl && reportUrl.trim()) links.push('<a href="' + reportUrl + '" target="_blank">NPS/NARA Record</a>');
-  if (gabiUrl   && gabiUrl.trim())   links.push('<a href="' + gabiUrl   + '" target="_blank">SHPO Record</a>');
-  if (links.length) html += '<em>Links to Reports:</em> ' + links.join(' | ') + '<br>';
+  // Report links — no heading, just listed
+  if (naraUrl && naraUrl.trim()) html += '<a href="' + naraUrl + '" target="_blank" style="color:#0073e6;text-decoration:underline;">NPS/NARA Record</a><br>';
+  if (pdfUrl  && pdfUrl.trim())  html += '<a href="' + pdfUrl  + '" target="_blank" style="color:#0073e6;text-decoration:underline;">PDF Report</a><br>';
 
-  // Image thumbnail
+  // Image — no heading, just thumbnail
   if (imgUrl && imgUrl.trim()) {
-    html += '<em>Link to Image:</em> <a href="' + imgUrl + '" target="_blank">View Image</a><br>';
     html += '<a href="' + imgUrl + '" target="_blank">' +
             '<img src="' + imgUrl + '" style="width:200px;height:auto;margin-top:5px;" ' +
             'onerror="this.style.display=\'none\'">' +
@@ -293,14 +292,35 @@ fetch('GeoJson_files_layers/NR_Historic_Districts_complete.geojson')
   .then(response => response.json())
   .then(data => { nrHistoricDistrictsLayer.addData(data); });
 
-// ── NR Contributing Properties (polygons) ────────────────────────────────────
 var nrContributingLayer = L.geoJSON(null, {
   options: { name: "National Register Contributing Properties" },
   onEachFeature: function (feature, layer) {
-    layer.bindPopup(buildNRPopup(feature.properties));
+    var p = feature.properties;
+    var html = '';
+    if (p.name)        html += '<strong>' + p.name + '</strong><br>';
+    if (p.address)     html += '<em>Address:</em> '    + p.address   + '<br>';
+    if (p.year_built)  html += '<em>Date Built:</em> ' + p.year_built + '<br>';
+    if (p.architect)   html += '<em>Architect:</em> '  + p.architect  + '<br>';
+    if (p.survey_type) html += '<em>Property Type:</em> ' + p.survey_type + '<br>';
+    if (p.report_url && p.report_url.trim())
+      html += '<a href="' + p.report_url + '" target="_blank" style="color:#0073e6;text-decoration:underline;">PDF Report</a><br>';
+    if (p.img_url && p.img_url.trim()) {
+      html += '<a href="' + p.img_url + '" target="_blank">' +
+              '<img src="' + p.img_url + '" style="width:200px;height:auto;margin-top:5px;" ' +
+              'onerror="this.style.display=\'none\'">' +
+              '</a>';
+    }
+    layer.bindPopup(html || '<em>No details available</em>');
   },
-  style: function () {
-    return { color: "#90EE90", weight: 1, fillOpacity: 0.2 };
+  pointToLayer: function (feature, latlng) {
+    return L.circleMarker(latlng, {
+      radius: 3,
+      fillColor: "#90EE90",
+      color: "#2e8b57",
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.7
+    });
   }
 });
 
@@ -463,18 +483,20 @@ mostEndangeredLegend.onAdd = function (map) {
   div.style.fontSize = '12px';
   div.style.display = 'none';
   div.style.zIndex = '1000';
-  div.innerHTML =
-    '<strong style="color:black;">Preservation Chicago<br>Most Endangered</strong><br><br>' +
-    '<div style="margin:3px 0;display:flex;align-items:center;gap:6px;">' +
-      '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#FF6B35;border:1px solid #333;"></span>' +
-      'Endangered / Status Unknown</div>' +
-    '<div style="margin:3px 0;display:flex;align-items:center;gap:6px;">' +
-      '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#555555;border:1px solid #333;"></span>' +
-      'Demolished / Partially Demolished</div>' +
-    '<div style="margin:3px 0;display:flex;align-items:center;gap:6px;">' +
-      '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#2e8b57;border:1px solid #333;"></span>' +
-      'Landmarked / Pending Landmark</div>';
-  return div;
+div.innerHTML =
+  '<strong style="color:black;">Preservation Chicago<br>Most Endangered</strong><br><br>' +
+  '<div style="margin:3px 0;">' +
+    '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#FF6B35;border:1px solid #333;vertical-align:middle;margin-right:6px;"></span>' +
+    '<span style="color:black;vertical-align:middle;">Endangered / Status Unknown</span>' +
+  '</div>' +
+  '<div style="margin:3px 0;">' +
+    '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#555555;border:1px solid #333;vertical-align:middle;margin-right:6px;"></span>' +
+    '<span style="color:black;vertical-align:middle;">Demolished / Partially Demolished</span>' +
+  '</div>' +
+  '<div style="margin:3px 0;">' +
+    '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#2e8b57;border:1px solid #333;vertical-align:middle;margin-right:6px;"></span>' +
+    '<span style="color:black;vertical-align:middle;">Landmarked / Pending Landmark</span>' +
+  '</div>';
 };
 mostEndangeredLegend.addTo(map);
 // NEW: Adding Gentrification Layer
