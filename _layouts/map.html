@@ -399,7 +399,84 @@ fetch('GeoJson_files_layers/Chicago_Adaptive_Reuse.geojson')
     adaptiveReuseLayer.addData(data);
     adaptiveReuseLayer.bringToFront();
   });
+// ── Preservation Chicago Most Endangered ─────────────────────────────────────
+function getMostEndangeredColor(status) {
+  if (!status) return '#FF6B35';  // Endangered / Unknown — orange
+  var s = status.toLowerCase();
+  if (s.includes('demolish'))         return '#555555';  // Demolished — dark gray
+  if (s.includes('landmark') || s.includes('pending')) return '#2e8b57'; // Landmarked — green
+  return '#FF6B35';  // Endangered / no status — orange
+}
 
+var mostEndangeredLayer = L.geoJSON(null, {
+  options: { name: "Preservation Chicago Most Endangered" },
+  onEachFeature: function (feature, layer) {
+    var p = feature.properties;
+    var html = '';
+
+    if (p.name)              html += '<strong>' + p.name + '</strong><br>';
+    if (p.other_name)        html += '<em>Also Known As:</em> ' + p.other_name + '<br>';
+    if (p.address)           html += '<em>Address:</em> ' + p.address + '<br>';
+    if (p.year_built)        html += '<em>Year Built:</em> ' + p.year_built + '<br>';
+    if (p.architect)         html += '<em>Architect:</em> ' + p.architect + '<br>';
+    if (p.current_function)  html += '<em>Current Function:</em> ' + p.current_function + '<br>';
+    if (p.historic_function) html += '<em>Historic Function:</em> ' + p.historic_function + '<br>';
+    if (p.status)            html += '<em>Status:</em> ' + p.status + '<br>';
+    if (p.article_url)       html += '<em>Link to Documentation:</em> <a href="' + p.article_url + '" target="_blank" style="color:#0073e6;text-decoration:underline;">Open Document</a><br>';
+    if (p.img_url) {
+      html += '<em>Image Link:</em> <a href="' + p.img_url + '" target="_blank" style="color:#0073e6;text-decoration:underline;">View Image</a><br>';
+      html += '<a href="' + p.img_url + '" target="_blank">' +
+              '<img src="' + p.img_url + '" style="width:200px;height:auto;margin-top:5px;" ' +
+              'onerror="this.style.display=\'none\'">' +
+              '</a>';
+    }
+
+    layer.bindPopup(html || '<em>No details available</em>');
+  },
+  pointToLayer: function (feature, latlng) {
+    return L.circleMarker(latlng, {
+      radius: 6,
+      fillColor: getMostEndangeredColor(feature.properties.status),
+      color: '#333333',
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.85
+    });
+  }
+});
+
+fetch('GeoJson_files_layers/Chicago_Most_Endangered.geojson')
+  .then(response => response.json())
+  .then(data => {
+    mostEndangeredLayer.addData(data);
+    mostEndangeredLayer.bringToFront();
+  });
+
+// Most Endangered legend key
+var mostEndangeredLegend = L.control({ position: 'bottomleft' });
+mostEndangeredLegend.onAdd = function (map) {
+  var div = L.DomUtil.create('div', 'most-endangered-legend');
+  div.style.background = 'white';
+  div.style.border = '2px solid black';
+  div.style.borderRadius = '5px';
+  div.style.padding = '10px';
+  div.style.fontSize = '12px';
+  div.style.display = 'none';
+  div.style.zIndex = '1000';
+  div.innerHTML =
+    '<strong style="color:black;">Preservation Chicago<br>Most Endangered</strong><br><br>' +
+    '<div style="margin:3px 0;display:flex;align-items:center;gap:6px;">' +
+      '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#FF6B35;border:1px solid #333;"></span>' +
+      'Endangered / Status Unknown</div>' +
+    '<div style="margin:3px 0;display:flex;align-items:center;gap:6px;">' +
+      '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#555555;border:1px solid #333;"></span>' +
+      'Demolished / Partially Demolished</div>' +
+    '<div style="margin:3px 0;display:flex;align-items:center;gap:6px;">' +
+      '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#2e8b57;border:1px solid #333;"></span>' +
+      'Landmarked / Pending Landmark</div>';
+  return div;
+};
+mostEndangeredLegend.addTo(map);
 // NEW: Adding Gentrification Layer
 var gentrificationLayer = L.geoJSON(null, {
   options: { name: "Gentrification Analysis" },
@@ -799,6 +876,7 @@ const legendData = [
         { name: '<a href="https://www.preservationchicago.org/resources/chicago-historic-resources-survey-chrs/" target="_blank">Historic Resources Survey</a>', layer: historicResourcesLayer },
         { name: 'Adaptive Reuse', layer: adaptiveReuseLayer },
         { name: '<a href="https://www.chicago.gov/city/en/depts/dca/supp_info/mural_registry.html" target="_blank">Mural Registry</a>', layer: muralRegistryLayer },
+        { name: '<a href="https://preservationchicago.org/chicagos-seven-most-endangered/" target="_blank">Preservation Chicago\'s Most Endangered</a>', layer: mostEndangeredLayer },
     ]
 },
     {
@@ -882,6 +960,10 @@ checkbox.onchange = function(e) {
                 var legendDiv = document.querySelector('.financial-data-legend');
                 if (legendDiv) legendDiv.style.display = 'block';
             }
+            if (subOption.layer === mostEndangeredLayer) {
+                var legendDiv = document.querySelector('.most-endangered-legend');
+                if (legendDiv) legendDiv.style.display = 'block';
+            }
         }
     } else {
         if (map.hasLayer(subOption.layer)) {
@@ -898,6 +980,10 @@ checkbox.onchange = function(e) {
             }
             if (subOption.layer === financialDataLayer) {
                 var legendDiv = document.querySelector('.financial-data-legend');
+                if (legendDiv) legendDiv.style.display = 'none';
+            }
+            if (subOption.layer === mostEndangeredLayer) {
+                var legendDiv = document.querySelector('.most-endangered-legend');
                 if (legendDiv) legendDiv.style.display = 'none';
             }
         }
