@@ -125,31 +125,6 @@ fetch('GeoJson_files_layers/boundaries.geojson')
     // Update checkbox state
   });
 
-  // Added District 2012 layer here
-
- var nrDistricts2012Layer = L.geoJSON(null, {
-  options: { name: "National Register Districts" }, // 👈 Added unique name
-  onEachFeature: function (feature, layer) {
-    var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
-      '<em>Address:</em> ' + (feature.properties.ADDRESS || 'Unknown') + '<br>' ;
-    layer.bindPopup(popupContent);
-  },
-  style: function (feature) {
-    return {
-      color: "#90EE90", // **Light Green (Hex for LightGreen)**
-      weight: 1,
-      fillOpacity: 0.3
-    };
-  }
-});
-
-fetch('GeoJson_files_layers/NR_Districts_2012.geojson')
-  .then(response => response.json())
-  .then(data => {
-    nrDistricts2012Layer.addData(data);
-    nrDistricts2012Layer.bringToBack(); // Keeps it behind landmarks but above boundaries
-  });
-
     // Adding other layers (Landmarks and Boundaries)
 var landmarksLayer = L.geoJSON(null, {
   options: { name: "Landmarks" }, // 👈 Added unique name
@@ -242,37 +217,51 @@ fetch('GeoJson_files_layers/Historic_Resources_Survey.geojson')
   .then(data => {
     historicResourcesLayer.addData(data);
   });
-// Adding NR_Properties Layer
+// ── Shared popup builder for all NR layers ───────────────────────────────────
+function buildNRPopup(props) {
+  var name     = props.name     || props.nr_name   || props.NAME        || props.SignificantName || null;
+  var address  = props.address  || props.ADDRESS   || props.Location    || null;
+  var arch     = props.gabi_architect || props.Architect || null;
+  var date     = props.gabi_begin_year || props.BeginYear || props.listed_date || null;
+  var category = props.category || props.TYPE_MAIN || props.SurveyType  || null;
+  var imgUrl   = props.gabi_img_url   || props.Url_img    || null;
+  var reportUrl= props.external_link  || props.URL        || props.gabi_url || null;
+  var gabiUrl  = props.gabi_url !== reportUrl ? props.gabi_url : null;
+
+  var html = '';
+  if (name)     html += '<strong>' + name + '</strong><br>';
+  if (address)  html += '<em>Address:</em> '       + address  + '<br>';
+  if (arch)     html += '<em>Architect:</em> '     + arch     + '<br>';
+  if (date)     html += '<em>Date:</em> '          + date     + '<br>';
+  if (category) html += '<em>Property Type:</em> ' + category + '<br>';
+
+  // Links to Reports
+  var links = [];
+  if (reportUrl && reportUrl.trim()) links.push('<a href="' + reportUrl + '" target="_blank">NPS/NARA Record</a>');
+  if (gabiUrl   && gabiUrl.trim())   links.push('<a href="' + gabiUrl   + '" target="_blank">SHPO Record</a>');
+  if (links.length) html += '<em>Links to Reports:</em> ' + links.join(' | ') + '<br>';
+
+  // Image thumbnail
+  if (imgUrl && imgUrl.trim()) {
+    html += '<em>Link to Image:</em> <a href="' + imgUrl + '" target="_blank">View Image</a><br>';
+    html += '<a href="' + imgUrl + '" target="_blank">' +
+            '<img src="' + imgUrl + '" style="width:200px;height:auto;margin-top:5px;" ' +
+            'onerror="this.style.display=\'none\'">' +
+            '</a>';
+  }
+  return html || '<em>No details available</em>';
+}
+
+// ── NR Properties (points) ───────────────────────────────────────────────────
 var nrPropertiesFilteredLayer = L.geoJSON(null, {
-  options: { name: "NR Properties" },
- onEachFeature: function (feature, layer) {
-    var props = feature.properties;
-    var popupContent = '<strong>' + (props.SignificantName || 'N/A') + '</strong><br>' +
-      (props.Location ? '<em>Location:</em> ' + props.Location + '<br>' : '') +
-      '<em>Architect:</em> ' + (props.Architect || 'N/A') + '<br>' +
-      (props.BeginYear ? '<em>Year:</em> ' + props.BeginYear + '<br>' : '') +
-      (props.SurveyType ? '<em>Survey Type:</em> ' + props.SurveyType + '<br>' : '') +
-      (props.SurveyDate ? '<em>Survey Date:</em> ' + props.SurveyDate + '<br>' : '');
-    
-    // Add photo as thumbnail if it exists
-    if (props.Url_img && props.Url_img.trim() !== "") {
-      popupContent += '<a href="' + props.Url_img + '" target="_blank">' +
-        '<img src="' + props.Url_img + '" style="width:200px; height:auto; margin-top:5px;"><br></a>';
-    }
-    
-    // Add attachment link if it exists
-    if (props.URL && props.URL.trim() !== "") {
-      popupContent += '<em>Attachment:</em> ' +
-        '<a href="' + props.URL + 
-        '" target="_blank" style="color:#0073e6; text-decoration:underline;">Open Document</a><br>';
-    }
-    
-    layer.bindPopup(popupContent);
+  options: { name: "National Register Properties" },
+  onEachFeature: function (feature, layer) {
+    layer.bindPopup(buildNRPopup(feature.properties));
   },
   pointToLayer: function (feature, latlng) {
     return L.circleMarker(latlng, {
       radius: 4,
-      fillColor: "#006400", 
+      fillColor: "#006400",
       color: "#003300",
       weight: 1,
       opacity: 1,
@@ -281,13 +270,68 @@ var nrPropertiesFilteredLayer = L.geoJSON(null, {
   }
 });
 
-// Fetch GeoJSON data
-fetch('GeoJson_files_layers/NR_Properties.geojson')
+fetch('GeoJson_files_layers/NR_Properties_points.geojson')
   .then(response => response.json())
   .then(data => {
     nrPropertiesFilteredLayer.addData(data);
+    map.addLayer(nrPropertiesFilteredLayer);
     nrPropertiesFilteredLayer.bringToFront();
   });
+
+// ── NR Historic Districts (polygons) ─────────────────────────────────────────
+var nrHistoricDistrictsLayer = L.geoJSON(null, {
+  options: { name: "National Register Districts" },
+  onEachFeature: function (feature, layer) {
+    layer.bindPopup(buildNRPopup(feature.properties));
+  },
+  style: function () {
+    return { color: "#2e8b57", weight: 2, fillOpacity: 0.25 };
+  }
+});
+
+fetch('GeoJson_files_layers/NR_Historic_Districts_complete.geojson')
+  .then(response => response.json())
+  .then(data => { nrHistoricDistrictsLayer.addData(data); });
+
+// ── NR Contributing Properties (polygons) ────────────────────────────────────
+var nrContributingLayer = L.geoJSON(null, {
+  options: { name: "National Register Contributing Properties" },
+  onEachFeature: function (feature, layer) {
+    layer.bindPopup(buildNRPopup(feature.properties));
+  },
+  style: function () {
+    return { color: "#90EE90", weight: 1, fillOpacity: 0.2 };
+  }
+});
+
+fetch('GeoJson_files_layers/NR_Contributing_Properties.geojson')
+  .then(response => response.json())
+  .then(data => { nrContributingLayer.addData(data); });
+
+// ── National Historic Landmarks (mixed points + polygons) ────────────────────
+var nrNHLLayer = L.geoJSON(null, {
+  options: { name: "National Historic Landmarks" },
+  onEachFeature: function (feature, layer) {
+    layer.bindPopup(buildNRPopup(feature.properties));
+  },
+  pointToLayer: function (feature, latlng) {
+    return L.circleMarker(latlng, {
+      radius: 6,
+      fillColor: "#b8860b",
+      color: "#7b5900",
+      weight: 1.5,
+      opacity: 1,
+      fillOpacity: 0.9
+    });
+  },
+  style: function () {
+    return { color: "#b8860b", weight: 2, fillOpacity: 0.35 };
+  }
+});
+
+fetch('GeoJson_files_layers/NR_National_Historic_Landmarks.geojson')
+  .then(response => response.json())
+  .then(data => { nrNHLLayer.addData(data); });
 
 
 // Adding Mural Registry Layer
@@ -739,12 +783,14 @@ console.log('Legacy Business layer:', studentLayers["Legacy Business"]);
 console.log('Legacy Business markers:', studentLayers["Legacy Business"] ? studentLayers["Legacy Business"].getLayers().length : 'undefined');
     
 const legendData = [
-  {
+{
     category: "Historic Designation",
     subOptions: [
         { name: '<a href="https://webapps1.chicago.gov/landmarksweb/web/listings.htm" target="_blank">Chicago Landmarks</a>', layer: landmarksLayer },
-        { name: '<a href="https://www.nps.gov/subjects/nationalregister/index.htm" target="_blank">National Register of Historic Places</a>', layer: nrPropertiesFilteredLayer },
-        { name: '<a href="https://www.nps.gov/subjects/nationalregister/index.htm" target="_blank">National Register Districts</a>', layer: nrDistricts2012Layer },
+        { name: '<a href="https://www.nps.gov/subjects/nationalregister/index.htm" target="_blank">National Register Properties</a>', layer: nrPropertiesFilteredLayer },
+        { name: '<a href="https://www.nps.gov/subjects/nationalregister/index.htm" target="_blank">National Register Districts</a>', layer: nrHistoricDistrictsLayer },
+        { name: '<a href="https://www.nps.gov/subjects/nationalhist/index.htm" target="_blank">National Historic Landmarks</a>', layer: nrNHLLayer },
+        { name: 'National Register Contributing Properties', layer: nrContributingLayer },
     ]
 },
 {
