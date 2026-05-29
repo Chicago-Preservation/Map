@@ -1,28 +1,10 @@
 <nav class="top-nav">
-  {% assign sorted_pages = site.pages | sort: "url" %}
-
-  {% for page in sorted_pages %}
-    {% if page.path contains 'home.md' %}
-      <a href="{{site.baseurl}}/#{{page.url}}" onclick="onClick('{{page.url}}')">Home</a>
-    {% endif %}
-  {% endfor %}
-
-  {% for page in sorted_pages %}
-    {% if page.path contains 'home.md' or site.exclude_pages contains page.path or page.path contains 'css' %}
-      {% continue %}
-    {% else %}
-      <a href="{{site.baseurl}}/#{{page.url}}" onclick="onClick('{{page.url}}')">
-        {% case page.title %}
-          {% when 'Governing Resources' %}Map Layer Sources
-          {% when 'Additional Resources' %}Boundary Terms
-          {% when 'Browse Articles' %}Browse Student Projects
-          {% when 'Help Us Improve' %}Feedback
-          {% when 'Inquiries' %}Inquiries
-          {% else %}{{ page.title }}
-        {% endcase %}
-      </a>
-    {% endif %}
-  {% endfor %}
+  <a href="{{site.baseurl}}/#/home/" onclick="onClick('/home/')">Home</a>
+  <a href="{{site.baseurl}}/#/Map%20Layers/" onclick="onClick('/Map%20Layers/')">Map Layers</a>
+  <a href="{{site.baseurl}}/#/Scholar_Share/" onclick="onClick('/Scholar_Share/')">Scholar Share</a>
+  <a href="{{site.baseurl}}/#/article-index/" onclick="onClick('/article-index/')">Student Projects</a>
+  <a href="{{site.baseurl}}/#/Academic_Programs/" onclick="onClick('/Academic_Programs/')">Academic Programs</a>
+  <a href="{{site.baseurl}}/#/Inquiries-and-feedback/" onclick="onClick('/Inquiries-and-feedback/')">Inquiries/Feedback</a>
 </nav>
 
 <script>
