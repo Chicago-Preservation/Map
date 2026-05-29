@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 
 
@@ -130,23 +131,23 @@ var landmarksLayer = L.geoJSON(null, {
   options: { name: "Landmarks" }, // 👈 Added unique name
  
   onEachFeature: function (feature, layer) {
-var popupContent = '<strong>' + (feature.properties.NAME || 'Unknown') + '</strong><br>' +
-  '<em>Architect:</em> ' + (feature.properties.ARCHITECT || 'Unknown') + '<br>' +
-  '<em>Address:</em> ' + (feature.properties.ADDRESS || 'Unknown') + '<br>' +
-  '<em>Date Built:</em> ' + (feature.properties.DATE_BUILT || 'Unknown') + '<br>';
+    var p = feature.properties;
+    var popupContent = '<strong>' + (p.NAME || 'Unknown') + '</strong><br>';
+    if (p.ADDRESS)    popupContent += '<em>Address:</em> '    + p.ADDRESS    + '<br>';
+    if (p.DATE_BUILT) popupContent += '<em>Date Built:</em> ' + p.DATE_BUILT + '<br>';
+    if (p.ARCHITECT && p.ARCHITECT !== 'Unknown')
+                      popupContent += '<em>Architect:</em> '  + p.ARCHITECT  + '<br>';
+    if (p.LANDMARK)   popupContent += '<em>Designated:</em> ' + p.LANDMARK   + '<br>';
 
-if (feature.properties.url_image && feature.properties.url_image.trim() !== "") {
-  popupContent += '<a href="' + feature.properties.url_image + '" target="_blank">' +
-    '<img src="' + feature.properties.url_image + '" style="width:200px; height:auto; margin-top:5px;"><br></a>';
-}
-
-if (feature.properties.url && feature.properties.url.trim() !== "") {
-  popupContent += '<em>Document:</em> ' +
-    '<a href="' + feature.properties.url +
-    '" target="_blank" style="color:#0073e6; text-decoration:underline;">Open Document</a><br>';
-}
-
-layer.bindPopup(popupContent);
+    if (p.url_image && p.url_image.trim()) {
+      popupContent += '<a href="' + p.url_image + '" target="_blank">' +
+        '<img src="' + p.url_image + '" style="width:200px;height:auto;margin-top:5px;" ' +
+        'onerror="this.style.display=\'none\'"></a><br>';
+    }
+    if (p.url && p.url.trim()) {
+      popupContent += '<a href="' + p.url + '" target="_blank" style="color:#0073e6;text-decoration:underline;">Landmark Designation Report</a><br>';
+    }
+    layer.bindPopup(popupContent);
   }
 });
 
@@ -159,8 +160,8 @@ fetch('GeoJson_files_layers/landmarkareas.geojson')
     setTimeout(() => {
       const checkboxes = document.querySelectorAll('input[type="checkbox"]');
       checkboxes.forEach(cb => {
-        // Find the checkbox associated with landmarks layer
-        if (cb.parentElement.textContent.includes('Chicago Landmarks')) {
+        const txt = cb.parentElement.textContent;
+        if (txt.includes('Chicago Landmarks') || txt.includes('National Register Properties')) {
           cb.checked = true;
         }
       });
@@ -235,7 +236,6 @@ function buildNRPopup(props) {
   if (address)   html += '<em>Address:</em> '     + address   + '<br>';
   if (yearBuilt) html += '<em>Date Built:</em> '  + yearBuilt + '<br>';
   if (arch)      html += '<em>Architect:</em> '   + arch      + '<br>';
-  if (category)  html += '<em>Property Type:</em> ' + category + '<br>';
 
   // Report links — no heading, just listed
   if (naraUrl && naraUrl.trim()) html += '<a href="' + naraUrl + '" target="_blank" style="color:#0073e6;text-decoration:underline;">NPS/NARA Record</a><br>';
@@ -301,7 +301,6 @@ var nrContributingLayer = L.geoJSON(null, {
     if (p.address)     html += '<em>Address:</em> '    + p.address   + '<br>';
     if (p.year_built)  html += '<em>Date Built:</em> ' + p.year_built + '<br>';
     if (p.architect)   html += '<em>Architect:</em> '  + p.architect  + '<br>';
-    if (p.survey_type) html += '<em>Property Type:</em> ' + p.survey_type + '<br>';
     if (p.report_url && p.report_url.trim())
       html += '<a href="' + p.report_url + '" target="_blank" style="color:#0073e6;text-decoration:underline;">PDF Report</a><br>';
     if (p.img_url && p.img_url.trim()) {
