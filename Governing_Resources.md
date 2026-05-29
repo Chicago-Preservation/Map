@@ -4,7 +4,7 @@ title: Map Layers
 status: category
 ---
 
-<h2>Historic Designation</h2>
+<h2>Historic Recognition/Resources</h2>
 <p>Preservation efforts rely on a network of governing bodies, regulatory frameworks, and evaluation criteria that determine how historic sites are recognized, honored, designated, documented, and maintained. This guide provides an overview of historic resources, providing insight into what each entity does, what it does and does not regulate, financial assistance programs, and step-by-step application processes.</p>
 
 >
