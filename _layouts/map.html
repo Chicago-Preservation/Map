@@ -423,7 +423,7 @@ function getMostEndangeredColor(status) {
   if (!status) return '#FF6B35';  // Endangered / Unknown — orange
   var s = status.toLowerCase();
   if (s.includes('demolish'))         return '#555555';  // Demolished — dark gray
-  if (s.includes('landmark') || s.includes('pending')) return '#2e8b57'; // Landmarked — green
+  if (s.includes('landmark') || s.includes('pending')) return '#4169E1'; // Landmarked — royal blue
   return '#FF6B35';  // Endangered / no status — orange
 }
 
@@ -493,7 +493,7 @@ div.innerHTML =
     '<span style="color:black;vertical-align:middle;">Demolished / Partially Demolished</span>' +
   '</div>' +
   '<div style="margin:3px 0;">' +
-    '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#2e8b57;border:1px solid #333;vertical-align:middle;margin-right:6px;"></span>' +
+    '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#4169E1;border:1px solid #333;vertical-align:middle;margin-right:6px;"></span>' +
     '<span style="color:black;vertical-align:middle;">Landmarked / Pending Landmark</span>' +
   '</div>';
   return div;
