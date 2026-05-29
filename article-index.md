@@ -1,6 +1,4 @@
 ---
 layout: article-index
-title: Browse Articles
+title: Browse Student Projects
 ---
-
-[Return to Home](https://uclachicanxstudies.github.io/BarrioSuburbanisms/)
