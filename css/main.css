@@ -79,12 +79,13 @@ a {
 } */
 
 .sidebar {
-	height:100vh;
+	height: calc(100vh - 44px);
 	width:40vw;
 	background-color:#767676;
 	position:fixed!important;
 	z-index:1;
 	right:0;
+	top: 44px;
 	overflow:auto;
 }
 
@@ -236,7 +237,7 @@ ul {
   position: fixed;
   top: 0;
   left: 0;
-  width: 55vw;        /* matches map width at desktop */
+  width: 100vw;        /* matches map width at desktop */
   height: 44px;
   background-color: {{ site.accent_color }};
   display: flex;
@@ -290,7 +291,6 @@ ul {
 }
 
 @media (min-width: 768px) and (max-width: 1100px) {
-  .top-nav { width: 50vw; }
 }
 
 #choose {
@@ -315,19 +315,19 @@ display: inline-block;
   #map {
     position: absolute;
     left: 0;
-    top: 0;
-    height: 50vh;
+    top: 44px;
+    height: calc(50vh - 44px);
     width: 100vw;
   }
 
   /* Keep sidebar always visible */
 
-  .sidebar {
+.sidebar {
     position: absolute;
     left: 0;
-    top: 50vh;
+    top: calc(50vh + 44px);
     height: auto;
-    max-height: 50vh;
+    max-height: calc(50vh - 44px);
     width: 100vw;
     overflow-y: auto;
     padding-bottom: 0;
