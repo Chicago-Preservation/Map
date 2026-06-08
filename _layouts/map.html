@@ -553,20 +553,19 @@ var lostChicagoLayer = L.geoJSON(null, {
     if (p.cause)            html += '<em>Cause:</em> ' + p.cause + '<br>';
     if (p.replacement)      html += '<em>Replaced by:</em> ' + p.replacement + '<br>';
     if (p.description)      html += '<p style="font-style:italic;margin:6px 0;">' + p.description + '</p>';
-    if (p.contributor)      html += '<em>Contributor:</em> ' + p.contributor + '<br>';
     if (p.source && p.source.trim())
       html += '<a href="' + p.source + '" target="_blank" style="color:#0073e6;text-decoration:underline;">Source</a><br>';
 
     // Historical image
     if (p.img_link && p.img_link.trim()) {
-      html += '<em>Historical:</em><br>';
+      html += '<em>Historical Image:</em><br>';
       html += '<a href="' + p.img_link + '" target="_blank">' +
               '<img src="' + p.img_link + '" style="width:200px;height:auto;margin:4px 0;" ' +
               'onerror="this.style.display=\'none\'"></a><br>';
     }
     // Current image
     if (p.current_img && p.current_img.trim()) {
-      html += '<em>Today:</em><br>';
+      html += '<em>Image Today:</em><br>';
       html += '<a href="' + p.current_img + '" target="_blank">' +
               '<img src="' + p.current_img + '" style="width:200px;height:auto;margin:4px 0;" ' +
               'onerror="this.style.display=\'none\'"></a>';
