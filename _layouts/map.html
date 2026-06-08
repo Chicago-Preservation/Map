@@ -29,7 +29,24 @@
 
 
    <script>
-
+function triggerLostChicago() {
+  // Wait for map and layer to be ready
+  setTimeout(function() {
+    if (typeof lostChicagoLayer !== 'undefined' && typeof map !== 'undefined') {
+      map.addLayer(lostChicagoLayer);
+      lostChicagoLayer.bringToFront();
+      // Check the legend checkbox
+      document.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+        if (cb.parentElement.textContent.trim().includes('Lost Chicago')) {
+          cb.checked = true;
+        }
+      });
+      // Show the legend key
+      var legendDiv = document.querySelector('.lost-chicago-legend');
+      if (legendDiv) legendDiv.style.display = 'block';
+    }
+  }, 300);
+}
 
    map = L.map('map' , {scrollWheelZoom: false}).setView([41.8781, -87.6298], 12); // Center on Chicago
    var markers = '';
@@ -499,6 +516,126 @@ div.innerHTML =
   return div;
 };
 mostEndangeredLegend.addTo(map);
+
+// ── Lost Chicago Layer ────────────────────────────────────────────────────────
+function getLostChicagoColor(type) {
+  var colors = {
+    'Entertainment':    '#e63946',
+    'Industrial':       '#6d6875',
+    'Hospitality':      '#f4a261',
+    'Commercial':       '#e9c46a',
+    'Transportation':   '#457b9d',
+    'Public Housing':   '#2a9d8f',
+    'Civic Center':     '#264653',
+    'Mixed-Use':        '#a8dadc',
+    'Religious':        '#c77dff',
+    'School':           '#80b918',
+    'Healthcare':       '#ff6b9d',
+    'Military':         '#6c757d',
+    'Private Residence':'#bc6c25',
+    'Recreational Area':'#52b788',
+    'Residential':      '#bc6c25',
+  };
+  return colors[type] || '#888888';
+}
+
+var lostChicagoLayer = L.geoJSON(null, {
+  options: { name: "Lost Chicago" },
+  onEachFeature: function (feature, layer) {
+    var p = feature.properties;
+    var html = '';
+
+    if (p.name)             html += '<strong>' + p.name + '</strong><br>';
+    if (p.neighborhood)     html += '<em>Neighborhood:</em> ' + p.neighborhood + '<br>';
+    if (p.type)             html += '<em>Type:</em> ' + p.type + '<br>';
+    if (p.year_built)       html += '<em>Year Built:</em> ' + p.year_built + '<br>';
+    if (p.year_demolished)  html += '<em>Year Demolished:</em> ' + p.year_demolished + '<br>';
+    if (p.cause)            html += '<em>Cause:</em> ' + p.cause + '<br>';
+    if (p.replacement)      html += '<em>Replaced by:</em> ' + p.replacement + '<br>';
+    if (p.description)      html += '<p style="font-style:italic;margin:6px 0;">' + p.description + '</p>';
+    if (p.contributor)      html += '<em>Contributor:</em> ' + p.contributor + '<br>';
+    if (p.source && p.source.trim())
+      html += '<a href="' + p.source + '" target="_blank" style="color:#0073e6;text-decoration:underline;">Source</a><br>';
+
+    // Historical image
+    if (p.img_link && p.img_link.trim()) {
+      html += '<em>Historical:</em><br>';
+      html += '<a href="' + p.img_link + '" target="_blank">' +
+              '<img src="' + p.img_link + '" style="width:200px;height:auto;margin:4px 0;" ' +
+              'onerror="this.style.display=\'none\'"></a><br>';
+    }
+    // Current image
+    if (p.current_img && p.current_img.trim()) {
+      html += '<em>Today:</em><br>';
+      html += '<a href="' + p.current_img + '" target="_blank">' +
+              '<img src="' + p.current_img + '" style="width:200px;height:auto;margin:4px 0;" ' +
+              'onerror="this.style.display=\'none\'"></a>';
+    }
+
+    layer.bindPopup(html || '<em>No details available</em>', { maxHeight: 400 });
+  },
+  pointToLayer: function (feature, latlng) {
+    return L.circleMarker(latlng, {
+      radius: 6,
+      fillColor: getLostChicagoColor(feature.properties.type),
+      color: '#333333',
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.85
+    });
+  }
+});
+
+fetch('GeoJson_files_layers/LostChicago.geojson')
+  .then(response => response.json())
+  .then(data => {
+    lostChicagoLayer.addData(data);
+    lostChicagoLayer.bringToFront();
+  });
+
+// Lost Chicago legend key
+var lostChicagoLegend = L.control({ position: 'bottomleft' });
+lostChicagoLegend.onAdd = function (map) {
+  var div = L.DomUtil.create('div', 'lost-chicago-legend');
+  div.style.background = 'white';
+  div.style.border = '2px solid black';
+  div.style.borderRadius = '5px';
+  div.style.padding = '10px';
+  div.style.fontSize = '12px';
+  div.style.display = 'none';
+  div.style.zIndex = '1000';
+  div.style.maxHeight = '300px';
+  div.style.overflowY = 'auto';
+
+  var types = [
+    ['Entertainment',    '#e63946'],
+    ['Industrial',       '#6d6875'],
+    ['Hospitality',      '#f4a261'],
+    ['Commercial',       '#e9c46a'],
+    ['Transportation',   '#457b9d'],
+    ['Public Housing',   '#2a9d8f'],
+    ['Civic Center',     '#264653'],
+    ['Mixed-Use',        '#a8dadc'],
+    ['Religious',        '#c77dff'],
+    ['School',           '#80b918'],
+    ['Healthcare',       '#ff6b9d'],
+    ['Military',         '#6c757d'],
+    ['Private Residence','#bc6c25'],
+    ['Recreational Area','#52b788'],
+  ];
+
+  var inner = '<strong style="color:black;">Lost Chicago</strong><br><br>';
+  types.forEach(function(t) {
+    inner += '<div style="margin:3px 0;">' +
+      '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background-color:' + t[1] + ';border:1px solid #333;vertical-align:middle;margin-right:6px;"></span>' +
+      '<span style="color:black;vertical-align:middle;">' + t[0] + '</span>' +
+      '</div>';
+  });
+  div.innerHTML = inner;
+  return div;
+};
+lostChicagoLegend.addTo(map);
+  
 // NEW: Adding Gentrification Layer
 var gentrificationLayer = L.geoJSON(null, {
   options: { name: "Gentrification Analysis" },
@@ -874,8 +1011,9 @@ const legendData = [
         ]
     },
     {
-        category: "Student Projects",
+        category: "Research Projects",
         subOptions: [
+            { name: '<a href="{{site.baseurl}}/#/lost-chicago/" onclick="onClick(\'/lost-chicago/\'); triggerLostChicago();">Lost Chicago</a>', layer: lostChicagoLayer },
             {% for cat in site.categories %}
             { name: "{{ cat[0] }}", layer: studentLayers["{{ cat[0] }}"] },
             {% endfor %}
@@ -934,6 +1072,11 @@ checkbox.onchange = function(e) {
             }, 50);
             
             // Show appropriate legends
+            if (subOption.layer === lostChicagoLayer) {
+                var legendDiv = document.querySelector('.lost-chicago-legend');
+                if (legendDiv) legendDiv.style.display = 'block';
+               onClick('/lost-chicago/');
+            }
             if (subOption.layer === gentrificationLayer) {
                 var legendDiv = document.querySelector('.gentrification-legend');
                 if (legendDiv) legendDiv.style.display = 'block';
@@ -956,7 +1099,11 @@ checkbox.onchange = function(e) {
             map.removeLayer(subOption.layer);
             
             // Hide appropriate legends
-            if (subOption.layer === gentrificationLayer) {
+            if (subOption.layer === lostChicagoLayer) {
+                var legendDiv = document.querySelector('.lost-chicago-legend');
+                if (legendDiv) legendDiv.style.display = 'none';
+            }
+         if (subOption.layer === gentrificationLayer) {
                 var legendDiv = document.querySelector('.gentrification-legend');
                 if (legendDiv) legendDiv.style.display = 'none';
             }
