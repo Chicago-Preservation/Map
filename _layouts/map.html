@@ -641,31 +641,39 @@ lostChicagoLegend.onAdd = function (map) {
 lostChicagoLegend.addTo(map);
 
 // ── Walking Tours Layer ───────────────────────────────────────────────────────
-var tourColors = { 'azghandi-avondale-2025': '#c77dff' };  // add more as tours are added
+var tourColors = {
+  'azghandi-avondale-2025':        '#c77dff',
+  'koyuncul-fulton-market-2025':   '#f4a261',
+  'smith-woodlawn-2025':           '#4cc9f0',
+  'davalos-bronzeville-2025':      '#f72585',
+  'gonsky-douglas-2025':           '#fb8500',
+  'baldo-back-of-the-yards-2025':  '#43aa8b'
+};
 
 var walkingToursLayer = L.geoJSON(null, {
   options: { name: "Walking Tours" },
   onEachFeature: function(feature, layer) {
     var p = feature.properties;
+
+    // Convert /2025/12/10/woodlawn-walking-tour/ → 2025-12-10-woodlawn-walking-tour
+    var slug = p.post_url.replace(/^\/|\/$/g, '').replace(/\//g, '-');
+
     if (p.feature_type === 'stop') {
       var html = '<strong>' + p.stop_number + '. ' + p.name + '</strong><br>';
       html += '<em>Address:</em> ' + p.address + '<br>';
       html += '<em>Tour:</em> ' + p.tour_name + '<br>';
       html += '<em>Neighborhood:</em> ' + p.neighborhood + '<br>';
       html += p.description + '<br><br>';
-      html += '<a href="{{site.baseurl}}/#' + p.post_url + '" onclick="onClick(\'' + p.post_url + '\')" style="color:#0073e6;text-decoration:underline;">Read Full Tour →</a>';
+      html += '<a href="#/article/' + slug + '" onclick="onClick(\'' + slug + '\'); return false;" style="color:#0073e6;text-decoration:underline;">Read Full Tour →</a>';
       layer.bindPopup(html, { maxHeight: 350 });
     } else {
-      // Route line — clickable to open the post
-      layer.on('click', function() {
-        onClick(p.post_url);
-      });
+      layer.on('click', function() { onClick(slug); });
       layer.bindTooltip(p.tour_name + ' — ' + p.author, { sticky: true });
     }
   },
   pointToLayer: function(feature, latlng) {
     var p = feature.properties;
-    var color = tourColors[p.tour_id] || '#c77dff';
+    var color = tourColors[p.tour_id] || '#888';
     return L.circleMarker(latlng, {
       radius: 8,
       fillColor: color,
@@ -675,7 +683,7 @@ var walkingToursLayer = L.geoJSON(null, {
     }).bindTooltip(p.stop_number + '. ' + p.name, { permanent: false });
   },
   style: function(feature) {
-    var color = tourColors[feature.properties.tour_id] || '#c77dff';
+    var color = tourColors[feature.properties.tour_id] || '#888';
     return { color: color, weight: 3, opacity: 0.8, dashArray: '6,4' };
   }
 });
