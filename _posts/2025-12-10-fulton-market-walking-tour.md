@@ -85,6 +85,6 @@ The Google Headquarters building — also known as 1K Fulton — reflects the fu
 
 ---
 
-**Author:** Elif Koyuncul  
+**Author:** Lal Koyuncu  
 **Course:** Introduction to Historic Preservation  
 **Neighborhood:** Fulton Market / Near West Side, Chicago
