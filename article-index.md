@@ -1,4 +1,4 @@
 ---
 layout: article-index
-title: Browse Student Projects
+title: Browse Research Projects
 ---
