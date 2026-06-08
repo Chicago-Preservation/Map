@@ -654,9 +654,9 @@ var walkingToursLayer = L.geoJSON(null, {
   options: { name: "Walking Tours" },
   onEachFeature: function(feature, layer) {
     var p = feature.properties;
-
-    // Convert /2025/12/10/woodlawn-walking-tour/ → 2025-12-10-woodlawn-walking-tour
-    var slug = p.post_url.replace(/^\/|\/$/g, '').replace(/\//g, '-');
+    var postUrl = p.post_url;
+    var articleUrl = '{{site.baseurl}}' + postUrl;
+    var hashUrl = '{{site.baseurl}}/#' + postUrl;
 
     if (p.feature_type === 'stop') {
       var html = '<strong>' + p.stop_number + '. ' + p.name + '</strong><br>';
@@ -664,10 +664,13 @@ var walkingToursLayer = L.geoJSON(null, {
       html += '<em>Tour:</em> ' + p.tour_name + '<br>';
       html += '<em>Neighborhood:</em> ' + p.neighborhood + '<br>';
       html += p.description + '<br><br>';
-      html += '<a href="#/article/' + slug + '" onclick="onClick(\'' + slug + '\'); return false;" style="color:#0073e6;text-decoration:underline;">Read Full Tour →</a>';
+      html += '<a href="' + hashUrl + '" onclick="articlerender(\'' + articleUrl + '\',\'' + postUrl + '\'); window.location=\'' + hashUrl + '\'; return false;">Read Full Tour →</a>';
       layer.bindPopup(html, { maxHeight: 350 });
     } else {
-      layer.on('click', function() { onClick(slug); });
+      layer.on('click', function() {
+        articlerender(articleUrl, postUrl);
+        window.location = hashUrl;
+      });
       layer.bindTooltip(p.tour_name + ' — ' + p.author, { sticky: true });
     }
   },
