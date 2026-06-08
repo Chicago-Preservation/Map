@@ -2,7 +2,7 @@
 layout: post
 title: "From Meatpacking to Culinary Destination: A Walking Tour of the Fulton Market District"
 date: 2025-12-10
-author: Elif Koyuncul
+author: Lal Koyuncu
 neighborhood: Fulton Market
 lat: 41.8864
 lng: -87.6516
