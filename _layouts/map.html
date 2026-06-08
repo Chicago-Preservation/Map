@@ -1016,6 +1016,13 @@ if (items[filename] === undefined) {
 {% endunless %}
 {% endfor %}
 
+{% for post in site.categories["Walking Tours"] %}
+  var walking_url = "{{ post.url }}";
+  if (items[walking_url] === undefined) {
+    items[walking_url] = [{ iconURL: null }];
+  }
+{% endfor %}
+
     // --- NEW HIERARCHICAL LEGEND CODE ---
 
     // 1. This part defines the structure of our new legend.
