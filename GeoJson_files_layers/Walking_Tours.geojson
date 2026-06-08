@@ -1,0 +1,1465 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -87.648898,
+            41.818876
+          ],
+          [
+            -87.645689,
+            41.817202
+          ],
+          [
+            -87.658669,
+            41.815943
+          ],
+          [
+            -87.65869,
+            41.817266
+          ],
+          [
+            -87.665306,
+            41.842644
+          ],
+          [
+            -87.646019,
+            41.823622
+          ],
+          [
+            -87.665438,
+            41.816202
+          ],
+          [
+            -87.64629,
+            41.818998
+          ],
+          [
+            -87.645678,
+            41.818656
+          ]
+        ]
+      },
+      "properties": {
+        "tour_id": "baldo-back-of-the-yards-2025",
+        "tour_name": "Vestiges and Traces of the \"Hog Butcher for the World\": Labor, Landscape, and Memory in the Union Stock Yards",
+        "author": "Yasmine Baldo",
+        "neighborhood": "Back of the Yards",
+        "feature_type": "route",
+        "post_url": "/2025/12/10/back-of-the-yards-walking-tour/",
+        "stop_count": 9,
+        "route_color": "#43aa8b"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.648898,
+          41.818876
+        ]
+      },
+      "properties": {
+        "tour_id": "baldo-back-of-the-yards-2025",
+        "tour_name": "Vestiges and Traces of the \"Hog Butcher for the World\": Labor, Landscape, and Memory in the Union Stock Yards",
+        "author": "Yasmine Baldo",
+        "neighborhood": "Back of the Yards",
+        "feature_type": "stop",
+        "stop_number": 1,
+        "name": "Union Stock Yard Gate",
+        "address": "W Exchange Ave & S Peoria St",
+        "description": "Triple-arched Lemont limestone gate, ca. 1879, attributed to Burnham & Root. The only surviving substantial structure from the 475-acre industrial complex. Chicago Landmark 1972; National Historic Landmark 1981.",
+        "post_url": "/2025/12/10/back-of-the-yards-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.645689,
+          41.817202
+        ]
+      },
+      "properties": {
+        "tour_id": "baldo-back-of-the-yards-2025",
+        "tour_name": "Vestiges and Traces of the \"Hog Butcher for the World\": Labor, Landscape, and Memory in the Union Stock Yards",
+        "author": "Yasmine Baldo",
+        "neighborhood": "Back of the Yards",
+        "feature_type": "stop",
+        "stop_number": 2,
+        "name": "International Amphitheatre (site)",
+        "address": "4220 S Halsted St",
+        "description": "Built 1934, demolished 1999. Hosted over 10,000 for livestock expositions, boxing matches, circuses, and the 1968 Democratic National Convention, where police clashed with protesters outside.",
+        "post_url": "/2025/12/10/back-of-the-yards-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.658669,
+          41.815943
+        ]
+      },
+      "properties": {
+        "tour_id": "baldo-back-of-the-yards-2025",
+        "tour_name": "Vestiges and Traces of the \"Hog Butcher for the World\": Labor, Landscape, and Memory in the Union Stock Yards",
+        "author": "Yasmine Baldo",
+        "neighborhood": "Back of the Yards",
+        "feature_type": "stop",
+        "stop_number": 3,
+        "name": "The Industrial Core / South Packers Avenue",
+        "address": "S Packers Ave",
+        "description": "Heart of Packingtown. Long blocks, wide street alignments, and oversized parcels designed for rail sidings survive from a built environment engineered for industrial circulation. Swift and Armour competed here; by the early 20th century the Yards supplied more than half the nation's meat.",
+        "post_url": "/2025/12/10/back-of-the-yards-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.65869,
+          41.817266
+        ]
+      },
+      "properties": {
+        "tour_id": "baldo-back-of-the-yards-2025",
+        "tour_name": "Vestiges and Traces of the \"Hog Butcher for the World\": Labor, Landscape, and Memory in the Union Stock Yards",
+        "author": "Yasmine Baldo",
+        "neighborhood": "Back of the Yards",
+        "feature_type": "stop",
+        "stop_number": 4,
+        "name": "Labor Conditions and Upton Sinclair's Chicago",
+        "address": "Back of the Yards neighborhood",
+        "description": "Among the nation's most hazardous workplaces, staffed largely by immigrants and African Americans. Conditions documented by Upton Sinclair in The Jungle (1906), catalyzing passage of the Pure Food and Drug Act and Meat Inspection Act.",
+        "post_url": "/2025/12/10/back-of-the-yards-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.665306,
+          41.842644
+        ]
+      },
+      "properties": {
+        "tour_id": "baldo-back-of-the-yards-2025",
+        "tour_name": "Vestiges and Traces of the \"Hog Butcher for the World\": Labor, Landscape, and Memory in the Union Stock Yards",
+        "author": "Yasmine Baldo",
+        "neighborhood": "Back of the Yards",
+        "feature_type": "stop",
+        "stop_number": 5,
+        "name": "Bubbly Creek (Canal Origins Park)",
+        "address": "2701 S Ashland Ave",
+        "description": "South Fork of the Chicago River, nicknamed for methane and hydrogen sulfide bubbling from decomposing animal waste discharged by the Stockyards for decades. Remains heavily polluted — an early and ongoing example of environmental injustice.",
+        "post_url": "/2025/12/10/back-of-the-yards-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.646019,
+          41.823622
+        ]
+      },
+      "properties": {
+        "tour_id": "baldo-back-of-the-yards-2025",
+        "tour_name": "Vestiges and Traces of the \"Hog Butcher for the World\": Labor, Landscape, and Memory in the Union Stock Yards",
+        "author": "Yasmine Baldo",
+        "neighborhood": "Back of the Yards",
+        "feature_type": "stop",
+        "stop_number": 6,
+        "name": "Worker Housing and Boarding Houses",
+        "address": "Ashland Ave residential blocks",
+        "description": "Modest boarding houses with dormered roofs and thin brick veneers stood feet from industrial buildings. Ethnic succession shaped these blocks: Irish and German families followed by Polish, Lithuanian, Czech, Slovak migrants, then Mexican immigrants creating mutual-aid societies and storefront organizations.",
+        "post_url": "/2025/12/10/back-of-the-yards-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.665438,
+          41.816202
+        ]
+      },
+      "properties": {
+        "tour_id": "baldo-back-of-the-yards-2025",
+        "tour_name": "Vestiges and Traces of the \"Hog Butcher for the World\": Labor, Landscape, and Memory in the Union Stock Yards",
+        "author": "Yasmine Baldo",
+        "neighborhood": "Back of the Yards",
+        "feature_type": "stop",
+        "stop_number": 7,
+        "name": "Stanley's Tavern (Whiskey Row site)",
+        "address": "4258 S Ashland Ave",
+        "description": "One of the last remnants of 'Whiskey Row.' Established 1924 by Polish immigrant Stanley Kurek. Taverns served as places to cash paychecks, share news, and organize; ethnic divisions softened across the bar.",
+        "post_url": "/2025/12/10/back-of-the-yards-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.64629,
+          41.818998
+        ]
+      },
+      "properties": {
+        "tour_id": "baldo-back-of-the-yards-2025",
+        "tour_name": "Vestiges and Traces of the \"Hog Butcher for the World\": Labor, Landscape, and Memory in the Union Stock Yards",
+        "author": "Yasmine Baldo",
+        "neighborhood": "Back of the Yards",
+        "feature_type": "stop",
+        "stop_number": 8,
+        "name": "Stock Yards National Bank",
+        "address": "4150 S Halsted St",
+        "description": "Built 1925, designed by Abraham Epstein in the style of Independence Hall. At peak, one of the largest banks outside downtown Chicago. Designated Chicago Landmark 2008. Subject of an $80 million adaptive reuse proposal for a music-recording complex.",
+        "post_url": "/2025/12/10/back-of-the-yards-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.645678,
+          41.818656
+        ]
+      },
+      "properties": {
+        "tour_id": "baldo-back-of-the-yards-2025",
+        "tour_name": "Vestiges and Traces of the \"Hog Butcher for the World\": Labor, Landscape, and Memory in the Union Stock Yards",
+        "author": "Yasmine Baldo",
+        "neighborhood": "Back of the Yards",
+        "feature_type": "stop",
+        "stop_number": 9,
+        "name": "Stockyards Industrial Park",
+        "address": "Halsted St & W Root St",
+        "description": "Post-industrial reuse of the former meatpacking district — warehouses, trucking, and food distribution. The name strategically evokes industrial nostalgia while softening histories of pollution, labor exploitation, and displacement.",
+        "post_url": "/2025/12/10/back-of-the-yards-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -87.612087,
+            41.782741
+          ],
+          [
+            -87.610748,
+            41.777689
+          ],
+          [
+            -87.605524,
+            41.780404
+          ],
+          [
+            -87.596389,
+            41.780501
+          ],
+          [
+            -87.596175,
+            41.778616
+          ],
+          [
+            -87.594566,
+            41.778749
+          ],
+          [
+            -87.590304,
+            41.784148
+          ],
+          [
+            -87.586556,
+            41.782332
+          ],
+          [
+            -87.579604,
+            41.779625
+          ]
+        ]
+      },
+      "properties": {
+        "tour_id": "smith-woodlawn-2025",
+        "tour_name": "Woodlawn Walk Tour: The History Etched in Everyday Life",
+        "author": "Kennedy \"Pete\" Smith",
+        "neighborhood": "Woodlawn",
+        "feature_type": "route",
+        "post_url": "/2025/12/10/woodlawn-walking-tour/",
+        "stop_count": 9,
+        "route_color": "#4cc9f0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.612087,
+          41.782741
+        ]
+      },
+      "properties": {
+        "tour_id": "smith-woodlawn-2025",
+        "tour_name": "Woodlawn Walking Tour",
+        "author": "Pete Smith",
+        "neighborhood": "Woodlawn",
+        "feature_type": "stop",
+        "stop_number": 1,
+        "name": "Lorraine Hansberry House",
+        "address": "6140 S Rhodes Ave",
+        "description": "Lorraine Hansberry's family home 1937–1940. Carl Hansberry purchased the building to challenge a racially restrictive housing covenant, ultimately winning Hansberry v. Lee at the Supreme Court. Lorraine drew on life here for A Raisin in the Sun, the first Broadway production by an African American playwright. Chicago Landmark 2010.",
+        "post_url": "/2025/12/10/woodlawn-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.610748,
+          41.777689
+        ]
+      },
+      "properties": {
+        "tour_id": "smith-woodlawn-2025",
+        "tour_name": "Woodlawn Walking Tour",
+        "author": "Pete Smith",
+        "neighborhood": "Woodlawn",
+        "feature_type": "stop",
+        "stop_number": 2,
+        "name": "Emmett & Mamie Till-Mobley House",
+        "address": "6427 S St Lawrence Ave",
+        "description": "The Till family moved here from Mississippi in 1951. Emmett Till was abducted and murdered in Mississippi in August 1955 while visiting his uncle's farm. His mother Mamie immediately contacted the Chicago Defender, circulating photographs of her son's beaten body nationally. The murder sparked the Civil Rights movement. Now a museum.",
+        "post_url": "/2025/12/10/woodlawn-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.605524,
+          41.780404
+        ]
+      },
+      "properties": {
+        "tour_id": "smith-woodlawn-2025",
+        "tour_name": "Woodlawn Walking Tour",
+        "author": "Pete Smith",
+        "neighborhood": "Woodlawn",
+        "feature_type": "stop",
+        "stop_number": 3,
+        "name": "Daley's Restaurant",
+        "address": "809 E 63rd St",
+        "description": "Chicago's oldest eatery, founded 1892 by ironworker John Daley to feed workers during construction of the University of Chicago and the 1893 World's Columbian Exposition. Survived ownership changes, the Depression, and decades of neighborhood upheaval. A new location opened near South Cottage Grove Ave in 2018.",
+        "post_url": "/2025/12/10/woodlawn-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.596389,
+          41.780501
+        ]
+      },
+      "properties": {
+        "tour_id": "smith-woodlawn-2025",
+        "tour_name": "Woodlawn Walking Tour",
+        "author": "Pete Smith",
+        "neighborhood": "Woodlawn",
+        "feature_type": "stop",
+        "stop_number": 4,
+        "name": "Robust Coffee Lounge",
+        "address": "6352 S Ingleside Ave",
+        "description": "Originally an industrial building adapted into a mixed-use loft in 2008. After the market crashed, owner Jack Sapstein converted the first floor into a coffee shop, which opened in 2010. A community anchor bridging Hyde Park and Woodlawn, and a model of adaptive reuse in a neighborhood that had experienced decades of disinvestment.",
+        "post_url": "/2025/12/10/woodlawn-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.596175,
+          41.778616
+        ]
+      },
+      "properties": {
+        "tour_id": "smith-woodlawn-2025",
+        "tour_name": "Woodlawn Walking Tour",
+        "author": "Pete Smith",
+        "neighborhood": "Woodlawn",
+        "feature_type": "stop",
+        "stop_number": 5,
+        "name": "Shrine of Christ / St. Gelasius Church",
+        "address": "6400 S Kimbark Ave",
+        "description": "Parish founded 1894 to serve German immigrants; church designed by Henry J. Schlacks in a style evoking the majesty of Rome. Renamed St. Gelasius in 1990 — for a pope of African heritage — in recognition of its majority African American congregation. A 2015 fire led to closure and demolition threat; saved by community protest and granted landmark status.",
+        "post_url": "/2025/12/10/woodlawn-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.594566,
+          41.778749
+        ]
+      },
+      "properties": {
+        "tour_id": "smith-woodlawn-2025",
+        "tour_name": "Woodlawn Walking Tour",
+        "author": "Pete Smith",
+        "neighborhood": "Woodlawn",
+        "feature_type": "stop",
+        "stop_number": 6,
+        "name": "First Presbyterian Church of Chicago",
+        "address": "64th St & Kimbark Ave",
+        "description": "Organized June 1833, two months before Chicago was incorporated — the oldest continuously operating institution in the city. Founded the city's first public school. Engaged with the Black P Stone Nation through the SCLC in 1965; purchased abandoned lots from the 1968–71 fires and turned them into community gardens. Built a solar greenhouse in 1981.",
+        "post_url": "/2025/12/10/woodlawn-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.590304,
+          41.784148
+        ]
+      },
+      "properties": {
+        "tour_id": "smith-woodlawn-2025",
+        "tour_name": "Woodlawn Walking Tour",
+        "author": "Pete Smith",
+        "neighborhood": "Woodlawn",
+        "feature_type": "stop",
+        "stop_number": 7,
+        "name": "61st Street Farmers Market",
+        "address": "61st St & Dorchester Ave",
+        "description": "Outdoor market hosted by Experimental Station, launched 2008. Intentionally sited on the Hyde Park–Woodlawn border as a community bridge. Produce sourced from South Side urban agriculture projects. In winter moves indoors, hosting community dinners and a youth bicycle program. An example of how ephemeral structures can be more critical to neighborhood identity than permanent landmarks.",
+        "post_url": "/2025/12/10/woodlawn-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.586556,
+          41.782332
+        ]
+      },
+      "properties": {
+        "tour_id": "smith-woodlawn-2025",
+        "tour_name": "Woodlawn Walking Tour",
+        "author": "Pete Smith",
+        "neighborhood": "Woodlawn",
+        "feature_type": "stop",
+        "stop_number": 8,
+        "name": "Hyde Park Academy High School",
+        "address": "6220 S Stony Island Ave",
+        "description": "Founded 1863; current building 1914, with major reconstructions in 1938, 1965, and 1972. Alumni include Amelia Earhart, Gwendolyn Brooks (first African American Pulitzer Prize winner for poetry), and Minnie Riperton. Designated a magnet school and Career Academy in 1976; an authorized IB World School since 2001.",
+        "post_url": "/2025/12/10/woodlawn-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.579604,
+          41.779625
+        ]
+      },
+      "properties": {
+        "tour_id": "smith-woodlawn-2025",
+        "tour_name": "Woodlawn Walking Tour",
+        "author": "Pete Smith",
+        "neighborhood": "Woodlawn",
+        "feature_type": "stop",
+        "stop_number": 9,
+        "name": "Statue of the Republic Replica (The Golden Lady)",
+        "address": "Jackson Park",
+        "description": "24-foot gilded bronze replica of Daniel Chester French's 1893 World's Columbian Exposition statue. Commissioned 1918 by the B.F. Ferguson Fund to mark the fair's 25th anniversary. Re-gilded and rededicated 1993; granted landmark status 2003. Closes the tour by evoking the economic boom that first put Woodlawn on the map.",
+        "post_url": "/2025/12/10/woodlawn-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -87.618578,
+            41.816847
+          ],
+          [
+            -87.615659,
+            41.81488
+          ],
+          [
+            -87.616212,
+            41.813338
+          ],
+          [
+            -87.614574,
+            41.809865
+          ],
+          [
+            -87.62365,
+            41.810385
+          ],
+          [
+            -87.623283,
+            41.813149
+          ]
+        ]
+      },
+      "properties": {
+        "tour_id": "davalos-bronzeville-2025",
+        "tour_name": "The Black Metropolis, Today: Tour and Reflection of Chicago's Bronzeville",
+        "author": "Ana Emilia Davalos",
+        "neighborhood": "Bronzeville",
+        "feature_type": "route",
+        "post_url": "/2025/12/10/bronzeville-walking-tour/",
+        "stop_count": 6,
+        "route_color": "#f72585"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.618578,
+          41.816847
+        ]
+      },
+      "properties": {
+        "tour_id": "davalos-bronzeville-2025",
+        "tour_name": "Bronzeville Walking Tour",
+        "author": "Davalos",
+        "neighborhood": "Bronzeville",
+        "feature_type": "stop",
+        "stop_number": 1,
+        "name": "The Forum",
+        "address": "318 E 43rd St",
+        "description": "Community hall and event venue built 1897, designed by Samuel Atwater Treat. Evolved from political speeches to civil rights organizing and jazz venue. Site of performances by Nat King Cole and Muddy Waters. Saved from demolition in 2011 by entrepreneur Bernard Loyd, now being restored by the nonprofit Urban Juncture.",
+        "post_url": "/2025/12/10/bronzeville-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.615659,
+          41.81488
+        ]
+      },
+      "properties": {
+        "tour_id": "davalos-bronzeville-2025",
+        "tour_name": "Bronzeville Walking Tour",
+        "author": "Davalos",
+        "neighborhood": "Bronzeville",
+        "feature_type": "stop",
+        "stop_number": 2,
+        "name": "Louis Armstrong House",
+        "address": "421 E 44th St",
+        "description": "Louis Armstrong's residence during his Chicago years after leaving New Orleans. A plaque marks the house, which remains a private residence. Its preservation through continued use maintains a physical connection to one of the world's most influential musicians without the funding burdens of a public institution.",
+        "post_url": "/2025/12/10/bronzeville-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.616212,
+          41.813338
+        ]
+      },
+      "properties": {
+        "tour_id": "davalos-bronzeville-2025",
+        "tour_name": "Bronzeville Walking Tour",
+        "author": "Davalos",
+        "neighborhood": "Bronzeville",
+        "feature_type": "stop",
+        "stop_number": 3,
+        "name": "Parkway Ballroom",
+        "address": "4455 S Martin Luther King Dr",
+        "description": "Originally offices of the Chicago Metropolitan Mutual Assurance Company, opened 1940 — a Black financial institution offering insurance when mainstream insurers would not. The Ballroom on the second floor was listed in the Green Book. Closed 1974, revived 2002. Now an event space, home of the Bronzeville Historical Society and ParkwaySocial coworking lounge.",
+        "post_url": "/2025/12/10/bronzeville-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.614574,
+          41.809865
+        ]
+      },
+      "properties": {
+        "tour_id": "davalos-bronzeville-2025",
+        "tour_name": "Bronzeville Walking Tour",
+        "author": "Davalos",
+        "neighborhood": "Bronzeville",
+        "feature_type": "stop",
+        "stop_number": 4,
+        "name": "Palm Tavern (site)",
+        "address": "446 E 47th St",
+        "description": "Celebrated Bronzeville club during the neighborhood's golden years, managed by Gerri Oliver from 1956. Seized by the city in 2001 over building code violations; demolished 2004. The site is now a sculpture garden honoring the Great Migration. A significant example of historic loss in Bronzeville.",
+        "post_url": "/2025/12/10/bronzeville-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.62365,
+          41.810385
+        ]
+      },
+      "properties": {
+        "tour_id": "davalos-bronzeville-2025",
+        "tour_name": "Bronzeville Walking Tour",
+        "author": "Davalos",
+        "neighborhood": "Bronzeville",
+        "feature_type": "stop",
+        "stop_number": 5,
+        "name": "Rosenwald Courts Apartments",
+        "address": "4600 S Michigan Ave",
+        "description": "Built 1929 as the Michigan Boulevard Garden Apartments by philanthropist Julius Rosenwald to provide quality housing for Black families during the Great Migration. Vacated 2000; fully rehabilitated 2015–16. Now mixed-income affordable and senior housing — a model of how preservation can directly support contemporary housing needs.",
+        "post_url": "/2025/12/10/bronzeville-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.623283,
+          41.813149
+        ]
+      },
+      "properties": {
+        "tour_id": "davalos-bronzeville-2025",
+        "tour_name": "Bronzeville Walking Tour",
+        "author": "Davalos",
+        "neighborhood": "Bronzeville",
+        "feature_type": "stop",
+        "stop_number": 6,
+        "name": "Chicago Urban League / Swift Mansion",
+        "address": "4510 S Michigan Ave",
+        "description": "Swift Mansion built 1892 in Richardsonian Romanesque style. Became Chicago Urban League headquarters in the 1960s. When the League outgrew the mansion, it built a modern steel-and-glass building next door rather than relocating downtown — preserving its community identity and the mansion's institutional use.",
+        "post_url": "/2025/12/10/bronzeville-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -87.622216,
+            41.837366
+          ],
+          [
+            -87.620058,
+            41.835418
+          ],
+          [
+            -87.621466,
+            41.834623
+          ],
+          [
+            -87.622664,
+            41.83606
+          ],
+          [
+            -87.621709,
+            41.831949
+          ],
+          [
+            -87.61918,
+            41.830574
+          ],
+          [
+            -87.618598,
+            41.831026
+          ],
+          [
+            -87.619954,
+            41.82689
+          ],
+          [
+            -87.617588,
+            41.827816
+          ],
+          [
+            -87.617586,
+            41.828734
+          ],
+          [
+            -87.617632,
+            41.829015
+          ]
+        ]
+      },
+      "properties": {
+        "tour_id": "gonsky-douglas-2025",
+        "tour_name": "Douglas: Architecture, Art, History, and Disinvestment — A Tour of the Former Black Metropolis",
+        "author": "Tallulah Gonsky",
+        "neighborhood": "Douglas",
+        "feature_type": "route",
+        "post_url": "/2025/12/10/douglas-walking-tour/",
+        "stop_count": 11,
+        "route_color": "#fb8500"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.622216,
+          41.837366
+        ]
+      },
+      "properties": {
+        "tour_id": "gonsky-douglas-2025",
+        "tour_name": "Douglas: Architecture, Art, History, and Disinvestment",
+        "author": "Gonsky",
+        "neighborhood": "Douglas",
+        "feature_type": "stop",
+        "stop_number": 1,
+        "name": "Unity Hall",
+        "address": "3140 S Indiana Ave",
+        "description": "Red brick building with terra cotta decorations, designed by L.B. Dixon, built 1887. Originally a Jewish social club, became headquarters of Alderman Oscar Stanton De Priest's Peoples Movement Club in 1917 — De Priest was the first Black U.S. Representative from the northern states. Later used by Congressman William L. Dawson. Now vacant; Preservation Chicago most-endangered list 2012.",
+        "post_url": "/2025/12/10/douglas-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.620058,
+          41.835418
+        ]
+      },
+      "properties": {
+        "tour_id": "gonsky-douglas-2025",
+        "tour_name": "Douglas: Architecture, Art, History, and Disinvestment",
+        "author": "Gonsky",
+        "neighborhood": "Douglas",
+        "feature_type": "stop",
+        "stop_number": 2,
+        "name": "Lincoln Perry Apartments",
+        "address": "3245 S Prairie Ave / 243 E 32nd St",
+        "description": "Nine-story, 183-unit senior housing complex built 1973. Named for Lincoln Theodore Monroe Andrew Perry (stage name Stepin Fetchit), the first Black man to receive screen credit in a film, who lived here in the 1970s. A case study in how naming — not just physical preservation — can keep historical figures alive in community memory.",
+        "post_url": "/2025/12/10/douglas-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.621466,
+          41.834623
+        ]
+      },
+      "properties": {
+        "tour_id": "gonsky-douglas-2025",
+        "tour_name": "Douglas: Architecture, Art, History, and Disinvestment",
+        "author": "Gonsky",
+        "neighborhood": "Douglas",
+        "feature_type": "stop",
+        "stop_number": 3,
+        "name": "Pilgrim Baptist Church",
+        "address": "3301 S Indiana Ave",
+        "description": "Originally the Kehilath Anshe Ma'ariv Synagogue, 1890, by Louis Sullivan and Dankmar Adler. Purchased by Pilgrim Baptist Church in 1922. Choir director Thomas A. Dorsey, the father of Gospel music, made this the birthplace of Gospel. A 2006 fire destroyed everything except the external walls. Plans for a National Museum for Gospel Music have stalled; repair costs alone projected at $10 million.",
+        "post_url": "/2025/12/10/douglas-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.622664,
+          41.83606
+        ]
+      },
+      "properties": {
+        "tour_id": "gonsky-douglas-2025",
+        "tour_name": "Douglas: Architecture, Art, History, and Disinvestment",
+        "author": "Gonsky",
+        "neighborhood": "Douglas",
+        "feature_type": "stop",
+        "stop_number": 4,
+        "name": "Illinois College of Optometry",
+        "address": "3241 S Michigan Ave",
+        "description": "Largest optometry school in the U.S., founded 1955. Its Mies van der Rohe-inspired glass-and-steel building contrasts starkly with the ruined Pilgrim Baptist across the street — illustrating how preservation resources in historically Black neighborhoods are deprioritized relative to better-funded institutions.",
+        "post_url": "/2025/12/10/douglas-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.621709,
+          41.831949
+        ]
+      },
+      "properties": {
+        "tour_id": "gonsky-douglas-2025",
+        "tour_name": "Douglas: Architecture, Art, History, and Disinvestment",
+        "author": "Gonsky",
+        "neighborhood": "Douglas",
+        "feature_type": "stop",
+        "stop_number": 5,
+        "name": "Chicago Defender Building",
+        "address": "3435 S Indiana Ave",
+        "description": "Built 1899 by Henry Newhouse as a synagogue; home of the Chicago Defender from 1920 to 1960. Founded 1905 by Robert S. Abbott, the Defender was the most widely read Black newspaper in America and a major instigator of the Great Migration. Now a Chicago Landmark; currently a medical supply store — facade preserved, original mission lost.",
+        "post_url": "/2025/12/10/douglas-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.61918,
+          41.830574
+        ]
+      },
+      "properties": {
+        "tour_id": "gonsky-douglas-2025",
+        "tour_name": "Douglas: Architecture, Art, History, and Disinvestment",
+        "author": "Gonsky",
+        "neighborhood": "Douglas",
+        "feature_type": "stop",
+        "stop_number": 6,
+        "name": "Eighth Regiment Armory",
+        "address": "3533 S Giles Ave",
+        "description": "Built 1914 by J.B. Dibelka; first armory in the U.S. built for a Black military regiment. The Fighting 8th served in WWI with the French army, earning the nickname \"Black Devils.\" Now Chicago Military Academy, a public high school. Exterior preserved; expansion built to match the original.",
+        "post_url": "/2025/12/10/douglas-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.618598,
+          41.831026
+        ]
+      },
+      "properties": {
+        "tour_id": "gonsky-douglas-2025",
+        "tour_name": "Douglas: Architecture, Art, History, and Disinvestment",
+        "author": "Gonsky",
+        "neighborhood": "Douglas",
+        "feature_type": "stop",
+        "stop_number": 7,
+        "name": "Formerly Sunset Café",
+        "address": "315 E 35th St",
+        "description": "Built 1909 as an auto garage; remodeled 1921 as the Sunset Café. Louis Armstrong, Earl Hines, Cab Calloway, Billie Holiday, and Ella Fitzgerald (who made her Chicago debut here in 1939) all performed here. Chicago Landmark since 1998. Recently purchased by Amazon, which removed original glass brick windows and paneling, rendering the building unrecognizable.",
+        "post_url": "/2025/12/10/douglas-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.619954,
+          41.82689
+        ]
+      },
+      "properties": {
+        "tour_id": "gonsky-douglas-2025",
+        "tour_name": "Douglas: Architecture, Art, History, and Disinvestment",
+        "author": "Gonsky",
+        "neighborhood": "Douglas",
+        "feature_type": "stop",
+        "stop_number": 8,
+        "name": "Ida B. Wells Preparatory Elementary School",
+        "address": "249 E 37th St",
+        "description": "School constructed 1961, named for journalist, sociologist, activist, and NAACP co-founder Ida B. Wells. Included on the tour not for architecture but for its name: attaching Wells's name to a school in active use may preserve her legacy more effectively than a house museum, living on in the memory of every student who passes through.",
+        "post_url": "/2025/12/10/douglas-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.617588,
+          41.827816
+        ]
+      },
+      "properties": {
+        "tour_id": "gonsky-douglas-2025",
+        "tour_name": "Douglas: Architecture, Art, History, and Disinvestment",
+        "author": "Gonsky",
+        "neighborhood": "Douglas",
+        "feature_type": "stop",
+        "stop_number": 9,
+        "name": "Hammer/Palmer Mansion",
+        "address": "3654–3656 S Martin Luther King Jr Dr",
+        "description": "Queen Anne-style mansion built 1886–88 by William Wilson Clay for Justice D. Harry Hammer. From 1976, home of 'Lu' F. Palmer — Black activist, writer, radio host, and key supporter of Harold Washington's mayoral election. Recently purchased by Obsidian Collective Archive, a nonprofit dedicated to preserving Black journalism history.",
+        "post_url": "/2025/12/10/douglas-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.617586,
+          41.828734
+        ]
+      },
+      "properties": {
+        "tour_id": "gonsky-douglas-2025",
+        "tour_name": "Douglas: Architecture, Art, History, and Disinvestment",
+        "author": "Gonsky",
+        "neighborhood": "Douglas",
+        "feature_type": "stop",
+        "stop_number": 10,
+        "name": "Ida B. Wells House",
+        "address": "3624 S Martin Luther King Dr",
+        "description": "Built 1889–90 by Joseph Thain. Wells lived here 1919–1930 after founding the Negro Fellowship League and the Alpha Suffrage Club. National Historic Landmark. As Gonsky argues, its preservation reflects a preservation culture that has historically ignored people of color — making its survival all the more significant.",
+        "post_url": "/2025/12/10/douglas-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.617632,
+          41.829015
+        ]
+      },
+      "properties": {
+        "tour_id": "gonsky-douglas-2025",
+        "tour_name": "Douglas: Architecture, Art, History, and Disinvestment",
+        "author": "Gonsky",
+        "neighborhood": "Douglas",
+        "feature_type": "stop",
+        "stop_number": 11,
+        "name": "Martin Roche–John Tait House",
+        "address": "3614 S Martin Luther King Dr",
+        "description": "Romanesque Revival house built 1888 by Martin Roche of Holabird & Roche, designers of Chicago's first skyscrapers. Its flat, rough-cut stone facade contrasts with the ornate Queen Anne houses around it. Preserved solely because of its architect-resident's fame — raising questions about whose stories preservation chooses to tell.",
+        "post_url": "/2025/12/10/douglas-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -87.648034,
+            41.886953
+          ],
+          [
+            -87.647662,
+            41.88714
+          ],
+          [
+            -87.648923,
+            41.887069
+          ],
+          [
+            -87.649721,
+            41.886796
+          ],
+          [
+            -87.65044,
+            41.887019
+          ],
+          [
+            -87.650129,
+            41.886906
+          ],
+          [
+            -87.652774,
+            41.887369
+          ]
+        ]
+      },
+      "properties": {
+        "tour_id": "koyuncul-fulton-market-2025",
+        "tour_name": "From Meatpacking to Culinary Destination: A Walking Tour of the Fulton Market District",
+        "author": "Lal Koyuncul",
+        "neighborhood": "Fulton Market",
+        "feature_type": "route",
+        "post_url": "/2025/12/10/fulton-market-walking-tour/",
+        "stop_count": 7,
+        "route_color": "#f4a261"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.648034,
+          41.886953
+        ]
+      },
+      "properties": {
+        "tour_id": "koyuncul-fulton-market-2025",
+        "tour_name": "Fulton Market Walking Tour",
+        "author": "Lal Koyuncul",
+        "neighborhood": "Fulton Market",
+        "feature_type": "stop",
+        "stop_number": 1,
+        "name": "Fulton Market Gateway",
+        "address": "N Halsted St & W Fulton Market",
+        "description": "Installed as part of the Fulton Market Innovation District plan, the gateway sign marks the district's transformation from industrial working corridor to curated, high-end destination. Symbolizes both the life rejuvenated into the neighborhood and the risk of Fulton Market becoming a 'theme park' for affluent visitors.",
+        "post_url": "/2025/12/10/fulton-market-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.647662,
+          41.88714
+        ]
+      },
+      "properties": {
+        "tour_id": "koyuncul-fulton-market-2025",
+        "tour_name": "Fulton Market Walking Tour",
+        "author": "Lal Koyuncul",
+        "neighborhood": "Fulton Market",
+        "feature_type": "stop",
+        "stop_number": 2,
+        "name": "Isaacson & Stein Fish Co. Building (site)",
+        "address": "800 W Fulton Market",
+        "description": "Chicago's oldest fish wholesaler, operating for over 80 years. The original two-story structure was repurposed as a nightclub in the 1980s, then demolished entirely for a new $95 million office tower. A prime example of how economic pressures drive demolition and how such losses damage communal memory of the district's working-class origins.",
+        "post_url": "/2025/12/10/fulton-market-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.648923,
+          41.887069
+        ]
+      },
+      "properties": {
+        "tour_id": "koyuncul-fulton-market-2025",
+        "tour_name": "Fulton Market Walking Tour",
+        "author": "Lal Koyuncul",
+        "neighborhood": "Fulton Market",
+        "feature_type": "stop",
+        "stop_number": 3,
+        "name": "Beatrix Restaurant",
+        "address": "834 W Fulton Market",
+        "description": "Successful adaptive reuse: the building's red brick and square market-style storefront windows were maintained even as new floors were added and the use shifted to a high-end restaurant. Previously home to Latino Meat & Produce Inc., a minority-owned small business displaced by the neighborhood's gentrification.",
+        "post_url": "/2025/12/10/fulton-market-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.649721,
+          41.886796
+        ]
+      },
+      "properties": {
+        "tour_id": "koyuncul-fulton-market-2025",
+        "tour_name": "Fulton Market Walking Tour",
+        "author": "Lal Koyuncul",
+        "neighborhood": "Fulton Market",
+        "feature_type": "stop",
+        "stop_number": 4,
+        "name": "Peoria & Green Street Corridor",
+        "address": "Peoria St & Green St",
+        "description": "Original Fulton Street Wholesale Market Company buildings from the early 1900s. Two-to-three story tile and brick structures with basements, designed for food sale and storage. In 1891, John Flinn described this market as 'one of the most interesting sights in the city.' These buildings are among the most architecturally representative of the district's meatpacking heritage.",
+        "post_url": "/2025/12/10/fulton-market-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.65044,
+          41.887019
+        ]
+      },
+      "properties": {
+        "tour_id": "koyuncul-fulton-market-2025",
+        "tour_name": "Fulton Market Walking Tour",
+        "author": "Lal Koyuncul",
+        "neighborhood": "Fulton Market",
+        "feature_type": "stop",
+        "stop_number": 5,
+        "name": "Time Out Market",
+        "address": "916 W Fulton Market",
+        "description": "Food hall housing 18 vendors in a rehabilitated industrial building. Blackened steel and poured concrete floors deliberately reference the utilitarian origins of the building and neighborhood. Previously occupied by El Cubano's Wholesale Meats — a working-class meatpacker whose displacement exemplifies gentrification's human cost.",
+        "post_url": "/2025/12/10/fulton-market-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.650129,
+          41.886906
+        ]
+      },
+      "properties": {
+        "tour_id": "koyuncul-fulton-market-2025",
+        "tour_name": "Fulton Market Walking Tour",
+        "author": "Lal Koyuncul",
+        "neighborhood": "Fulton Market",
+        "feature_type": "stop",
+        "stop_number": 6,
+        "name": "Nealey Foods Building",
+        "address": "900–918 W Fulton St",
+        "description": "Large food wholesaler operating since the mid-20th century; Walter Nealey founded it as a small poultry business, expanded by his son in the 1980s. The Commission on Chicago Landmarks has approved demolition for a five-story mixed-use structure. Preservation Chicago calls the front façade retention a 'win.' The building's trajectory illustrates each step of Fulton Market's transformation.",
+        "post_url": "/2025/12/10/fulton-market-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.652774,
+          41.887369
+        ]
+      },
+      "properties": {
+        "tour_id": "koyuncul-fulton-market-2025",
+        "tour_name": "Fulton Market Walking Tour",
+        "author": "Lal Koyuncul",
+        "neighborhood": "Fulton Market",
+        "feature_type": "stop",
+        "stop_number": 7,
+        "name": "Google Chicago Headquarters (1K Fulton)",
+        "address": "1000 W Fulton Market",
+        "description": "Google's Chicago HQ, opened 2015 in a converted 1920s cold storage facility. Described as one of the most ambitious architectural adaptive reuse projects to date. Google's arrival initiated an influx of corporate firms and skyrocketing property prices, displacing long-term residents and making it a prime symbol of gentrification in the Fulton Market district.",
+        "post_url": "/2025/12/10/fulton-market-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -87.715295,
+            41.941639
+          ],
+          [
+            -87.719284,
+            41.941463
+          ],
+          [
+            -87.726702,
+            41.938818
+          ],
+          [
+            -87.728538,
+            41.938651
+          ],
+          [
+            -87.727348,
+            41.935909
+          ],
+          [
+            -87.72175,
+            41.937799
+          ],
+          [
+            -87.718814,
+            41.935872
+          ],
+          [
+            -87.717903,
+            41.935576
+          ],
+          [
+            -87.71849,
+            41.933077
+          ],
+          [
+            -87.723823,
+            41.931057
+          ]
+        ]
+      },
+      "properties": {
+        "tour_id": "azghandi-avondale-2025",
+        "tour_name": "Immigration, Labor, and Everyday Architecture: A Walking Tour of Avondale",
+        "author": "Aurian Azghandi",
+        "neighborhood": "Avondale",
+        "feature_type": "route",
+        "post_url": "/2025/12/10/avondale-walking-tour/",
+        "stop_count": 10,
+        "route_color": "#c77dff"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.715295,
+          41.941639
+        ]
+      },
+      "properties": {
+        "tour_id": "azghandi-avondale-2025",
+        "tour_name": "Avondale Walking Tour",
+        "author": "Aurian Azghandi",
+        "neighborhood": "Avondale",
+        "feature_type": "stop",
+        "stop_number": 1,
+        "name": "Avondale Park Fieldhouse",
+        "address": "3516 W School St",
+        "description": "Neoclassical/colonial revival brick fieldhouse, designed by Clarence Hatzfield, opened 1930 by the Irving Park District. Lost its northeast portion to the Kennedy Expressway in the 1950s; adapted with new amenities. $2.86 million renovation in 2020. Now one of nine Chicago Park District gymnastics centers, serving as a neighborhood anchor for green space and community identity.",
+        "post_url": "/2025/12/10/avondale-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.719284,
+          41.941463
+        ]
+      },
+      "properties": {
+        "tour_id": "azghandi-avondale-2025",
+        "tour_name": "Avondale Walking Tour",
+        "author": "Aurian Azghandi",
+        "neighborhood": "Avondale",
+        "feature_type": "stop",
+        "stop_number": 2,
+        "name": "Frank W. Rielly School",
+        "address": "3650 W School St",
+        "description": "Historic school with photos dating to 1935, originally serving Polish and European immigrant families working in adjacent brickyards and factories. Now 93% Latinx, predominantly low-income. In 1999 became the first Chicago Public School to install solar electric panels, with a lobby display showing real-time energy generation. An example of everyday preservation — original purpose intact through vastly changing demographics.",
+        "post_url": "/2025/12/10/avondale-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.726702,
+          41.938818
+        ]
+      },
+      "properties": {
+        "tour_id": "azghandi-avondale-2025",
+        "tour_name": "Avondale Walking Tour",
+        "author": "Aurian Azghandi",
+        "neighborhood": "Avondale",
+        "feature_type": "stop",
+        "stop_number": 3,
+        "name": "Former Florsheim Shoe Co. Building (Shoemaker Lofts)",
+        "address": "3963 W Belmont Ave",
+        "description": "Built 1924–26, designed by Alfred S. Alschuler. Chicago City Council landmark 2006. At peak, Florsheim employed 2,500 workers here — one of the largest shoe manufacturers in America. Converted to Shoemaker Lofts residential condominiums in the early 2000s, an adaptive reuse that preserved the exterior fabric and memorialized the original use in the building's name.",
+        "post_url": "/2025/12/10/avondale-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.728538,
+          41.938651
+        ]
+      },
+      "properties": {
+        "tour_id": "azghandi-avondale-2025",
+        "tour_name": "Avondale Walking Tour",
+        "author": "Aurian Azghandi",
+        "neighborhood": "Avondale",
+        "feature_type": "stop",
+        "stop_number": 4,
+        "name": "St. Joseph Village of Chicago",
+        "address": "3525 N Elston Ave",
+        "description": "Carries on the mission of the Franciscan Sisters of Chicago, the first religious congregation founded in the city. Founded 1894 by Polish immigrant Josephine Dudzik; in 1898 established Chicago's first and oldest nursing home. The current 2006 building preserves the Sisters' tradition of serving the elderly community in Avondale.",
+        "post_url": "/2025/12/10/avondale-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.727348,
+          41.935909
+        ]
+      },
+      "properties": {
+        "tour_id": "azghandi-avondale-2025",
+        "tour_name": "Avondale Walking Tour",
+        "author": "Aurian Azghandi",
+        "neighborhood": "Avondale",
+        "feature_type": "stop",
+        "stop_number": 5,
+        "name": "Ballet Folklórico de Chicago",
+        "address": "3006 N Pulaski Rd",
+        "description": "Founded 2018 by three Latino professionals to address the lack of cultural and artistic programs for Mexican families in Avondale. Now the largest non-profit Mexican Ballet Folklórico institution in the Midwest, serving over 400 students. Partners with Chicago Public Schools. A modern counterpart to the Polish institutions that previously anchored this neighborhood.",
+        "post_url": "/2025/12/10/avondale-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.72175,
+          41.937799
+        ]
+      },
+      "properties": {
+        "tour_id": "azghandi-avondale-2025",
+        "tour_name": "Avondale Walking Tour",
+        "author": "Aurian Azghandi",
+        "neighborhood": "Avondale",
+        "feature_type": "stop",
+        "stop_number": 6,
+        "name": "Avondale Bowl",
+        "address": "3118 N Milwaukee Ave",
+        "description": "Vintage 8-lane bowling alley originally opened in the 1920s as Northwest Bowl; vacant from the early 1990s until 2018. New owner Luke Blahnik discovered the abandoned alley, restored the original pinsetters, lanes, and green color scheme, and renamed it Avondale Bowl to signal community ownership. A successful example of adaptive reuse that preserved leisure history while creating a vibrant neighborhood bar.",
+        "post_url": "/2025/12/10/avondale-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.718814,
+          41.935872
+        ]
+      },
+      "properties": {
+        "tour_id": "azghandi-avondale-2025",
+        "tour_name": "Avondale Walking Tour",
+        "author": "Aurian Azghandi",
+        "neighborhood": "Avondale",
+        "feature_type": "stop",
+        "stop_number": 7,
+        "name": "Royal Discount Center",
+        "address": "3004 N Milwaukee Ave",
+        "description": "Originally called Syrena, a Polish department store with ads in the Polish Daily Zgoda dating to 1982. Incorporated as Royal Discount Center in 1996. Now displays signage in English, Spanish, and Polish — a case study in ethnic succession of a commercial space, showing how a business with deep roots in one immigrant community can survive by adapting to serve a new community.",
+        "post_url": "/2025/12/10/avondale-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.717903,
+          41.935576
+        ]
+      },
+      "properties": {
+        "tour_id": "azghandi-avondale-2025",
+        "tour_name": "Avondale Walking Tour",
+        "author": "Aurian Azghandi",
+        "neighborhood": "Avondale",
+        "feature_type": "stop",
+        "stop_number": 8,
+        "name": "Kurowski Sausage Shop & Rich's Bakery",
+        "address": "2976 N Milwaukee Ave",
+        "description": "Established 1997, carrying on the legacy of the original Kurowski Sausage founded 1945 at 2900 N Milwaukee. The original's 2003 closure was described as 'personally significant to cultural identity' by 68% of survey respondents. This location sells traditional Polish foods — sausages, paczki, baked goods — and has survived nearly 30 years by welcoming a diverse customer base.",
+        "post_url": "/2025/12/10/avondale-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.71849,
+          41.933077
+        ]
+      },
+      "properties": {
+        "tour_id": "azghandi-avondale-2025",
+        "tour_name": "Avondale Walking Tour",
+        "author": "Aurian Azghandi",
+        "neighborhood": "Avondale",
+        "feature_type": "stop",
+        "stop_number": 9,
+        "name": "St. Hyacinth Basilica",
+        "address": "3636 W Wolfram St",
+        "description": "Polish cathedral built 1917–21, designed by Worthman and Steinach in Renaissance/Baroque Revival style. Features a rare three-towered facade, terra-cotta trim, bronze doors, 175+ relics, and a 3,000 sq ft saucer dome. Designated a Minor Basilica by Pope John Paul II in 2003. Offers masses in Polish, English, and Spanish, reflecting Avondale's evolving demographics.",
+        "post_url": "/2025/12/10/avondale-walking-tour/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.723823,
+          41.931057
+        ]
+      },
+      "properties": {
+        "tour_id": "azghandi-avondale-2025",
+        "tour_name": "Avondale Walking Tour",
+        "author": "Aurian Azghandi",
+        "neighborhood": "Avondale",
+        "feature_type": "stop",
+        "stop_number": 10,
+        "name": "Kosciuszko Park Fieldhouse",
+        "address": "2732 N Avers Ave",
+        "description": "Tudor Revival fieldhouse by Schwartz and Bowes, dedicated 1916, named after Polish national hero Tadeusz Kościuszko. 9.01 acres. Added to the National Register of Historic Places 2013. One of two former Polish-language Saturday school sites in Chicago. Today welcomes diverse communities from Latin America and Poland for recreation, live performances, and outdoor movie screenings.",
+        "post_url": "/2025/12/10/avondale-walking-tour/"
+      }
+    }
+  ]
+}
