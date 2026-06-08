@@ -984,6 +984,7 @@ const categoryIcon = L.icon({
 });
 
 {% for cat in site.categories %}
+{% unless cat[0] == "Walking Tours" %}
   studentLayers["{{ cat[0] }}"] = L.layerGroup();
   {% for post in cat[1] %}
     {% if post.lat and post.lng %}
@@ -1004,6 +1005,7 @@ if (items[filename] === undefined) {
 }
     {% endif %}
   {% endfor %}
+{% endunless %}
 {% endfor %}
 
     // --- NEW HIERARCHICAL LEGEND CODE ---
@@ -1067,7 +1069,9 @@ const legendData = [
             { name: '<a href="{{site.baseurl}}/#/lost-chicago/" onclick="onClick(\'/lost-chicago/\'); triggerLostChicago();">Lost Chicago</a>', layer: lostChicagoLayer },
             { name: "Walking Tours", layer: walkingToursLayer },
             {% for cat in site.categories %}
+            {% unless cat[0] == "Walking Tours" %}
             { name: "{{ cat[0] }}", layer: studentLayers["{{ cat[0] }}"] },
+            {% endunless %}
             {% endfor %}
         ]
     }
