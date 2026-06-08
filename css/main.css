@@ -484,6 +484,26 @@ div.leaflet-control-layers-overlays {
      font-size: 13px;
   }
 }
+
+.leaflet-popup-content-wrapper {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.leaflet-popup-content {
+  max-height: 380px;
+  overflow-y: auto;
+  margin: 10px 14px;
+}
+
+@media (max-width: 768px) {
+  .leaflet-popup-content-wrapper {
+    max-height: 250px;
+  }
+  .leaflet-popup-content {
+    max-height: 230px;
+  }
+}
 .leaflet-pane {
 z-index: 0;
 }
