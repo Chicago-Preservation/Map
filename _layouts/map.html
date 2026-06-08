@@ -639,6 +639,53 @@ lostChicagoLegend.onAdd = function (map) {
   return div;
 };
 lostChicagoLegend.addTo(map);
+
+// ── Walking Tours Layer ───────────────────────────────────────────────────────
+var tourColors = { 'azghandi-avondale-2025': '#c77dff' };  // add more as tours are added
+
+var walkingToursLayer = L.geoJSON(null, {
+  options: { name: "Walking Tours" },
+  onEachFeature: function(feature, layer) {
+    var p = feature.properties;
+    if (p.feature_type === 'stop') {
+      var html = '<strong>' + p.stop_number + '. ' + p.name + '</strong><br>';
+      html += '<em>Address:</em> ' + p.address + '<br>';
+      html += '<em>Tour:</em> ' + p.tour_name + '<br>';
+      html += '<em>Neighborhood:</em> ' + p.neighborhood + '<br>';
+      html += p.description + '<br><br>';
+      html += '<a href="{{site.baseurl}}/#' + p.post_url + '" onclick="onClick(\'' + p.post_url + '\')" style="color:#0073e6;text-decoration:underline;">Read Full Tour →</a>';
+      layer.bindPopup(html, { maxHeight: 350 });
+    } else {
+      // Route line — clickable to open the post
+      layer.on('click', function() {
+        onClick(p.post_url);
+      });
+      layer.bindTooltip(p.tour_name + ' — ' + p.author, { sticky: true });
+    }
+  },
+  pointToLayer: function(feature, latlng) {
+    var p = feature.properties;
+    var color = tourColors[p.tour_id] || '#c77dff';
+    return L.circleMarker(latlng, {
+      radius: 8,
+      fillColor: color,
+      color: '#333',
+      weight: 1.5,
+      fillOpacity: 0.9
+    }).bindTooltip(p.stop_number + '. ' + p.name, { permanent: false });
+  },
+  style: function(feature) {
+    var color = tourColors[feature.properties.tour_id] || '#c77dff';
+    return { color: color, weight: 3, opacity: 0.8, dashArray: '6,4' };
+  }
+});
+
+fetch('GeoJson_files_layers/Walking_Tours.geojson')
+  .then(response => response.json())
+  .then(data => {
+    walkingToursLayer.addData(data);
+    walkingToursLayer.bringToFront();
+  });
   
 // NEW: Adding Gentrification Layer
 var gentrificationLayer = L.geoJSON(null, {
@@ -1018,6 +1065,7 @@ const legendData = [
         category: "Research Projects",
         subOptions: [
             { name: '<a href="{{site.baseurl}}/#/lost-chicago/" onclick="onClick(\'/lost-chicago/\'); triggerLostChicago();">Lost Chicago</a>', layer: lostChicagoLayer },
+            { name: "Walking Tours", layer: walkingToursLayer },
             {% for cat in site.categories %}
             { name: "{{ cat[0] }}", layer: studentLayers["{{ cat[0] }}"] },
             {% endfor %}
