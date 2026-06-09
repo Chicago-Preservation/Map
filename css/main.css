@@ -587,3 +587,10 @@ padding-top: 6em;
   color: #800000; /* Maroon link color */
   text-decoration: underline;
 }
+
+/* Walking tour images scale to fit sidebar */
+#sidebar-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
