@@ -32,9 +32,12 @@ function articlerender(articleurl, item_id){
     
     if (!marker || !marker[0]) {
         // No marker found — just fetch and display the post
-        $.get(articleurl, function(data){
-            $("#sidebar-content").html(data);
-        });
+       $.get(articleurl, function(data){
+    $("#sidebar-content").html(data);
+}).fail(function(jqXHR, textStatus, error){
+    console.log("Fetch failed:", articleurl, textStatus, error);
+    console.log("Status code:", jqXHR.status);
+});
         $(".sidebar").scrollTop(0);
         return;
     }
