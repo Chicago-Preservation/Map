@@ -59,10 +59,10 @@ function pagerender(page_url){
 
 function onClick(url){
     if (url.includes("article/") || url.match(/\/\d{4}\/\d{2}\/\d{2}\//)) {
-        item_id = url;
-        article_url = window.location.origin + window.location.pathname + item_id;
-        articlerender(article_url, item_id);
-    } else {
+    item_id = url;
+    article_url = window.location.origin + url;
+    articlerender(article_url, item_id);
+} else {
         page_url = window.location.origin + window.location.pathname + url
         pagerender(page_url);
     }
