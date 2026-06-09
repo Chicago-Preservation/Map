@@ -10,8 +10,14 @@ function reloadhtml(){
     console.log("Current URL:", url);
     
     if (url.includes("article/")) {
-        article_url = url.replace("/#", "");
         item_id = url.split("#")[1];
+        var slug = item_id.replace("/article/", "");
+        var parts = slug.match(/^(\d{4})-(\d{2})-(\d{2})-(.+)$/);
+        if (parts) {
+            article_url = window.location.origin + "/" + parts[1] + "/" + parts[2] + "/" + parts[3] + "/" + parts[4] + "/";
+        } else {
+            article_url = url.replace("/#", "");
+        }
         articlerender(article_url, item_id);
     } else if (url.match(/#\/\d{4}\/\d{2}\/\d{2}\//)) {
         item_id = url.split("#")[1];
@@ -25,7 +31,6 @@ function reloadhtml(){
         pagerender(home_url);
     }
 };
-
 function articlerender(articleurl, item_id){
     var marker = items ? items[item_id] : undefined;
     console.log("item_id:", item_id, "marker:", marker, "items keys:", Object.keys(items));
@@ -78,7 +83,13 @@ function pagerender(page_url){
 function onClick(url){
     if (url.includes("article/") || url.match(/\/\d{4}\/\d{2}\/\d{2}\//)) {
         item_id = url;
-        article_url = window.location.origin + url;
+        var slug = url.replace("/article/", "");
+        var parts = slug.match(/^(\d{4})-(\d{2})-(\d{2})-(.+)$/);
+        if (parts) {
+            article_url = window.location.origin + "/" + parts[1] + "/" + parts[2] + "/" + parts[3] + "/" + parts[4] + "/";
+        } else {
+            article_url = window.location.origin + url;
+        }
         articlerender(article_url, item_id);
     } else {
         page_url = window.location.origin + window.location.pathname + url;
