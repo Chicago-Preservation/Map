@@ -1,3 +1,4 @@
+var items = {};
 $(document).ready(function(){
   console.log(map);
 reloadhtml(); // ADD THIS LINE
@@ -24,8 +25,14 @@ function reloadhtml(){
 };
 
 function articlerender(articleurl, item_id){
+    if (typeof items === 'undefined' || items[item_id] === undefined) {
+        $.get(articleurl, function(data){
+            $("#sidebar-content").html(data);
+        });
+        $(".sidebar").scrollTop(0);
+        return;
+    }
     marker = items[item_id];
-    // Only show marker icon if it exists and isn't null
     if (marker[0].iconURL) {
         if (marker.length > 1) {
             var articleicon = '';
@@ -39,7 +46,6 @@ function articlerender(articleurl, item_id){
         }
     } else {
         var articleicon = '';
-        // For walking tours: no pin to zoom to, just close the popup
         map.closePopup();
     }
     $.get(articleurl, function(data){
