@@ -24,22 +24,29 @@ function reloadhtml(){
 
 function articlerender(articleurl, item_id){
     marker = items[item_id];
-    if (marker.length > 1 ) {
-    var articleicon = ''
-    for (i = 0; i < marker.length; i++) { 
-    articleicon += "<img class='article-marker' src='" + marker[i].iconURL + "' onclick='mapClick(" + i +")'>";
-    setMapView(marker[i]);
-	}
+    // Only show marker icon if it exists and isn't null
+    if (marker[0].iconURL) {
+        if (marker.length > 1) {
+            var articleicon = '';
+            for (i = 0; i < marker.length; i++) {
+                articleicon += "<img class='article-marker' src='" + marker[i].iconURL + "' onclick='mapClick(" + i +")'>";
+                setMapView(marker[i]);
+            }
+        } else {
+            var articleicon = "<img class='article-marker' src='" + marker[0].iconURL + "' onclick='mapClick(0)'>";
+            setMapView(marker[0]);
+        }
     } else {
-    var articleicon = "<img class='article-marker' src='" + marker[0].iconURL  + "' onclick='mapClick(0)'>";
-    setMapView(marker[0]);
+        var articleicon = '';
+        // For walking tours: no pin to zoom to, just close the popup
+        map.closePopup();
     }
-  	$.get(article_url, function(data){
-    	var index = data.indexOf("</h1>");
+    $.get(articleurl, function(data){
+        var index = data.indexOf("</h1>");
         data = data.slice(0, index) + articleicon + data.slice(index);
         $("#sidebar-content").html(data);
     });
-   $( ".sidebar" ).scrollTop(0); //tell sidebar scroll to go to the top
+    $(".sidebar").scrollTop(0);
 }
 
 function pagerender(page_url){
@@ -51,13 +58,13 @@ function pagerender(page_url){
 }
 
 function onClick(url){
-    if (url.includes("article/")) {
-      item_id = url;
-      article_url = window.location.origin + window.location.pathname + item_id;
-      articlerender(article_url, item_id);
+    if (url.includes("article/") || url.match(/\/\d{4}\/\d{2}\/\d{2}\//)) {
+        item_id = url;
+        article_url = window.location.origin + window.location.pathname + item_id;
+        articlerender(article_url, item_id);
     } else {
-    	page_url = window.location.origin + window.location.pathname + url
-    	pagerender(page_url);
+        page_url = window.location.origin + window.location.pathname + url
+        pagerender(page_url);
     }
 }
 
