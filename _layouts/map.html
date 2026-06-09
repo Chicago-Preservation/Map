@@ -1026,6 +1026,10 @@ if (items[filename] === undefined) {
   if (items[walking_url] === undefined) {
     items[walking_url] = [{ iconURL: null }];
   }
+  var walking_url_alt = "/article/{{ post.slug }}";
+  if (items[walking_url_alt] === undefined) {
+    items[walking_url_alt] = [{ iconURL: null }];
+  }
 {% endfor %}
 
     // --- NEW HIERARCHICAL LEGEND CODE ---
