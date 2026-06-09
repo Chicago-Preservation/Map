@@ -1,8 +1,10 @@
 var items = {};
+
 $(document).ready(function(){
-  console.log(map);
-reloadhtml(); // ADD THIS LINE
+    console.log(map);
+    reloadhtml();
 });
+
 function reloadhtml(){
     url = window.location.href;
     console.log("Current URL:", url);
@@ -25,82 +27,86 @@ function reloadhtml(){
 };
 
 function articlerender(articleurl, item_id){
-    if (typeof items === 'undefined' || items[item_id] === undefined) {
+    var marker = items ? items[item_id] : undefined;
+    
+    if (!marker || !marker[0]) {
+        // No marker found — just fetch and display the post
         $.get(articleurl, function(data){
             $("#sidebar-content").html(data);
         });
         $(".sidebar").scrollTop(0);
         return;
     }
-    marker = items[item_id];
+
+    var articleicon = '';
     if (marker[0].iconURL) {
         if (marker.length > 1) {
-            var articleicon = '';
-            for (i = 0; i < marker.length; i++) {
+            for (var i = 0; i < marker.length; i++) {
                 articleicon += "<img class='article-marker' src='" + marker[i].iconURL + "' onclick='mapClick(" + i +")'>";
                 setMapView(marker[i]);
             }
         } else {
-            var articleicon = "<img class='article-marker' src='" + marker[0].iconURL + "' onclick='mapClick(0)'>";
+            articleicon = "<img class='article-marker' src='" + marker[0].iconURL + "' onclick='mapClick(0)'>";
             setMapView(marker[0]);
         }
     } else {
-        var articleicon = '';
         map.closePopup();
     }
+
     $.get(articleurl, function(data){
         var index = data.indexOf("</h1>");
-        data = data.slice(0, index) + articleicon + data.slice(index);
+        if (index !== -1) {
+            data = data.slice(0, index) + articleicon + data.slice(index);
+        }
         $("#sidebar-content").html(data);
     });
     $(".sidebar").scrollTop(0);
 }
 
 function pagerender(page_url){
-	$.get(page_url, function(data){
-		$("#sidebar-content").html(data);
-	  });
-	map.closePopup();
-	$( ".sidebar" ).scrollTop(0); //tell sidebar scroll to go to the top
+    $.get(page_url, function(data){
+        $("#sidebar-content").html(data);
+    });
+    map.closePopup();
+    $(".sidebar").scrollTop(0);
 }
 
 function onClick(url){
     if (url.includes("article/") || url.match(/\/\d{4}\/\d{2}\/\d{2}\//)) {
-    item_id = url;
-    article_url = window.location.origin + url;
-    articlerender(article_url, item_id);
-} else {
-        page_url = window.location.origin + window.location.pathname + url
+        item_id = url;
+        article_url = window.location.origin + url;
+        articlerender(article_url, item_id);
+    } else {
+        page_url = window.location.origin + window.location.pathname + url;
         pagerender(page_url);
     }
 }
 
 function setMapView(marker){
-	try { 
-		markers.zoomToShowLayer(marker, function () {
-      marker.openPopup();
-		});
-	} catch(err) {
-    marker.openPopup();
-	}
+    try { 
+        markers.zoomToShowLayer(marker, function () {
+            marker.openPopup();
+        });
+    } catch(err) {
+        marker.openPopup();
+    }
 }
 
 function mapClick(i){
-  url = window.location.href;
-  url = url.split("#");
-  item_id = url[1];
-  marker = items[item_id];
-  setMapView(marker[i]);
+    url = window.location.href;
+    url = url.split("#");
+    item_id = url[1];
+    marker = items[item_id];
+    setMapView(marker[i]);
 };
 
 function new_map(site_grouping){
-  markergrouping = localStorage['selectedtem'];
-  if (markergrouping == undefined) {
-  markergrouping = site_grouping;
-  } 
-  map.remove();
-
-  $('#choose').val(markergrouping);
-  map = L.map('map' , {scrollWheelZoom: true}).setView([0, 0], 1);
-  items = makeMap(markergrouping, map);
+    markergrouping = localStorage['selectedtem'];
+    if (markergrouping == undefined) {
+        markergrouping = site_grouping;
+    } 
+    map.remove();
+    $('#choose').val(markergrouping);
+    map = L.map('map', {scrollWheelZoom: true}).setView([0, 0], 1);
+    items = makeMap(markergrouping, map);
 }
