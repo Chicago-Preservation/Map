@@ -4,20 +4,21 @@ reloadhtml(); // ADD THIS LINE
 });
 function reloadhtml(){
     url = window.location.href;
-    console.log("Current URL:", url);  // ADD THIS LINE
+    console.log("Current URL:", url);
     
     if (url.includes("article/")) {
         article_url = url.replace("/#", "");
         item_id = url.split("#")[1];
-        console.log("Article URL:", article_url);  // ADD THIS LINE
+        articlerender(article_url, item_id);
+    } else if (url.match(/#\/\d{4}\/\d{2}\/\d{2}\//)) {
+        item_id = url.split("#")[1];
+        article_url = window.location.origin + item_id;
         articlerender(article_url, item_id);
     } else if (url.includes("#") == true) {
         page_url = url.replace("/#", "");
-        console.log("Page URL:", page_url);  // ADD THIS LINE
         pagerender(page_url);
     } else {
         home_url = window.location.origin + window.location.pathname + "home/"
-        console.log("Home URL:", home_url);  // ADD THIS LINE
         pagerender(home_url);
     }
 };
