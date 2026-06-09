@@ -13,11 +13,11 @@ function reloadhtml(){
         item_id = url.split("#")[1];
         var slug = item_id.replace("/article/", "");
         var parts = slug.match(/^(\d{4})-(\d{2})-(\d{2})-(.+)$/);
-        if (parts) {
-            article_url = window.location.origin + "/" + parts[1] + "/" + parts[2] + "/" + parts[3] + "/" + parts[4] + "/";
-        } else {
-            article_url = url.replace("/#", "");
-        }
+        if (parts && items[item_id] && !items[item_id][0].iconURL) {
+    article_url = window.location.origin + "/" + parts[1] + "/" + parts[2] + "/" + parts[3] + "/" + parts[4] + "/";
+} else {
+    article_url = url.replace("/#", "");
+}
         articlerender(article_url, item_id);
     } else if (url.match(/#\/\d{4}\/\d{2}\/\d{2}\//)) {
         item_id = url.split("#")[1];
@@ -81,13 +81,15 @@ function pagerender(page_url){
 }
 
 function onClick(url){
-    if (url.includes("article/") || url.match(/\/\d{4}\/\d{2}\/\d{2}\//)) {
+    if (url.includes("article/")) {
         item_id = url;
         var slug = url.replace("/article/", "");
         var parts = slug.match(/^(\d{4})-(\d{2})-(\d{2})-(.+)$/);
-        if (parts) {
+        if (parts && items[item_id] && !items[item_id][0].iconURL) {
+            // Walking tour — convert date-slug to Jekyll date path
             article_url = window.location.origin + "/" + parts[1] + "/" + parts[2] + "/" + parts[3] + "/" + parts[4] + "/";
         } else {
+            // Regular article — fetch directly
             article_url = window.location.origin + url;
         }
         articlerender(article_url, item_id);
