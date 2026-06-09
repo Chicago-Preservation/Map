@@ -655,7 +655,6 @@ var walkingToursLayer = L.geoJSON(null, {
   onEachFeature: function(feature, layer) {
     var p = feature.properties;
     var postUrl = p.post_url;
-    var articleUrl = '{{site.baseurl}}' + postUrl;
     var hashUrl = '{{site.baseurl}}/#' + postUrl;
 
     if (p.feature_type === 'stop') {
@@ -664,13 +663,13 @@ var walkingToursLayer = L.geoJSON(null, {
       html += '<em>Tour:</em> ' + p.tour_name + '<br>';
       html += '<em>Neighborhood:</em> ' + p.neighborhood + '<br>';
       html += p.description + '<br><br>';
-      html += '<a href="' + hashUrl + '" onclick="articlerender(\'' + articleUrl + '\',\'' + postUrl + '\'); window.location=\'' + hashUrl + '\'; return false;">Read Full Tour →</a>';
+      html += '<a href="' + hashUrl + '" onclick="onClick(\'' + postUrl + '\'); return false;">Read Full Tour →</a>';
       layer.bindPopup(html, { maxHeight: 350 });
     } else {
-      layer.on('click', function() {
-        articlerender(articleUrl, postUrl);
-        window.location = hashUrl;
-      });
+     layer.on('click', function() {
+  onClick(postUrl);
+  window.location = hashUrl;
+});
       layer.bindTooltip(p.tour_name + ' — ' + p.author, { sticky: true });
     }
   },
