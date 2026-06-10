@@ -12,11 +12,11 @@ function reloadhtml(){
         item_id = url.split("#")[1];
         article_url = url.replace("/#", "");
         articlerender(article_url, item_id);
-    } else if (url.includes("#") == true) {
+    } else if (url.includes("#")) {
         page_url = url.replace("/#", "");
         pagerender(page_url);
     } else {
-        home_url = window.location.origin + window.location.pathname + "home/"
+        home_url = window.location.origin + window.location.pathname + "home/";
         pagerender(home_url);
     }
 };
