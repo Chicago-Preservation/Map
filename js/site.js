@@ -36,16 +36,22 @@ function articlerender(articleurl, item_id){
     console.log("item_id:", item_id, "marker:", marker, "items keys:", Object.keys(items));
     console.log("Fetching:", articleurl);
     if (!marker || !marker[0]) {
-        // No marker found — just fetch and display the post
-       $.get(articleurl, function(data){
-    $("#sidebar-content").html(data);
-}).fail(function(jqXHR, textStatus, error){
-    console.log("Fetch failed:", articleurl, textStatus, error);
-    console.log("Status code:", jqXHR.status);
-});
-        $(".sidebar").scrollTop(0);
-        return;
-    }
+    $.get(articleurl, function(data){
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(data, 'text/html');
+        var content = doc.querySelector('#sidebar-content') || doc.querySelector('.post') || doc.querySelector('#content');
+        if (content) {
+            $("#sidebar-content").html(content.innerHTML);
+        } else {
+            $("#sidebar-content").html(data);
+        }
+    }).fail(function(jqXHR, textStatus, error){
+        console.log("Fetch failed:", articleurl, textStatus, error);
+        console.log("Status code:", jqXHR.status);
+    });
+    $(".sidebar").scrollTop(0);
+    return;
+}
 
     var articleicon = '';
     if (marker[0].iconURL) {
