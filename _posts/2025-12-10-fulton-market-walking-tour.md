@@ -33,7 +33,7 @@ The gateway sign was installed as part of the Fulton Market Innovation District 
 The former two-story structure at 800 W. Fulton Street was home to Isaacson & Stein Fish Co., Chicago's oldest fish wholesaler, operating for over 80 years. After the market stopped operating, the building was first repurposed as a nightclub in the 1980s, then recently demolished entirely to become a new sky-high office tower with $95 million in investment. This site is a prime example of how restructuring in the area is inevitably driven by economic considerations, and how such demolitions result in a loss of communal memory. A frequent visitor, Mr. Worth, described watching the demolition: "there is nothing like it and there never will be again — these businesses have been pushed out." The demolition also exemplifies the complete transformation of neighborhood culture, moving further from its humble meatpacking origins toward a corporation-focused area.
 
 ---
-
+ 
 ## Stop 3: Beatrix Restaurant
 **834 W. Fulton Market**
 
