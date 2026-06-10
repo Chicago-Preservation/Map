@@ -1,7 +1,7 @@
 var items = {};
 
 $(document).ready(function(){
-    console.log(map);
+    console.log('site.js loaded');
 });
 
 function reloadhtml(){
