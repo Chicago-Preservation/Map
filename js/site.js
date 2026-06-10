@@ -9,14 +9,8 @@ function reloadhtml(){
     console.log("Current URL:", url);
     
     if (url.includes("article/")) {
-    item_id = url.split("#")[1];
-    article_url = url.replace("/#", "");
-    articlerender(article_url, item_id);
-}
-        articlerender(article_url, item_id);
-    } else if (url.match(/#\/\d{4}\/\d{2}\/\d{2}\//)) {
         item_id = url.split("#")[1];
-        article_url = window.location.origin + item_id;
+        article_url = url.replace("/#", "");
         articlerender(article_url, item_id);
     } else if (url.includes("#") == true) {
         page_url = url.replace("/#", "");
@@ -26,27 +20,28 @@ function reloadhtml(){
         pagerender(home_url);
     }
 };
+
 function articlerender(articleurl, item_id){
     var marker = items ? items[item_id] : undefined;
     console.log("item_id:", item_id, "marker:", marker, "items keys:", Object.keys(items));
     console.log("Fetching:", articleurl);
     if (!marker || !marker[0]) {
-    $.get(articleurl, function(data){
-        var parser = new DOMParser();
-        var doc = parser.parseFromString(data, 'text/html');
-        var content = doc.querySelector('#sidebar-content') || doc.querySelector('.post') || doc.querySelector('#content');
-        if (content) {
-            $("#sidebar-content").html(content.innerHTML);
-        } else {
-            $("#sidebar-content").html(data);
-        }
-    }).fail(function(jqXHR, textStatus, error){
-        console.log("Fetch failed:", articleurl, textStatus, error);
-        console.log("Status code:", jqXHR.status);
-    });
-    $(".sidebar").scrollTop(0);
-    return;
-}
+        $.get(articleurl, function(data){
+            var parser = new DOMParser();
+            var doc = parser.parseFromString(data, 'text/html');
+            var content = doc.querySelector('#sidebar-content') || doc.querySelector('.post') || doc.querySelector('#content');
+            if (content) {
+                $("#sidebar-content").html(content.innerHTML);
+            } else {
+                $("#sidebar-content").html(data);
+            }
+        }).fail(function(jqXHR, textStatus, error){
+            console.log("Fetch failed:", articleurl, textStatus, error);
+            console.log("Status code:", jqXHR.status);
+        });
+        $(".sidebar").scrollTop(0);
+        return;
+    }
 
     var articleicon = '';
     if (marker[0].iconURL) {
