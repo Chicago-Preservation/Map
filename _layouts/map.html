@@ -12,13 +12,15 @@
    {% include sidebar.html %}
       <script>
        window.onload = function(){
-         if (localStorage['selectedtem'] != undefined){
-           new_map();
-         } else {
-           new_map('{{site.marker-grouping}}');
-         }
-         reloadhtml();
-       };
+  if (localStorage['selectedtem'] != undefined){
+    new_map();
+  } else {
+    new_map('{{site.marker-grouping}}');
+  }
+  setTimeout(function(){
+    reloadhtml();
+  }, 500);
+};
        window.onhashchange = function() {
          reloadhtml();
        };
@@ -1024,11 +1026,11 @@ if (items[filename] === undefined) {
 {% for post in site.categories["Walking Tours"] %}
   var walking_url = "{{ post.url }}";
   if (items[walking_url] === undefined) {
-    items[walking_url] = [{ iconURL: null }];
+    items[walking_url] = [{ iconURL: null, isWalkingTour: true }];
   }
   var walking_url_alt = "/article/{{ post.slug }}";
   if (items[walking_url_alt] === undefined) {
-    items[walking_url_alt] = [{ iconURL: null }];
+    items[walking_url_alt] = [{ iconURL: null, isWalkingTour: true }];
   }
 {% endfor %}
 
