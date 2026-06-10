@@ -34,7 +34,7 @@ function reloadhtml(){
 function articlerender(articleurl, item_id){
     var marker = items ? items[item_id] : undefined;
     console.log("item_id:", item_id, "marker:", marker, "items keys:", Object.keys(items));
-    
+    console.log("Fetching:", articleurl);
     if (!marker || !marker[0]) {
         // No marker found — just fetch and display the post
        $.get(articleurl, function(data){
