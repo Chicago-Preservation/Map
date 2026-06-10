@@ -90,7 +90,8 @@ function onClick(url){
         item_id = url;
         var slug = url.replace("/article/", "");
         var parts = slug.match(/^(\d{4})-(\d{2})-(\d{2})-(.+)$/);
-        if (parts && items[item_id] && items[item_id][0].isWalkingTour) {
+        console.log("onClick check - item_id:", item_id, "items[item_id]:", items[item_id]);
+if (parts && items[item_id] && items[item_id][0].isWalkingTour) {
     article_url = window.location.origin + "/" + parts[1] + "/" + parts[2] + "/" + parts[3] + "/" + parts[4] + "/";
 } else {
     article_url = window.location.origin + url;
