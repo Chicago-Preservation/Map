@@ -28,7 +28,7 @@ The park was opened in 1930 and its brick fieldhouse, designed by architect Clar
 ## Stop 2: Frank W. Rielly School
 **3650 W. School Street**
 
-![Frank W. Rielly School, a solid brick school building on West School Street]({{site.baseurl}}/images/azghandiaurian_02_reillyschool.png)
+![Frank W. Rielly School, a solid brick school building on West School Street]({{site.baseurl}}/images/azghandiaurian_02_reillyschool.jpeg)
 
 Just down the street from the Avondale Park Fieldhouse, the Frank W. Rielly School is historic, with photos dating back to 1935. Between these two sites the classic two-flats and bungalows that line School Street represent naturally affordable housing — pre-1950s buildings whose age has kept them accessible to working-class residents. Established in the early 20th century, the school primarily served Polish and other European immigrant families working in adjacent brickyards and factories. As the area experienced a large influx of Latinx immigrants, the school's mission shifted with its demographics: it now has a 93% Latinx population, predominantly low-income. In December 1999, Rielly became the first Chicago Public School to install solar electric panels, with a computer in the front hall displaying real-time energy generation. This is an example of everyday preservation — a building maintaining its original purpose and role despite vastly changing demographics.
 
