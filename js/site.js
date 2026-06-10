@@ -2,7 +2,6 @@ var items = {};
 
 $(document).ready(function(){
     console.log(map);
-    reloadhtml();
 });
 
 function reloadhtml(){
