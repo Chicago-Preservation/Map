@@ -37,7 +37,8 @@ Just down the street from the Avondale Park Fieldhouse, the Frank W. Rielly Scho
 ## Stop 3: Former Florsheim Shoe Company Building (Shoemaker Lofts)
 **3963 W. Belmont Avenue**
 
-![Former Florsheim Shoe Co. Building, now Shoemaker Lofts, a large multi-story brick industrial structure on West Belmont Avenue]({{site.baseurl}}/images/azghandiaurian_03_flora.png)({{site.baseurl}}/images/azghandiaurian_03_florb.png)
+![Former Florsheim Shoe Co. Building, now Shoemaker Lofts, a large multi-story brick industrial structure on West Belmont Avenue]({{site.baseurl}}/images/azghandiaurian_03_flora.png)
+![Former Florsheim Shoe Co. Building, now Shoemaker Lofts, a large multi-story brick industrial structure on West Belmont Avenue]({{site.baseurl}}/images/azghandiaurian_03_florb.png)
 
 The Florsheim Shoe Company building, now known as Shoemaker Lofts, received Chicago City Council landmark status on March 29, 2006. Built from 1924 to 1926 and designed by architect Alfred S. Alschuler, the building was constructed near the North Branch of the river and rail lines for easy import of raw materials and shipment of finished goods. At its height Florsheim employed 2,500 workers at this site, one of 71 retail outlets and 9,000 dealers. The building served as a crucial job-creating institution for Avondale's working-class immigrant population. When Florsheim scaled back Chicago operations in the late 20th century, the building sat vacant. In the early 2000s developers converted it into Shoemaker Lofts, a residential condominium — a successful adaptive reuse that preserved the exterior fabric and structure while paying homage to the building's original use in its name.
 
@@ -46,7 +47,8 @@ The Florsheim Shoe Company building, now known as Shoemaker Lofts, received Chic
 ## Stop 4: St. Joseph Village of Chicago
 **3525 N. Elston Avenue**
 
-![St. Joseph Village of Chicago, a modern brick retirement community building on North Elston Avenue]({{site.baseurl}}/images/azghandiaurian_04_stjosepha.png)({{site.baseurl}}/images/azghandiaurian_04_stjosephb.png)
+![St. Joseph Village of Chicago, a modern brick retirement community building on North Elston Avenue]({{site.baseurl}}/images/azghandiaurian_04_stjosepha.png)
+![St. Joseph Village of Chicago, a modern brick retirement community building on North Elston Avenue]({{site.baseurl}}/images/azghandiaurian_04_stjosephb.png)
 
 The current St. Joseph Village of Chicago, established in 2006, continues the mission of the Franciscan Sisters of Chicago, the first religious congregation founded in the city of Chicago. The congregation was established in 1894 by Josephine Dudzik — later Sister Mary Theresa — a Polish immigrant who began housing abandoned and less fortunate people in her home during the economic downturn of the early 1890s. In 1898 the congregation established the St. Joseph Home for the Aged and Crippled, which was the first and oldest nursing home in Chicago's history. The institution supported the community in multiple ways — operating sewing and vestment workshops, and growing flowers for cemetery bouquets. The current building preserves the bravery and kindness of the Franciscan Sisters and carries on their tradition of serving the elderly community in Avondale.
 
@@ -55,7 +57,8 @@ The current St. Joseph Village of Chicago, established in 2006, continues the mi
 ## Stop 5: Ballet Folklórico de Chicago
 **3006 N. Pulaski Road**
 
-![Ballet Folklórico de Chicago storefront on North Pulaski Road]({{site.baseurl}}/images/azghandiaurian_05_balleta.png)({{site.baseurl}}/images/azghandiaurian_05_balletb.png)
+![Ballet Folklórico de Chicago storefront on North Pulaski Road]({{site.baseurl}}/images/azghandiaurian_05_balleta.png)
+![Ballet Folklórico de Chicago storefront on North Pulaski Road]({{site.baseurl}}/images/azghandiaurian_05_balletb.png)
 
 Adjacent to St. Joseph Village, Ballet Folklórico de Chicago was established in 2018 by three Latino professionals — previously home to an "Up Mobile" store — with a mission to celebrate and share Mexican heritage, traditions, and dance. Founded to address the lack of cultural and artistic programs for Mexican families in the area, it is now the largest non-profit Mexican Ballet Folklórico institution in the entire Midwest, serving over 400 students across Chicago and neighboring communities. It partners with Chicago Public Schools for afterschool programs. Though architecturally unimpressive, this building is an important piece of community social fabric and a modern counterpart to the neighborhood institutions deeply rooted in Polish culture and immigration, anchoring Mexican cultural expression in the 21st century.
 
@@ -73,7 +76,8 @@ Avondale Bowl is an example of successful adaptive reuse. The building is a vint
 ## Stop 7: Royal Discount Center
 **3004 N. Milwaukee Avenue**
 
-![Royal Discount Center, a two-story brick storefront on North Milwaukee Avenue with signage in English, Spanish, and Polish]({{site.baseurl}}/images/azghandiaurian_07_royaldiscounta.png)({{site.baseurl}}/images/azghandiaurian_07_royaldiscountb.png)
+![Royal Discount Center, a two-story brick storefront on North Milwaukee Avenue with signage in English, Spanish, and Polish]({{site.baseurl}}/images/azghandiaurian_07_royaldiscounta.png)
+![Royal Discount Center, a two-story brick storefront on North Milwaukee Avenue with signage in English, Spanish, and Polish]({{site.baseurl}}/images/azghandiaurian_07_royaldiscountb.png)
 
 The Royal Discount Center was originally called Syrena — a full-service Polish department store with newspaper ads dating back to 1982. Its Polish roots fit perfectly into Avondale's history as a Polish mecca in the Chicago area. Syrena was later incorporated as Royal Discount Center, operating since 1996. The store is an ideal example of local retail as a window into past economies and social exchange, providing affordable clothing and goods for the working-class population for decades. Today the store's signage is in English, Spanish, and Polish — a fascinating example of ethnic succession of a commercial space, demonstrating how a business with deep roots in one immigrant community can survive by adapting and gradually shifting to serve a new community while its physical location and primary function remain the same.
 
@@ -91,7 +95,8 @@ This stop illustrates both the loss and persistence of Polish cultural identity 
 ## Stop 9: St. Hyacinth Basilica
 **3636 W. Wolfram Street**
 
-![St. Hyacinth Basilica, a massive Renaissance/Baroque Revival Catholic church with three towers, red brick and terra cotta, on West Wolfram Street]({{site.baseurl}}/images/azghandiaurian_09_hyacintha.png)({{site.baseurl}}/images/azghandiaurian_09_hyacinthb.png)
+![St. Hyacinth Basilica, a massive Renaissance/Baroque Revival Catholic church with three towers, red brick and terra cotta, on West Wolfram Street]({{site.baseurl}}/images/azghandiaurian_09_hyacintha.png)
+![St. Hyacinth Basilica, a massive Renaissance/Baroque Revival Catholic church with three towers, red brick and terra cotta, on West Wolfram Street]({{site.baseurl}}/images/azghandiaurian_09_hyacinthb.png)
 
 St. Hyacinth Basilica is arguably the most significant institutional landmark in Avondale. The parish was established in 1894 by 40 Polish families; the current church was constructed from 1917 to 1921, designed by Worthman and Steinach in a Renaissance/Baroque Revival style. It features a rare three-towered facade, red brick clad with terra-cotta trim, large arched window bays, bronze front doors installed in 2005, and an interior with over 175 relics of saints, ornate stained-glass windows, and a massive 3,000-square-foot saucer dome with over 150 figures. In 2003 Pope John Paul II granted it the title of Minor Basilica, making it one of three in the Chicago area. The church maintains its Polish roots through Polish-language masses while also offering services in Spanish and English, reflecting the neighborhood's evolving demographics. Its tower restoration in 2023 cost $120,000, largely from the church's own savings — a testament to the challenges of maintaining these historic structures.
 
