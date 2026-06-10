@@ -19,7 +19,7 @@ The Fulton Street Wholesale Market Company first developed the area around 1850,
 ## Stop 1: Fulton Market Gateway
 **N. Halsted Street & W. Fulton Market**
 
-![Fulton Market Gateway sign on Fulton Market Street with restaurants and modern developments in the background]({{site.baseurl}}/images/koyuncul_04_gateway.png)
+![Map of walking tour starting with the Fulton Market Gateway at the east end]({{site.baseurl}}/images/koyuncul_01_gateway.jpg)
 
 The gateway sign was installed as part of the Fulton Market Innovation District (FMID) plan — one of the most important city-funded actions formalizing investment and redevelopment in the area, aimed at "preserving existing jobs while accommodating private sector investments." As of the early 2010s, the area was designated for high-end development, prioritizing profit-making private sector growth. The sign's vibrant and colorful nature symbolizes the life rejuvenated into the neighborhood through the current array of establishments. On the other hand, it acts as a prime example of the area being turned into a "theme park." It marks the luxurious environment that now defines the community, and signals the broader transformation of Fulton Market from an industrial working district into a curated, high-end destination built to appeal to affluent visitors.
 
@@ -28,7 +28,7 @@ The gateway sign was installed as part of the Fulton Market Innovation District 
 ## Stop 2: Isaacson & Stein Fish Co. Building
 **800 W. Fulton Market**
 
-![The former Isaacson & Stein Fish Co. building on West Fulton Market, a two-story brick structure that was Chicago's oldest fish wholesaler]({{site.baseurl}}/images/koyuncul_06_isaacson_stein.png)
+![The former Isaacson & Stein Fish Co. building on West Fulton Market, a two-story brick structure that was Chicago's oldest fish wholesaler]({{site.baseurl}}/images/koyuncul_02_fish.png)
 
 The former two-story structure at 800 W. Fulton Street was home to Isaacson & Stein Fish Co., Chicago's oldest fish wholesaler, operating for over 80 years. After the market stopped operating, the building was first repurposed as a nightclub in the 1980s, then recently demolished entirely to become a new sky-high office tower with $95 million in investment. This site is a prime example of how restructuring in the area is inevitably driven by economic considerations, and how such demolitions result in a loss of communal memory. A frequent visitor, Mr. Worth, described watching the demolition: "there is nothing like it and there never will be again — these businesses have been pushed out." The demolition also exemplifies the complete transformation of neighborhood culture, moving further from its humble meatpacking origins toward a corporation-focused area.
 
@@ -37,7 +37,7 @@ The former two-story structure at 800 W. Fulton Street was home to Isaacson & St
 ## Stop 3: Beatrix Restaurant
 **834 W. Fulton Market**
 
-![Beatrix Restaurant on West Fulton Market, a renovated brick building with original market-style storefront windows]({{site.baseurl}}/images/koyuncul_07_latino_meat.png)
+![Beatrix Restaurant on West Fulton Market, a renovated brick building that historically belonged to "Latino Meat & Produce Inc.]({{site.baseurl}}/images/koyuncul_03_beatrix.jpg)
 
 Beatrix is a prime example of the upscale culinary scene established in Fulton Market in the last decade, and also of how buildings were renovated and modernized while maintaining the overall integrity and architectural style of the original. The building material was kept as red brick, in line with the style of the entire neighborhood. The storefronts maintained the square, store-like style, and although new floors were built, the spaced rectangular window form was maintained. Even though the building is now a restaurant, the front-facing design still hints at a market. In this sense, Beatrix is a successful example of how adaptive reuse can modernize a building without giving up the architectural identity that reflects neighborhood history, respecting historic style and form while introducing a new function.
 
@@ -48,7 +48,7 @@ The building historically belonged to "Latino Meat & Produce Inc.," a small busi
 ## Stop 4: Peoria & Green Street Corridor
 **Peoria Street & Green Street**
 
-![Fulton Market Row, the stretch of original late-19th and early-20th century wholesale market buildings between Peoria and Green Streets]({{site.baseurl}}/images/koyuncul_08_fulton_row.png)
+![Fulton Market Row, the stretch of original late-19th and early-20th century wholesale market buildings between Peoria and Green Streets]({{site.baseurl}}/images/koyuncul_04_market.png)
 
 This stretch of buildings between Peoria and Green Street was built by the Fulton Street Wholesale Market Company, and is where the Fulton Street Whole Sale Market started its operations in the early 1900s. These buildings are very typical of the architecture and representative of the overall built environment of the neighborhood: two or three stories, constructed of tile and brick with wood posts, featuring basements. The building was home to 22 vendors selling goods from fish to poultry. The Sanborn maps of West Fulton Market depict buildings designed clearly to serve a food market — narrow, uniform fronts with tile and brick construction for sanitation and fire resistance, keeping a cool interior. In 1891, John Flinn's *Standard Guide to Chicago* described this market as "one of the most interesting sights in the city," admiring its cleanliness and perfect business management.
 
@@ -57,7 +57,7 @@ This stretch of buildings between Peoria and Green Street was built by the Fulto
 ## Stop 5: Time Out Market
 **916 W. Fulton Market**
 
-![Time Out Market Chicago on West Fulton Market, a large brick building with modern signage and outdoor seating]({{site.baseurl}}/images/koyuncul_09_timeout.png)
+![Time Out Market Chicago on West Fulton Market, a large brick building with modern signage and outdoor seating]({{site.baseurl}}/images/koyuncul_05_timeout.png)
 
 The Time Out Market is a one-of-a-kind example of modernizing and transforming wholesale market culture to current design and commerce standards. The building indoors is set up as an open food hall housing 18 vendors, with a large open space deliberately designed with blackened steel and poured concrete floors as a direct reflection of the utilitarian origins of both the building and the neighborhood. These industrial materials are harmonized with modern installations such as vertically installed tiles on bar fronts. The building currently used as the Timeout Market was previously occupied by El Cubano's Wholesale Meats — a working-class meat packer and small business. Former regular Rolando Casimiro recalls: "there were twice as many semis lined up on the street, trucks ready to deliver and ship barnyards of pork and poultry." The replacement of El Cubano's by the Timeout Market can be interpreted as a necessary transformation for preserving the built environment, while acknowledging that the economic factors driving modern preservation come at a human cost.
 
@@ -66,7 +66,7 @@ The Time Out Market is a one-of-a-kind example of modernizing and transforming w
 ## Stop 6: Nealey Foods Building
 **900–918 W. Fulton Street**
 
-![Nealey Foods Building, a large multi-story brick warehouse building on West Fulton Street awaiting demolition]({{site.baseurl}}/images/koyuncul_10_nealey_foods.png)
+![Nealey Foods Building, a large multi-story brick warehouse building on West Fulton Street awaiting demolition]({{site.baseurl}}/images/koyuncul_06_nealey.jpg)
 
 Nealey Foods is a very large food wholesaler that has been in operation since the mid-20th century. Walter Nealey started it as a small poultry business; his son expanded it in the 1980s into a wholesale corporation. The building's architecture portrays years of history tying back to the industrial and culinary roots of the neighborhood. This is a significant stop: Nealey Foods is the first structure in the tour awaiting demolition and not yet renovated or reused. The Commission on Chicago Landmarks has recently approved demolition; the aim is for the building to be "rehabilitated and renovated, featuring a new retail storefront" and replaced by a five-story mixed-use structure. Preservation Chicago describes this as a "win" since the front façade will be preserved. But the purchase of the property by high-end developers, the skyrocketing price, and the removal of the family-owned business point to gentrification. The building illustrates each step of the transformation of the Fulton Market built environment.
 
@@ -74,8 +74,6 @@ Nealey Foods is a very large food wholesaler that has been in operation since th
 
 ## Stop 7: Google Chicago Headquarters
 **1000 W. Fulton Market**
-
-![Google Chicago Headquarters at 1K Fulton, a converted 1920s cold storage building on West Fulton Market]({{site.baseurl}}/images/koyuncul_11_sanborn.png)
 
 The Google Headquarters building — also known as 1K Fulton — reflects the future direction of Fulton Market. It was one of the first examples of rezoning the district to make space for incoming profitable corporate residents, and is seen as symbolizing a turning point in the progression of the neighborhood. The building converts a 1920s industrial structure originally built as cold storage for meat into a super-modern office housing one of the biggest companies in the world. The project is described as "one of the most ambitious architectural examples of adaptive reuse to date." Its design features don't exactly reflect the neighborhood's meatpacking origins, contrary to other development efforts in the area. Google's move initiated an influx of other corporate firms, driving skyrocketing property prices that have made housing close to impossible for communities previously residing in the neighborhood — making it a prime symbol of gentrification in the area.
 
