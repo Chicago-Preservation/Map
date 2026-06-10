@@ -9,13 +9,9 @@ function reloadhtml(){
     console.log("Current URL:", url);
     
     if (url.includes("article/")) {
-        item_id = url.split("#")[1];
-        var slug = item_id.replace("/article/", "");
-        var parts = slug.match(/^(\d{4})-(\d{2})-(\d{2})-(.+)$/);
-        if (parts && items[item_id] && items[item_id][0].isWalkingTour) {
-    article_url = window.location.origin + "/" + parts[1] + "/" + parts[2] + "/" + parts[3] + "/" + parts[4] + "/";
-} else {
+    item_id = url.split("#")[1];
     article_url = url.replace("/#", "");
+    articlerender(article_url, item_id);
 }
         articlerender(article_url, item_id);
     } else if (url.match(/#\/\d{4}\/\d{2}\/\d{2}\//)) {
@@ -88,14 +84,7 @@ function pagerender(page_url){
 function onClick(url){
     if (url.includes("article/")) {
         item_id = url;
-        var slug = url.replace("/article/", "");
-        var parts = slug.match(/^(\d{4})-(\d{2})-(\d{2})-(.+)$/);
-        console.log("onClick check - item_id:", item_id, "items[item_id]:", items[item_id]);
-if (parts && items[item_id] && items[item_id][0].isWalkingTour) {
-    article_url = window.location.origin + "/" + parts[1] + "/" + parts[2] + "/" + parts[3] + "/" + parts[4] + "/";
-} else {
-    article_url = window.location.origin + url;
-}
+        article_url = window.location.origin + url;
         articlerender(article_url, item_id);
     } else {
         page_url = window.location.origin + window.location.pathname + url;
