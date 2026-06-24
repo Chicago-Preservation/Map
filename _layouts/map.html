@@ -171,6 +171,9 @@ var landmarksLayer = L.geoJSON(null, {
     if (p.url && p.url.trim()) {
       popupContent += '<a href="' + p.url + '" target="_blank" style="color:#0073e6;text-decoration:underline;">Landmark Designation Report</a><br>';
     }
+   if (p.pdf_url && p.pdf_url.trim()) {
+  popupContent += '<a href="' + p.pdf_url + '" target="_blank" style="color:#0073e6;text-decoration:underline;">Preliminary Summary of Information</a><br>';
+    }
     layer.bindPopup(popupContent);
   }
 });
