@@ -49,6 +49,33 @@ function triggerLostChicago() {
     }
   }, 300);
 }
+    function triggerWalkingTours() {
+  setTimeout(function() {
+    if (typeof walkingToursLayer !== 'undefined' && typeof map !== 'undefined') {
+      map.addLayer(walkingToursLayer);
+      walkingToursLayer.bringToFront();
+      document.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+        if (cb.parentElement.textContent.trim().includes('Walking Tours')) {
+          cb.checked = true;
+        }
+      });
+    }
+  }, 300);
+}
+    function triggerLegacyBusiness() {
+  setTimeout(function() {
+    if (typeof map !== 'undefined') {
+      // Find and check the Legacy Business checkbox
+      document.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+        if (cb.parentElement.textContent.trim().includes('Legacy Business')) {
+          cb.checked = true;
+          cb.dispatchEvent(new Event('change')); // triggers the layer to turn on
+        }
+      });
+    }
+  }, 300);
+}
+    
 
    map = L.map('map' , {scrollWheelZoom: false}).setView([41.8781, -87.6298], 12); // Center on Chicago
    var markers = '';
