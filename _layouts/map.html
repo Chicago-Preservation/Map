@@ -1123,9 +1123,10 @@ const legendData = [
         category: "Research Projects",
         subOptions: [
             { name: '<a href="{{site.baseurl}}/#/lost-chicago/" onclick="onClick(\'/lost-chicago/\'); triggerLostChicago();">Lost Chicago</a>', layer: lostChicagoLayer },
-            { name: "Walking Tours", layer: walkingToursLayer },
+            { name: '<a href="{{site.baseurl}}/#/walking-tours/" onclick="onClick(\'/walking-tours/\'); triggerWalkingTours();">Walking Tours</a>', layer: walkingToursLayer },
+            { name: '<a href="{{site.baseurl}}/#/legacy-businesses/" onclick="onClick(\'/legacy-businesses/\'); triggerLegacyBusiness();">Legacy Business</a>', layer: studentLayers["Legacy Business"] },
             {% for cat in site.categories %}
-            {% unless cat[0] == "Walking Tours" %}
+            {% unless cat[0] == "Walking Tours" or cat[0] == "Legacy Business" %}
             { name: "{{ cat[0] }}", layer: studentLayers["{{ cat[0] }}"] },
             {% endunless %}
             {% endfor %}
