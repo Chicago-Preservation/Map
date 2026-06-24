@@ -1190,6 +1190,12 @@ checkbox.onchange = function(e) {
                 if (legendDiv) legendDiv.style.display = 'block';
                onClick('/lost-chicago/');
             }
+            if (subOption.layer === walkingToursLayer) {
+  onClick('/walking-tours/');
+}
+if (subOption.layer === studentLayers["Legacy Business"]) {
+  onClick('/legacy-businesses/');
+}
             if (subOption.layer === gentrificationLayer) {
                 var legendDiv = document.querySelector('.gentrification-legend');
                 if (legendDiv) legendDiv.style.display = 'block';
@@ -1216,6 +1222,12 @@ checkbox.onchange = function(e) {
                 var legendDiv = document.querySelector('.lost-chicago-legend');
                 if (legendDiv) legendDiv.style.display = 'none';
             }
+         if (subOption.layer === walkingToursLayer) {
+  // optional: load home page back, or do nothing
+}
+if (subOption.layer === studentLayers["Legacy Business"]) {
+  // optional: load home page back, or do nothing
+}
          if (subOption.layer === gentrificationLayer) {
                 var legendDiv = document.querySelector('.gentrification-legend');
                 if (legendDiv) legendDiv.style.display = 'none';
