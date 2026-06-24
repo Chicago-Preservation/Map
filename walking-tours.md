@@ -18,10 +18,6 @@ permalink: /walking-tours/
 <p>
   The first set of walking tours was produced by students in <em>Introduction to Historic Preservation</em>, taught by Professor Emily Talen at the University of Chicago in Fall 2025.
 </p>
-<ul style="color:#ffffff;">
-  <li><strong>Avondale</strong> — Aurian Azghandi: Immigration, labor, and urban change along Milwaukee and Belmont Avenues.</li>
-  <li><strong>Fulton Market</strong> — Al Koyuncul: Preservation, gentrification, and the transformation of Chicago's oldest food district.</li>
-</ul>
 
 <p style="font-size:0.9em;font-style:italic;">
   This layer will continue to grow as additional tours are contributed by students and researchers. If you are interested in contributing a walking tour, please visit the <a href="{{site.baseurl}}/#/Inquiries-and-feedback/" onclick="onClick('/Inquiries-and-feedback/')" style="color:#c77dff;">Submit Inquiries/User Feedback</a> page.
